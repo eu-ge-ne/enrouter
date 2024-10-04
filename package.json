@@ -10,7 +10,7 @@
     "prebuild": "pnpm clean",
     "build": "tsup src/mod.ts --format esm --dts",
     "lint": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run --config configs/vitest.config.ts"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
   "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.2",
     "tsup": "^8.3.0",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.2"
   }
 }
