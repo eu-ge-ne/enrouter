@@ -1,9 +1,15 @@
 {
   "name": "enrouter",
   "version": "0.0.1",
+  "type": "module",
   "description": "",
-  "main": "index.js",
+  "module": "dist/mod.js",
+  "types": "dist/mod.d.ts",
   "scripts": {
+    "clean": "rm -rf ./dist",
+    "prebuild": "pnpm clean",
+    "build": "tsup src/mod.ts --format esm --dts",
+    "lint": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
-  "homepage": "https://github.com/eu-ge-ne/enrouter#readme"
+  "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
+  "devDependencies": {
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2"
+  }
 }
