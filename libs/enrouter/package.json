@@ -9,7 +9,6 @@
     "clean": "rm -rf ./dist && rm -rf ./coverage",
     "lint": "tsc",
     "test": "vitest run --config configs/vitest.config.ts",
-
     "prebuild": "pnpm clean",
     "build": "tsup src/mod.ts --format esm --dts"
   },
