@@ -1,14 +1,17 @@
 {
-  "name": "@enrouter/server",
+  "name": "@enrouter/worker",
   "version": "0.0.1",
   "type": "module",
   "description": "",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist && rm -rf ./coverage",
-    "dev": "tsx src/main.ts",
+    "clean": "rm -rf ./dist",
+    "dev": "wrangler dev --port 8000",
     "lint": "tsc",
-    "build": "tsc --noEmit false --outDir dist"
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "build_": "tsc --noEmit false --outDir dist",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "repository": {
     "type": "git",
@@ -24,13 +27,11 @@
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
-  "packageManager": "pnpm@9.12.0",
-  "dependencies": {
-    "express": "^5.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/express": "^5.0.0",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.2"
+    "enrouter": "workspace:*",
+    "@cloudflare/workers-types": "^4.20241004.0",
+    "typescript": "^5.6.2",
+    "wrangler": "^3.80.0"
   }
 }

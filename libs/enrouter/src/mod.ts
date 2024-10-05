@@ -1,3 +1,3 @@
-export function helloWorld() {
-  return "Hello world";
+export function hello() {
+  return "Hello enrouter";
 }

@@ -1,9 +1,9 @@
 import { describe, test, expect } from "vitest";
 
-import { helloWorld } from "./mod.js";
+import { hello } from "./mod.js";
 
-describe("mod", () => {
-  test("helloWorld", async () => {
-    expect(helloWorld()).toMatchSnapshot();
+describe("enrouter", () => {
+  test("hello", async () => {
+    expect(hello()).toMatchSnapshot();
   });
 });
