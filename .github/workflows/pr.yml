@@ -22,9 +22,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: test-coverage-${{ matrix.node-version }}
-          path: coverage
+          path: libs/enrouter/coverage
       - run: pnpm run build
       - uses: actions/upload-artifact@v4
         with:
           name: dist-${{ matrix.node-version }}
-          path: dist
+          path: libs/enrouter/dist
