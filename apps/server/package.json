@@ -5,7 +5,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "tsx src/main.ts"
+    "clean": "rm -rf ./dist && rm -rf ./coverage",
+    "dev": "tsx src/main.ts",
+    "lint": "tsc",
+    "build": "tsc --noEmit false --outDir dist"
   },
   "repository": {
     "type": "git",
