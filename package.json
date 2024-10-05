@@ -6,10 +6,11 @@
   "module": "dist/mod.js",
   "types": "dist/mod.d.ts",
   "scripts": {
+    "prettier": "prettier . --write",
     "clean": "rm -rf ./dist",
     "prebuild": "pnpm clean",
     "build": "tsup src/mod.ts --format esm --dts",
-    "lint": "tsc",
+    "lint": "prettier . --check && tsc",
     "test": "vitest run --config configs/vitest.config.ts"
   },
   "repository": {
@@ -29,6 +30,7 @@
   "packageManager": "pnpm@9.12.0",
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.2",
+    "prettier": "^3.3.3",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
     "vitest": "^2.1.2"
