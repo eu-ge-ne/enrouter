@@ -1,10 +1,12 @@
-name: PR
-run-name: ${{ github.actor }} started PR workflow by ${{ github.event_name }} in ${{ github.ref }}
+name: Main
+run-name: ${{ github.actor }} started Main workflow by ${{ github.event_name }} in ${{ github.ref }}
 on:
-  pull_request:
+  push:
+    branches:
+      - main
 jobs:
   pr-job:
-    name: Lint, test and build PR
+    name: Lint, test and build main branch
     runs-on: ubuntu-latest
     strategy:
       matrix:
