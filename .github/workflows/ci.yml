@@ -19,7 +19,7 @@ jobs:
       - run: pnpm run test
       - uses: actions/upload-artifact@v4
         with:
-          name: test-coverage
+          name: test-coverage-${{ matrix.node-version }}
           path: coverage
       - run: pnpm run build
       - name: List files in /dist
