@@ -4,6 +4,11 @@
     "clean": {
       "cache": false
     },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "interactive": false
+    },
     "lint": {
       "cache": true
     },
