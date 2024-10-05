@@ -1,15 +1,17 @@
 {
-  "name": "enrouter-monorepo",
+  "name": "enrouter",
   "version": "0.0.1",
   "type": "module",
   "description": "",
-  "private": true,
+  "module": "dist/mod.js",
+  "types": "dist/mod.d.ts",
   "scripts": {
-    "prettier": "prettier . --write",
-    "clean": "turbo clean",
-    "lint": "prettier . --check && turbo lint",
-    "test": "turbo test",
-    "build": "turbo build"
+    "clean": "rm -rf ./dist && rm -rf ./coverage",
+    "lint": "tsc",
+    "test": "vitest run --config configs/vitest.config.ts",
+
+    "prebuild": "pnpm clean",
+    "build": "tsup src/mod.ts --format esm --dts"
   },
   "repository": {
     "type": "git",
@@ -25,9 +27,10 @@
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
-  "packageManager": "pnpm@9.12.0",
   "devDependencies": {
-    "prettier": "^3.3.3",
-    "turbo": "^2.1.3"
+    "@vitest/coverage-v8": "^2.1.2",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.2"
   }
 }
