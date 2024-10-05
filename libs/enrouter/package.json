@@ -5,7 +5,9 @@
   "description": "",
   "module": "dist/mod.js",
   "types": "dist/mod.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./coverage",
     "lint": "tsc",
