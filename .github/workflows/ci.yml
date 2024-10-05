@@ -14,7 +14,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+      - run: pnpm run test
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
