@@ -14,7 +14,7 @@
     },
     "lint": {
       "cache": false,
-      "dependsOn": ["//#prettier"]
+      "dependsOn": ["//#prettier", "^build"]
     },
     "test": {
       "cache": true,
