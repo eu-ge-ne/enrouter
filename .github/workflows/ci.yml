@@ -1,6 +1,9 @@
 name: CI
 run-name: ${{ github.actor }} started CI workflow by ${{ github.event_name }} in ${{ github.ref }}
-on: [pull_request]
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
 jobs:
   CI:
     runs-on: ubuntu-latest
