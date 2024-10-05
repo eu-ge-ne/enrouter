@@ -9,8 +9,12 @@
       "persistent": true,
       "interactive": false
     },
+    "//#prettier": {
+      "cache": false
+    },
     "lint": {
-      "cache": true
+      "cache": false,
+      "dependsOn": ["//#prettier"]
     },
     "test": {
       "cache": true,
@@ -20,6 +24,10 @@
       "cache": true,
       "outputs": ["dist/**"],
       "dependsOn": ["clean", "^build"]
+    },
+    "deploy": {
+      "cache": false,
+      "dependsOn": ["clean", "lint", "test", "build"]
     }
   }
 }

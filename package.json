@@ -5,12 +5,14 @@
   "description": "",
   "private": true,
   "scripts": {
-    "prettier": "prettier . --write",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
     "clean": "turbo clean",
     "dev": "turbo dev",
-    "lint": "prettier . --check && turbo lint",
+    "lint": "turbo lint",
     "test": "turbo test",
-    "build": "turbo build"
+    "build": "turbo build",
+    "deploy": "turbo deploy"
   },
   "repository": {
     "type": "git",
