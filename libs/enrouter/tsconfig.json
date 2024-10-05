@@ -108,7 +108,7 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
 
     "noEmit": true,
-    "rootDir": "src",
+    "rootDir": "src"
   },
   "include": ["src"],
   "exclude": ["node_modules"]
