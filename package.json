@@ -26,6 +26,7 @@
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
+  "packageManager": "pnpm@9.12.0",
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.2",
     "tsup": "^8.3.0",
