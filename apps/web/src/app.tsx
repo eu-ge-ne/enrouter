@@ -3,7 +3,6 @@ import { useState } from "react";
 import { hello } from "enrouter";
 
 import reactLogo from "/react.svg";
-import viteLogo from "/vite.svg";
 
 export function App() {
   const [count, setCount] = useState(0);
@@ -16,16 +15,11 @@ export function App() {
     <div>
       {hello()}
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-      </div>
-      <div>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <button onClick={handleClick}>{count}</button>
+      <button onClick={handleClick}>Count: {count}</button>
     </div>
   );
 }
