@@ -1,7 +1,11 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "extends": ["@enrouter/tsconfig"],
+  "include": ["src"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "module": "preserve",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "lib": ["es2022", "dom", "dom.iterable"]
+  }
 }

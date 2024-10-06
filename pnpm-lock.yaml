@@ -24,6 +24,9 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@enrouter/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
