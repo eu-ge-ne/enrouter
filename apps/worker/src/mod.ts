@@ -11,6 +11,10 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 import { hello } from "enrouter";
+//@ts-ignore
+import { ssr as _ssr } from "@enrouter/web";
+
+const ssr = _ssr as (req: Request) => Promise<Response>;
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
@@ -21,7 +25,8 @@ export default {
       case "/random":
         return new Response(crypto.randomUUID());
       default:
-        return new Response("Not Found Error", { status: 500 });
+        //return new Response("Not Found Error", { status: 500 });
+        return ssr(request);
     }
   },
 } satisfies ExportedHandler<Env>;

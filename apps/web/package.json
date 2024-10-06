@@ -3,9 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "module": "dist/server/ssr.js",
   "scripts": {
+    "clean": "rm -rf ./dist",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && pnpm build:client && pnpm build:server",
+    "build:client": "vite build --config vite.config.ts",
+    "build:server": "vite build --config vite.config.ssr.ts",
     "lint": "true",
     "preview": "vite preview"
   },

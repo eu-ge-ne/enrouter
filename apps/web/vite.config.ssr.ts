@@ -9,12 +9,18 @@ export default defineConfig({
     middlewareMode: true,
   },
   build: {
-    manifest: true,
-    outDir: "dist/client",
-    modulePreload: false,
+    outDir: "dist/server",
     emptyOutDir: false,
-    rollupOptions: {
-      input: ["src/main.tsx"],
+    lib: {
+      entry: "src/ssr.tsx",
+      formats: ["es"],
     },
+    ssr: true,
+    sourcemap: true,
+    copyPublicDir: false,
   },
+  ssr: {
+    noExternal: true,
+    target: "webworker"
+  }
 });

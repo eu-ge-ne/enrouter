@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { hydrateRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+import "./index.css";
+
+import { Shell } from "./shell.js";
+import { App } from "./aapp.js";
+
+hydrateRoot(
+  document,
+  <Shell stylesheets={[]}>
     <App />
-  </StrictMode>,
-)
+  </Shell>
+);
