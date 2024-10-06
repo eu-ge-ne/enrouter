@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { hello } from "enrouter";
 
-import reactLogo from "/react.svg";
+import github_logo from "/github-light.svg";
 
 export function App() {
   const [count, setCount] = useState(0);
@@ -13,12 +13,19 @@ export function App() {
 
   return (
     <div>
-      {hello()}
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+      <div className="p-4 border-b flex gap-x-4 items-center justify-between">
+        <span className="text-lg font-medium tracking-tight uppercase">
+          enrouter
+        </span>
+        <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">
+          <img
+            src={github_logo}
+            className="size-6"
+            alt="https://github.com/eu-ge-ne/enrouter"
+          />
         </a>
       </div>
+      {hello()}
       <button onClick={handleClick}>Count: {count}</button>
     </div>
   );

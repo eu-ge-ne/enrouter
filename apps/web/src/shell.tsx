@@ -26,7 +26,7 @@ export function Shell({
             <link key={href} rel="stylesheet" href={href}></link>
           ))}
         </head>
-        <body>{children}</body>
+        <body className="bg-orange-50">{children}</body>
       </html>
     </StrictMode>
   );
