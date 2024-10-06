@@ -3,7 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "module": "dist/server/ssr.js",
+  "exports": {
+    "./ssr": "./dist/server/ssr.js",
+    "./manifest": "./dist/client/.vite/manifest.json"
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
     "dev": "vite",

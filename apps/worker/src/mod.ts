@@ -12,9 +12,13 @@
  */
 import { hello } from "enrouter";
 //@ts-ignore
-import { ssr as _ssr } from "@enrouter/web";
+import { ssr as _ssr } from "@enrouter/web/ssr";
+import manifest from "@enrouter/web/manifest";
 
-const ssr = _ssr as (req: Request) => Promise<Response>;
+const ssr = _ssr as (
+  req: Request,
+  params: { manifest: unknown }
+) => Promise<Response>;
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
@@ -24,9 +28,11 @@ export default {
         return new Response(`${hello()} ${new Date().toLocaleString()}`);
       case "/random":
         return new Response(crypto.randomUUID());
+      case "/manifest":
+        return new Response(JSON.stringify(manifest));
       default:
         //return new Response("Not Found Error", { status: 500 });
-        return ssr(request);
+        return ssr(request, { manifest });
     }
   },
 } satisfies ExportedHandler<Env>;

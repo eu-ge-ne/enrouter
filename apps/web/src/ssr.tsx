@@ -1,11 +1,11 @@
 import { renderToReadableStream } from "react-dom/server";
 
 import { Shell } from "./shell.js";
-import { App } from "./aapp.js";
+import { App } from "./app.js";
 
 const isCrawler = false;
 
-export async function ssr(_req: Request) {
+export async function ssr(_req: Request, { manifest }: { manifest: any }) {
   let caughtError: Error | undefined;
 
   function getStatusCode(): number {
@@ -19,10 +19,12 @@ export async function ssr(_req: Request) {
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 1000);
 
-    const bootstrapModules: string[] = [];
+    const bootstrapModules: string[] = [manifest["src/main.tsx"].file];
+
+    const stylesheets = manifest["src/main.tsx"].css;
 
     const children = (
-      <Shell stylesheets={[]}>
+      <Shell stylesheets={stylesheets}>
         <App />
       </Shell>
     );

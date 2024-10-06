@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 
 interface ShellProps {
-  stylesheets: string[];
+  stylesheets?: string[];
 }
 
 export function Shell({
