@@ -10,10 +10,10 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "dev": "vite",
-    "build": "tsc -b && pnpm build:client && pnpm build:server",
+    "lint": "tsc",
+    "build": "pnpm build:client && pnpm build:server",
     "build:client": "vite build --config configs/vite.config.ts",
     "build:server": "vite build --config configs/vite.config.ssr.ts",
-    "lint": "true",
     "preview": "vite preview"
   },
   "dependencies": {
