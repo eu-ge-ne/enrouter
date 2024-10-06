@@ -1,8 +1,8 @@
 {
   "name": "@enrouter/web",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "private": true,
   "exports": {
     "./ssr": "./dist/server/ssr.js",
     "./manifest": "./dist/client/.vite/manifest.json"

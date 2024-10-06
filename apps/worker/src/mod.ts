@@ -13,11 +13,12 @@
 import { hello } from "enrouter";
 //@ts-ignore
 import { ssr as _ssr } from "@enrouter/web/ssr";
+//@ts-ignore
 import manifest from "@enrouter/web/manifest";
 
 const ssr = _ssr as (
   req: Request,
-  params: { manifest: unknown }
+  params: { manifest: unknown },
 ) => Promise<Response>;
 
 export default {

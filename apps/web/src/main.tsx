@@ -9,5 +9,5 @@ hydrateRoot(
   document,
   <Shell>
     <App />
-  </Shell>
+  </Shell>,
 );
