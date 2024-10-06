@@ -15,6 +15,27 @@ importers:
         specifier: ^2.1.3
         version: 2.1.3
 
+  apps/edge:
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20241004.0
+        version: 4.20241004.0
+      '@enrouter/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
+      '@enrouter/web':
+        specifier: workspace:*
+        version: link:../web
+      enrouter:
+        specifier: workspace:*
+        version: link:../../libs/enrouter
+      typescript:
+        specifier: ^5.6.2
+        version: 5.6.2
+      wrangler:
+        specifier: ^3.80.0
+        version: 3.80.0(@cloudflare/workers-types@4.20241004.0)
+
   apps/web:
     devDependencies:
       '@enrouter/tsconfig':
@@ -47,27 +68,6 @@ importers:
       vite:
         specifier: ^5.4.8
         version: 5.4.8(@types/node@22.7.4)
-
-  apps/worker:
-    devDependencies:
-      '@cloudflare/workers-types':
-        specifier: ^4.20241004.0
-        version: 4.20241004.0
-      '@enrouter/tsconfig':
-        specifier: workspace:*
-        version: link:../../libs/tsconfig
-      '@enrouter/web':
-        specifier: workspace:*
-        version: link:../web
-      enrouter:
-        specifier: workspace:*
-        version: link:../../libs/enrouter
-      typescript:
-        specifier: ^5.6.2
-        version: 5.6.2
-      wrangler:
-        specifier: ^3.80.0
-        version: 3.80.0(@cloudflare/workers-types@4.20241004.0)
 
   libs/enrouter:
     devDependencies:
