@@ -28,6 +28,7 @@
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
   "dependencies": {},
   "devDependencies": {
+    "@enrouter/tsconfig": "workspace:*",
     "@enrouter/web": "workspace:*",
     "enrouter": "workspace:*",
     "@cloudflare/workers-types": "^4.20241004.0",

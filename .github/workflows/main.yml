@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  pr-job:
+  main-job:
     name: Lint, test and build main branch
     runs-on: ubuntu-latest
     strategy:

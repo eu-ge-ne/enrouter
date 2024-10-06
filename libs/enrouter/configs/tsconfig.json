@@ -1,9 +1,7 @@
 {
   "extends": ["@enrouter/tsconfig"],
-  "include": ["src"],
   "compilerOptions": {
-    "rootDir": "src",
     "module": "preserve",
-    "lib": ["es2022", "dom", "dom.iterable"]
+    "lib": ["es2022"]
   }
 }
