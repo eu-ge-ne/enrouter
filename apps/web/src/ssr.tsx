@@ -1,4 +1,5 @@
-import { renderToReadableStream } from "react-dom/server";
+//@ts-ignore
+import { renderToReadableStream } from "react-dom/server.edge";
 
 import { Shell } from "./shell.js";
 import { App } from "./app.js";
