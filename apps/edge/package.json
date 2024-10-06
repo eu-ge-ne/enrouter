@@ -1,5 +1,5 @@
 {
-  "name": "@enrouter/worker",
+  "name": "@enrouter/edge",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -12,21 +12,6 @@
     "deploy": "wrangler deploy",
     "cf-typegen": "wrangler types"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eu-ge-ne/enrouter.git"
-  },
-  "keywords": [
-    "React",
-    "Router"
-  ],
-  "author": "Eugene Pobochny",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/eu-ge-ne/enrouter/issues"
-  },
-  "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
-  "dependencies": {},
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
     "@enrouter/web": "workspace:*",
