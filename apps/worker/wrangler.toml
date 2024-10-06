@@ -3,6 +3,8 @@ name = "enrouter"
 main = "src/mod.ts"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2024-10-04"
+#assets = { directory = "./public", binding = "ASSETS" }
+assets = { directory = "../web/dist", binding = "ASSETS" }
 
 # Workers Logs
 # Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/

@@ -1,6 +1,6 @@
 {
   "name": "@enrouter/worker",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "description": "",
   "private": true,
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
   "dependencies": {},
   "devDependencies": {
+    "@enrouter/web": "workspace:*",
     "enrouter": "workspace:*",
     "@cloudflare/workers-types": "^4.20241004.0",
     "typescript": "^5.6.2",

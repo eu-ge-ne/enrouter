@@ -14,6 +14,14 @@ import { hello } from "enrouter";
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
-    return new Response(`${hello()} ${new Date().toLocaleString()}`);
+    const url = new URL(request.url);
+    switch (url.pathname) {
+      case "/message":
+        return new Response(`${hello()} ${new Date().toLocaleString()}`);
+      case "/random":
+        return new Response(crypto.randomUUID());
+      default:
+        return new Response("Not Found Error", { status: 500 });
+    }
   },
 } satisfies ExportedHandler<Env>;
