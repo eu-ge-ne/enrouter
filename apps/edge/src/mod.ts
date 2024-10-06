@@ -19,7 +19,7 @@ import manifest from "@enrouter/web/manifest";
 
 const ssr = _ssr as (
   req: Request,
-  params: { manifest: unknown }
+  params: { manifest: unknown },
 ) => Promise<Response>;
 
 export default {
