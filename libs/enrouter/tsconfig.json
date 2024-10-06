@@ -3,6 +3,7 @@
   "include": ["src"],
   "compilerOptions": {
     "rootDir": "src",
-    "module": "preserve"
+    "module": "preserve",
+    "lib": ["es2022", "dom", "dom.iterable"]
   }
 }

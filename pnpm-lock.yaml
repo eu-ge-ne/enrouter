@@ -51,6 +51,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20241004.0
         version: 4.20241004.0
+      '@enrouter/tsconfig':
+        specifier: workspace:*
+        version: link:../../libs/tsconfig
       '@enrouter/web':
         specifier: workspace:*
         version: link:../web
