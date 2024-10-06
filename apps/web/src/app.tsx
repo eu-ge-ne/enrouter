@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { hello } from "enrouter";
+
 import reactLogo from "/react.svg";
 import viteLogo from "/vite.svg";
 
@@ -12,6 +14,7 @@ export function App() {
 
   return (
     <div>
+      {hello()}
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

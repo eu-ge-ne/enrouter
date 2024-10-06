@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
   "devDependencies": {
+    "@enrouter/tsconfig": "workspace:*",
     "@vitest/coverage-v8": "^2.1.2",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
