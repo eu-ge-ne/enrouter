@@ -1,8 +1,7 @@
 {
   "name": "@enrouter/monorepo",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
-  "description": "",
   "private": true,
   "scripts": {
     "prettier": "prettier . --check",

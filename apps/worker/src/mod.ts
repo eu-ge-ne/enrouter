@@ -11,9 +11,29 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 import { hello } from "enrouter";
+//@ts-ignore
+import { ssr as _ssr } from "@enrouter/web/ssr";
+//@ts-ignore
+import manifest from "@enrouter/web/manifest";
+
+const ssr = _ssr as (
+  req: Request,
+  params: { manifest: unknown },
+) => Promise<Response>;
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
-    return new Response(`${hello()} ${new Date().toLocaleString()}`);
+    const url = new URL(request.url);
+    switch (url.pathname) {
+      case "/message":
+        return new Response(`${hello()} ${new Date().toLocaleString()}`);
+      case "/random":
+        return new Response(crypto.randomUUID());
+      case "/manifest":
+        return new Response(JSON.stringify(manifest));
+      default:
+        //return new Response("Not Found Error", { status: 500 });
+        return ssr(request, { manifest });
+    }
   },
 } satisfies ExportedHandler<Env>;

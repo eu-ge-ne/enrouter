@@ -1,0 +1,31 @@
+{
+  "name": "@enrouter/web",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./ssr": "./dist/server/ssr.js",
+    "./manifest": "./dist/client/.vite/manifest.json"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "dev": "vite",
+    "build": "tsc -b && pnpm build:client && pnpm build:server",
+    "build:client": "vite build --config vite.config.ts",
+    "build:server": "vite build --config vite.config.ssr.ts",
+    "lint": "true",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.8"
+  }
+}
