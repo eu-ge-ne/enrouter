@@ -10,6 +10,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+
 import { hello } from "enrouter";
 //@ts-ignore
 import { ssr as _ssr } from "@enrouter/web/ssr";
@@ -32,7 +33,6 @@ export default {
       case "/manifest":
         return new Response(JSON.stringify(manifest));
       default:
-        //return new Response("Not Found Error", { status: 500 });
         return ssr(request, { manifest });
     }
   },

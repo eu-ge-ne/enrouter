@@ -9,12 +9,13 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist",
-    "dev": "vite",
     "lint": "tsc",
+    "dev": "pnpm dev:client && pnpm dev:server",
+    "dev:client": "vite build -w -c configs/vite.config.ts",
+    "dev:server": "vite build -w -c configs/vite.config.ssr.ts",
     "build": "pnpm build:client && pnpm build:server",
-    "build:client": "vite build --config configs/vite.config.ts",
-    "build:server": "vite build --config configs/vite.config.ssr.ts",
-    "preview": "vite preview"
+    "build:client": "vite build -c configs/vite.config.ts",
+    "build:server": "vite build -c configs/vite.config.ssr.ts"
   },
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",

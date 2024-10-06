@@ -5,11 +5,10 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./dist",
-    "dev": "wrangler dev --port 8000",
     "lint": "tsc",
-    "build": "wrangler deploy --dry-run --outdir dist",
-    "build_": "tsc --noEmit false --outDir dist",
-    "deploy": "wrangler deploy",
+    "dev": "wrangler dev --port 8000",
+    "build": "wrangler deploy --dry-run --outdir dist --minify",
+    "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
