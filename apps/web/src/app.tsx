@@ -14,7 +14,7 @@ export function App() {
   return (
     <div>
       <div className="p-4 border-b flex gap-x-4 items-center justify-between">
-        <span className="text-lg font-medium tracking-tight uppercase">
+        <span className="text-lg tracking-tighter font-medium font-mono">
           enrouter
         </span>
         <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">
