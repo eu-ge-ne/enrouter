@@ -8,6 +8,8 @@ export { loadRouteMatches } from "./load/matches.js";
 export { StaticRouter } from "./routers/static.js";
 export { BrowserRouter } from "./routers/browser.js";
 
+export { useOutlets, Outlet } from "./outlets/mod.js";
+
 export type { RouteModules } from "./modules.js";
 
 import { createLog } from "#log.js";
