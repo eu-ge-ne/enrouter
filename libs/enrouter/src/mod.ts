@@ -10,6 +10,7 @@ export { BrowserRouter } from "./routers/browser.js";
 
 export { useOutlets, Outlet } from "./outlets/mod.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";
+export { useLinkProps } from "./link.js";
 
 export type { RouteModules } from "./modules.js";
 
