@@ -8,24 +8,12 @@ import {
   matchRoutes,
   StaticRouter,
 } from "enrouter";
-//@ts-ignore
-import viteManifest from "@enrouter/web/manifest";
 import { Shell } from "./shell.js";
 import { modules } from "./routes.js";
-import { createManifest } from "./manifest.js";
+import { assets } from "./assets.js";
 
 export async function createSSRHandler() {
-  const getModuleAssets = createManifest(
-    (x) => new URL(x, "http://localhost").pathname,
-    viteManifest,
-  );
-
-  const routes = buildRoutes({
-    entryId: "src/main.tsx",
-    modules,
-    getModuleAssets,
-  });
-
+  const routes = buildRoutes({ entryId: "src/main.tsx", modules, assets });
   if (!routes) {
     throw new Error("No routes found");
   }
@@ -33,8 +21,6 @@ export async function createSSRHandler() {
   const handlers = buildRouteHandlers({ routes });
 
   await loadRouteHandlers({ handlers, modules });
-
-  console.log("Handlers: %O", handlers);
 
   return async function ssrHandler(req: Request) {
     const isCrawler = false;
