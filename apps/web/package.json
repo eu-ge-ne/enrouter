@@ -7,6 +7,9 @@
     "./ssr": "./dist/server/ssr.js",
     "./manifest": "./dist/client/.vite/manifest.json"
   },
+  "imports": {
+    "#*": "./src/*"
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
     "lint": "tsc",

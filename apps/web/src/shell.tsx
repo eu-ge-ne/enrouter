@@ -1,5 +1,9 @@
 import { StrictMode } from "react";
 
+import { createLog } from "#log.js";
+
+const log = createLog("shell");
+
 interface ShellProps {
   stylesheets?: string[];
 }
@@ -8,7 +12,7 @@ export function Shell({
   stylesheets,
   children,
 }: React.PropsWithChildren<ShellProps>) {
-  console.log("Rendering Shell");
+  log("Rendering");
 
   return (
     <StrictMode>

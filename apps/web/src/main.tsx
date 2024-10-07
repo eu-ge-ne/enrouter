@@ -10,8 +10,11 @@ import {
 } from "enrouter";
 import { Shell } from "./shell.js";
 import { modules } from "./routes.js";
+import { createLog } from "#log.js";
 
 import type { Route } from "enrouter";
+
+const log = createLog("main");
 
 declare const window: {
   $ROUTES: Route;
@@ -19,7 +22,7 @@ declare const window: {
 };
 
 async function main() {
-  console.log("Hydrating DOM");
+  log("Hydrating DOM");
 
   const handlers = buildRouteHandlers({ routes: window.$ROUTES });
 
@@ -33,7 +36,7 @@ async function main() {
     </Shell>,
   );
 
-  console.log("DOM Hydrated");
+  log("DOM Hydrated");
 }
 
 main();
