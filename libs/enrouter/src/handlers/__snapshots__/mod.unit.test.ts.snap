@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildRouteHandlers > from 1 route 1`] = `
+{
+  "modules": [],
+  "route": {
+    "link": {
+      "css": [],
+      "mod": [],
+    },
+    "mod": [],
+    "path": "/",
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+}
+`;
+
+exports[`buildRouteHandlers > from 2 routes 1`] = `
+{
+  "children": [
+    {
+      "modules": [],
+      "route": {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/abc",
+      },
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  ],
+  "modules": [],
+  "route": {
+    "link": {
+      "css": [],
+      "mod": [],
+    },
+    "mod": [],
+    "path": "/",
+    "tree": [
+      {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/abc",
+      },
+    ],
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+}
+`;

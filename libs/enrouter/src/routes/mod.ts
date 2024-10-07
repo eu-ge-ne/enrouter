@@ -3,7 +3,7 @@ import dbg from "debug";
 import type { RouteModules } from "#modules.js";
 import type { GetModuleAssets } from "./assets.js";
 
-const debug = dbg("router/routes");
+const debug = dbg("enrouter/routes");
 
 export interface Route {
   /**
