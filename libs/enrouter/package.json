@@ -3,8 +3,15 @@
   "version": "0.0.2",
   "type": "module",
   "description": "",
-  "module": "dist/mod.js",
-  "types": "dist/mod.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/mod.d.ts",
+      "default": "./dist/mod.js"
+    }
+  },
+  "imports": {
+    "#*": "./src/*"
+  },
   "files": [
     "dist"
   ],
@@ -30,7 +37,9 @@
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
+    "@types/debug": "^4.1.12",
     "@vitest/coverage-v8": "^2.1.2",
+    "debug": "^4.3.7",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
     "vitest": "^2.1.2"
