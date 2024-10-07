@@ -38,10 +38,16 @@
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
     "@types/debug": "^4.1.12",
+    "@types/react": "npm:types-react@rc",
     "@vitest/coverage-v8": "^2.1.2",
     "debug": "^4.3.7",
+    "react": "19.0.0-rc-1460d67c-20241003",
+    "regexparam": "^3.0.0",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
     "vitest": "^2.1.2"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc"
   }
 }
