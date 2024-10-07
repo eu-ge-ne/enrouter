@@ -59,10 +59,10 @@ function createRouteNodes(match: RouteMatch): RouteNodes {
         log(
           'Rendering index component "%s" for match "%s"',
           entry[0],
-          match.handler.route.path
+          match.handler.route.path,
         );
         return wrapChildren(entry);
-      })
+      }),
     );
   }
 
@@ -72,10 +72,10 @@ function createRouteNodes(match: RouteMatch): RouteNodes {
         log(
           'Rendering layout component "%s" for match "%s"',
           entry[0],
-          match.handler.route.path
+          match.handler.route.path,
         );
         return wrapChildren(entry);
-      })
+      }),
     );
   }
 
