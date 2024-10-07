@@ -18,6 +18,7 @@ jobs:
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
       - run: pnpm run lint
+      - run: pnpm exec playwright install
       - run: pnpm run test
       - uses: actions/upload-artifact@v4
         with:
