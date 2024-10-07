@@ -1,0 +1,124 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`loadRouteHandlers > 1 route handler with 1 _index.tsx module 1`] = `
+{
+  "index": {
+    "main": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
+  },
+  "modules": [
+    {
+      "id": "_index.tsx",
+      "loaded": true,
+    },
+  ],
+  "route": {
+    "link": {
+      "css": [],
+      "mod": [],
+    },
+    "mod": [
+      "_index.tsx",
+    ],
+    "path": "/",
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+}
+`;
+
+exports[`loadRouteHandlers > 1 route handler with 1 _layout.tsx module 1`] = `
+{
+  "layout": {
+    "main": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {},
+      "type": [Function],
+    },
+  },
+  "modules": [
+    {
+      "id": "_layout.tsx",
+      "loaded": true,
+    },
+  ],
+  "route": {
+    "link": {
+      "css": [],
+      "mod": [],
+    },
+    "mod": [
+      "_layout.tsx",
+    ],
+    "path": "/",
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+}
+`;
+
+exports[`loadRouteHandlers > 1 route handler with no modules 1`] = `
+{
+  "modules": [],
+  "route": {
+    "link": {
+      "css": [],
+      "mod": [],
+    },
+    "mod": [],
+    "path": "/",
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+}
+`;
+
+exports[`loadRouteHandlers > 2 route handlers with no modules 1`] = `
+{
+  "children": [
+    {
+      "modules": [],
+      "route": {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/abc",
+      },
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  ],
+  "modules": [],
+  "route": {
+    "link": {
+      "css": [],
+      "mod": [],
+    },
+    "mod": [],
+    "path": "/",
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+}
+`;
