@@ -17,4 +17,7 @@ export default defineConfig({
       input: ["src/main.tsx"],
     },
   },
+  css: {
+    postcss: "configs/postcss.config.js",
+  },
 });

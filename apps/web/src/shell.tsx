@@ -23,10 +23,10 @@ export function Shell({
           <title>enrouter</title>
           <link rel="icon" type="image/svg+xml" href="/vite.svg" />
           {stylesheets?.map((href) => (
-            <link rel="stylesheet" href={href}></link>
+            <link key={href} rel="stylesheet" href={href}></link>
           ))}
         </head>
-        <body>{children}</body>
+        <body className="bg-orange-50">{children}</body>
       </html>
     </StrictMode>
   );
