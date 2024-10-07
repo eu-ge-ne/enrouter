@@ -1,3 +1,49 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`buildRoutes > from 0 modules 1`] = `undefined`;
+
+exports[`buildRoutes > from 1 module 1`] = `
+{
+  "link": {
+    "css": [],
+    "mod": [
+      "src/main.tsx",
+      "src/_layout.tsx",
+    ],
+  },
+  "mod": [
+    "src/_layout.tsx",
+  ],
+  "path": "/",
+}
+`;
+
+exports[`buildRoutes > from 2 parent-child modules 1`] = `
+{
+  "link": {
+    "css": [],
+    "mod": [
+      "src/main.tsx",
+      "src/_layout.tsx",
+    ],
+  },
+  "mod": [
+    "src/_layout.tsx",
+  ],
+  "path": "/",
+  "tree": [
+    {
+      "link": {
+        "css": [],
+        "mod": [
+          "src/abc/_layout.tsx",
+        ],
+      },
+      "mod": [
+        "src/abc/_layout.tsx",
+      ],
+      "path": "/abc",
+    },
+  ],
+}
+`;
