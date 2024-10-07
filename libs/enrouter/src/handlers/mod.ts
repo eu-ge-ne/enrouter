@@ -1,10 +1,11 @@
-import dbg from "debug";
 import type { ReactElement } from "react";
 import * as regexparam from "regexparam";
 
+import { createLog } from "#log.js";
+
 import type { Route } from "#routes/mod.js";
 
-const debug = dbg("enrouter/handlers");
+const log = createLog("handlers");
 
 export interface RouteHandler {
   route: Route;
@@ -29,11 +30,11 @@ interface BuildRouteHandlersParams {
 export function buildRouteHandlers({
   routes,
 }: BuildRouteHandlersParams): RouteHandler {
-  debug("Building route handlers");
+  log("Building route handlers");
 
   const handlers = recur(routes);
 
-  debug("Route handlers built");
+  log("Route handlers built");
 
   return handlers;
 }

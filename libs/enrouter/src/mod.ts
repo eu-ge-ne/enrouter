@@ -3,6 +3,13 @@ export { buildRouteHandlers } from "./handlers/mod.js";
 
 export type { RouteModules } from "./modules.js";
 
+import { createLog } from "#log.js";
+
+const log = createLog("hello");
+
 export function hello() {
-  return "Hello";
+  log("a");
+  const result = "Hello";
+  log("b");
+  return result;
 }
