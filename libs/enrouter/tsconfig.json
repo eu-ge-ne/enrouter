@@ -4,6 +4,8 @@
   "compilerOptions": {
     "rootDir": "src",
     "module": "preserve",
-    "lib": ["es2022", "dom", "dom.iterable"]
+    "jsx": "react-jsx",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "types": ["@vitest/browser/providers/playwright"]
   }
 }
