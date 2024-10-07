@@ -9,6 +9,7 @@ export { StaticRouter } from "./routers/static.js";
 export { BrowserRouter } from "./routers/browser.js";
 
 export { useOutlets, Outlet } from "./outlets/mod.js";
+export { useLocation, usePath, useMatch } from "./hooks.js";
 
 export type { RouteModules } from "./modules.js";
 
