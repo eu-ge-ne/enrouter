@@ -4,7 +4,7 @@ export function createLog(ns: string): typeof console.log {
   const log: typeof console.log = (msg, ...params) => {
     console.log(
       `@enrouter/web/${ns} (+${Date.now() - t}ms): ${msg}`,
-      ...params
+      ...params,
     );
     t = Date.now();
   };

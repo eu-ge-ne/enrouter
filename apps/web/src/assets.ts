@@ -31,7 +31,7 @@ export const assets: ModuleAssets = Object.fromEntries(
         modules: [val.file, ...imports],
       },
     ];
-  })
+  }),
 );
 
 log("Assets built: %O", assets);
