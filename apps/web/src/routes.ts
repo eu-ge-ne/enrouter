@@ -6,5 +6,5 @@ export const modules: RouteModules = Object.fromEntries(
   Object.entries(_modules).map(([key, load]) => [
     "src" + key.slice(".".length),
     { path: key.slice("./app/".length), load },
-  ])
+  ]),
 );

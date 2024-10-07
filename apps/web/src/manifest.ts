@@ -16,7 +16,7 @@ type ViteManifest = Record<
 
 export function createManifest(
   mapUrl: (x: string) => string,
-  viteManifest?: ViteManifest
+  viteManifest?: ViteManifest,
 ): GetModuleAssets {
   let manifest:
     | Record<string, { module: string; styles: string[]; imports: string[] }>
@@ -35,7 +35,7 @@ export function createManifest(
             imports: [...imports],
           },
         ];
-      })
+      }),
     );
 
     console.log("Manifest: %O", manifest);
@@ -61,7 +61,7 @@ export function createManifest(
 function flattenImports(
   viteManifest: ViteManifest,
   ids: string[],
-  result: Set<string>
+  result: Set<string>,
 ) {
   for (const id of ids) {
     result.add(viteManifest[id]?.file!);

@@ -17,7 +17,7 @@ import { createManifest } from "./manifest.js";
 export async function createSSRHandler() {
   const getModuleAssets = createManifest(
     (x) => new URL(x, "http://localhost").pathname,
-    viteManifest
+    viteManifest,
   );
 
   const routes = buildRoutes({

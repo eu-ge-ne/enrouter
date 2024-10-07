@@ -30,7 +30,7 @@ async function main() {
     document,
     <Shell>
       <BrowserRouter handlers={handlers} modules={modules} />
-    </Shell>
+    </Shell>,
   );
 
   console.log("DOM Hydrated");
