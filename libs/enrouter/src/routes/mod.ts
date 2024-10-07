@@ -1,9 +1,9 @@
-import dbg from "debug";
+import { createLog } from "#log.js";
 
 import type { RouteModules } from "#modules.js";
 import type { GetModuleAssets } from "./assets.js";
 
-const debug = dbg("enrouter/routes");
+const log = createLog("routes");
 
 export interface Route {
   /**
@@ -36,7 +36,7 @@ export function buildRoutes({
   modules,
   getModuleAssets,
 }: BuildRoutesParams): Route | undefined {
-  debug("Building routes");
+  log("Building routes");
 
   function updateAssets({ link }: Route, moduleId: string): void {
     const { modules, styles } = getModuleAssets(moduleId);
@@ -87,7 +87,7 @@ export function buildRoutes({
 
   const routeTree = routesByFullPath.get("/");
 
-  debug("Routes built: %O", routeTree);
+  log("Routes built: %O", routeTree);
 
   return routeTree;
 }

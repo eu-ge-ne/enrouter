@@ -1,0 +1,133 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matchRoutes > 1 match 1`] = `
+[
+  {
+    "handler": {
+      "modules": [],
+      "route": {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/",
+      },
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+    "next": undefined,
+    "params": {},
+  },
+]
+`;
+
+exports[`matchRoutes > 1 match with params 1`] = `
+[
+  {
+    "handler": {
+      "modules": [],
+      "route": {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/[:id]",
+      },
+      "test": {
+        "keys": [
+          "id",
+        ],
+        "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+    "next": undefined,
+    "params": {
+      "id": "100",
+    },
+  },
+]
+`;
+
+exports[`matchRoutes > 2 matches 1`] = `
+[
+  {
+    "handler": {
+      "children": [
+        {
+          "modules": [],
+          "route": {
+            "link": {
+              "css": [],
+              "mod": [],
+            },
+            "mod": [],
+            "path": "/abc",
+          },
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+      "modules": [],
+      "route": {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/",
+      },
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+    "next": {
+      "handler": {
+        "modules": [],
+        "route": {
+          "link": {
+            "css": [],
+            "mod": [],
+          },
+          "mod": [],
+          "path": "/abc",
+        },
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+      "next": undefined,
+      "params": {},
+    },
+    "params": {},
+  },
+  {
+    "handler": {
+      "modules": [],
+      "route": {
+        "link": {
+          "css": [],
+          "mod": [],
+        },
+        "mod": [],
+        "path": "/abc",
+      },
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+    "next": undefined,
+    "params": {},
+  },
+]
+`;
+
+exports[`matchRoutes > no matches 1`] = `[]`;
