@@ -7,7 +7,7 @@ import { RouterContext } from "./routers/context.js";
 const log = createLog("link");
 
 export function useLinkProps(
-  href: string
+  href: string,
 ): Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick"> {
   const { navigate } = useContext(RouterContext);
 
