@@ -13,5 +13,5 @@ export { useLocation, usePath, useMatch } from "./hooks.js";
 export { useLinkProps } from "./link.js";
 
 export type { Route } from "./routes/mod.js";
-export type { GetModuleAssets } from "./routes/assets.js";
 export type { RouteModules } from "./modules.js";
+export type { ModuleAssets } from "./assets.js";
