@@ -12,15 +12,6 @@ export { useOutlets, Outlet } from "./outlets/mod.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";
 export { useLinkProps } from "./link.js";
 
+export type { Route } from "./routes/mod.js";
+export type { GetModuleAssets } from "./routes/assets.js";
 export type { RouteModules } from "./modules.js";
-
-import { createLog } from "#log.js";
-
-const log = createLog("hello");
-
-export function hello() {
-  log("0");
-  const result = "Hello";
-  log("1 %s", result);
-  return result;
-}
