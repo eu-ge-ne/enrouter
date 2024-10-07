@@ -1,57 +1,114 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
+import {
+  buildRoutes,
+  buildRouteHandlers,
+  loadRouteHandlers,
+  matchRoutes,
+  StaticRouter,
+} from "enrouter";
+//@ts-ignore
+import viteManifest from "@enrouter/web/manifest";
 import { Shell } from "./shell.js";
-import { App } from "./app.js";
+import { modules } from "./routes.js";
+import { createManifest } from "./manifest.js";
 
-const isCrawler = false;
+export async function createSSRHandler() {
+  const getModuleAssets = createManifest(
+    (x) => new URL(x, "http://localhost").pathname,
+    viteManifest
+  );
 
-export async function ssr(_req: Request, { manifest }: { manifest: any }) {
-  let caughtError: Error | undefined;
+  const routes = buildRoutes({
+    entryId: "src/main.tsx",
+    modules,
+    getModuleAssets,
+  });
 
-  function getStatusCode(): number {
-    if (!caughtError) {
-      return 200;
-    }
-    return 500;
+  if (!routes) {
+    throw new Error("No routes found");
   }
 
-  try {
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), 1000);
+  const handlers = buildRouteHandlers({ routes });
 
-    const bootstrapModules: string[] = [manifest["src/main.tsx"].file];
+  await loadRouteHandlers({ handlers, modules });
 
-    const stylesheets = manifest["src/main.tsx"].css;
+  console.log("Handlers: %O", handlers);
 
-    const children = (
-      <Shell stylesheets={stylesheets}>
-        <App />
-      </Shell>
-    );
+  return async function ssrHandler(req: Request) {
+    const isCrawler = false;
 
-    const stream = await renderToReadableStream(children, {
-      signal: controller.signal,
-      bootstrapModules,
-      onError(err: unknown) {
-        caughtError = err as Error;
-        console.error(err, "renderToReadableStream.onError");
-      },
-    });
+    let caughtError: Error | undefined;
 
-    if (isCrawler) {
-      await stream.allReady;
+    function getStatusCode(): number {
+      if (!caughtError) {
+        return 200;
+      }
+      return 500;
     }
 
-    return new Response(stream, {
-      status: getStatusCode(),
-      headers: { "Content-Type": "text/html" },
-    });
-  } catch (err) {
-    console.error(err);
+    try {
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 1000);
 
-    return new Response("SSR error", {
-      status: getStatusCode(),
-    });
-  }
+      const location = new URL(req.url, "http://localhost").pathname;
+
+      const matches = matchRoutes({ handlers, location });
+
+      console.log("Matches: %O", matches);
+
+      const stylesheets = [
+        ...new Set(matches.flatMap((x) => x.handler.route.link.css)),
+      ];
+
+      const bootstrapScriptContent = `
+window.$ROUTES = ${JSON.stringify(routes)};`;
+
+      const bootstrapModules = [
+        ...new Set([...matches.flatMap((x) => x.handler.route.link.mod)]),
+      ];
+
+      console.log("Rendering the shell: %O", {
+        location,
+        bootstrapScriptContent,
+        bootstrapModules,
+      });
+
+      const children = (
+        <Shell stylesheets={stylesheets}>
+          <StaticRouter
+            handlers={handlers}
+            location={location}
+            matches={matches}
+          />
+        </Shell>
+      );
+
+      const stream = await renderToReadableStream(children, {
+        signal: controller.signal,
+        bootstrapScriptContent,
+        bootstrapModules,
+        onError(err: unknown) {
+          caughtError = err as Error;
+          console.error(err, "renderToReadableStream.onError");
+        },
+      });
+
+      if (isCrawler) {
+        await stream.allReady;
+      }
+
+      return new Response(stream, {
+        status: getStatusCode(),
+        headers: { "Content-Type": "text/html" },
+      });
+    } catch (err) {
+      console.error(err);
+
+      return new Response("SSR error", {
+        status: getStatusCode(),
+      });
+    }
+  };
 }
