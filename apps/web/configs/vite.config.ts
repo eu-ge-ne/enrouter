@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { globSync } from "glob";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
     modulePreload: false,
     emptyOutDir: false,
     rollupOptions: {
-      input: ["src/main.tsx"],
+      input: ["src/main.tsx", ...globSync("./src/app/**/_*.tsx")],
     },
   },
   css: {

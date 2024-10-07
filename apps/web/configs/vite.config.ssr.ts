@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { globSync } from "glob";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
     outDir: "dist/server",
     emptyOutDir: false,
     lib: {
-      entry: "src/ssr.tsx",
+      entry: ["src/ssr.tsx", ...globSync("./src/app/**/_*.tsx")],
       formats: ["es"],
     },
     ssr: true,
