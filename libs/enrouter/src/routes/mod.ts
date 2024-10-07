@@ -1,7 +1,7 @@
 import { createLog } from "#log.js";
 
 import type { RouteModules } from "#modules.js";
-import type { GetModuleAssets } from "./assets.js";
+import type { ModuleAssets } from "#assets.js";
 
 const log = createLog("routes");
 
@@ -28,20 +28,22 @@ export interface Route {
 export interface BuildRoutesParams {
   entryId: string;
   modules: RouteModules;
-  getModuleAssets: GetModuleAssets;
+  assets: ModuleAssets;
 }
 
 export function buildRoutes({
   entryId,
   modules,
-  getModuleAssets,
+  assets,
 }: BuildRoutesParams): Route | undefined {
   log("Building routes");
 
   function updateAssets({ link }: Route, moduleId: string): void {
-    const { modules, styles } = getModuleAssets(moduleId);
-    link.mod = [...new Set([...link.mod, ...modules])];
-    link.css = [...new Set([...link.css, ...styles])];
+    const x = assets[moduleId];
+    if (x) {
+      link.mod = [...new Set([...link.mod, ...x.modules])];
+      link.css = [...new Set([...link.css, ...x.styles])];
+    }
   }
 
   const entries = Object.entries(modules)

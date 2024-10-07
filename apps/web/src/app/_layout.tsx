@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-import { hello } from "enrouter";
-
 import npm_logo from "/npm.svg";
 import github_logo from "/github-light.svg";
 
-export function App() {
+export const components = {
+  main: App,
+};
+
+function App() {
+  console.log("Rendering App");
+
   const [count, setCount] = useState(0);
 
   function handleClick() {
@@ -35,7 +39,6 @@ export function App() {
           </a>
         </div>
       </div>
-      {hello()}
       <button onClick={handleClick}>Count: {count}</button>
     </div>
   );
