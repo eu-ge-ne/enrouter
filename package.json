@@ -27,7 +27,7 @@
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
-  "packageManager": "pnpm@9.12.0",
+  "packageManager": "pnpm@9.12.1",
   "devDependencies": {
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
