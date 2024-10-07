@@ -8,10 +8,12 @@ graph TD;
   NAV(("navigation event"));
   LOC[Location];
   RM[RouteMatch];
+  RN[RouteNodes];
 
   MM---|buildRoutes|RT;
   RT---|buildRouteHandlers|RH;
   RH-->NAV;
   LOC-->NAV;
   NAV---|matchRoutes|RM;
+  RM---|renderMatches|RN;
 ```
