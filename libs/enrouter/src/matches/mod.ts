@@ -38,7 +38,7 @@ export function matchRoutes({
 function recur(
   handlers: RouteHandler[],
   location: string,
-  matches: RouteMatch[]
+  matches: RouteMatch[],
 ): void {
   let matchResults = handlers
     .map((x) => [x, x.test?.pattern.exec(location)] as const)
