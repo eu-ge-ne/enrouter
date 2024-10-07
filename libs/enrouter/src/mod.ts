@@ -2,6 +2,9 @@ export { buildRoutes } from "./routes/mod.js";
 export { buildRouteHandlers } from "./handlers/mod.js";
 export { matchRoutes } from "./matches/mod.js";
 
+export { StaticRouter } from "./routers/static.js";
+export { BrowserRouter } from "./routers/browser.js";
+
 export type { RouteModules } from "./modules.js";
 
 import { createLog } from "#log.js";
