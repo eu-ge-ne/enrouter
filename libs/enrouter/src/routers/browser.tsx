@@ -43,7 +43,7 @@ export function BrowserRouter({ handlers, modules }: BrowserRouterParams) {
 
   const matches = useMemo(
     () => matchRoutes({ handlers, location }),
-    [handlers, location]
+    [handlers, location],
   );
 
   const context = useMemo<TRouterContext>(
@@ -52,7 +52,7 @@ export function BrowserRouter({ handlers, modules }: BrowserRouterParams) {
       location,
       navigate,
     }),
-    [handlers, location, navigate]
+    [handlers, location, navigate],
   );
 
   const children = useMemo(() => renderMatches(matches), [matches]);

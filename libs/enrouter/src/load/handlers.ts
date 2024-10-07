@@ -29,7 +29,7 @@ export async function loadRouteHandlers({
 function recur(
   handlers: RouteHandler[],
   modules: RouteModules,
-  promises: Promise<unknown>[]
+  promises: Promise<unknown>[],
 ): void {
   for (const handler of handlers) {
     for (const module of handler.modules) {

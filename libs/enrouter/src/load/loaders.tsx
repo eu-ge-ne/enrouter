@@ -21,7 +21,7 @@ export const loaders: Record<string, Loader> = {
     const fn = load as () => Promise<_Layout>;
     const { components } = await fn();
     handler.layout = Object.fromEntries(
-      Object.entries(components).map(([key, C]) => [key, <C />])
+      Object.entries(components).map(([key, C]) => [key, <C />]),
     );
     module.loaded = true;
   },
@@ -29,7 +29,7 @@ export const loaders: Record<string, Loader> = {
     const fn = load as () => Promise<_Index>;
     const { components } = await fn();
     handler.index = Object.fromEntries(
-      Object.entries(components).map(([key, C]) => [key, <C />])
+      Object.entries(components).map(([key, C]) => [key, <C />]),
     );
     module.loaded = true;
   },
