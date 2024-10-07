@@ -7,9 +7,9 @@ import type { BuildRoutesParams } from "./mod.js";
 describe("buildRoutes", () => {
   test("from 0 modules", () => {
     const params: BuildRoutesParams = {
-      entryId: "src/main.tsx",
-      getModuleAssets: () => ({ modules: [], styles: [] }),
+      entryId: "",
       modules: {},
+      assets: {},
     };
 
     expect(buildRoutes(params)).toMatchSnapshot();
@@ -18,12 +18,15 @@ describe("buildRoutes", () => {
   test("from 1 module", () => {
     const params: BuildRoutesParams = {
       entryId: "src/main.tsx",
-      getModuleAssets: (moduleId) => ({ modules: [moduleId], styles: [] }),
       modules: {
         "src/_layout.tsx": {
           path: "_layout.tsx",
           load: async () => undefined,
         },
+      },
+      assets: {
+        "src/main.tsx": { modules: ["src/main.tsx"], styles: [] },
+        "src/_layout.tsx": { modules: ["src/_layout.tsx"], styles: [] },
       },
     };
 
@@ -33,7 +36,6 @@ describe("buildRoutes", () => {
   test("from 2 parent-child modules", () => {
     const params: BuildRoutesParams = {
       entryId: "src/main.tsx",
-      getModuleAssets: (moduleId) => ({ modules: [moduleId], styles: [] }),
       modules: {
         "src/_layout.tsx": {
           path: "_layout.tsx",
@@ -43,6 +45,11 @@ describe("buildRoutes", () => {
           path: "abc/_layout.tsx",
           load: async () => undefined,
         },
+      },
+      assets: {
+        "src/main.tsx": { modules: ["src/main.tsx"], styles: [] },
+        "src/_layout.tsx": { modules: ["src/_layout.tsx"], styles: [] },
+        "src/abc/_layout.tsx": { modules: ["src/abc/_layout.tsx"], styles: [] },
       },
     };
 
