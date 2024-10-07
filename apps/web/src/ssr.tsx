@@ -11,6 +11,9 @@ import {
 import { Shell } from "./shell.js";
 import { modules } from "./routes.js";
 import { assets } from "./assets.js";
+import { createLog } from "#log.js";
+
+const log = createLog("ssr");
 
 export async function createSSRHandler() {
   const routes = buildRoutes({ entryId: "src/main.tsx", modules, assets });
@@ -42,8 +45,6 @@ export async function createSSRHandler() {
 
       const matches = matchRoutes({ handlers, location });
 
-      console.log("Matches: %O", matches);
-
       const stylesheets = [
         ...new Set(matches.flatMap((x) => x.handler.route.link.css)),
       ];
@@ -55,7 +56,7 @@ window.$ROUTES = ${JSON.stringify(routes)};`;
         ...new Set([...matches.flatMap((x) => x.handler.route.link.mod)]),
       ];
 
-      console.log("Rendering the shell: %O", {
+      log("Rendering Shell: %O", {
         location,
         bootstrapScriptContent,
         bootstrapModules,

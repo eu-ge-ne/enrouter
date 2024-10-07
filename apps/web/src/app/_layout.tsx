@@ -1,24 +1,22 @@
-import { useState } from "react";
+import { Outlet } from "enrouter";
 
 import npm_logo from "/npm.svg";
 import github_logo from "/github-light.svg";
+
+import { createLog } from "#log.js";
+
+const log = createLog("app/_layout");
 
 export const components = {
   main: App,
 };
 
 function App() {
-  console.log("Rendering App");
-
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount((x) => x + 1);
-  }
+  log("Rendering");
 
   return (
-    <div>
-      <div className="p-4 border-b flex items-center justify-between">
+    <div className="flex flex-col divide-y">
+      <div className="p-4 items-center justify-between flex">
         <span className="text-lg tracking-tighter font-medium font-mono">
           enrouter
         </span>
@@ -39,7 +37,7 @@ function App() {
           </a>
         </div>
       </div>
-      <button onClick={handleClick}>Count: {count}</button>
+      <Outlet name="main" />
     </div>
   );
 }
