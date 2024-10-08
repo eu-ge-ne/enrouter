@@ -55,7 +55,10 @@ export function BrowserRouter({ handlers, modules }: BrowserRouterParams) {
     [handlers, location, navigate],
   );
 
-  const children = useMemo(() => renderMatches(matches), [matches]);
+  const children = useMemo(
+    () => renderMatches(matches, location),
+    [matches, location],
+  );
 
   return (
     <RouterContext.Provider value={context}>{children}</RouterContext.Provider>
