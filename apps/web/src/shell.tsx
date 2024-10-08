@@ -30,7 +30,7 @@ export function Shell({
             <link key={href} rel="stylesheet" href={href}></link>
           ))}
         </head>
-        <body className="bg-customBackground">{children}</body>
+        <body className="bg-orange-50">{children}</body>
       </html>
     </StrictMode>
   );
