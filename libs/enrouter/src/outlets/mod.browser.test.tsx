@@ -39,6 +39,7 @@ describe("outlets", () => {
           },
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];
@@ -70,6 +71,7 @@ describe("outlets", () => {
           },
         },
         location: "/",
+        isFull: false,
         params: {},
       },
       {
@@ -90,6 +92,7 @@ describe("outlets", () => {
           },
         },
         location: "/a",
+        isFull: true,
         params: {},
       },
     ];

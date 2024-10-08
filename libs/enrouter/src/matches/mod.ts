@@ -6,9 +6,13 @@ const log = createLog("matches");
 
 export interface RouteMatch {
   handler: RouteHandler;
+
   location: string;
+  isFull: boolean;
   params: Record<string, string>;
+
   next?: RouteMatch;
+  last?: RouteMatch;
 }
 
 interface MatchRoutesParams {
@@ -26,10 +30,11 @@ export function matchRoutes({
 
   recur([handlers], location, matches);
 
-  for (let i = 0; i < matches.length; i += 1) {
-    const match = matches[i]!;
-    match.next = matches[i + 1];
-  }
+  const last = matches.at(-1);
+  matches.forEach((x, i) => {
+    x.next = matches[i + 1];
+    x.last = last;
+  });
 
   log("Matched routes %O", matches);
 
@@ -62,7 +67,14 @@ function recur(
     }),
   );
 
-  matches.push({ handler, location: results[0] || "/", params });
+  const matchedLocation = results[0] || "/";
+
+  matches.push({
+    handler,
+    location: matchedLocation,
+    isFull: matchedLocation === location,
+    params,
+  });
 
   if (handler.tree) {
     recur(handler.tree, location, matches);

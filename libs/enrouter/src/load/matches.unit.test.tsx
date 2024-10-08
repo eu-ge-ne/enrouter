@@ -28,6 +28,7 @@ describe("loadRouteMatches", () => {
           modules: [],
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];
@@ -50,6 +51,7 @@ describe("loadRouteMatches", () => {
           modules: [{ id: "_layout.tsx" }],
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];
@@ -83,6 +85,7 @@ describe("loadRouteMatches", () => {
           modules: [{ id: "_index.tsx" }],
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];

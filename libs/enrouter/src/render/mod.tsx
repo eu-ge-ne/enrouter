@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 
 import { createLog } from "#log.js";
 import { RouteRenderContext } from "./context.js";
+import { NotFound } from "./notFound.js";
 
 import type { RouteMatch } from "#matches/mod.js";
 
@@ -21,17 +22,20 @@ export interface RouteNodes {
 export function renderMatches(matches: RouteMatch[]): ReactElement[] {
   log("Rendering matches");
 
+  const lastMatch = matches.at(-1);
+  if (!lastMatch?.isFull) {
+    log("404: %O", lastMatch);
+    return [<NotFound />];
+  }
+
   const nodes = matches.map(createRouteNodes);
 
-  {
-    const last = nodes[nodes.length - 1];
-    for (let i = 0; i < nodes.length; i += 1) {
-      const x = nodes[i]!;
-      x.prev = nodes[i - 1];
-      x.next = nodes[i + 1];
-      x.last = last;
-    }
-  }
+  const last = nodes.at(-1);
+  nodes.forEach((x, i) => {
+    x.prev = nodes[i - 1];
+    x.next = nodes[i + 1];
+    x.last = last;
+  });
 
   log("Matches rendered");
 
