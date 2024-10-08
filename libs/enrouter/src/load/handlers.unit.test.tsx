@@ -32,7 +32,7 @@ describe("loadRouteHandlers", () => {
       },
       test: regexparam.parse("/", true),
       modules: [],
-      children: [
+      tree: [
         {
           route: {
             path: "/abc",

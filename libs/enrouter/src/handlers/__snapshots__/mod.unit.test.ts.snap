@@ -20,23 +20,6 @@ exports[`buildRouteHandlers > from 1 route 1`] = `
 
 exports[`buildRouteHandlers > from 2 routes 1`] = `
 {
-  "children": [
-    {
-      "modules": [],
-      "route": {
-        "link": [
-          [],
-          [],
-        ],
-        "mod": [],
-        "path": "/abc",
-      },
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  ],
   "modules": [],
   "route": {
     "link": [
@@ -60,5 +43,22 @@ exports[`buildRouteHandlers > from 2 routes 1`] = `
     "keys": [],
     "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
   },
+  "tree": [
+    {
+      "modules": [],
+      "route": {
+        "link": [
+          [],
+          [],
+        ],
+        "mod": [],
+        "path": "/abc",
+      },
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  ],
 }
 `;

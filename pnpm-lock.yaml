@@ -109,13 +109,13 @@ importers:
         version: types-react@19.0.0-rc.1
       '@vitest/browser':
         specifier: ^2.1.2
-        version: 2.1.2(@vitest/spy@2.1.2)(playwright@1.47.2)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
+        version: 2.1.2(@vitest/spy@2.1.2)(playwright@1.48.0)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
       '@vitest/coverage-v8':
         specifier: ^2.1.2
         version: 2.1.2(@vitest/browser@2.1.2)(vitest@2.1.2)
       playwright:
-        specifier: ^1.47.2
-        version: 1.47.2
+        specifier: ^1.48.0
+        version: 1.48.0
       react:
         specifier: 19.0.0-rc-1460d67c-20241003
         version: 19.0.0-rc-1460d67c-20241003
@@ -2280,13 +2280,13 @@ packages:
   pkg-types@1.2.0:
     resolution: {integrity: sha512-+ifYuSSqOQ8CqP4MbZA5hDpb97n3E8SVWdJe+Wms9kj745lmd3b7EZJiqvmLwAlmRfjrI7Hi5z3kdBJ93lFNPA==}
 
-  playwright-core@1.47.2:
-    resolution: {integrity: sha512-3JvMfF+9LJfe16l7AbSmU555PaTl2tPyQsVInqm3id16pdDfvZ8TTZ/pyzmkbDrZTQefyzU7AIHlZqQnxpqHVQ==}
+  playwright-core@1.48.0:
+    resolution: {integrity: sha512-RBvzjM9rdpP7UUFrQzRwR8L/xR4HyC1QXMzGYTbf1vjw25/ya9NRAVnXi/0fvFopjebvyPzsmoK58xxeEOaVvA==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.47.2:
-    resolution: {integrity: sha512-nx1cLMmQWqmA3UsnjaaokyoUpdVaaDhJhMoxX2qj3McpjnsqFHs516QAKYhqHAgOP+oCFTEOCOAaD1RgD/RQfA==}
+  playwright@1.48.0:
+    resolution: {integrity: sha512-qPqFaMEHuY/ug8o0uteYJSRfMGFikhUysk8ZvAtfKmUK3kc/6oNl/y3EczF8OFGYIi/Ex2HspMfzYArk6+XQSA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3843,7 +3843,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/browser@2.1.2(@vitest/spy@2.1.2)(playwright@1.47.2)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)':
+  '@vitest/browser@2.1.2(@vitest/spy@2.1.2)(playwright@1.48.0)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)':
     dependencies:
       '@testing-library/dom': 10.4.0
       '@testing-library/user-event': 14.5.2(@testing-library/dom@10.4.0)
@@ -3856,7 +3856,7 @@ snapshots:
       vitest: 2.1.2(@edge-runtime/vm@3.2.0)(@types/node@22.7.4)(@vitest/browser@2.1.2)(msw@2.4.9(typescript@5.6.2))(terser@5.34.1)
       ws: 8.18.0
     optionalDependencies:
-      playwright: 1.47.2
+      playwright: 1.48.0
     transitivePeerDependencies:
       - '@vitest/spy'
       - bufferutil
@@ -3880,7 +3880,7 @@ snapshots:
       tinyrainbow: 1.2.0
       vitest: 2.1.2(@edge-runtime/vm@3.2.0)(@types/node@22.7.4)(@vitest/browser@2.1.2)(msw@2.4.9(typescript@5.6.2))(terser@5.34.1)
     optionalDependencies:
-      '@vitest/browser': 2.1.2(@vitest/spy@2.1.2)(playwright@1.47.2)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
+      '@vitest/browser': 2.1.2(@vitest/spy@2.1.2)(playwright@1.48.0)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -5445,11 +5445,11 @@ snapshots:
       mlly: 1.7.2
       pathe: 1.1.2
 
-  playwright-core@1.47.2: {}
+  playwright-core@1.48.0: {}
 
-  playwright@1.47.2:
+  playwright@1.48.0:
     dependencies:
-      playwright-core: 1.47.2
+      playwright-core: 1.48.0
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -6064,7 +6064,7 @@ snapshots:
 
   vitest-browser-react@0.0.1(@vitest/browser@2.1.2)(react-dom@19.0.0-rc-1460d67c-20241003(react@19.0.0-rc-1460d67c-20241003))(react@19.0.0-rc-1460d67c-20241003)(types-react@19.0.0-rc.1)(vitest@2.1.2):
     dependencies:
-      '@vitest/browser': 2.1.2(@vitest/spy@2.1.2)(playwright@1.47.2)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
+      '@vitest/browser': 2.1.2(@vitest/spy@2.1.2)(playwright@1.48.0)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
       react: 19.0.0-rc-1460d67c-20241003
       react-dom: 19.0.0-rc-1460d67c-20241003(react@19.0.0-rc-1460d67c-20241003)
       vitest: 2.1.2(@edge-runtime/vm@3.2.0)(@types/node@22.7.4)(@vitest/browser@2.1.2)(msw@2.4.9(typescript@5.6.2))(terser@5.34.1)
@@ -6095,7 +6095,7 @@ snapshots:
     optionalDependencies:
       '@edge-runtime/vm': 3.2.0
       '@types/node': 22.7.4
-      '@vitest/browser': 2.1.2(@vitest/spy@2.1.2)(playwright@1.47.2)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
+      '@vitest/browser': 2.1.2(@vitest/spy@2.1.2)(playwright@1.48.0)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vitest@2.1.2)
     transitivePeerDependencies:
       - less
       - lightningcss

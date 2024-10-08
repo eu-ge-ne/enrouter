@@ -66,7 +66,7 @@ function recur(
 
   matches.push({ params, handler });
 
-  if (handler.children) {
-    recur(handler.children, location, matches);
+  if (handler.tree) {
+    recur(handler.tree, location, matches);
   }
 }
