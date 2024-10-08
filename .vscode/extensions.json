@@ -2,6 +2,7 @@
   "recommendations": [
     "github.vscode-github-actions",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "unifiedjs.vscode-mdx"
   ]
 }

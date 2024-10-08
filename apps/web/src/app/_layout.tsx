@@ -8,10 +8,10 @@ import { createLog } from "#log.js";
 const log = createLog("app/_layout");
 
 export const components = {
-  main: App,
+  main: AppLayout,
 };
 
-function App() {
+function AppLayout() {
   log("Rendering");
 
   return (

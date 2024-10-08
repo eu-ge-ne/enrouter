@@ -5,10 +5,10 @@ import { createLog } from "#log.js";
 const log = createLog("app/docs/_layout");
 
 export const components = {
-  main: Docs,
+  main: DocsLayout,
 };
 
-function Docs() {
+function DocsLayout() {
   log("Rendering");
 
   return (
