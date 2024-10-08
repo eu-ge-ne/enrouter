@@ -50,25 +50,25 @@ export function buildRoutes({
   const routes = new Map<string, Route>();
 
   for (const [moduleId, filePath] of entries) {
-    const routePath = ("/" + filePath.join("/")).replace(/\[(.+)\]/, ":$1");
+    const path = ("/" + filePath.join("/")).replace(/\[(.+)\]/, ":$1");
     const parentPath =
-      routePath === "/"
+      path === "/"
         ? undefined
         : ("/" + filePath.slice(0, -1).join("/")).replace(/\[(.+)\]/, ":$1");
 
-    let route = routes.get(routePath);
+    let route = routes.get(path);
     if (!route) {
       route = {
-        path: routePath,
+        path,
         link: [[], []],
         mod: [],
       };
-      routes.set(routePath, route);
+      routes.set(path, route);
     }
 
     if (parentPath) {
       const parent = routes.get(parentPath)!;
-      if (!parent.tree?.find((x) => x.path === routePath)) {
+      if (!parent.tree?.find((x) => x.path === path)) {
         if (!parent.tree) {
           parent.tree = [];
         }
