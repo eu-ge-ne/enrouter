@@ -33,7 +33,7 @@ export const assets: ModuleAssets = Object.fromEntries(
         modules: [val.file, ...imports].map(toUrl),
       },
     ];
-  })
+  }),
 );
 
 log("Assets built: %O", assets);
