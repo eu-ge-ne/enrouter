@@ -33,7 +33,7 @@ describe("renderMatches", () => {
 
     const matches: RouteMatch[] = [];
 
-    const screen = render(renderMatches(matches, "/"), {
+    const screen = render(renderMatches(matches), {
       wrapper: ({ children }) => (
         <div data-testid={wrapperId}>
           <RouterContext.Provider value={context}>
@@ -60,11 +60,12 @@ describe("renderMatches", () => {
           modules: [],
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];
 
-    const screen = render(renderMatches(matches, "/"), { wrapper });
+    const screen = render(renderMatches(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
@@ -86,11 +87,12 @@ describe("renderMatches", () => {
           },
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];
 
-    const screen = render(renderMatches(matches, "/"), { wrapper });
+    const screen = render(renderMatches(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();

@@ -6,7 +6,9 @@ const log = createLog("matches");
 
 export interface RouteMatch {
   handler: RouteHandler;
+
   location: string;
+  isFull: boolean;
   params: Record<string, string>;
 
   next?: RouteMatch;
@@ -65,7 +67,14 @@ function recur(
     }),
   );
 
-  matches.push({ handler, location: results[0] || "/", params });
+  const matchedLocation = results[0] || "/";
+
+  matches.push({
+    handler,
+    location: matchedLocation,
+    isFull: matchedLocation === location,
+    params,
+  });
 
   if (handler.tree) {
     recur(handler.tree, location, matches);

@@ -39,11 +39,12 @@ describe("outlets", () => {
           },
         },
         location: "/",
+        isFull: true,
         params: {},
       },
     ];
 
-    const screen = render(renderMatches(matches, "/"), { wrapper });
+    const screen = render(renderMatches(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
@@ -70,6 +71,7 @@ describe("outlets", () => {
           },
         },
         location: "/",
+        isFull: false,
         params: {},
       },
       {
@@ -90,12 +92,13 @@ describe("outlets", () => {
           },
         },
         location: "/a",
+        isFull: true,
         params: {},
       },
     ];
     matches[0]!.next = matches[1];
 
-    const screen = render(renderMatches(matches, "/a"), { wrapper });
+    const screen = render(renderMatches(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();

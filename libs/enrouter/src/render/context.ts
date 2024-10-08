@@ -14,6 +14,7 @@ export const RouteRenderContext = createContext<RouteNodes>({
       modules: [],
     },
     location: "",
+    isFull: false,
     params: {},
   },
 });

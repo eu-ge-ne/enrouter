@@ -19,19 +19,16 @@ export interface RouteNodes {
   last?: RouteNodes;
 }
 
-export function renderMatches(
-  matches: RouteMatch[],
-  location: string,
-): ReactElement[] {
+export function renderMatches(matches: RouteMatch[]): ReactElement[] {
   log("Rendering matches");
 
   const lastMatch = matches.at(-1);
-  if (lastMatch?.location !== location) {
+  if (!lastMatch?.isFull) {
     log("404: %O", lastMatch);
     return [<NotFound />];
   }
 
-  const nodes = matches.map((x) => createRouteNodes(x, location));
+  const nodes = matches.map(createRouteNodes);
 
   const last = nodes.at(-1);
   nodes.forEach((x, i) => {
@@ -45,7 +42,7 @@ export function renderMatches(
   return Object.values(nodes[0]?.layout ?? {});
 }
 
-function createRouteNodes(match: RouteMatch, location: string): RouteNodes {
+function createRouteNodes(match: RouteMatch): RouteNodes {
   const nodes: RouteNodes = {
     match,
   };
