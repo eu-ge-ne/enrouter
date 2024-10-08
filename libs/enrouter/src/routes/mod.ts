@@ -50,11 +50,9 @@ export function buildRoutes({
   const routes = new Map<string, Route>();
 
   for (const [moduleId, filePath] of entries) {
-    const path = ("/" + filePath.join("/")).replace(/\[(.+)\]/, ":$1");
-    const parentPath =
-      path === "/"
-        ? undefined
-        : ("/" + filePath.slice(0, -1).join("/")).replace(/\[(.+)\]/, ":$1");
+    const isRoot = filePath.length === 0;
+
+    const path = isRoot ? "/" : parsePath("/" + filePath.join("/"));
 
     let route = routes.get(path);
     if (!route) {
@@ -66,7 +64,8 @@ export function buildRoutes({
       routes.set(path, route);
     }
 
-    if (parentPath) {
+    if (!isRoot) {
+      const parentPath = parsePath("/" + filePath.slice(0, -1).join("/"));
       const parent = routes.get(parentPath)!;
       if (!parent.tree?.find((x) => x.path === path)) {
         if (!parent.tree) {
@@ -78,15 +77,19 @@ export function buildRoutes({
 
     route.mod.push(moduleId);
 
-    if (!parentPath) {
+    if (isRoot) {
       updateLinks(route, entryId);
     }
     updateLinks(route, moduleId);
   }
 
-  const tree = routes.get("/");
+  const root = routes.get("/");
 
-  log("Routes built: %O", tree);
+  log("Routes built: %O", root);
 
-  return tree;
+  return root;
+}
+
+function parsePath(str: string) {
+  return str.replace(/\[(.+)\]/, ":$1");
 }
