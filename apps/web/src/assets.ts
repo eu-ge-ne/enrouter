@@ -20,6 +20,8 @@ type ManifestItem = {
 
 log("Building assets");
 
+const toUrl = (x: string) => new URL(x, "http://localhost").pathname;
+
 export const assets: ModuleAssets = Object.fromEntries(
   Object.entries<ManifestItem>(manifest).map(([key, val]) => {
     const imports = new Set<string>();
@@ -27,8 +29,8 @@ export const assets: ModuleAssets = Object.fromEntries(
     return [
       key,
       {
-        styles: val.css ?? [],
-        modules: [val.file, ...imports],
+        styles: (val.css ?? []).map(toUrl),
+        modules: [val.file, ...imports].map(toUrl),
       },
     ];
   }),

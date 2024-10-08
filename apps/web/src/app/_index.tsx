@@ -9,5 +9,5 @@ export const components = {
 function Home() {
   log("Rendering");
 
-  return <div>HOME</div>;
+  return <div className="p-4">TODO: HOME</div>;
 }

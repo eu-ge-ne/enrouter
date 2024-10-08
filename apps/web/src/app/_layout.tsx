@@ -1,4 +1,4 @@
-import { Outlet } from "enrouter";
+import { Outlet, useLinkProps } from "enrouter";
 
 import npm_logo from "/npm.svg";
 import github_logo from "/github-light.svg";
@@ -17,10 +17,13 @@ function App() {
   return (
     <div className="flex flex-col divide-y">
       <div className="p-4 items-center justify-between flex">
-        <span className="text-lg tracking-tighter font-medium font-mono">
+        <a className="text-lg" {...useLinkProps("/")}>
           enrouter
-        </span>
+        </a>
         <div className="flex justify-end gap-x-4">
+          <a className="text-lg" {...useLinkProps("/docs")}>
+            Docs
+          </a>
           <a href="https://www.npmjs.com/package/enrouter" target="_blank">
             <img
               src={npm_logo}

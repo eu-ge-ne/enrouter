@@ -18,7 +18,7 @@ interface BrowserRouterParams {
 }
 
 export function BrowserRouter({ handlers, modules }: BrowserRouterParams) {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState(window.location.pathname);
 
   const handlePopState = useCallback((e: PopStateEvent) => {
     log("handlePopState %O", e);
