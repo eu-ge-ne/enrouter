@@ -26,7 +26,6 @@ describe("renderMatches", () => {
   test("1 match with no elements", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -36,6 +35,8 @@ describe("renderMatches", () => {
           test: regexparam.parse("/", true),
           modules: [],
         },
+        location: "/",
+        params: {},
       },
     ];
 
@@ -48,7 +49,6 @@ describe("renderMatches", () => {
   test("1 match with layout elements", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -61,6 +61,8 @@ describe("renderMatches", () => {
             main: <div>Layout</div>,
           },
         },
+        location: "/",
+        params: {},
       },
     ];
 

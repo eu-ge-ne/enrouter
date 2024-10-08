@@ -18,7 +18,6 @@ describe("loadRouteMatches", () => {
   test("1 match with no modules", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -28,6 +27,8 @@ describe("loadRouteMatches", () => {
           test: regexparam.parse("/", true),
           modules: [],
         },
+        location: "/",
+        params: {},
       },
     ];
 
@@ -39,7 +40,6 @@ describe("loadRouteMatches", () => {
   test("1 match with _layout.tsx module", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -49,6 +49,8 @@ describe("loadRouteMatches", () => {
           test: regexparam.parse("/", true),
           modules: [{ id: "_layout.tsx" }],
         },
+        location: "/",
+        params: {},
       },
     ];
 
@@ -71,7 +73,6 @@ describe("loadRouteMatches", () => {
   test("1 match with _index.tsx module", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -81,6 +82,8 @@ describe("loadRouteMatches", () => {
           test: regexparam.parse("/", true),
           modules: [{ id: "_index.tsx" }],
         },
+        location: "/",
+        params: {},
       },
     ];
 

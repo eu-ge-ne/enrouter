@@ -18,6 +18,7 @@ exports[`matchRoutes > 1 match 1`] = `
         "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "location": "/",
     "next": undefined,
     "params": {},
   },
@@ -44,6 +45,7 @@ exports[`matchRoutes > 1 match with params 1`] = `
         "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "location": "/100",
     "next": undefined,
     "params": {
       "id": "100",
@@ -87,6 +89,7 @@ exports[`matchRoutes > 2 matches 1`] = `
         },
       ],
     },
+    "location": "/",
     "next": {
       "handler": {
         "modules": [],
@@ -103,6 +106,7 @@ exports[`matchRoutes > 2 matches 1`] = `
           "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
         },
       },
+      "location": "/abc",
       "next": undefined,
       "params": {},
     },
@@ -124,6 +128,7 @@ exports[`matchRoutes > 2 matches 1`] = `
         "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "location": "/abc",
     "next": undefined,
     "params": {},
   },

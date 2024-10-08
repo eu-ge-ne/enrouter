@@ -18,7 +18,6 @@ describe("outlets", () => {
   test("using index elements", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -39,6 +38,8 @@ describe("outlets", () => {
             main: <div>Index</div>,
           },
         },
+        location: "/",
+        params: {},
       },
     ];
 
@@ -51,7 +52,6 @@ describe("outlets", () => {
   test("using next layout elements", async () => {
     const matches: RouteMatch[] = [
       {
-        params: {},
         handler: {
           route: {
             path: "/",
@@ -69,9 +69,10 @@ describe("outlets", () => {
             ),
           },
         },
+        location: "/",
+        params: {},
       },
       {
-        params: {},
         handler: {
           route: {
             path: "/a",
@@ -88,6 +89,8 @@ describe("outlets", () => {
             ),
           },
         },
+        location: "/a",
+        params: {},
       },
     ];
     matches[0]!.next = matches[1];
