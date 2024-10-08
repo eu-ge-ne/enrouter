@@ -17,10 +17,7 @@ export interface Route {
   /**
    * Urls of assets associated with the route
    */
-  link: {
-    css: string[];
-    mod: string[];
-  };
+  link: [string[], string[]]; // css, modules
 
   tree?: Route[];
 }
@@ -38,11 +35,11 @@ export function buildRoutes({
 }: BuildRoutesParams): Route | undefined {
   log("Building routes");
 
-  function updateAssets({ link }: Route, moduleId: string): void {
+  function updateLinks({ link }: Route, moduleId: string): void {
     const x = assets[moduleId];
     if (x) {
-      link.mod = [...new Set([...link.mod, ...x.modules])];
-      link.css = [...new Set([...link.css, ...x.styles])];
+      link[0] = [...new Set([...link[0], ...x.styles])];
+      link[1] = [...new Set([...link[1], ...x.modules])];
     }
   }
 
@@ -50,7 +47,7 @@ export function buildRoutes({
     .map(([key, val]) => [key, val.path.split("/").slice(0, -1)] as const)
     .sort((a, b) => a[1].length - b[1].length);
 
-  const routesByFullPath = new Map<string, Route>();
+  const routes = new Map<string, Route>();
 
   for (const [moduleId, filePath] of entries) {
     const routePath = ("/" + filePath.join("/")).replace(/\[(.+)\]/, ":$1");
@@ -59,18 +56,18 @@ export function buildRoutes({
         ? undefined
         : ("/" + filePath.slice(0, -1).join("/")).replace(/\[(.+)\]/, ":$1");
 
-    let route = routesByFullPath.get(routePath);
+    let route = routes.get(routePath);
     if (!route) {
       route = {
         path: routePath,
-        link: { css: [], mod: [] },
+        link: [[], []],
         mod: [],
       };
+      routes.set(routePath, route);
     }
-    routesByFullPath.set(routePath, route);
 
     if (parentPath) {
-      const parent = routesByFullPath.get(parentPath)!;
+      const parent = routes.get(parentPath)!;
       if (!parent.tree?.find((x) => x.path === routePath)) {
         if (!parent.tree) {
           parent.tree = [];
@@ -82,14 +79,14 @@ export function buildRoutes({
     route.mod.push(moduleId);
 
     if (!parentPath) {
-      updateAssets(route, entryId);
+      updateLinks(route, entryId);
     }
-    updateAssets(route, moduleId);
+    updateLinks(route, moduleId);
   }
 
-  const routeTree = routesByFullPath.get("/");
+  const tree = routes.get("/");
 
-  log("Routes built: %O", routeTree);
+  log("Routes built: %O", tree);
 
-  return routeTree;
+  return tree;
 }

@@ -4,13 +4,13 @@ exports[`buildRoutes > from 0 modules 1`] = `undefined`;
 
 exports[`buildRoutes > from 1 module 1`] = `
 {
-  "link": {
-    "css": [],
-    "mod": [
+  "link": [
+    [],
+    [
       "src/main.tsx",
       "src/_layout.tsx",
     ],
-  },
+  ],
   "mod": [
     "src/_layout.tsx",
   ],
@@ -20,25 +20,25 @@ exports[`buildRoutes > from 1 module 1`] = `
 
 exports[`buildRoutes > from 2 parent-child modules 1`] = `
 {
-  "link": {
-    "css": [],
-    "mod": [
+  "link": [
+    [],
+    [
       "src/main.tsx",
       "src/_layout.tsx",
     ],
-  },
+  ],
   "mod": [
     "src/_layout.tsx",
   ],
   "path": "/",
   "tree": [
     {
-      "link": {
-        "css": [],
-        "mod": [
+      "link": [
+        [],
+        [
           "src/abc/_layout.tsx",
         ],
-      },
+      ],
       "mod": [
         "src/abc/_layout.tsx",
       ],

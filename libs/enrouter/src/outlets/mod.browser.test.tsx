@@ -23,7 +23,7 @@ describe("outlets", () => {
           route: {
             path: "/",
             mod: [],
-            link: { css: [], mod: [] },
+            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [],
@@ -56,7 +56,7 @@ describe("outlets", () => {
           route: {
             path: "/",
             mod: [],
-            link: { css: [], mod: [] },
+            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [],
@@ -76,7 +76,7 @@ describe("outlets", () => {
           route: {
             path: "/a",
             mod: [],
-            link: { css: [], mod: [] },
+            link: [[], []],
           },
           test: regexparam.parse("/a", true),
           modules: [],

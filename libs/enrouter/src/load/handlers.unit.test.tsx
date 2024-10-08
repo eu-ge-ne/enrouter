@@ -12,7 +12,7 @@ describe("loadRouteHandlers", () => {
       route: {
         path: "/",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/", true),
       modules: [],
@@ -28,7 +28,7 @@ describe("loadRouteHandlers", () => {
       route: {
         path: "/",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/", true),
       modules: [],
@@ -37,7 +37,7 @@ describe("loadRouteHandlers", () => {
           route: {
             path: "/abc",
             mod: [],
-            link: { css: [], mod: [] },
+            link: [[], []],
           },
           test: regexparam.parse("/abc", true),
           modules: [],
@@ -55,14 +55,10 @@ describe("loadRouteHandlers", () => {
       route: {
         path: "/",
         mod: ["_layout.tsx"],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/", true),
-      modules: [
-        {
-          id: "_layout.tsx",
-        },
-      ],
+      modules: [{ id: "_layout.tsx" }],
     };
 
     const modules: RouteModules = {
@@ -86,14 +82,10 @@ describe("loadRouteHandlers", () => {
       route: {
         path: "/",
         mod: ["_index.tsx"],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/", true),
-      modules: [
-        {
-          id: "_index.tsx",
-        },
-      ],
+      modules: [{ id: "_index.tsx" }],
     };
 
     const modules: RouteModules = {

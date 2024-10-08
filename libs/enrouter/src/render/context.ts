@@ -9,7 +9,7 @@ export const RouteRenderContext = createContext<RouteNodes>({
       route: {
         path: "",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: { keys: [], pattern: new RegExp("") },
       modules: [],

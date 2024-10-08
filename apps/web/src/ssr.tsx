@@ -46,14 +46,14 @@ export async function createSSRHandler() {
       const matches = matchRoutes({ handlers, location });
 
       const stylesheets = [
-        ...new Set(matches.flatMap((x) => x.handler.route.link.css)),
+        ...new Set(matches.flatMap((x) => x.handler.route.link[0])),
       ];
 
       const bootstrapScriptContent = `
 window.$ROUTES = ${JSON.stringify(routes)};`;
 
       const bootstrapModules = [
-        ...new Set([...matches.flatMap((x) => x.handler.route.link.mod)]),
+        ...new Set([...matches.flatMap((x) => x.handler.route.link[1])]),
       ];
 
       log("Rendering Shell: %O", {

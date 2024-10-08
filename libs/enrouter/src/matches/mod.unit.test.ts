@@ -11,7 +11,7 @@ describe("matchRoutes", () => {
       route: {
         path: "/abc",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/abc", true),
       modules: [],
@@ -25,7 +25,7 @@ describe("matchRoutes", () => {
       route: {
         path: "/",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/", true),
       modules: [],
@@ -39,7 +39,7 @@ describe("matchRoutes", () => {
       route: {
         path: "/",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/", true),
       modules: [],
@@ -48,7 +48,7 @@ describe("matchRoutes", () => {
           route: {
             path: "/abc",
             mod: [],
-            link: { css: [], mod: [] },
+            link: [[], []],
           },
           test: regexparam.parse("/abc", true),
           modules: [],
@@ -64,7 +64,7 @@ describe("matchRoutes", () => {
       route: {
         path: "/[:id]",
         mod: [],
-        link: { css: [], mod: [] },
+        link: [[], []],
       },
       test: regexparam.parse("/:id", true),
       modules: [],
