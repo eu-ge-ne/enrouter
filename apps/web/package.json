@@ -32,6 +32,7 @@
     "enrouter": "workspace:*",
     "glob": "^11.0.0",
     "globals": "^15.10.0",
+    "mermaid": "^11.3.0",
     "postcss": "^8.4.47",
     "react": "19.0.0-rc-1460d67c-20241003",
     "react-dom": "19.0.0-rc-1460d67c-20241003",
