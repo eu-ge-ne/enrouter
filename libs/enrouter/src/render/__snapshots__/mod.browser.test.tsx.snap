@@ -24,6 +24,8 @@ exports[`renderMatches > no matches 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
-  />
+  >
+    / is not found
+  </div>
 </div>
 `;

@@ -4,8 +4,10 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import { renderMatches } from "./mod.js";
+import { RouterContext } from "../routers/context.js";
 
 import type { RouteMatch } from "#matches/mod.js";
+import type { TRouterContext } from "../routers/context.js";
 
 const wrapperId = "test-wrapper";
 
@@ -15,9 +17,31 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 
 describe("renderMatches", () => {
   test("no matches", async () => {
+    const context: TRouterContext = {
+      handlers: {
+        route: {
+          path: "",
+          mod: [],
+          link: [[], []],
+        },
+        test: { keys: [], pattern: new RegExp("") },
+        modules: [],
+      },
+      location: "/",
+      navigate: () => undefined,
+    };
+
     const matches: RouteMatch[] = [];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(renderMatches(matches, "/"), {
+      wrapper: ({ children }) => (
+        <div data-testid={wrapperId}>
+          <RouterContext.Provider value={context}>
+            {children}
+          </RouterContext.Provider>
+        </div>
+      ),
+    });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
@@ -40,7 +64,7 @@ describe("renderMatches", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(renderMatches(matches, "/"), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
@@ -66,7 +90,7 @@ describe("renderMatches", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(renderMatches(matches, "/"), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
