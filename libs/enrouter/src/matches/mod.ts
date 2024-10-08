@@ -41,22 +41,20 @@ function recur(
   location: string,
   matches: RouteMatch[],
 ): void {
-  let matchedHandlers = handlers
+  let matched = handlers
     .map((x) => [x, x.test?.pattern.exec(location)] as const)
     .filter((x): x is [RouteHandler, RegExpExecArray] => Boolean(x[1]));
 
-  if (matchedHandlers.length === 0) {
+  if (matched.length === 0) {
     return;
   }
 
   // TODO: improve
-  if (matchedHandlers.length > 1) {
-    matchedHandlers = matchedHandlers.filter(
-      (x) => x[0].test?.keys.length === 0,
-    );
+  if (matched.length > 1) {
+    matched = matched.filter((x) => x[0].test?.keys.length === 0);
   }
 
-  const [handler, results] = matchedHandlers[0]!;
+  const [handler, results] = matched[0]!;
 
   const params = Object.fromEntries(
     handler.test.keys.map((key, i) => {
