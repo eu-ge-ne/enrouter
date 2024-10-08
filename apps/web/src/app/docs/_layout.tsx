@@ -12,8 +12,8 @@ function Docs() {
   log("Rendering");
 
   return (
-    <div className="flex p-4 divide-x">
-      <div className="flex flex-col w-[15rem]">
+    <div className="flex divide-x p-4">
+      <div className="flex w-[15rem] flex-col">
         <ul>
           <li>
             <a className="text-lg" {...useLinkProps("/docs")}>
