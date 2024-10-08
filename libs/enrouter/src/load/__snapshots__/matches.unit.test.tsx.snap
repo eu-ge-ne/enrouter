@@ -35,6 +35,7 @@ exports[`loadRouteMatches > 1 match with _index.tsx module 1`] = `
         "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "location": "/",
     "params": {},
   },
 ]
@@ -75,6 +76,7 @@ exports[`loadRouteMatches > 1 match with _layout.tsx module 1`] = `
         "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "location": "/",
     "params": {},
   },
 ]
@@ -98,6 +100,7 @@ exports[`loadRouteMatches > 1 match with no modules 1`] = `
         "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "location": "/",
     "params": {},
   },
 ]

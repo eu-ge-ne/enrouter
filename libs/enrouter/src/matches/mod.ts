@@ -6,6 +6,7 @@ const log = createLog("matches");
 
 export interface RouteMatch {
   handler: RouteHandler;
+  location: string;
   params: Record<string, string>;
   next?: RouteMatch;
 }
@@ -40,31 +41,28 @@ function recur(
   location: string,
   matches: RouteMatch[],
 ): void {
-  let matchResults = handlers
+  let matched = handlers
     .map((x) => [x, x.test?.pattern.exec(location)] as const)
     .filter((x): x is [RouteHandler, RegExpExecArray] => Boolean(x[1]));
 
-  if (matchResults.length === 0) {
+  if (matched.length === 0) {
     return;
   }
 
   // TODO: improve
-  if (matchResults.length > 1) {
-    matchResults = matchResults.filter((x) => x[0].test?.keys.length === 0);
+  if (matched.length > 1) {
+    matched = matched.filter((x) => x[0].test?.keys.length === 0);
   }
 
-  const [handler, matchParams] = matchResults[0]!;
+  const [handler, results] = matched[0]!;
 
-  const params: Record<string, string> = {};
-  {
-    const keys = handler.test.keys;
-    for (let i = 0; i < keys.length; i += 1) {
-      const val = matchParams[i + 1]!;
-      params[keys[i]!] = val;
-    }
-  }
+  const params = Object.fromEntries(
+    handler.test.keys.map((key, i) => {
+      return [key, results![i + 1]!] as const;
+    }),
+  );
 
-  matches.push({ params, handler });
+  matches.push({ handler, location: results[0] || "/", params });
 
   if (handler.tree) {
     recur(handler.tree, location, matches);
