@@ -1,4 +1,5 @@
 import { createLog } from "#log.js";
+import Content from "./content.mdx";
 
 const log = createLog("app/docs/_index");
 
@@ -9,5 +10,9 @@ export const components = {
 function DocsIndex() {
   log("Rendering");
 
-  return <div className="p-4">TODO: DOCS</div>;
+  return (
+    <div className="p-4">
+      <Content />
+    </div>
+  );
 }

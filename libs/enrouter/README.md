@@ -1,19 +1,1 @@
 # enrouter
-
-```mermaid
-graph TD;
-  MM[RouteModules];
-  RT[Route];
-  RH[RouteHandler];
-  NAV(("navigation event"));
-  LOC[Location];
-  RM[RouteMatch];
-  RN[RouteNodes];
-
-  MM---|buildRoutes|RT;
-  RT---|buildRouteHandlers|RH;
-  RH-->NAV;
-  LOC-->NAV;
-  NAV---|matchRoutes|RM;
-  RM---|renderMatches|RN;
-```

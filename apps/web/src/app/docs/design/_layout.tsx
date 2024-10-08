@@ -1,13 +1,13 @@
 import { createLog } from "#log.js";
 import Content from "./content.mdx";
 
-const log = createLog("app/_index");
+const log = createLog("app/docs/design/_layout");
 
 export const components = {
-  main: AppIndex,
+  docs: DocsDesignLayout,
 };
 
-function AppIndex() {
+function DocsDesignLayout() {
   log("Rendering");
 
   return (

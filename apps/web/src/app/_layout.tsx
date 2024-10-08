@@ -8,15 +8,15 @@ import { createLog } from "#log.js";
 const log = createLog("app/_layout");
 
 export const components = {
-  main: App,
+  main: AppLayout,
 };
 
-function App() {
+function AppLayout() {
   log("Rendering");
 
   return (
     <div className="flex flex-col divide-y">
-      <div className="p-4 items-center justify-between flex">
+      <div className="container mx-auto flex items-center justify-between p-4">
         <a className="text-lg" {...useLinkProps("/")}>
           enrouter
         </a>
@@ -40,7 +40,11 @@ function App() {
           </a>
         </div>
       </div>
-      <Outlet name="main" />
+      <div>
+        <div className="container mx-auto">
+          <Outlet name="main" />
+        </div>
+      </div>
     </div>
   );
 }
