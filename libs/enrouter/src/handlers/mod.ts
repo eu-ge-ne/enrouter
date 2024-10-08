@@ -20,7 +20,7 @@ export interface RouteHandler {
   layout?: Record<string, ReactElement>;
   index?: Record<string, ReactElement>;
 
-  children?: RouteHandler[];
+  tree?: RouteHandler[];
 }
 
 interface BuildRouteHandlersParams {
@@ -47,7 +47,7 @@ function recur(route: Route): RouteHandler {
   };
 
   if (route.tree) {
-    handler.children = route.tree.map(recur);
+    handler.tree = route.tree.map(recur);
   }
 
   return handler;

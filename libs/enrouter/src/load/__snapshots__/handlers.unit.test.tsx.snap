@@ -90,7 +90,20 @@ exports[`loadRouteHandlers > 1 route handler with no modules 1`] = `
 
 exports[`loadRouteHandlers > 2 route handlers with no modules 1`] = `
 {
-  "children": [
+  "modules": [],
+  "route": {
+    "link": [
+      [],
+      [],
+    ],
+    "mod": [],
+    "path": "/",
+  },
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
+  "tree": [
     {
       "modules": [],
       "route": {
@@ -107,18 +120,5 @@ exports[`loadRouteHandlers > 2 route handlers with no modules 1`] = `
       },
     },
   ],
-  "modules": [],
-  "route": {
-    "link": [
-      [],
-      [],
-    ],
-    "mod": [],
-    "path": "/",
-  },
-  "test": {
-    "keys": [],
-    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-  },
 }
 `;

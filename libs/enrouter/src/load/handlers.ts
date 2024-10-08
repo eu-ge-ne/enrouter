@@ -47,8 +47,8 @@ function recur(
       }
     }
 
-    if (handler.children) {
-      recur(handler.children, modules, promises);
+    if (handler.tree) {
+      recur(handler.tree, modules, promises);
     }
   }
 }
