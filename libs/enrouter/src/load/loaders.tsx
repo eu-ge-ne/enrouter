@@ -8,29 +8,29 @@ type Loader = (params: {
   load: () => Promise<unknown>;
 }) => Promise<void> | void;
 
-interface _Layout {
+interface _Components {
   components: Record<string, ComponentType>;
 }
 
-interface _Index {
-  components: Record<string, ComponentType>;
+async function render(load: () => Promise<unknown>) {
+  const fn = load as () => Promise<_Components>;
+  const { components } = await fn();
+  return Object.fromEntries(
+    Object.entries(components).map(([key, C]) => [key, <C />]),
+  );
 }
 
 export const loaders: Record<string, Loader> = {
   "_layout.tsx": async ({ handler, module, load }) => {
-    const fn = load as () => Promise<_Layout>;
-    const { components } = await fn();
-    handler.layout = Object.fromEntries(
-      Object.entries(components).map(([key, C]) => [key, <C />]),
-    );
+    handler.layout = await render(load);
     module.loaded = true;
   },
   "_index.tsx": async ({ handler, module, load }) => {
-    const fn = load as () => Promise<_Index>;
-    const { components } = await fn();
-    handler.index = Object.fromEntries(
-      Object.entries(components).map(([key, C]) => [key, <C />]),
-    );
+    handler.index = await render(load);
+    module.loaded = true;
+  },
+  "_notFound.tsx": async ({ handler, module, load }) => {
+    handler.notFound = await render(load);
     module.loaded = true;
   },
 };

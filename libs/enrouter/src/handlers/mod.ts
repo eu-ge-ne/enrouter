@@ -19,6 +19,7 @@ export interface RouteHandler {
 
   layout?: Record<string, ReactElement>;
   index?: Record<string, ReactElement>;
+  notFound?: Record<string, ReactElement>;
 
   tree?: RouteHandler[];
 }
