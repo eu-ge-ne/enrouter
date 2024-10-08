@@ -18,6 +18,7 @@ exports[`matchRoutes > 1 match 1`] = `
         "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "last": [Circular],
     "location": "/",
     "next": undefined,
     "params": {},
@@ -45,6 +46,7 @@ exports[`matchRoutes > 1 match with params 1`] = `
         "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "last": [Circular],
     "location": "/100",
     "next": undefined,
     "params": {
@@ -89,6 +91,27 @@ exports[`matchRoutes > 2 matches 1`] = `
         },
       ],
     },
+    "last": {
+      "handler": {
+        "modules": [],
+        "route": {
+          "link": [
+            [],
+            [],
+          ],
+          "mod": [],
+          "path": "/abc",
+        },
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+      "last": [Circular],
+      "location": "/abc",
+      "next": undefined,
+      "params": {},
+    },
     "location": "/",
     "next": {
       "handler": {
@@ -106,6 +129,7 @@ exports[`matchRoutes > 2 matches 1`] = `
           "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
         },
       },
+      "last": [Circular],
       "location": "/abc",
       "next": undefined,
       "params": {},
@@ -128,6 +152,7 @@ exports[`matchRoutes > 2 matches 1`] = `
         "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+    "last": [Circular],
     "location": "/abc",
     "next": undefined,
     "params": {},

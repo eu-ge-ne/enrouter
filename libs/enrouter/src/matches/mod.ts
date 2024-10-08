@@ -8,7 +8,9 @@ export interface RouteMatch {
   handler: RouteHandler;
   location: string;
   params: Record<string, string>;
+
   next?: RouteMatch;
+  last?: RouteMatch;
 }
 
 interface MatchRoutesParams {
@@ -26,10 +28,11 @@ export function matchRoutes({
 
   recur([handlers], location, matches);
 
-  for (let i = 0; i < matches.length; i += 1) {
-    const match = matches[i]!;
-    match.next = matches[i + 1];
-  }
+  const last = matches.at(-1);
+  matches.forEach((x, i) => {
+    x.next = matches[i + 1];
+    x.last = last;
+  });
 
   log("Matched routes %O", matches);
 
