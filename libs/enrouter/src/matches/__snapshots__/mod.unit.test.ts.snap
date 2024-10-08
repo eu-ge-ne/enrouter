@@ -6,10 +6,10 @@ exports[`matchRoutes > 1 match 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "link": {
-          "css": [],
-          "mod": [],
-        },
+        "link": [
+          [],
+          [],
+        ],
         "mod": [],
         "path": "/",
       },
@@ -30,10 +30,10 @@ exports[`matchRoutes > 1 match with params 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "link": {
-          "css": [],
-          "mod": [],
-        },
+        "link": [
+          [],
+          [],
+        ],
         "mod": [],
         "path": "/[:id]",
       },
@@ -60,10 +60,10 @@ exports[`matchRoutes > 2 matches 1`] = `
         {
           "modules": [],
           "route": {
-            "link": {
-              "css": [],
-              "mod": [],
-            },
+            "link": [
+              [],
+              [],
+            ],
             "mod": [],
             "path": "/abc",
           },
@@ -75,10 +75,10 @@ exports[`matchRoutes > 2 matches 1`] = `
       ],
       "modules": [],
       "route": {
-        "link": {
-          "css": [],
-          "mod": [],
-        },
+        "link": [
+          [],
+          [],
+        ],
         "mod": [],
         "path": "/",
       },
@@ -91,10 +91,10 @@ exports[`matchRoutes > 2 matches 1`] = `
       "handler": {
         "modules": [],
         "route": {
-          "link": {
-            "css": [],
-            "mod": [],
-          },
+          "link": [
+            [],
+            [],
+          ],
           "mod": [],
           "path": "/abc",
         },
@@ -112,10 +112,10 @@ exports[`matchRoutes > 2 matches 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "link": {
-          "css": [],
-          "mod": [],
-        },
+        "link": [
+          [],
+          [],
+        ],
         "mod": [],
         "path": "/abc",
       },
