@@ -14,7 +14,7 @@ function DocsLayout() {
   log("Rendering");
 
   return (
-    <div className="flex divide-x p-4">
+    <div className="flex divide-x divide-paperBorder p-4">
       <div className="flex w-[15rem] flex-col">
         <ul>
           <li>

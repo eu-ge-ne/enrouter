@@ -5,6 +5,7 @@ export default {
   theme: {
     colors: {
       paper: "#fff8f0",
+      paperBorder: "#d6d3d1", // stone-300
     },
   },
   plugins: [],
