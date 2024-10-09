@@ -41,6 +41,11 @@ function Layout() {
             <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
             <ul className="contents">
               <li>
+                <MenuSecondaryLink to="/docs/api/modules">
+                  RouteModules
+                </MenuSecondaryLink>
+              </li>
+              <li>
                 <MenuSecondaryLink to="/docs/api/route">
                   Route
                 </MenuSecondaryLink>

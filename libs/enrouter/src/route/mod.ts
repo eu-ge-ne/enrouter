@@ -1,9 +1,5 @@
-import { createLog } from "#log.js";
-
 import type { RouteModules } from "#modules.js";
 import type { ModuleAssets } from "#assets.js";
-
-const log = createLog("routes");
 
 /**
 Route is a base building block of routing definition.
@@ -14,11 +10,14 @@ url pathname.
  */
 export interface Route {
   /**
-   * Route's path
+   * Full path to url segment
    * @see https://github.com/lukeed/regexparam
    */
   path: string;
 
+  /**
+   * Ids of route's modules
+   */
   mod: string[];
 
   /**
@@ -43,8 +42,6 @@ export function buildRoutes({
   modules,
   assets,
 }: BuildRoutesParams): Route | undefined {
-  log("Building routes");
-
   function updateLinks({ link }: Route, moduleId: string): void {
     const x = assets[moduleId];
     if (x) {
@@ -93,11 +90,7 @@ export function buildRoutes({
     updateLinks(route, moduleId);
   }
 
-  const root = routes.get("/");
-
-  log("Routes built: %O", root);
-
-  return root;
+  return routes.get("/");
 }
 
 function parsePath(str: string) {

@@ -13,11 +13,14 @@ url pathname.
 ```typescript
 interface Route {
   /**
-   * Route's path
+   * Full path to url segment
    * @see https://github.com/lukeed/regexparam
    */
   path: string;
 
+  /**
+   * Ids of route's modules
+   */
   mod: string[];
 
   /**
@@ -25,6 +28,9 @@ interface Route {
    */
   link: [string[], string[]]; // css, modules
 
+  /**
+   * Child routes
+   */
   tree?: Route[];
 }
 ```
