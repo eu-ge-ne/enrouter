@@ -43,11 +43,13 @@ function DocsLayout() {
           </li>
         </ul>
       </div>
-      <div className="w-full">
+      <div className="w-full p-4 pt-0">
         <MDXProvider
           components={{
             h3: ({ children }) => (
-              <h3 className="pt-4 text-lg font-bold">{children as any}</h3>
+              <h3 className="pt-4 text-lg font-bold first:pt-0">
+                {children as any}
+              </h3>
             ),
             code: ({ children }) => (
               <div className="pt-4">
@@ -55,6 +57,11 @@ function DocsLayout() {
               </div>
             ),
             p: ({ children }) => <p className="pt-4">{children as any}</p>,
+            ul: ({ children }) => (
+              <ul className="flex list-inside list-disc flex-col gap-y-2 pt-4">
+                {children as any}
+              </ul>
+            ),
           }}
         >
           <Outlet name="docs" />
