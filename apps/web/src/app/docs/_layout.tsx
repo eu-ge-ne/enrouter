@@ -41,11 +41,6 @@ function Layout() {
             <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
             <ul className="contents">
               <li>
-                <MenuSecondaryLink to="/docs/api/modules">
-                  RouteModules
-                </MenuSecondaryLink>
-              </li>
-              <li>
                 <MenuSecondaryLink to="/docs/api/route">
                   Route
                 </MenuSecondaryLink>
@@ -58,6 +53,16 @@ function Layout() {
               <li>
                 <MenuSecondaryLink to="/docs/api/match">
                   RouteMatch
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/assets">
+                  ModuleAssets
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/modules">
+                  RouteModules
                 </MenuSecondaryLink>
               </li>
             </ul>
