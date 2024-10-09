@@ -32,6 +32,11 @@ function DocsLayout() {
               Design
             </a>
           </li>
+          <li>
+            <a className="text-lg" {...useLinkProps("/docs/not-found")}>
+              Not Found
+            </a>
+          </li>
         </ul>
       </div>
       <div className="w-full">
