@@ -1,17 +1,16 @@
-import { Outlet, useLinkProps } from "enrouter";
-import { MDXProvider } from "@mdx-js/react";
+import { Outlet } from "enrouter";
 
 import { createLog } from "#log.js";
-import { Mermaid } from "#mermaid.js";
 import { MenuPrimaryLink, MenuSecondaryLink } from "#links.js";
+import { Mdx } from "#mdx.js";
 
-const log = createLog("app/docs/_layout");
+const log = createLog("docs/_layout");
 
 export const components = {
-  main: DocsLayout,
+  main: Layout,
 };
 
-function DocsLayout() {
+function Layout() {
   log("Rendering");
 
   return (
@@ -38,34 +37,32 @@ function DocsLayout() {
               </li>
             </ul>
           </li>
-          <li className="pt-4">
+          <li className="flex flex-col gap-y-2 pt-4">
             <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
+            <ul className="contents">
+              <li>
+                <MenuSecondaryLink to="/docs/api/route">
+                  Route
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/handler">
+                  RouteHandler
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/match">
+                  RouteMatch
+                </MenuSecondaryLink>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
       <div className="w-full p-4 pt-0">
-        <MDXProvider
-          components={{
-            h3: ({ children }) => (
-              <h3 className="pt-4 text-lg font-bold first:pt-0">
-                {children as any}
-              </h3>
-            ),
-            code: ({ children }) => (
-              <div className="pt-4">
-                <Mermaid>{children as any}</Mermaid>
-              </div>
-            ),
-            p: ({ children }) => <p className="pt-4">{children as any}</p>,
-            ul: ({ children }) => (
-              <ul className="flex list-inside list-disc flex-col gap-y-2 pt-4">
-                {children as any}
-              </ul>
-            ),
-          }}
-        >
+        <Mdx>
           <Outlet name="docs" />
-        </MDXProvider>
+        </Mdx>
       </div>
     </div>
   );

@@ -5,6 +5,13 @@ import type { ModuleAssets } from "#assets.js";
 
 const log = createLog("routes");
 
+/**
+Route is a base building block of routing definition.
+Routes form a tree of routes.
+Every branch of the tree maps a segment of url pathname to some code and its
+assets. That code will generate the UI which corresponds to the segment of
+url pathname.
+ */
 export interface Route {
   /**
    * Route's path
@@ -19,6 +26,9 @@ export interface Route {
    */
   link: [string[], string[]]; // css, modules
 
+  /**
+   * Child routes
+   */
   tree?: Route[];
 }
 
