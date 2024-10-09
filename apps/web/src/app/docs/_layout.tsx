@@ -3,6 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 
 import { createLog } from "#log.js";
 import { Mermaid } from "#mermaid.js";
+import { MenuPrimaryLink, MenuSecondaryLink } from "#links.js";
 
 const log = createLog("app/docs/_layout");
 
@@ -15,27 +16,30 @@ function DocsLayout() {
 
   return (
     <div className="flex divide-x divide-paperBorder p-4">
-      <div className="flex w-[15rem] flex-col">
-        <ul>
-          <li>
-            <a className="text-lg" {...useLinkProps("/docs")}>
-              Docs
-            </a>
+      <div className="flex w-[15rem] flex-col pr-4">
+        <ul className="flex flex-col divide-y divide-paperBorder">
+          <li className="flex flex-col gap-y-2 pb-4">
+            <MenuPrimaryLink to="/docs">Docs</MenuPrimaryLink>
+            <ul className="contents">
+              <li>
+                <MenuSecondaryLink to="/docs/start">
+                  Getting Started
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/features">
+                  Features
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/architecture">
+                  Architecture
+                </MenuSecondaryLink>
+              </li>
+            </ul>
           </li>
-          <li>
-            <a className="text-lg" {...useLinkProps("/docs/api")}>
-              Api
-            </a>
-          </li>
-          <li>
-            <a className="text-lg" {...useLinkProps("/docs/design")}>
-              Design
-            </a>
-          </li>
-          <li>
-            <a className="text-lg" {...useLinkProps("/docs/not-found")}>
-              Not Found
-            </a>
+          <li className="pt-4">
+            <MenuPrimaryLink to="/docs/api">Api</MenuPrimaryLink>
           </li>
         </ul>
       </div>
