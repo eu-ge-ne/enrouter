@@ -22,13 +22,22 @@ export interface RouteNodes {
 export function renderMatches(matches: RouteMatch[]): ReactElement[] {
   log("Rendering matches");
 
-  const lastMatch = matches.at(-1);
-  if (!lastMatch?.isFull) {
-    log("404: %O", lastMatch);
-    return [<NotFound />];
-  }
+  let nodes = matches.map(createRouteNodes);
 
-  const nodes = matches.map(createRouteNodes);
+  // 404?
+  if (!nodes.at(-1)?.match.isFull) {
+    log("404: %O", nodes);
+
+    const i = nodes.findLastIndex((x) => x.match.handler.notFound);
+    if (i === -1) {
+      return [<NotFound />];
+    }
+
+    nodes = nodes.slice(0, i + 1);
+
+    const node = nodes[i]!;
+    node.index = node.match.handler.notFound;
+  }
 
   const last = nodes.at(-1);
   nodes.forEach((x, i) => {
