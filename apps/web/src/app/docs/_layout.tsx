@@ -39,7 +39,7 @@ function DocsLayout() {
             </ul>
           </li>
           <li className="pt-4">
-            <MenuPrimaryLink to="/docs/api">Api</MenuPrimaryLink>
+            <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
           </li>
         </ul>
       </div>
