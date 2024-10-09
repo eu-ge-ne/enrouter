@@ -1,17 +1,38 @@
+# Route API
+
+## Interfaces
+
 ### Route
 
 ```typescript
-interface Route {
+export interface Route {
   /**
    * Route's path
    * @see https://github.com/lukeed/regexparam
    */
   path: string;
+
   mod: string[];
+
   /**
    * Urls of assets associated with the route
    */
-  link: [string[], string[]];
+  link: [string[], string[]]; // css, modules
+
   tree?: Route[];
 }
+```
+
+## Functions
+
+### buildRoutes
+
+```typescript
+interface BuildRoutesParams {
+    entryId: string;
+    modules: RouteModules$1;
+    assets: ModuleAssets$1;
+}
+
+declare function buildRoutes({ entryId, modules, assets, }: BuildRoutesParams): Route | undefined;
 ```
