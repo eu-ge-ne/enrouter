@@ -55,6 +55,16 @@ function Layout() {
                   RouteMatch
                 </MenuSecondaryLink>
               </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/assets">
+                  ModuleAssets
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/modules">
+                  RouteModules
+                </MenuSecondaryLink>
+              </li>
             </ul>
           </li>
         </ul>

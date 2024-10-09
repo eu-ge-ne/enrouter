@@ -3,7 +3,7 @@ import * as regexparam from "regexparam";
 
 import { createLog } from "#log.js";
 
-import type { Route } from "#routes/mod.js";
+import type { Route } from "#route/mod.js";
 
 const log = createLog("handlers");
 

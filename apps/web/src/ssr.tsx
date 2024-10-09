@@ -16,10 +16,14 @@ import { createLog } from "#log.js";
 const log = createLog("ssr");
 
 export async function createSSRHandler() {
+  log("Building routes");
+
   const routes = buildRoutes({ entryId: "src/main.tsx", modules, assets });
   if (!routes) {
     throw new Error("No routes found");
   }
+
+  log("Routes built: %O", routes);
 
   const handlers = buildRouteHandlers({ routes });
 
