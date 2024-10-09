@@ -15,7 +15,7 @@ function AppLayout() {
   log("Rendering");
 
   return (
-    <div className="flex flex-col divide-y">
+    <div className="divide-paperBorder flex flex-col divide-y">
       <div className="container mx-auto flex items-center justify-between p-4">
         <a className="text-lg" {...useLinkProps("/")}>
           enrouter
