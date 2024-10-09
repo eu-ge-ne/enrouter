@@ -18,7 +18,7 @@ export function MenuSecondaryLink({
   children,
 }: PropsWithChildren<{ to: string }>) {
   return (
-    <a className="font-normal" {...useLinkProps(to)}>
+    <a className="text-sm" {...useLinkProps(to)}>
       {children}
     </a>
   );
