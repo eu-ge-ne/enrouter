@@ -18,7 +18,7 @@ function DocsLayout() {
     <div className="flex divide-x divide-paperBorder p-4">
       <div className="flex w-[15rem] flex-col pr-4">
         <ul className="flex flex-col divide-y divide-paperBorder">
-          <li className="pb-4 flex flex-col gap-y-2">
+          <li className="flex flex-col gap-y-2 pb-4">
             <MenuPrimaryLink to="/docs">Docs</MenuPrimaryLink>
             <ul className="contents">
               <li>
