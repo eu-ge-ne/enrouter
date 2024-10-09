@@ -13,5 +13,5 @@ function NotFound() {
 
   const location = useLocation();
 
-  return <div className="p-4">{location} is not found</div>;
+  return <div>{location} is not found</div>;
 }
