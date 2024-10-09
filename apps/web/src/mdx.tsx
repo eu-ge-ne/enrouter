@@ -1,20 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { PropsWithChildren } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useLocation } from "enrouter";
+
+import "prism-themes/themes/prism-vsc-dark-plus.min.css";
 
 import { createLog } from "#log.js";
 
 const log = createLog("mdx");
 
 export function Mdx({ children }: PropsWithChildren) {
-  log("Rendering");
-
   return (
     <MDXProvider
       components={{
+        h1: ({ children }) => (
+          <h1 className="pt-4 text-2xl font-semibold first:pt-0">
+            {children as any}
+          </h1>
+        ),
+        h2: ({ children }) => (
+          <h2 className="pt-4 text-xl font-semibold first:pt-0">
+            {children as any}
+          </h2>
+        ),
         h3: ({ children }) => (
-          <h3 className="pt-4 text-lg font-bold first:pt-0">
+          <h3 className="pt-4 text-lg font-semibold first:pt-0">
             {children as any}
           </h3>
         ),
@@ -30,7 +40,7 @@ export function Mdx({ children }: PropsWithChildren) {
             return <Mermaid>{children as any}</Mermaid>;
           }
 
-          return <code className={className}>{children as any}</code>;
+          return <Code className={className}>{children as any}</Code>;
         },
       }}
     >
@@ -44,14 +54,51 @@ export function Mermaid({ children }: PropsWithChildren) {
 
   useEffect(() => {
     if (!import.meta.env.SSR) {
-      log("Starting rendering");
+      log("Rendering mermaid");
+
       import("mermaid").then(({ default: mermaid }) => {
         mermaid.initialize({ startOnLoad: false });
-        mermaid.run();
-        log("Rendering started");
+        // TODO: render only the div
+        mermaid.run().then((x) => {
+          log("Mermaid rendering completed");
+        });
       });
     }
   }, [location]);
 
   return <div className="mermaid">{children}</div>;
+}
+
+export function Code({
+  className,
+  children,
+}: PropsWithChildren<{ className?: string }>) {
+  const location = useLocation();
+
+  const div = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!import.meta.env.SSR) {
+      const el = div.current;
+      if (el) {
+        (async () => {
+          log("Rendering %s", className);
+
+          const prism = await import("prismjs");
+          //@ts-ignore
+          await import("prismjs/components/prism-typescript");
+
+          prism.highlightElement(el, false, () =>
+            log("%s rendering completed", className),
+          );
+        })();
+      }
+    }
+  }, [location, div]);
+
+  return (
+    <div className={className} ref={div}>
+      {children}
+    </div>
+  );
 }
