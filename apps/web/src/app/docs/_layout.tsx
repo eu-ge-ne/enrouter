@@ -1,17 +1,17 @@
-import { Outlet, useLinkProps } from "enrouter";
+import { Outlet } from "enrouter";
 import { MDXProvider } from "@mdx-js/react";
 
 import { createLog } from "#log.js";
 import { Mermaid } from "#mermaid.js";
 import { MenuPrimaryLink, MenuSecondaryLink } from "#links.js";
 
-const log = createLog("app/docs/_layout");
+const log = createLog("docs/_layout");
 
 export const components = {
-  main: DocsLayout,
+  main: Layout,
 };
 
-function DocsLayout() {
+function Layout() {
   log("Rendering");
 
   return (

@@ -1,18 +1,15 @@
-import { createLog } from "#log.js";
-import Content from "./content.mdx";
+import { Outlet } from "enrouter";
 
-const log = createLog("app/docs/api/_layout");
+import { createLog } from "#log.js";
+
+const log = createLog("docs/api/_layout");
 
 export const components = {
-  docs: DocsApiLayout,
+  docs: Layout,
 };
 
-function DocsApiLayout() {
+function Layout() {
   log("Rendering");
 
-  return (
-    <div className="p-4">
-      <Content />
-    </div>
-  );
+  return <Outlet name="api" />;
 }

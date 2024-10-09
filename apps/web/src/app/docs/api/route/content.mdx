@@ -1,0 +1,17 @@
+### Route
+
+```typescript
+  interface Route {
+      /**
+       * Route's path
+       * @see https://github.com/lukeed/regexparam
+       */
+      path: string;
+      mod: string[];
+      /**
+       * Urls of assets associated with the route
+       */
+      link: [string[], string[]];
+      tree?: Route[];
+  }
+```
