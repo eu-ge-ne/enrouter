@@ -1,9 +1,8 @@
 import { Outlet } from "enrouter";
-import { MDXProvider } from "@mdx-js/react";
 
 import { createLog } from "#log.js";
-import { Mermaid } from "#mermaid.js";
 import { MenuPrimaryLink, MenuSecondaryLink } from "#links.js";
+import { Mdx } from "#mdx.js";
 
 const log = createLog("docs/_layout");
 
@@ -61,28 +60,9 @@ function Layout() {
         </ul>
       </div>
       <div className="w-full p-4 pt-0">
-        <MDXProvider
-          components={{
-            h3: ({ children }) => (
-              <h3 className="pt-4 text-lg font-bold first:pt-0">
-                {children as any}
-              </h3>
-            ),
-            code: ({ children }) => (
-              <div className="pt-4">
-                <Mermaid>{children as any}</Mermaid>
-              </div>
-            ),
-            p: ({ children }) => <p className="pt-4">{children as any}</p>,
-            ul: ({ children }) => (
-              <ul className="flex list-inside list-disc flex-col gap-y-2 pt-4">
-                {children as any}
-              </ul>
-            ),
-          }}
-        >
+        <Mdx>
           <Outlet name="docs" />
-        </MDXProvider>
+        </Mdx>
       </div>
     </div>
   );
