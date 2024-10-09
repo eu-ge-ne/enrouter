@@ -29,10 +29,14 @@ export interface Route {
 
 ```typescript
 interface BuildRoutesParams {
-    entryId: string;
-    modules: RouteModules$1;
-    assets: ModuleAssets$1;
+  entryId: string;
+  modules: RouteModules$1;
+  assets: ModuleAssets$1;
 }
 
-declare function buildRoutes({ entryId, modules, assets, }: BuildRoutesParams): Route | undefined;
+declare function buildRoutes({
+  entryId,
+  modules,
+  assets,
+}: BuildRoutesParams): Route | undefined;
 ```

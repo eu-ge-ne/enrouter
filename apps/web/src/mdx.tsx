@@ -52,8 +52,8 @@ export function Mdx({ children }: PropsWithChildren) {
 export function Mermaid({ children }: PropsWithChildren) {
   const location = useLocation();
 
-  useEffect(() => {
-    if (!import.meta.env.SSR) {
+  if (!import.meta.env.SSR) {
+    useEffect(() => {
       log("Rendering mermaid");
 
       import("mermaid").then(({ default: mermaid }) => {
@@ -63,8 +63,8 @@ export function Mermaid({ children }: PropsWithChildren) {
           log("Mermaid rendering completed");
         });
       });
-    }
-  }, [location]);
+    }, [location]);
+  }
 
   return <div className="mermaid">{children}</div>;
 }
@@ -77,8 +77,8 @@ export function Code({
 
   const div = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!import.meta.env.SSR) {
+  if (!import.meta.env.SSR) {
+    useEffect(() => {
       const el = div.current;
       if (el) {
         (async () => {
@@ -93,8 +93,8 @@ export function Code({
           );
         })();
       }
-    }
-  }, [location, div]);
+    }, [location, div]);
+  }
 
   return (
     <div className={className} ref={div}>
