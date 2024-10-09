@@ -45,7 +45,7 @@
     "regexparam": "^3.0.0",
     "terser": "^5.34.1",
     "tsup": "^8.3.0",
-    "typescript": "^5.6.2",
+    "typescript": "^5.6.3",
     "vitest": "^2.1.2",
     "vitest-browser-react": "^0.0.1"
   },
