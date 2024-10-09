@@ -8,8 +8,9 @@ const log = createLog("routes");
 /**
 Route is a base building block of routing definition.
 Routes form a tree of routes.
-Every branch in the tree maps a segment of url's pathname to a code and
-assets needed for rendering UI that corresponds to the segment.
+Every branch of the tree maps a segment of url pathname to some code and its
+assets. That code will generate the UI which corresponds to the segment of
+url pathname.
  */
 export interface Route {
   /**
