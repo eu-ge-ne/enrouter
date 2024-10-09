@@ -6,13 +6,13 @@ import github_logo from "/github-light.svg";
 import { createLog } from "#log.js";
 import { MenuPrimaryLink } from "#links.js";
 
-const log = createLog("app/_layout");
+const log = createLog("_layout");
 
 export const components = {
-  main: AppLayout,
+  main: Layout,
 };
 
-function AppLayout() {
+function Layout() {
   log("Rendering");
 
   return (

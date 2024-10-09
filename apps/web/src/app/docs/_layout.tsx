@@ -38,8 +38,25 @@ function Layout() {
               </li>
             </ul>
           </li>
-          <li className="pt-4">
+          <li className="flex flex-col gap-y-2 pt-4">
             <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
+            <ul className="contents">
+              <li>
+                <MenuSecondaryLink to="/docs/api/route">
+                  Route
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/handler">
+                  RouteHandler
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/match">
+                  RouteMatch
+                </MenuSecondaryLink>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
