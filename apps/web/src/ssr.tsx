@@ -28,14 +28,7 @@ export async function createSSRHandler() {
   return async function ssrHandler(req: Request) {
     const isCrawler = false;
 
-    let caughtError: Error | undefined;
-
-    function getStatusCode(): number {
-      if (!caughtError) {
-        return 200;
-      }
-      return 500;
-    }
+    let status = 200;
 
     try {
       const controller = new AbortController();
@@ -44,6 +37,9 @@ export async function createSSRHandler() {
       const location = new URL(req.url, "http://localhost").pathname;
 
       const matches = matchRoutes({ handlers, location });
+      if (!matches.at(-1)?.isFull) {
+        status = 404;
+      }
 
       const stylesheets = [
         ...new Set(matches.flatMap((x) => x.handler.route.link[0])),
@@ -58,6 +54,7 @@ window.$ROUTES = ${JSON.stringify(routes)};`;
 
       log("Rendering Shell: %O", {
         location,
+        status,
         bootstrapScriptContent,
         bootstrapModules,
       });
@@ -77,7 +74,7 @@ window.$ROUTES = ${JSON.stringify(routes)};`;
         bootstrapScriptContent,
         bootstrapModules,
         onError(err: unknown) {
-          caughtError = err as Error;
+          status = 500;
           console.error(err, "renderToReadableStream.onError");
         },
       });
@@ -87,14 +84,14 @@ window.$ROUTES = ${JSON.stringify(routes)};`;
       }
 
       return new Response(stream, {
-        status: getStatusCode(),
+        status,
         headers: { "Content-Type": "text/html" },
       });
     } catch (err) {
       console.error(err);
 
       return new Response("SSR error", {
-        status: getStatusCode(),
+        status: 500,
       });
     }
   };
