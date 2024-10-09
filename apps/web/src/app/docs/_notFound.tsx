@@ -2,10 +2,10 @@ import { useLocation } from "enrouter";
 
 import { createLog } from "#log.js";
 
-const log = createLog("app/_notFound");
+const log = createLog("app/docs/_notFound");
 
 export const components = {
-  main: NotFound,
+  docs: NotFound,
 };
 
 function NotFound() {
