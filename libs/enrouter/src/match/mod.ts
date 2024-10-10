@@ -2,7 +2,7 @@ import { createLog } from "#log.js";
 
 import type { RouteHandler } from "#handler/mod.js";
 
-const log = createLog("matches");
+const log = createLog("match");
 
 export interface RouteMatch {
   handler: RouteHandler;

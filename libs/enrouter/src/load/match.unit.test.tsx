@@ -1,10 +1,10 @@
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
-import { loadRouteMatches } from "./matches.js";
+import { loadRouteMatches } from "./match.js";
 
 import type { RouteModules } from "#modules.js";
-import type { RouteMatch } from "#matches/mod.js";
+import type { RouteMatch } from "#match/mod.js";
 
 describe("loadRouteMatches", () => {
   test("no matches", async () => {

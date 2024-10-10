@@ -6,7 +6,7 @@ import * as regexparam from "regexparam";
 import { renderMatches } from "#render/mod.js";
 import { Outlet } from "./mod.js";
 
-import type { RouteMatch } from "#matches/mod.js";
+import type { RouteMatch } from "#match/mod.js";
 
 const wrapperId = "test-wrapper";
 

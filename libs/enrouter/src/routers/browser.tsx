@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 
 import { createLog } from "#log.js";
-import { matchRoutes } from "#matches/mod.js";
-import { loadRouteMatches } from "#load/matches.js";
+import { matchRoutes } from "#match/mod.js";
+import { loadRouteMatches } from "#load/match.js";
 import { renderMatches } from "#render/mod.js";
 import { RouterContext } from "./context.js";
 

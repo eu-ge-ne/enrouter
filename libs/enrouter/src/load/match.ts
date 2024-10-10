@@ -3,9 +3,9 @@ import { createLog } from "#log.js";
 import { loaders } from "./loaders.js";
 
 import type { RouteModules } from "#modules.js";
-import type { RouteMatch } from "#matches/mod.js";
+import type { RouteMatch } from "#match/mod.js";
 
-const log = createLog("load/matches");
+const log = createLog("load/match");
 
 interface LoadRouteMatchesParams {
   matches: RouteMatch[];

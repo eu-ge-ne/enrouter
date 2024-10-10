@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
-import { loadRouteHandlers } from "./handlers.js";
+import { loadRouteHandlers } from "./handler.js";
 
 import type { RouteModules } from "#modules.js";
 import type { RouteHandler } from "#handler/mod.js";
