@@ -1,10 +1,10 @@
-import { createLog } from "#log.js";
+import { logger } from "#debug.js";
 import { loaders } from "./loaders.js";
 
 import type { RouteModules } from "#modules.js";
 import type { RouteHandler } from "#handler/mod.js";
 
-const log = createLog("loader/handler");
+const log = logger("loader/handler");
 
 interface LoadRouteHandlersParams {
   handlers: RouteHandler;
@@ -15,7 +15,7 @@ export async function loadRouteHandlers({
   handlers,
   modules,
 }: LoadRouteHandlersParams): Promise<void> {
-  log("Loading route handlers");
+  log("Loading handlers");
 
   const promises: Promise<unknown>[] = [];
 
@@ -23,7 +23,7 @@ export async function loadRouteHandlers({
 
   await Promise.all(promises);
 
-  log("Route handlers loaded");
+  log("Handlers loaded");
 }
 
 function recur(
