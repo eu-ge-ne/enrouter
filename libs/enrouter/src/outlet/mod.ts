@@ -11,7 +11,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
   return useOutlets()?.[name];
 }
 
-export function useOutlets(): Record<string, ReactElement> | undefined {
+function useOutlets(): Record<string, ReactElement> | undefined {
   let nodes = useContext(RouteRenderContext);
 
   if (!nodes.next) {

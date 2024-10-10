@@ -6,5 +6,6 @@
 - [Loaders](/docs/api/loaders)
 - [StaticRouter](/docs/api/router/static)
 - [BrowserRouter](/docs/api/router/browser)
+- [Outlet](/docs/api/outlet)
 - [RouteModules](/docs/api/modules)
 - [ModuleAssets](/docs/api/assets)

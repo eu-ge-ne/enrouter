@@ -71,6 +71,11 @@ function Layout() {
                 </MenuSecondaryLink>
               </li>
               <li>
+                <MenuSecondaryLink to="/docs/api/outlet">
+                  Outlet
+                </MenuSecondaryLink>
+              </li>
+              <li>
                 <MenuSecondaryLink to="/docs/api/modules">
                   RouteModules
                 </MenuSecondaryLink>
