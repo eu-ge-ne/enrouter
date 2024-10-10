@@ -9,7 +9,8 @@
     "clean": "nx run-many -t clean",
     "lint": "nx run-many -t lint",
     "test": "nx run-many -t test",
-    "build": "nx run-many -t build"
+    "build": "nx run-many -t build",
+    "deploy": "nx deploy @enrouter/edge"
   },
   "repository": {
     "type": "git",
