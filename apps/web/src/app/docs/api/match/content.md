@@ -27,8 +27,5 @@ interface MatchRoutesParams {
   location: string;
 }
 
-function matchRoutes({
-  handlers,
-  location,
-}: MatchRoutesParams): RouteMatch[];
+function matchRoutes({ handlers, location }: MatchRoutesParams): RouteMatch[];
 ```
