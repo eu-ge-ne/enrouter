@@ -61,13 +61,23 @@ function Layout() {
                 </MenuSecondaryLink>
               </li>
               <li>
-                <MenuSecondaryLink to="/docs/api/assets">
-                  ModuleAssets
+                <MenuSecondaryLink to="/docs/api/router/static">
+                  StaticRouter
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/router/browser">
+                  BrowserRouter
                 </MenuSecondaryLink>
               </li>
               <li>
                 <MenuSecondaryLink to="/docs/api/modules">
                   RouteModules
+                </MenuSecondaryLink>
+              </li>
+              <li>
+                <MenuSecondaryLink to="/docs/api/assets">
+                  ModuleAssets
                 </MenuSecondaryLink>
               </li>
             </ul>

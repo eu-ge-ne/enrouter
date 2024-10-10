@@ -2,7 +2,7 @@ import { useContext } from "react";
 import type { MouseEvent, AnchorHTMLAttributes } from "react";
 
 import { createLog } from "#log.js";
-import { RouterContext } from "./routers/context.js";
+import { RouterContext } from "./router/context.js";
 
 const log = createLog("link");
 

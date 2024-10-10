@@ -2,11 +2,11 @@ export { buildRoutes } from "./route/mod.js";
 export { buildRouteHandlers } from "./handler/mod.js";
 export { matchRoutes } from "./match/mod.js";
 
-export { loadRouteHandlers } from "./load/handler.js";
-export { loadRouteMatches } from "./load/match.js";
+export { loadRouteHandlers } from "./loader/handler.js";
+export { loadRouteMatches } from "./loader/match.js";
 
-export { StaticRouter } from "./routers/static.js";
-export { BrowserRouter } from "./routers/browser.js";
+export { StaticRouter } from "./router/static.js";
+export { BrowserRouter } from "./router/browser.js";
 
 export { useOutlets, Outlet } from "./outlets/mod.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";

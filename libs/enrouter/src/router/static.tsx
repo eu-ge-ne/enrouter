@@ -7,7 +7,7 @@ import type { RouteHandler } from "#handler/mod.js";
 import type { RouteMatch } from "#match/mod.js";
 import type { TRouterContext } from "./context.js";
 
-interface StaticRouterParams {
+interface StaticRouterProps {
   handlers: RouteHandler;
   location: string;
   matches: RouteMatch[];
@@ -17,7 +17,7 @@ export function StaticRouter({
   handlers,
   location,
   matches,
-}: StaticRouterParams) {
+}: StaticRouterProps) {
   const context = useMemo<TRouterContext>(
     () => ({
       handlers,

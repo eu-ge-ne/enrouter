@@ -4,5 +4,7 @@
 - [RouteHandler](/docs/api/handler)
 - [RouteMatch](/docs/api/match)
 - [Loaders](/docs/api/loaders)
-- [ModuleAssets](/docs/api/assets)
+- [StaticRouter](/docs/api/router/static)
+- [BrowserRouter](/docs/api/router/browser)
 - [RouteModules](/docs/api/modules)
+- [ModuleAssets](/docs/api/assets)

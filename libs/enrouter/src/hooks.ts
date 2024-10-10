@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { RouterContext } from "./routers/context.js";
+import { RouterContext } from "./router/context.js";
 import { RouteRenderContext } from "./render/context.js";
 
 import type { RouteMatch } from "./match/mod.js";
