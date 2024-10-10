@@ -6,7 +6,7 @@ import { loadRouteMatches } from "#load/matches.js";
 import { renderMatches } from "#render/mod.js";
 import { RouterContext } from "./context.js";
 
-import type { RouteHandler } from "#handlers/mod.js";
+import type { RouteHandler } from "#handler/mod.js";
 import type { RouteModules } from "#modules.js";
 import type { TRouterContext } from "./context.js";
 

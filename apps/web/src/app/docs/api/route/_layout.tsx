@@ -1,5 +1,5 @@
 import { createLog } from "#log.js";
-import Content from "./content.mdx";
+import Content from "./content.md";
 
 const log = createLog("docs/api/route/_layout");
 

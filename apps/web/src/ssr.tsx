@@ -25,7 +25,7 @@ export async function createSSRHandler() {
 
   log("Routes built: %O", routes);
 
-  const handlers = buildRouteHandlers({ routes });
+  const handlers = buildRouteHandlers(routes);
 
   await loadRouteHandlers({ handlers, modules });
 

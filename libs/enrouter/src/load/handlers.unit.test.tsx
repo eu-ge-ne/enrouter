@@ -4,7 +4,7 @@ import * as regexparam from "regexparam";
 import { loadRouteHandlers } from "./handlers.js";
 
 import type { RouteModules } from "#modules.js";
-import type { RouteHandler } from "#handlers/mod.js";
+import type { RouteHandler } from "#handler/mod.js";
 
 describe("loadRouteHandlers", () => {
   test("1 route handler with no modules", async () => {

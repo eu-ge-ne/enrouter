@@ -24,7 +24,11 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  const handlers = buildRouteHandlers({ routes: window.$ROUTES });
+  log("Building route handlers");
+
+  const handlers = buildRouteHandlers(window.$ROUTES);
+
+  log("Route handlers built: %O", handlers);
 
   const matches = matchRoutes({ handlers, location: window.location.pathname });
   await loadRouteMatches({ matches, modules });

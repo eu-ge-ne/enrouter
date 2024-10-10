@@ -2,7 +2,7 @@ import { createLog } from "#log.js";
 import { loaders } from "./loaders.js";
 
 import type { RouteModules } from "#modules.js";
-import type { RouteHandler } from "#handlers/mod.js";
+import type { RouteHandler } from "#handler/mod.js";
 
 const log = createLog("load/handlers");
 
