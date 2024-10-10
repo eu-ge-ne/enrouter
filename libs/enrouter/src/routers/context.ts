@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import type { RouteHandler } from "#handlers/mod.js";
+import type { RouteHandler } from "#handler/mod.js";
 
 export interface TRouterContext {
   handlers: RouteHandler;

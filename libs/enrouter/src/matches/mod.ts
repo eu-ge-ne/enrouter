@@ -1,6 +1,6 @@
 import { createLog } from "#log.js";
 
-import type { RouteHandler } from "#handlers/mod.js";
+import type { RouteHandler } from "#handler/mod.js";
 
 const log = createLog("matches");
 

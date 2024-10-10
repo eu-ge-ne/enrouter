@@ -7,8 +7,7 @@ graph LR;
   RM(RouteModules)
   MA(ModuleAssets)
   BR((buildRoutes))
-  subgraph R [RouteTree]
-    direction TB
+  subgraph RTT [" "]
     RT(Route)
     RT1(Route1)
     RT2(Route2)
@@ -21,25 +20,45 @@ graph LR;
 
   RM-->BR
   MA-->BR
-  BR-->R
+  BR-->RTT
 ```
 
 ## Building RouteHandlers
 
-TODO
+```mermaid
+graph LR;
+  subgraph RTT [" "]
+    RT(Route)
+    RT1(Route1)
+    RT2(Route2)
+
+    RT-->RT1
+    RT-->RT2
+  end
+  subgraph RHH [" "]
+    RH(RouteHandler)
+    RH1(RouteHandler1)
+    RH2(RouteHandler2)
+
+    RH-->RH1
+    RH-->RH2
+  end
+  BRH((buildRouteHandlers))
+
+  RTT-->BRH
+  BRH-->RHH
+```
 
 ## TODO
 
 ```mermaid
 graph TD;
-  RT[Route];
   RH[RouteHandler];
   NAV(("navigation event"));
   LOC[Location];
   RM[RouteMatch];
   RN[RouteNodes];
 
-  RT---|buildRouteHandlers|RH;
   RH-->NAV;
   LOC-->NAV;
   NAV---|matchRoutes|RM;

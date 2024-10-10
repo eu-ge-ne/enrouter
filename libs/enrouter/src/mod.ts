@@ -1,5 +1,5 @@
 export { buildRoutes } from "./route/mod.js";
-export { buildRouteHandlers } from "./handlers/mod.js";
+export { buildRouteHandlers } from "./handler/mod.js";
 export { matchRoutes } from "./matches/mod.js";
 
 export { loadRouteHandlers } from "./load/handlers.js";
@@ -13,5 +13,6 @@ export { useLocation, usePath, useMatch } from "./hooks.js";
 export { useLinkProps } from "./link.js";
 
 export type { Route } from "./route/mod.js";
+export type { RouteHandler } from "./handler/mod.js";
 export type { RouteModules } from "./modules.js";
 export type { ModuleAssets } from "./assets.js";

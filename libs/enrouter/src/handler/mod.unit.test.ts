@@ -6,17 +6,17 @@ import type { Route } from "#route/mod.js";
 
 describe("buildRouteHandlers", () => {
   test("from 1 route", () => {
-    const routes: Route = {
+    const route: Route = {
       path: "/",
       link: [[], []],
       mod: [],
     };
 
-    expect(buildRouteHandlers({ routes })).toMatchSnapshot();
+    expect(buildRouteHandlers(route)).toMatchSnapshot();
   });
 
   test("from 2 routes", () => {
-    const routes: Route = {
+    const route: Route = {
       path: "/",
       link: [[], []],
       mod: [],
@@ -29,6 +29,6 @@ describe("buildRouteHandlers", () => {
       ],
     };
 
-    expect(buildRouteHandlers({ routes })).toMatchSnapshot();
+    expect(buildRouteHandlers(route)).toMatchSnapshot();
   });
 });
