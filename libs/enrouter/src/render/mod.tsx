@@ -1,12 +1,12 @@
 import type { ReactElement } from "react";
 
-import { createLog } from "#log.js";
+import { logger } from "#debug.js";
 import { RouteRenderContext } from "./context.js";
 import { NotFound } from "./notFound.js";
 
 import type { RouteMatch } from "#match/mod.js";
 
-const log = createLog("render");
+const log = logger("render");
 
 export interface RouteNodes {
   match: RouteMatch;
@@ -26,7 +26,7 @@ export function renderMatches(matches: RouteMatch[]): ReactElement[] {
 
   // 404?
   if (!nodes.at(-1)?.match.isFull) {
-    log("404: %O", nodes);
+    log("404: %o", nodes);
 
     const i = nodes.findLastIndex((x) => x.match.handler.notFound);
     if (i === -1) {
