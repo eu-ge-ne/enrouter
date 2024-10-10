@@ -12,6 +12,8 @@ export { useOutlets, Outlet } from "./outlets/mod.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";
 export { useLinkProps } from "./link.js";
 
+export { debug } from "./debug.js";
+
 export type { Route } from "./route/mod.js";
 export type { RouteHandler } from "./handler/mod.js";
 export type { RouteMatch } from "./match/mod.js";

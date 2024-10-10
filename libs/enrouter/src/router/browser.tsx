@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 
-import { createLog } from "#log.js";
+import { logger } from "#debug.js";
 import { matchRoutes } from "#match/mod.js";
 import { loadRouteMatches } from "#loader/match.js";
 import { renderMatches } from "#render/mod.js";
@@ -10,7 +10,7 @@ import type { RouteHandler } from "#handler/mod.js";
 import type { RouteModules } from "#modules.js";
 import type { TRouterContext } from "./context.js";
 
-const log = createLog("router/browser");
+const log = logger("router/browser");
 
 interface BrowserRouterProps {
   handlers: RouteHandler;
@@ -21,7 +21,7 @@ export function BrowserRouter({ handlers, modules }: BrowserRouterProps) {
   const [location, setLocation] = useState(window.location.pathname);
 
   const handlePopState = useCallback((e: PopStateEvent) => {
-    log("handlePopState %O", e);
+    log("handlePopState %o", e);
     setLocation(window.location.pathname);
   }, []);
 
@@ -31,7 +31,7 @@ export function BrowserRouter({ handlers, modules }: BrowserRouterProps) {
   }, [handlePopState]);
 
   const navigate = useCallback(async (to: string) => {
-    log("Navigating to %O", to);
+    log("Navigating to %s", to);
 
     const matches = matchRoutes({ handlers, location: to });
     await loadRouteMatches({ matches, modules });

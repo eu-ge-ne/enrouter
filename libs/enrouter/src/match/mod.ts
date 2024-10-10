@@ -1,8 +1,8 @@
-import { createLog } from "#log.js";
+import { logger } from "#debug.js";
 
 import type { RouteHandler } from "#handler/mod.js";
 
-const log = createLog("match");
+const log = logger("match");
 
 export interface RouteMatch {
   handler: RouteHandler;
@@ -36,7 +36,7 @@ export function matchRoutes({
     x.last = last;
   });
 
-  log("Matched routes %O", matches);
+  log("Matched routes: %o", matches);
 
   return matches;
 }

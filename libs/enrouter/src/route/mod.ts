@@ -1,5 +1,9 @@
+import { logger } from "#debug.js";
+
 import type { RouteModules } from "#modules.js";
 import type { ModuleAssets } from "#assets.js";
+
+const log = logger("route");
 
 /**
 Route is a base building block of routing definition.
@@ -42,6 +46,8 @@ export function buildRoutes({
   modules,
   assets,
 }: BuildRoutesParams): Route | undefined {
+  log("Building routes");
+
   function updateLinks({ link }: Route, moduleId: string): void {
     const x = assets[moduleId];
     if (x) {
@@ -104,7 +110,11 @@ export function buildRoutes({
     updateLinks(route, moduleId);
   }
 
-  return routes.get("/");
+  const result = routes.get("/");
+
+  log("Routes built: %o", routes);
+
+  return result;
 }
 
 function parsePath(str: string) {

@@ -1,11 +1,11 @@
-import { createLog } from "#log.js";
+import { logger } from "#debug.js";
 
 import { loaders } from "./loaders.js";
 
 import type { RouteModules } from "#modules.js";
 import type { RouteMatch } from "#match/mod.js";
 
-const log = createLog("loader/match");
+const log = logger("loader/match");
 
 interface LoadRouteMatchesParams {
   matches: RouteMatch[];
@@ -16,7 +16,7 @@ export async function loadRouteMatches({
   matches,
   modules,
 }: LoadRouteMatchesParams): Promise<void> {
-  log("Loading route matches");
+  log("Loading matches");
 
   const promises: Promise<unknown>[] = [];
 
@@ -39,5 +39,5 @@ export async function loadRouteMatches({
 
   await Promise.all(promises);
 
-  log("Route matches loaded");
+  log("Matches loaded");
 }

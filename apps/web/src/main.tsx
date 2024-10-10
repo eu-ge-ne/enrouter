@@ -7,12 +7,15 @@ import {
   loadRouteMatches,
   matchRoutes,
   BrowserRouter,
+  debug,
 } from "enrouter";
 import { Shell } from "./shell.js";
 import { modules } from "./routes.js";
 import { createLog } from "#log.js";
 
 import type { Route } from "enrouter";
+
+debug(console.debug);
 
 const log = createLog("main");
 
@@ -24,11 +27,7 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  log("Building route handlers");
-
   const handlers = buildRouteHandlers(window.$ROUTES);
-
-  log("Route handlers built: %O", handlers);
 
   const matches = matchRoutes({ handlers, location: window.location.pathname });
   await loadRouteMatches({ matches, modules });

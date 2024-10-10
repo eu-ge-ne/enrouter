@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import type { MouseEvent, AnchorHTMLAttributes } from "react";
 
-import { createLog } from "#log.js";
+import { logger } from "#debug.js";
 import { RouterContext } from "./router/context.js";
 
-const log = createLog("link");
+const log = logger("link");
 
 export function useLinkProps(
   href: string,
