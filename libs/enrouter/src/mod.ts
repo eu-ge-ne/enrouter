@@ -8,7 +8,7 @@ export { loadRouteMatches } from "./loader/match.js";
 export { StaticRouter } from "./router/static.js";
 export { BrowserRouter } from "./router/browser.js";
 
-export { useOutlets, Outlet } from "./outlets/mod.js";
+export { Outlet } from "./outlet/mod.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";
 export { useLinkProps } from "./link.js";
 
