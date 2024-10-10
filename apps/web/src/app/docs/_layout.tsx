@@ -76,6 +76,9 @@ function Layout() {
                 </MenuSecondaryLink>
               </li>
               <li>
+                <MenuSecondaryLink to="/docs/api/link">Link</MenuSecondaryLink>
+              </li>
+              <li>
                 <MenuSecondaryLink to="/docs/api/modules">
                   RouteModules
                 </MenuSecondaryLink>

@@ -11,8 +11,8 @@ export { StaticRouter } from "./router/static.js";
 export { BrowserRouter } from "./router/browser.js";
 
 export { Outlet } from "./outlet/mod.js";
-export { useLocation, usePath, useMatch } from "./hooks.js";
 export { useLinkProps } from "./link.js";
+export { useLocation, usePath, useMatch } from "./hooks.js";
 
 export type { Route, BuildRoutesParams } from "./route/mod.js";
 export type { RouteHandler } from "./handler/mod.js";
