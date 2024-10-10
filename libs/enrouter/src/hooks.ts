@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { RouterContext } from "./routers/context.js";
 import { RouteRenderContext } from "./render/context.js";
 
-import type { RouteMatch } from "./matches/mod.js";
+import type { RouteMatch } from "./match/mod.js";
 
 export function useLocation(): string {
   const { location } = useContext(RouterContext);

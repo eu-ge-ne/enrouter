@@ -4,7 +4,7 @@ import { createLog } from "#log.js";
 import { RouteRenderContext } from "./context.js";
 import { NotFound } from "./notFound.js";
 
-import type { RouteMatch } from "#matches/mod.js";
+import type { RouteMatch } from "#match/mod.js";
 
 const log = createLog("render");
 
