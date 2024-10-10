@@ -36,7 +36,8 @@ export const assets: ModuleAssets = Object.fromEntries(
   }),
 );
 
-log("Assets built: %O", assets);
+//log("Assets built: %o", assets);
+log("Assets built");
 
 function flattenImports(ids: string[], result: Set<string>) {
   for (const id of ids) {
