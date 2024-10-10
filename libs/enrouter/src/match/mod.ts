@@ -15,7 +15,7 @@ export interface RouteMatch {
   last?: RouteMatch;
 }
 
-interface MatchRoutesParams {
+export interface MatchRoutesParams {
   handlers: RouteHandler;
   location: string;
 }

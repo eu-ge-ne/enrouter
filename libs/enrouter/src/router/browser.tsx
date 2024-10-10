@@ -12,7 +12,7 @@ import type { TRouterContext } from "./context.js";
 
 const log = logger("router/browser");
 
-interface BrowserRouterProps {
+export interface BrowserRouterProps {
   handlers: RouteHandler;
   modules: RouteModules;
 }

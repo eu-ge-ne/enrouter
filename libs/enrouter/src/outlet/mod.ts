@@ -3,7 +3,7 @@ import type { ReactNode, ReactElement } from "react";
 
 import { RouteRenderContext } from "#render/context.js";
 
-interface OutletProps {
+export interface OutletProps {
   name: string;
 }
 

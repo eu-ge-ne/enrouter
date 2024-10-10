@@ -7,7 +7,7 @@ import type { RouteHandler } from "#handler/mod.js";
 import type { RouteMatch } from "#match/mod.js";
 import type { TRouterContext } from "./context.js";
 
-interface StaticRouterProps {
+export interface StaticRouterProps {
   handlers: RouteHandler;
   location: string;
   matches: RouteMatch[];

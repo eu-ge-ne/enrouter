@@ -6,7 +6,7 @@ import type { RouteHandler } from "#handler/mod.js";
 
 const log = logger("loader/handler");
 
-interface LoadRouteHandlersParams {
+export interface LoadRouteHandlersParams {
   handlers: RouteHandler;
   modules: RouteModules;
 }
