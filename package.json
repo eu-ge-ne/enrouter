@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "format:check": "prettier . --check",
+    "format": "prettier . --check",
     "format:fix": "prettier . --write",
 
     "clean": "nx run-many -t clean",
