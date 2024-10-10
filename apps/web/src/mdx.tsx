@@ -52,21 +52,33 @@ export function Mdx({ children }: PropsWithChildren) {
 export function Mermaid({ children }: PropsWithChildren) {
   const location = useLocation();
 
+  const div = useRef<HTMLDivElement>(null);
+
   if (!import.meta.env.SSR) {
     useEffect(() => {
-      log("Rendering mermaid");
+      const el = div.current;
+      if (!el) {
+        return;
+      }
 
-      import("mermaid").then(({ default: mermaid }) => {
+      (async () => {
+        log("Rendering mermaid");
+
+        const { default: mermaid } = await import("mermaid");
+
         mermaid.initialize({ startOnLoad: false });
-        // TODO: render only the div
-        mermaid.run().then((x) => {
-          log("Mermaid rendering completed");
-        });
-      });
-    }, [location]);
+        mermaid.run({ nodes: [el] });
+
+        log("Mermaid rendering completed");
+      })();
+    }, [location, div]);
   }
 
-  return <div className="mermaid">{children}</div>;
+  return (
+    <div className="mermaid" ref={div}>
+      {children}
+    </div>
+  );
 }
 
 export function Code({
@@ -80,19 +92,21 @@ export function Code({
   if (!import.meta.env.SSR) {
     useEffect(() => {
       const el = div.current;
-      if (el) {
-        (async () => {
-          log("Rendering %s", className);
-
-          const prism = await import("prismjs");
-          //@ts-ignore
-          await import("prismjs/components/prism-typescript");
-
-          prism.highlightElement(el, false, () =>
-            log("%s rendering completed", className),
-          );
-        })();
+      if (!el) {
+        return;
       }
+
+      (async () => {
+        log("Rendering %s", className);
+
+        const prism = await import("prismjs");
+        //@ts-ignore
+        await import("prismjs/components/prism-typescript");
+
+        prism.highlightElement(el, false, () =>
+          log("%s rendering completed", className),
+        );
+      })();
     }, [location, div]);
   }
 
