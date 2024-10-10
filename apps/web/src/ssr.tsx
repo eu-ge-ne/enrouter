@@ -7,23 +7,22 @@ import {
   loadRouteHandlers,
   matchRoutes,
   StaticRouter,
+  debug,
 } from "enrouter";
 import { Shell } from "./shell.js";
 import { modules } from "./routes.js";
 import { assets } from "./assets.js";
 import { createLog } from "#log.js";
 
+debug(console.debug);
+
 const log = createLog("ssr");
 
 export async function createSSRHandler() {
-  log("Building routes");
-
   const routes = buildRoutes({ entryId: "src/main.tsx", modules, assets });
   if (!routes) {
     throw new Error("No routes found");
   }
-
-  log("Routes built: %O", routes);
 
   const handlers = buildRouteHandlers(routes);
 
@@ -56,7 +55,7 @@ window.$ROUTES = ${JSON.stringify(routes)};`;
         ...new Set([...matches.flatMap((x) => x.handler.route.link[1])]),
       ];
 
-      log("Rendering Shell: %O", {
+      log("Rendering Shell: %o", {
         location,
         status,
         bootstrapScriptContent,
