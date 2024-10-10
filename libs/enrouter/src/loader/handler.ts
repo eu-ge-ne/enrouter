@@ -4,7 +4,7 @@ import { loaders } from "./loaders.js";
 import type { RouteModules } from "#modules.js";
 import type { RouteHandler } from "#handler/mod.js";
 
-const log = createLog("load/handler");
+const log = createLog("loader/handler");
 
 interface LoadRouteHandlersParams {
   handlers: RouteHandler;

@@ -56,6 +56,21 @@ export function buildRoutes({
 
   const routes = new Map<string, Route>();
 
+  function findParent(filePath: string[]) {
+    const parentPath = [...filePath];
+
+    while (parentPath.length > 0) {
+      parentPath.pop();
+      const path = parsePath("/" + parentPath.join("/"));
+      const parent = routes.get(path);
+      if (parent) {
+        return parent;
+      }
+    }
+
+    throw new Error("Parent not found");
+  }
+
   for (const [moduleId, filePath] of entries) {
     const isRoot = filePath.length === 0;
 
@@ -72,8 +87,7 @@ export function buildRoutes({
     }
 
     if (!isRoot) {
-      const parentPath = parsePath("/" + filePath.slice(0, -1).join("/"));
-      const parent = routes.get(parentPath)!;
+      const parent = findParent(filePath);
       if (!parent.tree?.find((x) => x.path === path)) {
         if (!parent.tree) {
           parent.tree = [];

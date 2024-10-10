@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 
 import { createLog } from "#log.js";
 import { matchRoutes } from "#match/mod.js";
-import { loadRouteMatches } from "#load/match.js";
+import { loadRouteMatches } from "#loader/match.js";
 import { renderMatches } from "#render/mod.js";
 import { RouterContext } from "./context.js";
 
@@ -10,14 +10,14 @@ import type { RouteHandler } from "#handler/mod.js";
 import type { RouteModules } from "#modules.js";
 import type { TRouterContext } from "./context.js";
 
-const log = createLog("routers/browser");
+const log = createLog("router/browser");
 
-interface BrowserRouterParams {
+interface BrowserRouterProps {
   handlers: RouteHandler;
   modules: RouteModules;
 }
 
-export function BrowserRouter({ handlers, modules }: BrowserRouterParams) {
+export function BrowserRouter({ handlers, modules }: BrowserRouterProps) {
   const [location, setLocation] = useState(window.location.pathname);
 
   const handlePopState = useCallback((e: PopStateEvent) => {
