@@ -25,7 +25,7 @@ export function Shell({
             content="width=device-width, initial-scale=1.0"
           />
           <title>enrouter</title>
-          <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+          <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
           {stylesheets?.map((href) => (
             <link key={href} rel="stylesheet" href={href}></link>
           ))}

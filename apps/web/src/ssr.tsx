@@ -48,8 +48,10 @@ export async function createSSRHandler() {
         ...new Set(matches.flatMap((x) => x.handler.route.link[0])),
       ];
 
+      const $ROUTES = JSON.stringify(routes);
+
       const bootstrapScriptContent = `
-window.$ROUTES = ${JSON.stringify(routes)};`;
+window.$ROUTES = ${$ROUTES};`;
 
       const bootstrapModules = [
         ...new Set([...matches.flatMap((x) => x.handler.route.link[1])]),
@@ -60,6 +62,7 @@ window.$ROUTES = ${JSON.stringify(routes)};`;
         status,
         bootstrapScriptContent,
         bootstrapModules,
+        $ROUTES_LENGTH: $ROUTES.length,
       });
 
       const children = (
