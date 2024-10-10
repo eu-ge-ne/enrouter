@@ -1,31 +1,32 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "clean": {
+    "//#prettier": {
       "cache": false
     },
+
+
+
+
+    "lint": {
+      "cache": false,
+      "dependsOn": ["//#prettier", "^build"]
+    },
+
+
+
+
     "dev": {
       "cache": false,
       "persistent": true,
       "interactive": false,
       "dependsOn": ["^build"]
     },
-    "//#prettier": {
-      "cache": false
-    },
-    "lint": {
-      "cache": false,
-      "dependsOn": ["//#prettier", "^build"]
-    },
-    "test": {
-      "cache": true,
-      "outputs": ["coverage/**"]
-    },
-    "build": {
-      "cache": true,
-      "outputs": ["dist/**"],
-      "dependsOn": ["clean", "^build"]
-    },
+
+
+
+
+
     "deploy": {
       "cache": false,
       "dependsOn": ["clean", "lint", "test", "build"]
