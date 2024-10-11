@@ -1,10 +1,4 @@
-# ModuleAssets API
-
-Will soon be updated...
-
-## Interfaces
-
-### ModuleAssets
+# ModuleAssets
 
 ```typescript
 type ModuleAssets = Record<
@@ -14,4 +8,16 @@ type ModuleAssets = Record<
     modules: string[];
   }
 >;
+```
+
+## Examples
+
+### Create manually
+
+```ts
+```
+
+### Create using Vite glob import
+
+```ts
 ```
