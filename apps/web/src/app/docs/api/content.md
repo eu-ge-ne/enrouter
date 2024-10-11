@@ -1,5 +1,7 @@
 # API
 
+- [RouteModules](/docs/api/modules)
+
 Will soon be updated...
 
 - [Route](/docs/api/route)
@@ -10,5 +12,4 @@ Will soon be updated...
 - [BrowserRouter](/docs/api/router/browser)
 - [Outlet](/docs/api/outlet)
 - [Link](/docs/api/link)
-- [RouteModules](/docs/api/modules)
 - [ModuleAssets](/docs/api/assets)
