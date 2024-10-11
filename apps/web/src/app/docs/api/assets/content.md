@@ -17,7 +17,7 @@ type ModuleAssets = Record<
 ```ts
 ```
 
-### Create using Vite glob import
+### Create using Vite
 
 ```ts
 ```
