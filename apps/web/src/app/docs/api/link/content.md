@@ -1,5 +1,7 @@
 # Link API
 
+Will soon be updated...
+
 ## Hooks
 
 ### useLinkProps

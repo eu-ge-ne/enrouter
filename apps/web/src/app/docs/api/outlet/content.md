@@ -1,5 +1,7 @@
 # Outlet API
 
+Will soon be updated...
+
 ## Components
 
 ### Outlet

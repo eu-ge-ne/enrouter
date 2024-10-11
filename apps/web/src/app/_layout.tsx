@@ -32,6 +32,8 @@ function Layout() {
               src={npm_logo}
               className="size-6"
               alt="https://www.npmjs.com/package/enrouter"
+              width="24"
+              height="24"
             />
           </a>
           <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">
@@ -39,6 +41,8 @@ function Layout() {
               src={github_logo}
               className="size-6"
               alt="https://github.com/eu-ge-ne/enrouter"
+              width="24"
+              height="24"
             />
           </a>
         </div>

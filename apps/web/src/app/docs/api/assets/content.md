@@ -1,5 +1,7 @@
 # ModuleAssets API
 
+Will soon be updated...
+
 ## Interfaces
 
 ### ModuleAssets
