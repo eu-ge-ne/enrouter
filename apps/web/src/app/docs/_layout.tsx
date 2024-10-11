@@ -1,7 +1,7 @@
 import { Outlet } from "enrouter";
 
 import { createLog } from "#log.js";
-import { MenuPrimaryLink, MenuSecondaryLink } from "#links.js";
+import { MenuLink1, MenuLink2 } from "#links.js";
 import { Mdx } from "#mdx.js";
 
 const log = createLog("docs/_layout");
@@ -18,19 +18,19 @@ function Layout() {
       <div className="flex w-[15rem] flex-col pr-4">
         <ul className="flex flex-col gap-y-2">
           <li>
-            <MenuPrimaryLink to="/docs">Docs</MenuPrimaryLink>
+            <MenuLink1 to="/docs">Docs</MenuLink1>
           </li>
           <li>
-            <MenuPrimaryLink to="/docs/start">Getting Started</MenuPrimaryLink>
+            <MenuLink1 to="/docs/start">Getting Started</MenuLink1>
           </li>
           <li>
-            <MenuPrimaryLink to="/docs/features">Features</MenuPrimaryLink>
+            <MenuLink1 to="/docs/features">Features</MenuLink1>
           </li>
           <li>
-            <MenuPrimaryLink to="/docs/arch">Architecture</MenuPrimaryLink>
+            <MenuLink1 to="/docs/arch">Architecture</MenuLink1>
           </li>
           <li>
-            <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
+            <MenuLink1 to="/docs/api">API</MenuLink1>
           </li>
         </ul>
         <Outlet name="menu" />

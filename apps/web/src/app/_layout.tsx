@@ -3,7 +3,7 @@ import { Outlet, useLinkProps } from "enrouter";
 import github_logo from "/github-light.svg";
 
 import { createLog } from "#log.js";
-import { MenuPrimaryLink } from "#links.js";
+import { MenuLink1 } from "#links.js";
 
 const log = createLog("_layout");
 
@@ -25,10 +25,10 @@ function Layout() {
         </a>
         <ul className="flex justify-end gap-x-4">
           <li>
-            <MenuPrimaryLink to="/docs">Docs</MenuPrimaryLink>
+            <MenuLink1 to="/docs">Docs</MenuLink1>
           </li>
           <li>
-            <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
+            <MenuLink1 to="/docs/api">API</MenuLink1>
           </li>
           <li>
             <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">

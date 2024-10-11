@@ -1,7 +1,7 @@
 import { Outlet } from "enrouter";
 
 import { createLog } from "#log.js";
-import { MenuSecondaryLink } from "#links.js";
+import { MenuLink2 } from "#links.js";
 
 const log = createLog("docs/arch/_layout");
 
@@ -17,9 +17,7 @@ function Menu() {
     <div className="mt-4 border-t border-paperBorder">
       <ul className="mt-4 flex flex-col gap-y-2">
         <li>
-          <MenuSecondaryLink to="/docs/arch/routes">
-            Building Routes
-          </MenuSecondaryLink>
+          <MenuLink2 to="/docs/arch/routes">Building Routes</MenuLink2>
         </li>
       </ul>
     </div>
