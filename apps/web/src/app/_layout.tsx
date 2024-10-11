@@ -1,10 +1,9 @@
 import { Outlet, useLinkProps } from "enrouter";
 
-import npm_logo from "/npm.svg";
 import github_logo from "/github-light.svg";
 
 import { createLog } from "#log.js";
-import { MenuPrimaryLink } from "#links.js";
+import { MenuLink1 } from "#links.js";
 
 const log = createLog("_layout");
 
@@ -24,28 +23,25 @@ function Layout() {
         >
           enrouter
         </a>
-        <div className="flex justify-end gap-x-4">
-          <MenuPrimaryLink to="/docs">Docs</MenuPrimaryLink>
-          <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
-          <a href="https://www.npmjs.com/package/enrouter" target="_blank">
-            <img
-              src={npm_logo}
-              className="size-6"
-              alt="https://www.npmjs.com/package/enrouter"
-              width="24"
-              height="24"
-            />
-          </a>
-          <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">
-            <img
-              src={github_logo}
-              className="size-6"
-              alt="https://github.com/eu-ge-ne/enrouter"
-              width="24"
-              height="24"
-            />
-          </a>
-        </div>
+        <ul className="flex justify-end gap-x-4">
+          <li>
+            <MenuLink1 to="/docs">Docs</MenuLink1>
+          </li>
+          <li>
+            <MenuLink1 to="/docs/api">API</MenuLink1>
+          </li>
+          <li>
+            <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">
+              <img
+                src={github_logo}
+                className="size-6"
+                alt="https://github.com/eu-ge-ne/enrouter"
+                width="24"
+                height="24"
+              />
+            </a>
+          </li>
+        </ul>
       </div>
       <div>
         <div className="container mx-auto">

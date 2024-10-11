@@ -2,10 +2,7 @@ import type { PropsWithChildren } from "react";
 
 import { useLinkProps } from "enrouter";
 
-export function MenuPrimaryLink({
-  to,
-  children,
-}: PropsWithChildren<{ to: string }>) {
+export function MenuLink1({ to, children }: PropsWithChildren<{ to: string }>) {
   return (
     <a className="font-semibold" {...useLinkProps(to)}>
       {children}
@@ -13,10 +10,7 @@ export function MenuPrimaryLink({
   );
 }
 
-export function MenuSecondaryLink({
-  to,
-  children,
-}: PropsWithChildren<{ to: string }>) {
+export function MenuLink2({ to, children }: PropsWithChildren<{ to: string }>) {
   return (
     <a className="text-sm" {...useLinkProps(to)}>
       {children}

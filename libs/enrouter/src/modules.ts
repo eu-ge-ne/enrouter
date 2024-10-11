@@ -1,3 +1,6 @@
+/**
+RouteModules
+ */
 export type RouteModules = Record<
   string,
   {
