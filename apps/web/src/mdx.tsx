@@ -14,24 +14,28 @@ export function Mdx({ children }: PropsWithChildren) {
     <MDXProvider
       components={{
         h1: ({ children }) => (
-          <h1 className="pt-4 text-2xl font-semibold first:pt-0">
+          <h1 className="mt-8 text-2xl font-semibold first:mt-0">
             {children as any}
           </h1>
         ),
         h2: ({ children }) => (
-          <h2 className="pt-4 text-xl font-semibold first:pt-0">
+          <h2 className="mt-8 text-xl font-semibold first:mt-0">
             {children as any}
           </h2>
         ),
         h3: ({ children }) => (
-          <h3 className="pt-4 text-lg font-semibold first:pt-0">
+          <h3 className="mt-8 text-lg font-semibold first:mt-0">
             {children as any}
           </h3>
         ),
-        p: ({ children }) => <p className="pt-4">{children as any}</p>,
-        pre: ({ children }) => <pre className="pt-4">{children as any}</pre>,
+        p: ({ children }) => <p className="mt-8">{children as any}</p>,
+        pre: ({ children }) => (
+          <div className="mt-8">
+            <pre>{children as any}</pre>
+          </div>
+        ),
         ul: ({ children }) => (
-          <ul className="flex list-inside list-disc flex-col gap-y-2 pt-4">
+          <ul className="mt-8 flex list-inside list-disc flex-col gap-y-2">
             {children as any}
           </ul>
         ),
@@ -83,9 +87,9 @@ export function Code({
   }
 
   return (
-    <div className={className} ref={div}>
+    <code className={className} ref={div}>
       {children}
-    </div>
+    </code>
   );
 }
 
@@ -115,8 +119,8 @@ export function Mermaid({ children }: PropsWithChildren) {
   }
 
   return (
-    <div className="mermaid" ref={div}>
+    <code className="mermaid" ref={div}>
       {children}
-    </div>
+    </code>
   );
 }

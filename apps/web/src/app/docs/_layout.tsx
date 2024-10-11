@@ -1,7 +1,7 @@
 import { Outlet } from "enrouter";
 
 import { createLog } from "#log.js";
-import { MenuLink1, MenuLink2 } from "#links.js";
+import { MenuLink1 } from "#links.js";
 import { Mdx } from "#mdx.js";
 
 const log = createLog("docs/_layout");
@@ -14,7 +14,7 @@ function Layout() {
   log("Rendering");
 
   return (
-    <div className="flex divide-x divide-paperBorder p-4">
+    <div className="flex divide-x divide-paperBorder p-4 pt-8">
       <div className="flex w-[15rem] flex-col pr-4">
         <ul className="flex flex-col gap-y-2">
           <li>
@@ -35,7 +35,7 @@ function Layout() {
         </ul>
         <Outlet name="menu" />
       </div>
-      <div className="w-full p-4 pt-0">
+      <div className="w-full p-8 pt-0">
         <Mdx>
           <Outlet name="docs" />
         </Mdx>
