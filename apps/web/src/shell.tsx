@@ -18,6 +18,20 @@ export function Shell({
     <StrictMode>
       <html lang="en">
         <head>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-N28HCL4GB9"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-N28HCL4GB9');
+`,
+            }}
+          ></script>
           <meta charSet="utf-8" />
           <meta name="description" content="Put your description here" />
           <meta
