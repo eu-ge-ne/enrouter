@@ -1,10 +1,10 @@
 import { createLog } from "#log.js";
 import Content from "./content.md";
 
-const log = createLog("docs/architecture/_layout");
+const log = createLog("docs/arch/_layout");
 
 export const components = {
-  docs: Layout,
+  arch: Layout,
 };
 
 function Layout() {

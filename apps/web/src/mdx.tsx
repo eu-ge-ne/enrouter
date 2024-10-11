@@ -49,6 +49,46 @@ export function Mdx({ children }: PropsWithChildren) {
   );
 }
 
+export function Code({
+  className,
+  children,
+}: PropsWithChildren<{ className?: string }>) {
+  const location = useLocation();
+
+  const div = useRef<HTMLDivElement>(null);
+
+  if (!import.meta.env.SSR) {
+    useEffect(() => {
+      const el = div.current;
+      if (!el) {
+        return;
+      }
+
+      (async () => {
+        log("Rendering %s", className);
+
+        const prism = await import("prismjs");
+        await Promise.all([
+          //@ts-ignore
+          import("prismjs/components/prism-typescript"),
+          //@ts-ignore
+          import("prismjs/components/prism-bash"),
+        ]);
+
+        prism.highlightElement(el, false, () =>
+          log("%s rendering completed", className),
+        );
+      })();
+    }, [location, div]);
+  }
+
+  return (
+    <div className={className} ref={div}>
+      {children}
+    </div>
+  );
+}
+
 export function Mermaid({ children }: PropsWithChildren) {
   const location = useLocation();
 
@@ -76,42 +116,6 @@ export function Mermaid({ children }: PropsWithChildren) {
 
   return (
     <div className="mermaid" ref={div}>
-      {children}
-    </div>
-  );
-}
-
-export function Code({
-  className,
-  children,
-}: PropsWithChildren<{ className?: string }>) {
-  const location = useLocation();
-
-  const div = useRef<HTMLDivElement>(null);
-
-  if (!import.meta.env.SSR) {
-    useEffect(() => {
-      const el = div.current;
-      if (!el) {
-        return;
-      }
-
-      (async () => {
-        log("Rendering %s", className);
-
-        const prism = await import("prismjs");
-        //@ts-ignore
-        await import("prismjs/components/prism-typescript");
-
-        prism.highlightElement(el, false, () =>
-          log("%s rendering completed", className),
-        );
-      })();
-    }, [location, div]);
-  }
-
-  return (
-    <div className={className} ref={div}>
       {children}
     </div>
   );

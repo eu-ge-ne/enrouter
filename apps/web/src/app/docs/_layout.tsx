@@ -27,9 +27,7 @@ function Layout() {
             <MenuPrimaryLink to="/docs/features">Features</MenuPrimaryLink>
           </li>
           <li>
-            <MenuPrimaryLink to="/docs/architecture">
-              Architecture
-            </MenuPrimaryLink>
+            <MenuPrimaryLink to="/docs/arch">Architecture</MenuPrimaryLink>
           </li>
           <li>
             <MenuPrimaryLink to="/docs/api">API</MenuPrimaryLink>
