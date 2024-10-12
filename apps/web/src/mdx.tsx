@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { PropsWithChildren } from "react";
 import { MDXProvider } from "@mdx-js/react";
-import { useLocation } from "enrouter";
+import { useLocation, useLinkProps } from "enrouter";
 
 import "prism-themes/themes/prism-vsc-dark-plus.min.css";
 
@@ -28,6 +28,21 @@ export function Mdx({ children }: PropsWithChildren) {
             {children as any}
           </h3>
         ),
+        a: ({ children, href }) => {
+          if (href?.startsWith("/")) {
+            return (
+              <a className="underline" {...useLinkProps(href)}>
+                {children as any}
+              </a>
+            );
+          } else {
+            return (
+              <a className="underline" href={href}>
+                {children as any}
+              </a>
+            );
+          }
+        },
         p: ({ children }) => <p className="mt-8">{children as any}</p>,
         pre: ({ children }) => (
           <div className="mt-8">
