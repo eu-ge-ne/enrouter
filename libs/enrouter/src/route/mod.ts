@@ -6,10 +6,10 @@ import type { ModuleAssets } from "#assets.js";
 const log = logger("route");
 
 /**
-Route is a base building block of routing.
-Routes are orginized into a tree of routes.
-Every branch of the tree maps a segment of url to some code and its assets.
-The code will generate the UI which corresponds to the segment of the url.
+ * Base building block of routing.
+ * Routes are orginized into a tree.
+ * Every branch of the tree maps a segment of url to a code and its assets.
+ * The code will generate the UI which corresponds to the segment of the url.
  */
 export interface Route {
   /**
@@ -40,6 +40,9 @@ export interface BuildRoutesParams {
   assets: ModuleAssets;
 }
 
+/**
+ * Builds `Route`s from `RouteModules` and `ModuleAssets`
+ */
 export function buildRoutes({
   entryId,
   modules,

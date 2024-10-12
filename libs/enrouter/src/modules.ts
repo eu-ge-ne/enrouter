@@ -3,8 +3,8 @@ import { logger } from "#debug.js";
 const log = logger("modules");
 
 /**
-`RouteModules` is a collection of route module descriptors.
-Maps module id to fs path and async import function.
+ * Collection of route module descriptors.
+ * Maps module id to fs path and async import function.
  */
 export type RouteModules = Record<
   string,

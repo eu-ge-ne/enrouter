@@ -3,8 +3,8 @@ import { logger } from "#debug.js";
 const log = logger("assets");
 
 /**
-`ModuleAssets` is a collection of module assets descriptors.
-It maps ids of modules to a lists of style and module urls.
+ * Collection of module asset descriptors.
+ * Maps module id to a lists of style and module urls.
  */
 export type ModuleAssets = Record<
   string,
