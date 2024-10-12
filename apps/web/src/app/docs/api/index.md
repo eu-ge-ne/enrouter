@@ -1,7 +1,6 @@
 # API
 
 - [RouteModules](/docs/api/modules)
-- [ModuleAssets](/docs/api/assets)
 - [Route](/docs/api/route)
 - [RouteHandler](/docs/api/handler)
 
