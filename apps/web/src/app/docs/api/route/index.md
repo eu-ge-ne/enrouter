@@ -61,10 +61,15 @@ declare function buildRoutesWithViteManifest({
 ### buildRoutesWithViteManifest
 
 ```ts
-import { buildRoutes } from "enrouter";
+import { buildRoutesWithViteManifest } from "enrouter";
 
 import { modules } from "./modules.js";
-import { assets } from "./assets.js";
+import manifest from "@app/web/manifest";
 
-const routes = buildRoutes({ entryId: "src/main.tsx", modules, assets });
+const routes = buildRoutesWithViteManifest({
+  modules,
+  manifest,
+  mapAssetUrl: (x) => new URL(x, "http://localhost").pathname,
+  entryId: "src/main.tsx",
+});
 ```

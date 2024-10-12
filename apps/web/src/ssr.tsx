@@ -10,8 +10,8 @@ import {
   debug,
 } from "enrouter";
 import { Shell } from "./shell.js";
-import { modules } from "./modules.js";
 import { createLog } from "#log.js";
+import { modules } from "./modules.js";
 import manifest from "@enrouter/web/manifest";
 
 debug(console.debug);
