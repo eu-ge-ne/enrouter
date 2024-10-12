@@ -10,7 +10,7 @@ import {
   debug,
 } from "enrouter";
 import { Shell } from "./shell.js";
-import { modules } from "./routes.js";
+import { modules } from "./modules.js";
 import { assets } from "./assets.js";
 import { createLog } from "#log.js";
 
