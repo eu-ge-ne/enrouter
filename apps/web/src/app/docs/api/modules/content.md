@@ -3,6 +3,8 @@
 `RouteModules` is a collection of route module descriptors.
 Maps module id to fs path and async import function.
 
+See also: [Building Routes](/docs/arch/routes), [ModuleAssets](/docs/api/assets).
+
 ```ts
 type RouteModules = Record<
   string,
