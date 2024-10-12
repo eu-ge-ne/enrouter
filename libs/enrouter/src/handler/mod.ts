@@ -28,7 +28,7 @@ export function buildRouteHandlers(route: Route): RouteHandler {
 
   const handler = recur(route);
 
-  log("Handlers build: %o", handler);
+  log("Handlers built: %o", handler);
 
   return handler;
 }

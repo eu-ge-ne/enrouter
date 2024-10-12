@@ -37,9 +37,9 @@ const modules: RouteModules = {
 ### Build from Vite glob import
 
 ```ts
-import { buildFromViteGlobs } from "enrouter";
+import { buildRouteModulesFromViteGlobs } from "enrouter";
 
-const modules = buildFromViteGlobs({
+const modules = buildRouteModulesFromViteGlobs({
   globs: import.meta.glob(["./app/**/_*.tsx"]),
   moduleId: (key) => "src" + key.slice(".".length),
   path: (key) => key.slice("./app/".length),
