@@ -1,7 +1,7 @@
 # RouteModules
 
 `RouteModules` is a collection of route module descriptors.
-It maps ids of modules to their fs path and async import function.
+Maps module id to fs path and async import function.
 
 ```ts
 type RouteModules = Record<
@@ -21,7 +21,7 @@ type RouteModules = Record<
 
 ## Examples
 
-### Create manually
+### Build manually
 
 ```ts
 import type { RouteModules } from "enrouter";
@@ -34,20 +34,14 @@ const modules: RouteModules = {
 };
 ```
 
-### Create using Vite glob import
+### Build from Vite glob import
 
 ```ts
-import type { RouteModules } from "enrouter";
+import { buildFromViteGlobs } from "enrouter";
 
-const globs = import.meta.glob(["./app/**/_*.tsx"]);
-
-const entries = Object.entries(globs).map(([key, load]) => [
-  "src" + key.slice(".".length),
-  {
-    path: key.slice("./app/".length),
-    load,
-  },
-]);
-
-const modules: RouteModules = Object.fromEntries(entries);
+const modules = buildFromViteGlobs({
+  globs: import.meta.glob(["./app/**/_*.tsx"]),
+  moduleId: (key) => "src" + key.slice(".".length),
+  path: (key) => key.slice("./app/".length),
+});
 ```

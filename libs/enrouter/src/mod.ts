@@ -1,5 +1,10 @@
 export { debug } from "./debug.js";
 
+export {
+  type RouteModules,
+  type BuildFromViteGlobsParams,
+  buildFromViteGlobs,
+} from "./modules.js";
 export { buildRoutes } from "./route/mod.js";
 export { buildRouteHandlers } from "./handler/mod.js";
 export { matchRoutes } from "./match/mod.js";
@@ -22,5 +27,4 @@ export type { LoadRouteMatchesParams } from "./loader/match.js";
 export type { StaticRouterProps } from "./router/static.js";
 export type { BrowserRouterProps } from "./router/browser.js";
 export type { OutletProps } from "./outlet/mod.js";
-export type { RouteModules } from "./modules.js";
 export type { ModuleAssets } from "./assets.js";
