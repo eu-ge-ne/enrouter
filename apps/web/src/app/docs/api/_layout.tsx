@@ -20,9 +20,6 @@ function Menu() {
           <MenuLink2 to="/docs/api/modules">RouteModules</MenuLink2>
         </li>
         <li>
-          <MenuLink2 to="/docs/api/assets">ModuleAssets</MenuLink2>
-        </li>
-        <li>
           <MenuLink2 to="/docs/api/route">Route</MenuLink2>
         </li>
         {/* TODO */}

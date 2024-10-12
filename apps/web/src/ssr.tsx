@@ -2,7 +2,7 @@
 import { renderToReadableStream } from "react-dom/server.edge";
 
 import {
-  buildRoutes,
+  buildRoutesWithViteManifest,
   buildRouteHandlers,
   loadRouteMatches,
   matchRoutes,
@@ -10,16 +10,23 @@ import {
   debug,
 } from "enrouter";
 import { Shell } from "./shell.js";
-import { modules } from "./modules.js";
-import { assets } from "./assets.js";
 import { createLog } from "#log.js";
+import { modules } from "./modules.js";
+import manifest from "@enrouter/web/manifest";
 
 debug(console.debug);
 
 const log = createLog("ssr");
 
 export async function createSSRHandler() {
-  const routes = buildRoutes({ entryId: "src/main.tsx", modules, assets });
+  // TODO: prebuild
+  const routes = buildRoutesWithViteManifest({
+    modules,
+    manifest,
+    mapAssetUrl: (x) => new URL(x, "http://localhost").pathname,
+    entryId: "src/main.tsx",
+  });
+
   if (!routes) {
     throw new Error("No routes found");
   }

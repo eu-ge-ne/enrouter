@@ -1,17 +1,14 @@
 # Building Routes
 
-See also: [RouteModules](/docs/api/modules), [ModuleAssets](/docs/api/assets),
-[Route](/docs/api/route).
+See also: [RouteModules](/docs/api/modules), [Route](/docs/api/route).
 
 ```mermaid
 graph TB
   VG(ViteGlobs)
   VM(ViteManifest)
   BRM([buildRouteModulesFromViteGlobs])
-  BMA([buildModuleAssetsFromViteManifest])
   RM(RouteModules)
-  MA(ModuleAssets)
-  BR([buildRoutes])
+  BR([buildRoutesWithViteManifest])
   subgraph RTT [" "]
     direction TB
 
@@ -29,9 +26,7 @@ graph TB
   BRM-->RM
   RM-->BR
 
-  VM-->BMA
-  BMA-->MA
-  MA-->BR
+  VM-->BR
 
   BR-->RTT
 ```
