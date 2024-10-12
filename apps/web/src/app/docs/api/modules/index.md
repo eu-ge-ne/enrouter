@@ -1,11 +1,14 @@
 # RouteModules
 
-`RouteModules` is a collection of route module descriptors.
-Maps module id to fs path and async import function.
-
 See also: [Building Routes](/docs/arch/routes), [ModuleAssets](/docs/api/assets).
 
+## Interfaces
+
 ```ts
+/**
+ * Collection of route module descriptors.
+ * Maps module id to fs path and async import function.
+ */
 type RouteModules = Record<
   string,
   {
@@ -19,6 +22,25 @@ type RouteModules = Record<
     load: () => Promise<unknown>;
   }
 >;
+```
+
+## Functions
+
+```ts
+interface BuildRouteModulesFromViteGlobsParams {
+  globs: Record<string, () => Promise<unknown>>;
+  moduleId: (key: string) => string;
+  path: (key: string) => string;
+}
+
+/**
+ * Builds `RouteModules` from Vite glob import
+ */
+declare function buildRouteModulesFromViteGlobs({
+  globs,
+  moduleId,
+  path,
+}: BuildRouteModulesFromViteGlobsParams): RouteModules;
 ```
 
 ## Examples

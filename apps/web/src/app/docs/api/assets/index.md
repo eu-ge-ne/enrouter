@@ -1,11 +1,14 @@
 # ModuleAssets
 
-`ModuleAssets` is a collection of module assets descriptors.
-It maps ids of modules to a lists of style and module urls.
-
 See also: [Building Routes](/docs/arch/routes), [RouteModules](/docs/api/modules).
 
+## Interfaces
+
 ```ts
+/**
+ * Collection of module asset descriptors.
+ * Maps module id to a lists of style and module urls.
+ */
 type ModuleAssets = Record<
   string,
   {
@@ -19,6 +22,23 @@ type ModuleAssets = Record<
     modules: string[];
   }
 >;
+```
+
+## Functions
+
+```ts
+interface BuildModuleAssetsFromViteManifestParams {
+  manifest: unknown;
+  toUrl: (x: string) => string;
+}
+
+/**
+ * Builds `ModuleAssets` from Vite manifest
+ */
+declare function buildModuleAssetsFromViteManifest({
+  manifest,
+  toUrl,
+}: BuildModuleAssetsFromViteManifestParams): ModuleAssets;
 ```
 
 ## Examples

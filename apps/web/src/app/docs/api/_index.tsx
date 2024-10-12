@@ -1,7 +1,7 @@
 import { createLog } from "#log.js";
-import Content from "./content.md";
+import Index from "./index.md";
 
-const log = createLog("docs/api/_layout");
+const log = createLog("docs/api/_index");
 
 export const components = {
   api: Layout,
@@ -10,5 +10,5 @@ export const components = {
 function Layout() {
   log("Rendering");
 
-  return <Content />;
+  return <Index />;
 }
