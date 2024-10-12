@@ -13,12 +13,24 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "lint": "tsc",
-    "dev": "pnpm dev:client && pnpm dev:server",
-    "dev:client": "vite build -w -c configs/vite.config.ts",
-    "dev:server": "vite build -w -c configs/vite.config.ssr.ts",
-    "build": "pnpm build:client && pnpm build:server",
+    "build": "true",
     "build:client": "vite build -c configs/vite.config.ts",
     "build:server": "vite build -c configs/vite.config.ssr.ts"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "dependsOn": [
+          "build:client",
+          "build:server"
+        ]
+      },
+      "build:server": {
+        "dependsOn": [
+          "build:client"
+        ]
+      }
+    }
   },
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
