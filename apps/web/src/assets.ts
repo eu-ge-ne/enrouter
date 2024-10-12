@@ -1,49 +1,45 @@
 import type { ModuleAssets } from "enrouter";
 
+import manifest from "@enrouter/web/manifest";
 import { createLog } from "./log.js";
 
-//@ts-ignore
-import manifest from "@enrouter/web/manifest";
+interface ViteManifestItem {
+  file: string;
+  css?: string[];
+  imports?: string[];
+}
 
 const log = createLog("assets");
 
-type ManifestItem = {
-  src?: string;
-  file: string;
-  css?: string[];
-  assets?: string[];
-  isEntry?: boolean;
-  isDynamicEntry?: boolean;
-  imports?: string[];
-  dynamicImports?: string[];
-};
-
 log("Building assets");
+
+const viteManifest = manifest as Record<string, ViteManifestItem>;
 
 const toUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
-export const assets: ModuleAssets = Object.fromEntries(
-  Object.entries<ManifestItem>(manifest).map(([key, val]) => {
-    const imports = new Set<string>();
-    flattenImports(val.imports ?? [], imports);
-    return [
-      key,
-      {
-        styles: (val.css ?? []).map(toUrl),
-        modules: [val.file, ...imports].map(toUrl),
-      },
-    ];
-  }),
-);
+function getModulesRecur(item: ViteManifestItem, result: Set<string>) {
+  result.add(item.file);
 
-//log("Assets built: %o", assets);
-log("Assets built");
-
-function flattenImports(ids: string[], result: Set<string>) {
-  for (const id of ids) {
-    const item = (manifest as Record<string, ManifestItem>)[id]!;
-    result.add(item.file);
-    const importIds = item.imports ?? [];
-    flattenImports(importIds, result);
-  }
+  (item.imports ?? [])
+    .map((x) => viteManifest[x])
+    .filter((x): x is ViteManifestItem => Boolean(x))
+    .forEach((x) => getModulesRecur(x, result));
 }
+
+const entries = Object.entries(viteManifest).map(([key, item]) => {
+  const modules = new Set<string>();
+  getModulesRecur(item, modules);
+
+  return [
+    key,
+    {
+      styles: (item.css ?? []).map(toUrl),
+      modules: [...modules].map(toUrl),
+    },
+  ];
+});
+
+export const assets: ModuleAssets = Object.fromEntries(entries);
+
+log("Assets built: %o", assets);
+//log("Assets built");
