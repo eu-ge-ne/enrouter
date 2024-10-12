@@ -6,6 +6,11 @@ import type { Route } from "#route/mod.js";
 
 const log = logger("handler");
 
+/**
+ * "Hydrated" instance of `Route`.
+ * Contains corresponding path `RegExp`, imported modules
+ * and rendered React components
+ */
 export interface RouteHandler {
   route: Route;
 
@@ -23,6 +28,9 @@ export interface RouteHandler {
   tree?: RouteHandler[];
 }
 
+/**
+ * Build `RouteHandler` tree from `Route`s.
+ */
 export function buildRouteHandlers(route: Route): RouteHandler {
   log("Building handlers");
 
