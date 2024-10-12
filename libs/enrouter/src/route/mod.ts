@@ -43,7 +43,7 @@ export interface BuildRoutesWithViteManifestParams {
 }
 
 /**
- * Builds `Route`s from `RouteModules` and `ModuleAssets`
+ * Builds `Route`s from `RouteModules` and Vite manifest
  */
 export function buildRoutesWithViteManifest({
   modules,

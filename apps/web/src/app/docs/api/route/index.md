@@ -1,7 +1,6 @@
 # Route
 
-See also: [Building Routes](/docs/arch/routes), [RouteModules](/docs/api/modules),
-[ModuleAssets](/docs/api/assets).
+See also: [Building Routes](/docs/arch/routes), [RouteModules](/docs/api/modules).
 
 ## Interfaces
 
@@ -39,25 +38,27 @@ export interface Route {
 ## Functions
 
 ```ts
-interface BuildRoutesParams {
-  entryId: string;
+interface BuildRoutesWithViteManifestParams {
   modules: RouteModules;
-  assets: ModuleAssets;
+  manifest: unknown;
+  mapAssetUrl: (x: string) => string;
+  entryId: string;
 }
 
 /**
- * Builds `Route`s from `RouteModules` and `ModuleAssets`
+ * Builds `Route`s from `RouteModules` and Vite manifest
  */
-declare function buildRoutes({
-  entryId,
+declare function buildRoutesWithViteManifest({
   modules,
-  assets,
-}: BuildRoutesParams): Route | undefined;
+  manifest,
+  mapAssetUrl,
+  entryId,
+}: BuildRoutesWithViteManifestParams): Route | undefined;
 ```
 
 ## Examples
 
-### buildRoutes
+### buildRoutesWithViteManifest
 
 ```ts
 import { buildRoutes } from "enrouter";
