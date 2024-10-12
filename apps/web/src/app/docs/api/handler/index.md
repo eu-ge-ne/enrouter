@@ -32,4 +32,5 @@ declare function buildRouteHandlers(route: Route): RouteHandler;
 ### buildRouteHandlers
 
 ```ts
+
 ```
