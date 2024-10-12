@@ -13,8 +13,6 @@
 
 //@ts-ignore
 import { createSSRHandler as _createSSRHandler } from "@enrouter/web/ssr";
-//@ts-ignore
-import manifest from "@enrouter/web/manifest";
 
 const createSSRHandler = _createSSRHandler as () => Promise<
   (req: Request) => Promise<Response>
@@ -28,8 +26,6 @@ export default {
     switch (url.pathname) {
       case "/random":
         return new Response(crypto.randomUUID());
-      case "/manifest":
-        return new Response(JSON.stringify(manifest));
       default:
         return ssrHandler(request);
     }
