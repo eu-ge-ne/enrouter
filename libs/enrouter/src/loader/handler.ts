@@ -11,6 +11,7 @@ export interface LoadRouteHandlersParams {
   modules: RouteModules;
 }
 
+// TODO: not needed?
 export async function loadRouteHandlers({
   handlers,
   modules,

@@ -4,7 +4,7 @@ import { renderToReadableStream } from "react-dom/server.edge";
 import {
   buildRoutes,
   buildRouteHandlers,
-  loadRouteHandlers,
+  loadRouteMatches,
   matchRoutes,
   StaticRouter,
   debug,
@@ -26,8 +26,6 @@ export async function createSSRHandler() {
 
   const handlers = buildRouteHandlers(routes);
 
-  await loadRouteHandlers({ handlers, modules });
-
   return async function ssrHandler(req: Request) {
     const isCrawler = false;
 
@@ -43,6 +41,7 @@ export async function createSSRHandler() {
       if (!matches.at(-1)?.isFull) {
         status = 404;
       }
+      await loadRouteMatches({ matches, modules });
 
       const stylesheets = [
         ...new Set(matches.flatMap((x) => x.handler.route.link[0])),
