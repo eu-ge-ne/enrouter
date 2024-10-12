@@ -1,6 +1,6 @@
 # RouteModules
 
-See also: [Building Routes](/docs/arch/routes), [ModuleAssets](/docs/api/assets).
+See also: [Building Routes](/docs/arch/routes).
 
 ## Interfaces
 
