@@ -21,7 +21,7 @@ type ModuleAssets = Record<
 
 ## Examples
 
-### Create manually
+### Build manually
 
 ```ts
 import type { ModuleAssets } from "enrouter";
@@ -34,44 +34,15 @@ const assets: ModuleAssets = {
 };
 ```
 
-### Create from Vite manifest
+### Build from Vite manifest
 
 ```ts
-import type { ModuleAssets } from "enrouter";
+import { buildModuleAssetsFromViteManifest } from "enrouter";
 
-import manifest from "@app/web";
+import manifest from "@app/web/manifest";
 
-interface ViteManifestItem {
-  file: string;
-  css?: string[];
-  imports?: string[];
-}
-
-const viteManifest = manifest as Record<string, ViteManifestItem>;
-
-const toUrl = (x: string) => new URL(x, "http://localhost").pathname;
-
-function getModulesRecur(item: ViteManifestItem, result: Set<string>) {
-  result.add(item.file);
-
-  (item.imports ?? [])
-    .map((x) => viteManifest[x])
-    .filter((x): x is ViteManifestItem => Boolean(x))
-    .forEach((x) => getModulesRecur(x, result));
-}
-
-const entries = Object.entries(viteManifest).map(([key, item]) => {
-  const modules = new Set<string>();
-  getModulesRecur(item, modules);
-
-  return [
-    key,
-    {
-      styles: (item.css ?? []).map(toUrl),
-      modules: [...modules].map(toUrl),
-    },
-  ];
+const assets = buildModuleAssetsFromViteManifest({
+  manifest,
+  toUrl: (x) => new URL(x, "http://localhost").pathname,
 });
-
-const assets: ModuleAssets = Object.fromEntries(entries);
 ```

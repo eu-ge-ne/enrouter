@@ -1,3 +1,7 @@
+import { logger } from "#debug.js";
+
+const log = logger("modules");
+
 /**
 `RouteModules` is a collection of route module descriptors.
 Maps module id to fs path and async import function.
@@ -16,7 +20,7 @@ export type RouteModules = Record<
   }
 >;
 
-export interface BuildFromViteGlobsParams {
+export interface BuildRouteModulesFromViteGlobsParams {
   globs: Record<string, () => Promise<unknown>>;
   moduleId: (key: string) => string;
   path: (key: string) => string;
@@ -25,12 +29,14 @@ export interface BuildFromViteGlobsParams {
 /**
  * Builds `RouteModules` from Vite glob import
  */
-export function buildFromViteGlobs({
+export function buildRouteModulesFromViteGlobs({
   globs,
   moduleId,
   path,
-}: BuildFromViteGlobsParams): RouteModules {
-  return Object.fromEntries(
+}: BuildRouteModulesFromViteGlobsParams): RouteModules {
+  log("Building modules");
+
+  const modules = Object.fromEntries(
     Object.entries(globs).map(([key, load]) => [
       moduleId(key),
       {
@@ -39,4 +45,8 @@ export function buildFromViteGlobs({
       },
     ]),
   );
+
+  log("Modules built: %o", modules);
+
+  return modules;
 }
