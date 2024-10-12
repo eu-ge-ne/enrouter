@@ -7,12 +7,11 @@ export {
 } from "./modules.js";
 
 export {
-  type ModuleAssets,
-  type BuildModuleAssetsFromViteManifestParams,
-  buildModuleAssetsFromViteManifest,
-} from "./assets.js";
+  type Route,
+  type BuildRoutesWithViteManifestParams,
+  buildRoutesWithViteManifest,
+} from "./route/mod.js";
 
-export { buildRoutes } from "./route/mod.js";
 export { buildRouteHandlers } from "./handler/mod.js";
 export { matchRoutes } from "./match/mod.js";
 
@@ -26,7 +25,6 @@ export { Outlet } from "./outlet/mod.js";
 export { useLinkProps } from "./link.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";
 
-export type { Route, BuildRoutesParams } from "./route/mod.js";
 export type { RouteHandler } from "./handler/mod.js";
 export type { RouteMatch, MatchRoutesParams } from "./match/mod.js";
 export type { LoadRouteHandlersParams } from "./loader/handler.js";

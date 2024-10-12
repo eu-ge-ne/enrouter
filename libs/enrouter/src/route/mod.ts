@@ -1,7 +1,8 @@
 import { logger } from "#debug.js";
 
 import type { RouteModules } from "#modules.js";
-import type { ModuleAssets } from "#assets.js";
+
+import { updateRouteAssets } from "./assets.js";
 
 const log = logger("route");
 
@@ -34,29 +35,23 @@ export interface Route {
   tree?: Route[];
 }
 
-export interface BuildRoutesParams {
-  entryId: string;
+export interface BuildRoutesWithViteManifestParams {
   modules: RouteModules;
-  assets: ModuleAssets;
+  manifest: unknown;
+  mapAssetUrl: (x: string) => string;
+  entryId: string;
 }
 
 /**
  * Builds `Route`s from `RouteModules` and `ModuleAssets`
  */
-export function buildRoutes({
-  entryId,
+export function buildRoutesWithViteManifest({
   modules,
-  assets,
-}: BuildRoutesParams): Route | undefined {
+  manifest,
+  mapAssetUrl,
+  entryId,
+}: BuildRoutesWithViteManifestParams): Route | undefined {
   log("Building routes");
-
-  function updateLinks({ link }: Route, moduleId: string): void {
-    const x = assets[moduleId];
-    if (x) {
-      link[0] = [...new Set([...link[0], ...x.styles])];
-      link[1] = [...new Set([...link[1], ...x.modules])];
-    }
-  }
 
   const entries = Object.entries(modules)
     .map(([key, val]) => [key, val.path.split("/").slice(0, -1)] as const)
@@ -107,9 +102,9 @@ export function buildRoutes({
     route.mod.push(moduleId);
 
     if (isRoot) {
-      updateLinks(route, entryId);
+      updateRouteAssets(manifest, mapAssetUrl, route, entryId);
     }
-    updateLinks(route, moduleId);
+    updateRouteAssets(manifest, mapAssetUrl, route, moduleId);
   }
 
   const result = routes.get("/");
