@@ -21,13 +21,18 @@
     "targets": {
       "build": {
         "dependsOn": [
-          "^build",
           "build:client",
           "build:server"
         ]
       },
+      "build:client": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
       "build:server": {
         "dependsOn": [
+          "^build",
           "build:client"
         ]
       }
