@@ -1,12 +1,8 @@
-# RouteHandler API
-
-Will soon be updated...
+# RouteHandler
 
 ## Interfaces
 
-### RouteHandler
-
-```typescript
+```ts
 interface RouteHandler {
   route: Route;
 
@@ -27,8 +23,13 @@ interface RouteHandler {
 
 ## Functions
 
+```ts
+declare function buildRouteHandlers(route: Route): RouteHandler;
+```
+
+## Examples
+
 ### buildRouteHandlers
 
-```typescript
-function buildRouteHandlers(route: Route): RouteHandler;
+```ts
 ```
