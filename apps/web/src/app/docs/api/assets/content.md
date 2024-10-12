@@ -3,6 +3,8 @@
 `ModuleAssets` is a collection of module assets descriptors.
 It maps ids of modules to a lists of style and module urls.
 
+See also: [Building Routes](/docs/arch/routes), [RouteModules](/docs/api/modules).
+
 ```ts
 type ModuleAssets = Record<
   string,
