@@ -34,7 +34,7 @@ exports[`loadRoutes > 1 route with _index.tsx module 1`] = `
     "modules": [
       {
         "fileName": "_index.tsx",
-        "id": "_index.tsx",
+        "id": "src/_index.tsx",
         "load": [Function],
       },
     ],
@@ -66,7 +66,7 @@ exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
     "modules": [
       {
         "fileName": "_layout.tsx",
-        "id": "_layout.tsx",
+        "id": "src/_layout.tsx",
         "load": [Function],
       },
     ],

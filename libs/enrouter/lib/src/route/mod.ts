@@ -8,6 +8,11 @@ import type { ReactElement } from "react";
  */
 export interface Route {
   /**
+   * Route tree
+   */
+  tree?: Route[];
+
+  /**
    * Full path to url segment
    */
   path: string;
@@ -36,9 +41,4 @@ export interface Route {
     index?: Record<string, ReactElement>;
     notFound?: Record<string, ReactElement>;
   };
-
-  /**
-   * Route tree
-   */
-  tree?: Route[];
 }
