@@ -8,7 +8,6 @@ export const RouteRenderContext = createContext<RouteNodes>({
       route: {
         path: "",
         mod: [],
-        link: [[], []],
       },
       test: { keys: [], pattern: new RegExp("") },
       modules: [],

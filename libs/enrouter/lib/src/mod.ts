@@ -1,11 +1,19 @@
 export { debug } from "./debug.js";
 
+export {
+  type ViteManifest,
+  type ViteManifestItem,
+  type ModuleAssets,
+  type GetModuleAssetsParams,
+  getModuleAssets,
+} from "./assets.js";
+
 export { type RouteModules } from "./modules.js";
 
 export {
   type Route,
-  type BuildRoutesWithViteManifestParams,
-  buildRoutesWithViteManifest,
+  type BuildRoutesParams,
+  buildRoutes,
 } from "./route/mod.js";
 
 export { buildRouteHandlers } from "./handler/mod.js";

@@ -8,7 +8,6 @@ describe("buildRouteHandlers", () => {
   test("from 1 route", () => {
     const route: Route = {
       path: "/",
-      link: [[], []],
       mod: [],
     };
 
@@ -18,12 +17,10 @@ describe("buildRouteHandlers", () => {
   test("from 2 routes", () => {
     const route: Route = {
       path: "/",
-      link: [[], []],
       mod: [],
       tree: [
         {
           path: "/abc",
-          link: [[], []],
           mod: [],
         },
       ],

@@ -2,8 +2,6 @@ import { logger } from "#lib/debug.js";
 
 import type { RouteModules } from "#lib/modules.js";
 
-import { updateRouteAssets } from "./assets.js";
-
 const log = logger("route");
 
 /**
@@ -25,32 +23,19 @@ export interface Route {
   mod: string[];
 
   /**
-   * Urls of assets associated with the route
-   */
-  link: [string[], string[]]; // [styles[], modules[]]
-
-  /**
    * Child routes
    */
   tree?: Route[];
 }
 
-export interface BuildRoutesWithViteManifestParams {
+export interface BuildRoutesParams {
   modules: RouteModules;
-  manifest: unknown;
-  mapAssetUrl: (x: string) => string;
-  entryId: string;
 }
 
 /**
- * Builds `Route`s from `RouteModules` and Vite manifest
+ * Builds `Route`s from `RouteModules`
  */
-export function buildRoutesWithViteManifest({
-  modules,
-  manifest,
-  mapAssetUrl,
-  entryId,
-}: BuildRoutesWithViteManifestParams): Route | undefined {
+export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
   log("Building routes");
 
   const entries = Object.entries(modules).sort(
@@ -83,7 +68,6 @@ export function buildRoutesWithViteManifest({
     if (!route) {
       route = {
         path,
-        link: [[], []],
         mod: [],
       };
       routes.set(path, route);
@@ -100,11 +84,6 @@ export function buildRoutesWithViteManifest({
     }
 
     route.mod.push(moduleId);
-
-    if (isRoot) {
-      updateRouteAssets(manifest, mapAssetUrl, route, entryId);
-    }
-    updateRouteAssets(manifest, mapAssetUrl, route, moduleId);
   }
 
   const result = routes.get("/");

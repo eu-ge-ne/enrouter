@@ -1,23 +1,20 @@
 import { describe, test, expect } from "vitest";
 
-import { buildRoutesWithViteManifest } from "./mod.js";
+import { buildRoutes } from "./mod.js";
 
-import type { BuildRoutesWithViteManifestParams } from "./mod.js";
+import type { BuildRoutesParams } from "./mod.js";
 
-describe("buildRoutesWithViteManifest", () => {
+describe("buildRoutes", () => {
   test("from 0 modules", () => {
-    const params: BuildRoutesWithViteManifestParams = {
+    const params: BuildRoutesParams = {
       modules: {},
-      manifest: {},
-      mapAssetUrl: (x) => x,
-      entryId: "",
     };
 
-    expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
+    expect(buildRoutes(params)).toMatchSnapshot();
   });
 
   test("from 1 module", () => {
-    const params: BuildRoutesWithViteManifestParams = {
+    const params: BuildRoutesParams = {
       modules: {
         "src/_layout.tsx": {
           dirPath: [],
@@ -25,6 +22,7 @@ describe("buildRoutesWithViteManifest", () => {
           load: async () => undefined,
         },
       },
+      /*
       manifest: {
         "src/main.tsx": {
           file: "assets/main.js",
@@ -40,13 +38,14 @@ describe("buildRoutesWithViteManifest", () => {
       },
       mapAssetUrl: (x) => x,
       entryId: "src/main.tsx",
+      */
     };
 
-    expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
+    expect(buildRoutes(params)).toMatchSnapshot();
   });
 
   test("from 2 parent-child modules", () => {
-    const params: BuildRoutesWithViteManifestParams = {
+    const params: BuildRoutesParams = {
       modules: {
         "src/_layout.tsx": {
           dirPath: [],
@@ -59,6 +58,7 @@ describe("buildRoutesWithViteManifest", () => {
           load: async () => undefined,
         },
       },
+      /*
       manifest: {
         "src/main.tsx": {
           file: "assets/main.js",
@@ -78,8 +78,9 @@ describe("buildRoutesWithViteManifest", () => {
       },
       mapAssetUrl: (x) => x,
       entryId: "src/main.tsx",
+      */
     };
 
-    expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
+    expect(buildRoutes(params)).toMatchSnapshot();
   });
 });

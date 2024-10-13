@@ -1,19 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`buildRoutesWithViteManifest > from 0 modules 1`] = `undefined`;
+exports[`buildRoutes > from 0 modules 1`] = `undefined`;
 
-exports[`buildRoutesWithViteManifest > from 1 module 1`] = `
+exports[`buildRoutes > from 1 module 1`] = `
 {
-  "link": [
-    [
-      "assets/main.css",
-    ],
-    [
-      "assets/main.js",
-      "assets/_layout.js",
-      "assets/log.js",
-    ],
-  ],
   "mod": [
     "src/_layout.tsx",
   ],
@@ -21,31 +11,14 @@ exports[`buildRoutesWithViteManifest > from 1 module 1`] = `
 }
 `;
 
-exports[`buildRoutesWithViteManifest > from 2 parent-child modules 1`] = `
+exports[`buildRoutes > from 2 parent-child modules 1`] = `
 {
-  "link": [
-    [
-      "assets/main.css",
-    ],
-    [
-      "assets/main.js",
-      "assets/_layout.js",
-      "assets/log.js",
-    ],
-  ],
   "mod": [
     "src/_layout.tsx",
   ],
   "path": "/",
   "tree": [
     {
-      "link": [
-        [],
-        [
-          "assets/abc-_layout.js",
-          "assets/log.js",
-        ],
-      ],
       "mod": [
         "src/abc/_layout.tsx",
       ],

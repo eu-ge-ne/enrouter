@@ -22,7 +22,6 @@ describe("loadRouteMatches", () => {
           route: {
             path: "/",
             mod: [],
-            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [],
@@ -45,7 +44,6 @@ describe("loadRouteMatches", () => {
           route: {
             path: "/",
             mod: ["_layout.tsx"],
-            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [{ id: "_layout.tsx" }],
@@ -80,7 +78,6 @@ describe("loadRouteMatches", () => {
           route: {
             path: "/",
             mod: ["_index.tsx"],
-            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [{ id: "_index.tsx" }],

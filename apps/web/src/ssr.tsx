@@ -2,39 +2,25 @@
 import { renderToReadableStream } from "react-dom/server.edge";
 
 import {
-  buildRoutesWithViteManifest,
-  buildRouteHandlers,
+  debug,
   loadRouteMatches,
   matchRoutes,
   StaticRouter,
-  debug,
+  getModuleAssets,
 } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
-//import { modules } from "./modules.js";
-//@ts-ignore
-import { modules } from "virtual:routeModules";
 import manifest from "@enrouter/web/manifest";
+//@ts-ignore
+import { modules, handlers } from "virtual:routes";
 
 debug(console.debug);
 
 const log = createLog("ssr");
 
+const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
+
 export async function createSSRHandler() {
-  // TODO: prebuild
-  const routes = buildRoutesWithViteManifest({
-    modules,
-    manifest,
-    mapAssetUrl: (x) => new URL(x, "http://localhost").pathname,
-    entryId: "src/main.tsx",
-  });
-
-  if (!routes) {
-    throw new Error("No routes found");
-  }
-
-  const handlers = buildRouteHandlers(routes);
-
   return async function ssrHandler(req: Request) {
     const isCrawler = false;
 
@@ -52,25 +38,36 @@ export async function createSSRHandler() {
       }
       await loadRouteMatches({ matches, modules });
 
-      const stylesheets = [
-        ...new Set(matches.flatMap((x) => x.handler.route.link[0])),
-      ];
+      const entryAssets = getModuleAssets({
+        manifest,
+        moduleId: "src/main.tsx",
+      });
 
-      const $ROUTES = JSON.stringify(routes);
+      const matchedAssets = matches.flatMap((x) =>
+        x.handler.route.mod.map((moduleId) =>
+          getModuleAssets({
+            manifest,
+            moduleId,
+          }),
+        ),
+      );
 
-      const bootstrapScriptContent = `
-window.$ROUTES = ${$ROUTES};`;
+      const assets = [entryAssets, ...matchedAssets].filter(
+        (x) => x !== undefined,
+      );
+
+      const stylesheets = [...new Set(assets.flatMap((x) => x.styles))].map(
+        mapAssetUrl,
+      );
 
       const bootstrapModules = [
-        ...new Set([...matches.flatMap((x) => x.handler.route.link[1])]),
-      ];
+        ...new Set([...assets.flatMap((x) => x.modules)]),
+      ].map(mapAssetUrl);
 
       log("Rendering Shell: %o", {
         location,
         status,
-        bootstrapScriptContent,
         bootstrapModules,
-        $ROUTES_LENGTH: $ROUTES.length,
       });
 
       const children = (
@@ -85,7 +82,6 @@ window.$ROUTES = ${$ROUTES};`;
 
       const stream = await renderToReadableStream(children, {
         signal: controller.signal,
-        bootstrapScriptContent,
         bootstrapModules,
         onError(err: unknown) {
           status = 500;
