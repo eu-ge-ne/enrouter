@@ -12,7 +12,7 @@ import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 import manifest from "@enrouter/web/manifest";
 //@ts-ignore
-import { modules, handlers } from "virtual:routeModules";
+import { modules, handlers } from "virtual:routes";
 
 debug(console.debug);
 

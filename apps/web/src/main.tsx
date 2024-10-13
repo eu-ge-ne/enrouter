@@ -6,7 +6,7 @@ import { loadRouteMatches, matchRoutes, BrowserRouter, debug } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 //@ts-ignore
-import { modules, handlers } from "virtual:routeModules";
+import { modules, handlers } from "virtual:routes";
 
 debug(console.debug);
 

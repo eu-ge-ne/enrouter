@@ -4,14 +4,14 @@ import { glob } from "glob";
 
 import { type Plugin } from "vite";
 
-const virtualModuleId = "virtual:routeModules";
+const virtualModuleId = "virtual:routes";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
 
-interface RouteModulesParams {
-  routeModulesPath: string;
+interface RoutesParams {
+  routesFsPath: string;
 }
 
-export function routeModules({ routeModulesPath }: RouteModulesParams): Plugin {
+export function routes({ routesFsPath }: RoutesParams): Plugin {
   let pathRoot: string;
 
   return {
@@ -29,7 +29,7 @@ export function routeModules({ routeModulesPath }: RouteModulesParams): Plugin {
         return null;
       }
 
-      const pathPrefix = path.resolve(routeModulesPath);
+      const pathPrefix = path.resolve(routesFsPath);
 
       const files = await glob(path.resolve(pathPrefix, "**/_*.tsx"));
       const resolves = await Promise.all(files.map((x) => this.resolve(x)));
