@@ -3,7 +3,7 @@ import { renderToReadableStream } from "react-dom/server.edge";
 
 import {
   debug,
-  buildRoutesWithViteManifest,
+  buildRoutes,
   buildRouteHandlers,
   loadRouteMatches,
   matchRoutes,
@@ -23,7 +23,7 @@ const log = createLog("ssr");
 const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
 export async function createSSRHandler() {
-  const routes = buildRoutesWithViteManifest({ modules });
+  const routes = buildRoutes({ modules });
   if (!routes) {
     throw new Error("No routes found");
   }

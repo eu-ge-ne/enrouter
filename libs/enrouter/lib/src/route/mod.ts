@@ -28,16 +28,14 @@ export interface Route {
   tree?: Route[];
 }
 
-export interface BuildRoutesWithViteManifestParams {
+export interface BuildRoutesParams {
   modules: RouteModules;
 }
 
 /**
- * Builds `Route`s from `RouteModules` and Vite manifest
+ * Builds `Route`s from `RouteModules`
  */
-export function buildRoutesWithViteManifest({
-  modules,
-}: BuildRoutesWithViteManifestParams): Route | undefined {
+export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
   log("Building routes");
 
   const entries = Object.entries(modules).sort(

@@ -3,7 +3,7 @@ import { hydrateRoot } from "react-dom/client";
 import "./index.css";
 
 import {
-  buildRoutesWithViteManifest,
+  buildRoutes,
   buildRouteHandlers,
   loadRouteMatches,
   matchRoutes,
@@ -26,7 +26,7 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  const routes = buildRoutesWithViteManifest({ modules });
+  const routes = buildRoutes({ modules });
   if (!routes) {
     throw new Error("No routes found");
   }

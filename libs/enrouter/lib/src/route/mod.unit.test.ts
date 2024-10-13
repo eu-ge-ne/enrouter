@@ -1,20 +1,20 @@
 import { describe, test, expect } from "vitest";
 
-import { buildRoutesWithViteManifest } from "./mod.js";
+import { buildRoutes } from "./mod.js";
 
-import type { BuildRoutesWithViteManifestParams } from "./mod.js";
+import type { BuildRoutesParams } from "./mod.js";
 
-describe("buildRoutesWithViteManifest", () => {
+describe("buildRoutes", () => {
   test("from 0 modules", () => {
-    const params: BuildRoutesWithViteManifestParams = {
+    const params: BuildRoutesParams = {
       modules: {},
     };
 
-    expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
+    expect(buildRoutes(params)).toMatchSnapshot();
   });
 
   test("from 1 module", () => {
-    const params: BuildRoutesWithViteManifestParams = {
+    const params: BuildRoutesParams = {
       modules: {
         "src/_layout.tsx": {
           dirPath: [],
@@ -41,11 +41,11 @@ describe("buildRoutesWithViteManifest", () => {
       */
     };
 
-    expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
+    expect(buildRoutes(params)).toMatchSnapshot();
   });
 
   test("from 2 parent-child modules", () => {
-    const params: BuildRoutesWithViteManifestParams = {
+    const params: BuildRoutesParams = {
       modules: {
         "src/_layout.tsx": {
           dirPath: [],
@@ -81,6 +81,6 @@ describe("buildRoutesWithViteManifest", () => {
       */
     };
 
-    expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
+    expect(buildRoutes(params)).toMatchSnapshot();
   });
 });

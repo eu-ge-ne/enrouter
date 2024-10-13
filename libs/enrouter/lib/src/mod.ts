@@ -12,8 +12,8 @@ export { type RouteModules } from "./modules.js";
 
 export {
   type Route,
-  type BuildRoutesWithViteManifestParams,
-  buildRoutesWithViteManifest,
+  type BuildRoutesParams,
+  buildRoutes,
 } from "./route/mod.js";
 
 export { buildRouteHandlers } from "./handler/mod.js";
