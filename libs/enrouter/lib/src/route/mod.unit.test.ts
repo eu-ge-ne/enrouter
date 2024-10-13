@@ -8,9 +8,6 @@ describe("buildRoutesWithViteManifest", () => {
   test("from 0 modules", () => {
     const params: BuildRoutesWithViteManifestParams = {
       modules: {},
-      manifest: {},
-      mapAssetUrl: (x) => x,
-      entryId: "",
     };
 
     expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
@@ -25,6 +22,7 @@ describe("buildRoutesWithViteManifest", () => {
           load: async () => undefined,
         },
       },
+      /*
       manifest: {
         "src/main.tsx": {
           file: "assets/main.js",
@@ -40,6 +38,7 @@ describe("buildRoutesWithViteManifest", () => {
       },
       mapAssetUrl: (x) => x,
       entryId: "src/main.tsx",
+      */
     };
 
     expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();
@@ -59,6 +58,7 @@ describe("buildRoutesWithViteManifest", () => {
           load: async () => undefined,
         },
       },
+      /*
       manifest: {
         "src/main.tsx": {
           file: "assets/main.js",
@@ -78,6 +78,7 @@ describe("buildRoutesWithViteManifest", () => {
       },
       mapAssetUrl: (x) => x,
       entryId: "src/main.tsx",
+      */
     };
 
     expect(buildRoutesWithViteManifest(params)).toMatchSnapshot();

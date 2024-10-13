@@ -1,5 +1,13 @@
 export { debug } from "./debug.js";
 
+export {
+  type ViteManifest,
+  type ViteManifestItem,
+  type ModuleAssets,
+  type GetModuleAssetsParams,
+  getModuleAssets,
+} from "./assets.js";
+
 export { type RouteModules } from "./modules.js";
 
 export {

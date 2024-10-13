@@ -22,7 +22,6 @@ describe("renderMatches", () => {
         route: {
           path: "",
           mod: [],
-          link: [[], []],
         },
         test: { keys: [], pattern: new RegExp("") },
         modules: [],
@@ -54,7 +53,6 @@ describe("renderMatches", () => {
           route: {
             path: "/",
             mod: [],
-            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [],
@@ -78,7 +76,6 @@ describe("renderMatches", () => {
           route: {
             path: "/",
             mod: [],
-            link: [[], []],
           },
           test: regexparam.parse("/", true),
           modules: [],
