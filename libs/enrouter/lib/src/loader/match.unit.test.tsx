@@ -46,7 +46,11 @@ describe("loadRouteMatches", () => {
               {
                 id: "_layout.tsx",
                 fileName: "_layout.tsx",
-                load: async () => undefined,
+                load: async () => ({
+                  components: {
+                    main: () => <div>Layout</div>,
+                  },
+                }),
               },
             ],
           },
@@ -58,20 +62,6 @@ describe("loadRouteMatches", () => {
         params: {},
       },
     ];
-
-    /*
-    const modules: RouteModules = {
-      "_layout.tsx": {
-        dirPath: ["src"],
-        fileName: "_layout.tsx",
-        load: async () => ({
-          components: {
-            main: () => <div>Layout</div>,
-          },
-        }),
-      },
-    };
-    */
 
     await loadRouteMatches({ matches });
 
@@ -88,7 +78,11 @@ describe("loadRouteMatches", () => {
               {
                 id: "_index.tsx",
                 fileName: "_index.tsx",
-                load: async () => undefined,
+                load: async () => ({
+                  components: {
+                    main: () => <div>Index</div>,
+                  },
+                }),
               },
             ],
           },
@@ -100,20 +94,6 @@ describe("loadRouteMatches", () => {
         params: {},
       },
     ];
-
-    /*
-    const modules: RouteModules = {
-      "_index.tsx": {
-        dirPath: ["src"],
-        fileName: "_index.tsx",
-        load: async () => ({
-          components: {
-            main: () => <div>Index</div>,
-          },
-        }),
-      },
-    };
-    */
 
     await loadRouteMatches({ matches });
 

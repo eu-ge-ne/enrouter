@@ -19,8 +19,12 @@ exports[`loadRouteHandlers > 1 route handler with 1 _index.tsx module 1`] = `
     },
   ],
   "route": {
-    "mod": [
-      "_index.tsx",
+    "modules": [
+      {
+        "fileName": "_index.tsx",
+        "id": "_index.tsx",
+        "load": [Function],
+      },
     ],
     "path": "/",
   },
@@ -50,8 +54,12 @@ exports[`loadRouteHandlers > 1 route handler with 1 _layout.tsx module 1`] = `
     },
   ],
   "route": {
-    "mod": [
-      "_layout.tsx",
+    "modules": [
+      {
+        "fileName": "_layout.tsx",
+        "id": "_layout.tsx",
+        "load": [Function],
+      },
     ],
     "path": "/",
   },
@@ -66,7 +74,7 @@ exports[`loadRouteHandlers > 1 route handler with no modules 1`] = `
 {
   "modules": [],
   "route": {
-    "mod": [],
+    "modules": [],
     "path": "/",
   },
   "test": {
@@ -80,7 +88,7 @@ exports[`loadRouteHandlers > 2 route handlers with no modules 1`] = `
 {
   "modules": [],
   "route": {
-    "mod": [],
+    "modules": [],
     "path": "/",
   },
   "test": {
@@ -91,7 +99,7 @@ exports[`loadRouteHandlers > 2 route handlers with no modules 1`] = `
     {
       "modules": [],
       "route": {
-        "mod": [],
+        "modules": [],
         "path": "/abc",
       },
       "test": {

@@ -54,27 +54,17 @@ describe("loadRouteHandlers", () => {
           {
             id: "_layout.tsx",
             fileName: "_layout.tsx",
-            load: async () => undefined,
+            load: async () => ({
+              components: {
+                main: () => <div>Layout</div>,
+              },
+            }),
           },
         ],
       },
       test: regexparam.parse("/", true),
       modules: [{ id: "_layout.tsx" }],
     };
-
-    /*
-    const modules: RouteModules = {
-      "_layout.tsx": {
-        dirPath: ["src"],
-        fileName: "_layout.tsx",
-        load: async () => ({
-          components: {
-            main: () => <div>Layout</div>,
-          },
-        }),
-      },
-    };
-    */
 
     await loadRouteHandlers({ handlers });
 
@@ -89,27 +79,17 @@ describe("loadRouteHandlers", () => {
           {
             id: "_index.tsx",
             fileName: "_index.tsx",
-            load: async () => undefined,
+            load: async () => ({
+              components: {
+                main: () => <div>Index</div>,
+              },
+            }),
           },
         ],
       },
       test: regexparam.parse("/", true),
       modules: [{ id: "_index.tsx" }],
     };
-
-    /*
-    const modules: RouteModules = {
-      "_index.tsx": {
-        dirPath: ["src"],
-        fileName: "_index.tsx",
-        load: async () => ({
-          components: {
-            main: () => <div>Index</div>,
-          },
-        }),
-      },
-    };
-    */
 
     await loadRouteHandlers({ handlers });
 
