@@ -4,10 +4,6 @@ exports[`buildRouteHandlers > from 1 route 1`] = `
 {
   "modules": [],
   "route": {
-    "link": [
-      [],
-      [],
-    ],
     "mod": [],
     "path": "/",
   },
@@ -22,18 +18,10 @@ exports[`buildRouteHandlers > from 2 routes 1`] = `
 {
   "modules": [],
   "route": {
-    "link": [
-      [],
-      [],
-    ],
     "mod": [],
     "path": "/",
     "tree": [
       {
-        "link": [
-          [],
-          [],
-        ],
         "mod": [],
         "path": "/abc",
       },
@@ -47,10 +35,6 @@ exports[`buildRouteHandlers > from 2 routes 1`] = `
     {
       "modules": [],
       "route": {
-        "link": [
-          [],
-          [],
-        ],
         "mod": [],
         "path": "/abc",
       },

@@ -21,10 +21,6 @@ exports[`loadRouteMatches > 1 match with _index.tsx module 1`] = `
         },
       ],
       "route": {
-        "link": [
-          [],
-          [],
-        ],
         "mod": [
           "_index.tsx",
         ],
@@ -63,10 +59,6 @@ exports[`loadRouteMatches > 1 match with _layout.tsx module 1`] = `
         },
       ],
       "route": {
-        "link": [
-          [],
-          [],
-        ],
         "mod": [
           "_layout.tsx",
         ],
@@ -90,10 +82,6 @@ exports[`loadRouteMatches > 1 match with no modules 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "link": [
-          [],
-          [],
-        ],
         "mod": [],
         "path": "/",
       },
