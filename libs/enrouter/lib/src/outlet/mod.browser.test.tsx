@@ -23,16 +23,18 @@ describe("outlets", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          layout: {
-            main: (
-              <div>
-                <div>Layout</div>
-                <Outlet name="main" />
-              </div>
-            ),
-          },
-          index: {
-            main: <div>Index</div>,
+          elements: {
+            layout: {
+              main: (
+                <div>
+                  <div>Layout</div>
+                  <Outlet name="main" />
+                </div>
+              ),
+            },
+            index: {
+              main: <div>Index</div>,
+            },
           },
         },
         location: "/",
@@ -55,13 +57,15 @@ describe("outlets", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          layout: {
-            main: (
-              <div>
-                <div>Layout</div>
-                <Outlet name="main" />
-              </div>
-            ),
+          elements: {
+            layout: {
+              main: (
+                <div>
+                  <div>Layout</div>
+                  <Outlet name="main" />
+                </div>
+              ),
+            },
           },
         },
         location: "/",
@@ -74,12 +78,14 @@ describe("outlets", () => {
           test: regexparam.parse("/a", true),
           modules: [],
           loaded: true,
-          layout: {
-            main: (
-              <div>
-                <div>Next layout</div>
-              </div>
-            ),
+          elements: {
+            layout: {
+              main: (
+                <div>
+                  <div>Next layout</div>
+                </div>
+              ),
+            },
           },
         },
         location: "/a",
