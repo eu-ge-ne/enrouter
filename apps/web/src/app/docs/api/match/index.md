@@ -1,12 +1,11 @@
-# RouteMatch API
-
-Will soon be updated...
+# RouteMatch
 
 ## Interfaces
 
-### RouteMatch
-
-```typescript
+```ts
+/**
+ * Represents matched `Route` instance.
+ */
 interface RouteMatch {
   handler: RouteHandler;
 
@@ -21,13 +20,14 @@ interface RouteMatch {
 
 ## Functions
 
-### matchRoutes
-
-```typescript
+```ts
 interface MatchRoutesParams {
   handlers: RouteHandler;
   location: string;
 }
 
-function matchRoutes({ handlers, location }: MatchRoutesParams): RouteMatch[];
+declare function matchRoutes({
+  handlers,
+  location,
+}: MatchRoutesParams): RouteMatch[];
 ```
