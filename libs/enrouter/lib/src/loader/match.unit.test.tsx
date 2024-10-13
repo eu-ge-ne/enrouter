@@ -3,14 +3,13 @@ import * as regexparam from "regexparam";
 
 import { loadRouteMatches } from "./match.js";
 
-import type { RouteModules } from "#lib/modules.js";
 import type { RouteMatch } from "#lib/match/mod.js";
 
 describe("loadRouteMatches", () => {
   test("no matches", async () => {
     const matches: RouteMatch[] = [];
 
-    await loadRouteMatches({ matches, modules: {} });
+    await loadRouteMatches({ matches });
 
     expect(matches).toMatchSnapshot();
   });
@@ -21,7 +20,7 @@ describe("loadRouteMatches", () => {
         handler: {
           route: {
             path: "/",
-            mod: [],
+            modules: [],
           },
           test: regexparam.parse("/", true),
           modules: [],
@@ -32,7 +31,7 @@ describe("loadRouteMatches", () => {
       },
     ];
 
-    await loadRouteMatches({ matches, modules: {} });
+    await loadRouteMatches({ matches });
 
     expect(matches).toMatchSnapshot();
   });
@@ -43,7 +42,13 @@ describe("loadRouteMatches", () => {
         handler: {
           route: {
             path: "/",
-            mod: ["_layout.tsx"],
+            modules: [
+              {
+                id: "_layout.tsx",
+                fileName: "_layout.tsx",
+                load: async () => undefined,
+              },
+            ],
           },
           test: regexparam.parse("/", true),
           modules: [{ id: "_layout.tsx" }],
@@ -54,6 +59,7 @@ describe("loadRouteMatches", () => {
       },
     ];
 
+    /*
     const modules: RouteModules = {
       "_layout.tsx": {
         dirPath: ["src"],
@@ -65,8 +71,9 @@ describe("loadRouteMatches", () => {
         }),
       },
     };
+    */
 
-    await loadRouteMatches({ matches, modules });
+    await loadRouteMatches({ matches });
 
     expect(matches).toMatchSnapshot();
   });
@@ -77,7 +84,13 @@ describe("loadRouteMatches", () => {
         handler: {
           route: {
             path: "/",
-            mod: ["_index.tsx"],
+            modules: [
+              {
+                id: "_index.tsx",
+                fileName: "_index.tsx",
+                load: async () => undefined,
+              },
+            ],
           },
           test: regexparam.parse("/", true),
           modules: [{ id: "_index.tsx" }],
@@ -88,6 +101,7 @@ describe("loadRouteMatches", () => {
       },
     ];
 
+    /*
     const modules: RouteModules = {
       "_index.tsx": {
         dirPath: ["src"],
@@ -99,8 +113,9 @@ describe("loadRouteMatches", () => {
         }),
       },
     };
+    */
 
-    await loadRouteMatches({ matches, modules });
+    await loadRouteMatches({ matches });
 
     expect(matches).toMatchSnapshot();
   });

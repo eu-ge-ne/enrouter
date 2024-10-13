@@ -6,7 +6,7 @@ import { loadRouteMatches, matchRoutes, BrowserRouter, debug } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 //@ts-ignore
-import { modules, handlers } from "virtual:routes";
+import { handlers } from "virtual:routes";
 
 debug(console.debug);
 
@@ -20,12 +20,12 @@ async function main() {
   log("Hydrating DOM");
 
   const matches = matchRoutes({ handlers, location: window.location.pathname });
-  await loadRouteMatches({ matches, modules });
+  await loadRouteMatches({ matches });
 
   hydrateRoot(
     document,
     <Shell>
-      <BrowserRouter handlers={handlers} modules={modules} />
+      <BrowserRouter handlers={handlers} />
     </Shell>,
   );
 

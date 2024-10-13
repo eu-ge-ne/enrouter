@@ -7,8 +7,8 @@ const log = logger("route");
 /**
  * Base building block of routing.
  * Routes are orginized into a tree.
- * Every branch of the tree maps a segment of url to a code and its assets.
- * The code will generate the UI which corresponds to the segment of the url.
+ * Every branch of the tree maps a segment of url to a code,
+ * which will generate corresponding UI.
  */
 export interface Route {
   /**
@@ -18,12 +18,16 @@ export interface Route {
   path: string;
 
   /**
-   * Ids of route's modules
+   * Modules belonging to the route
    */
-  mod: string[];
+  modules: {
+    id: string;
+    fileName: string;
+    load: () => Promise<unknown>;
+  }[];
 
   /**
-   * Child routes
+   * Route tree
    */
   tree?: Route[];
 }
@@ -59,7 +63,7 @@ export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
     throw new Error("Parent not found");
   }
 
-  for (const [moduleId, { dirPath }] of entries) {
+  for (const [moduleId, { dirPath, fileName, load }] of entries) {
     const isRoot = dirPath.length === 0;
 
     const path = isRoot ? "/" : parsePath("/" + dirPath.join("/"));
@@ -68,7 +72,7 @@ export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
     if (!route) {
       route = {
         path,
-        mod: [],
+        modules: [],
       };
       routes.set(path, route);
     }
@@ -83,7 +87,11 @@ export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
       }
     }
 
-    route.mod.push(moduleId);
+    route.modules.push({
+      id: moduleId,
+      fileName,
+      load,
+    });
   }
 
   const result = routes.get("/");

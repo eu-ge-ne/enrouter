@@ -3,7 +3,6 @@ import * as regexparam from "regexparam";
 
 import { loadRouteHandlers } from "./handler.js";
 
-import type { RouteModules } from "#lib/modules.js";
 import type { RouteHandler } from "#lib/handler/mod.js";
 
 describe("loadRouteHandlers", () => {
@@ -11,13 +10,13 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
-        mod: [],
+        modules: [],
       },
       test: regexparam.parse("/", true),
       modules: [],
     };
 
-    await loadRouteHandlers({ handlers, modules: {} });
+    await loadRouteHandlers({ handlers });
 
     expect(handlers).toMatchSnapshot();
   });
@@ -26,7 +25,7 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
-        mod: [],
+        modules: [],
       },
       test: regexparam.parse("/", true),
       modules: [],
@@ -34,7 +33,7 @@ describe("loadRouteHandlers", () => {
         {
           route: {
             path: "/abc",
-            mod: [],
+            modules: [],
           },
           test: regexparam.parse("/abc", true),
           modules: [],
@@ -42,7 +41,7 @@ describe("loadRouteHandlers", () => {
       ],
     };
 
-    await loadRouteHandlers({ handlers, modules: {} });
+    await loadRouteHandlers({ handlers });
 
     expect(handlers).toMatchSnapshot();
   });
@@ -51,12 +50,19 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
-        mod: ["_layout.tsx"],
+        modules: [
+          {
+            id: "_layout.tsx",
+            fileName: "_layout.tsx",
+            load: async () => undefined,
+          },
+        ],
       },
       test: regexparam.parse("/", true),
       modules: [{ id: "_layout.tsx" }],
     };
 
+    /*
     const modules: RouteModules = {
       "_layout.tsx": {
         dirPath: ["src"],
@@ -68,8 +74,9 @@ describe("loadRouteHandlers", () => {
         }),
       },
     };
+    */
 
-    await loadRouteHandlers({ handlers, modules });
+    await loadRouteHandlers({ handlers });
 
     expect(handlers).toMatchSnapshot();
   });
@@ -78,12 +85,19 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
-        mod: ["_index.tsx"],
+        modules: [
+          {
+            id: "_index.tsx",
+            fileName: "_index.tsx",
+            load: async () => undefined,
+          },
+        ],
       },
       test: regexparam.parse("/", true),
       modules: [{ id: "_index.tsx" }],
     };
 
+    /*
     const modules: RouteModules = {
       "_index.tsx": {
         dirPath: ["src"],
@@ -95,8 +109,9 @@ describe("loadRouteHandlers", () => {
         }),
       },
     };
+    */
 
-    await loadRouteHandlers({ handlers, modules });
+    await loadRouteHandlers({ handlers });
 
     expect(handlers).toMatchSnapshot();
   });

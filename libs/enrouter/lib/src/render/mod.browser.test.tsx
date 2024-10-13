@@ -21,7 +21,7 @@ describe("renderMatches", () => {
       handlers: {
         route: {
           path: "",
-          mod: [],
+          modules: [],
         },
         test: { keys: [], pattern: new RegExp("") },
         modules: [],
@@ -52,7 +52,7 @@ describe("renderMatches", () => {
         handler: {
           route: {
             path: "/",
-            mod: [],
+            modules: [],
           },
           test: regexparam.parse("/", true),
           modules: [],
@@ -75,7 +75,7 @@ describe("renderMatches", () => {
         handler: {
           route: {
             path: "/",
-            mod: [],
+            modules: [],
           },
           test: regexparam.parse("/", true),
           modules: [],

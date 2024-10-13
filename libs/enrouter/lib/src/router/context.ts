@@ -12,7 +12,7 @@ export const RouterContext = createContext<TRouterContext>({
   handlers: {
     route: {
       path: "",
-      mod: [],
+      modules: [],
     },
     test: { keys: [], pattern: new RegExp("") },
     modules: [],

@@ -63,7 +63,7 @@ const started = Date.now();
 
 import { buildRoutes, buildRouteHandlers } from "enrouter";
 
-export const modules = {
+const modules = {
   ${str}
 };
 

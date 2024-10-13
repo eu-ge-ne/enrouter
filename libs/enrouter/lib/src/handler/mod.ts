@@ -45,7 +45,7 @@ function recur(route: Route): RouteHandler {
   const handler: RouteHandler = {
     route,
     test: regexparam.parse(route.path, true),
-    modules: route.mod.map((id) => ({ id })),
+    modules: route.modules.map(({ id }) => ({ id })),
   };
 
   if (route.tree) {

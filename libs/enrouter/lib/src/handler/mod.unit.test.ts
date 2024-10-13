@@ -8,7 +8,7 @@ describe("buildRouteHandlers", () => {
   test("from 1 route", () => {
     const route: Route = {
       path: "/",
-      mod: [],
+      modules: [],
     };
 
     expect(buildRouteHandlers(route)).toMatchSnapshot();
@@ -17,11 +17,11 @@ describe("buildRouteHandlers", () => {
   test("from 2 routes", () => {
     const route: Route = {
       path: "/",
-      mod: [],
+      modules: [],
       tree: [
         {
           path: "/abc",
-          mod: [],
+          modules: [],
         },
       ],
     };

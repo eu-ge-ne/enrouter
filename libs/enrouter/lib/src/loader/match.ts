@@ -2,19 +2,16 @@ import { logger } from "#lib/debug.js";
 
 import { loaders } from "./loaders.js";
 
-import type { RouteModules } from "#lib/modules.js";
 import type { RouteMatch } from "#lib/match/mod.js";
 
 const log = logger("loader/match");
 
 export interface LoadRouteMatchesParams {
   matches: RouteMatch[];
-  modules: RouteModules;
 }
 
 export async function loadRouteMatches({
   matches,
-  modules,
 }: LoadRouteMatchesParams): Promise<void> {
   log("Loading matches");
 
@@ -26,7 +23,9 @@ export async function loadRouteMatches({
         continue;
       }
 
-      const { fileName, load } = modules[module.id]!;
+      //const { fileName, load } = modules[module.id]!;
+      const mod = handler.route.modules.find((x) => x.id === module.id)!;
+      const { fileName, load } = mod;
 
       const promise = loaders[fileName]?.({ handler, module, load });
       if (promise) {
