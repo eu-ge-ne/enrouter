@@ -7,14 +7,18 @@ import { type Plugin } from "vite";
 const virtualModuleId = "virtual:routeModules";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
 
-export function routeModules(): Plugin {
+interface RouteModulesParams {
+  routeModulesPath: string;
+}
+
+export function routeModules({ routeModulesPath }: RouteModulesParams): Plugin {
+  let pathRoot: string;
+
   return {
     name: "rollup-plugin-route-modules",
-    /*
     configResolved(config) {
-      // console.log(config);
+      pathRoot = config.root;
     },
-    */
     resolveId(id) {
       if (id === virtualModuleId) {
         return resolvedVirtualModuleId;
@@ -25,41 +29,35 @@ export function routeModules(): Plugin {
         return null;
       }
 
-      const files = await glob("src/app/**/_*.tsx");
+      const pathPrefix = path.resolve(routeModulesPath);
+
+      const files = await glob(path.resolve(pathPrefix, "**/_*.tsx"));
+
       const mods = await Promise.all(
         files.map((file) =>
           this.resolve(file).then((resolved) => [file, resolved!.id] as const),
         ),
       );
-      const globs = mods
-        .map(([file, id]) => `"${file}": () => import("${id}"),`)
-        .join("\n");
+
+      const modules = mods
+        .map(
+          ([file, id]) => `
+"${file.slice(pathRoot.length + 1)}": {
+  path: "${file.slice(pathPrefix.length + 1)}",
+  load: () => import("${id}"),
+},
+`,
+        )
+        .join("");
 
       return `
-import { buildRouteModulesFromViteGlobs } from "enrouter";
-
-const globs = {
-${globs}
+export const modules = {
+  ${modules}
 };
-
-export const modules = buildRouteModulesFromViteGlobs({
-  globs,
-  moduleId: (key) => key,//.slice("/".length),
-  path: (key) => key.slice("src/app/".length),
-});
-
-console.log({ modules });
 `;
     },
   };
 }
-
-/*
-  globs: Object.assign({
-    "/src/app/_index.tsx": () => t(() => import("./_index-BKW5TgZb.js"), []),
-    "/src/app/_layout.tsx": () => t(() => import("./_layout-unFGLFUy.js"), []),
-    "/src/app/_notFound.tsx": () =>
-*/
 
 /*
       const ids = this.getModuleIds();
