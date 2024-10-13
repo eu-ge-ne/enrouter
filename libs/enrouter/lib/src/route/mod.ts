@@ -53,14 +53,14 @@ export function buildRoutesWithViteManifest({
 }: BuildRoutesWithViteManifestParams): Route | undefined {
   log("Building routes");
 
-  const entries = Object.entries(modules)
-    .map(([key, val]) => [key, val.path.split("/").slice(0, -1)] as const)
-    .sort((a, b) => a[1].length - b[1].length);
+  const entries = Object.entries(modules).sort(
+    (a, b) => a[1].dirPath.length - b[1].dirPath.length,
+  );
 
   const routes = new Map<string, Route>();
 
-  function findParent(filePath: string[]) {
-    const parentPath = [...filePath];
+  function findParent(dp: string[]) {
+    const parentPath = [...dp];
 
     while (parentPath.length > 0) {
       parentPath.pop();
@@ -74,10 +74,10 @@ export function buildRoutesWithViteManifest({
     throw new Error("Parent not found");
   }
 
-  for (const [moduleId, filePath] of entries) {
-    const isRoot = filePath.length === 0;
+  for (const [moduleId, { dirPath }] of entries) {
+    const isRoot = dirPath.length === 0;
 
-    const path = isRoot ? "/" : parsePath("/" + filePath.join("/"));
+    const path = isRoot ? "/" : parsePath("/" + dirPath.join("/"));
 
     let route = routes.get(path);
     if (!route) {
@@ -90,7 +90,7 @@ export function buildRoutesWithViteManifest({
     }
 
     if (!isRoot) {
-      const parent = findParent(filePath);
+      const parent = findParent(dirPath);
       if (!parent.tree?.find((x) => x.path === path)) {
         if (!parent.tree) {
           parent.tree = [];

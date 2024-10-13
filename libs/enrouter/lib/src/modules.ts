@@ -5,10 +5,9 @@
 export type RouteModules = Record<
   string,
   {
-    /**
-     * FS path of module
-     */
-    path: string;
+    dirPath: string[];
+
+    fileName: string;
     /**
      * Async module import function
      */

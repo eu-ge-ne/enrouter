@@ -50,7 +50,8 @@ export function routeModules({ routeModulesPath }: RouteModulesParams): Plugin {
         .map(
           ({ key, path, id }) => `
 "${key}": {
-  path: "${path}",
+  dirPath: ${JSON.stringify(path.split("/").slice(0, -1))},
+  fileName: "${path.split("/").at(-1)}",
   load: () => import("${id}"),
 },
 `,

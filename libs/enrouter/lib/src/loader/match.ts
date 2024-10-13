@@ -26,9 +26,7 @@ export async function loadRouteMatches({
         continue;
       }
 
-      const { path, load } = modules[module.id]!;
-
-      const fileName = path.slice(path.lastIndexOf("/") + 1);
+      const { fileName, load } = modules[module.id]!;
 
       const promise = loaders[fileName]?.({ handler, module, load });
       if (promise) {

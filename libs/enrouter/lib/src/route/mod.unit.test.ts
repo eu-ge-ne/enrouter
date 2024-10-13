@@ -20,7 +20,8 @@ describe("buildRoutesWithViteManifest", () => {
     const params: BuildRoutesWithViteManifestParams = {
       modules: {
         "src/_layout.tsx": {
-          path: "_layout.tsx",
+          dirPath: [],
+          fileName: "_layout.tsx",
           load: async () => undefined,
         },
       },
@@ -48,11 +49,13 @@ describe("buildRoutesWithViteManifest", () => {
     const params: BuildRoutesWithViteManifestParams = {
       modules: {
         "src/_layout.tsx": {
-          path: "_layout.tsx",
+          dirPath: [],
+          fileName: "_layout.tsx",
           load: async () => undefined,
         },
         "src/abc/_layout.tsx": {
-          path: "abc/_layout.tsx",
+          dirPath: ["abc"],
+          fileName: "_layout.tsx",
           load: async () => undefined,
         },
       },

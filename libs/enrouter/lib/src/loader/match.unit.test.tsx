@@ -58,7 +58,8 @@ describe("loadRouteMatches", () => {
 
     const modules: RouteModules = {
       "_layout.tsx": {
-        path: "src/_layout.tsx",
+        dirPath: ["src"],
+        fileName: "_layout.tsx",
         load: async () => ({
           components: {
             main: () => <div>Layout</div>,
@@ -92,7 +93,8 @@ describe("loadRouteMatches", () => {
 
     const modules: RouteModules = {
       "_index.tsx": {
-        path: "src/_index.tsx",
+        dirPath: ["src"],
+        fileName: "_index.tsx",
         load: async () => ({
           components: {
             main: () => <div>Index</div>,
