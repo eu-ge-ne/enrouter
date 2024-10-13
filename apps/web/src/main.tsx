@@ -10,12 +10,14 @@ import {
   debug,
 } from "enrouter";
 import { Shell } from "./shell.js";
-import { modules } from "./modules.js";
+//import { modules } from "./modules.js";
+//@ts-ignore
+import { modules } from "virtual:routeModules";
 import { createLog } from "#log.js";
 
 import type { Route } from "enrouter";
 
-debug(console.debug);
+//debug(console.debug);
 
 const log = createLog("main");
 
