@@ -17,13 +17,11 @@ describe("loadRouteMatches", () => {
   test("1 match with no modules", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            test: regexparam.parse("/", true),
-            modules: [],
-            loaded: false,
-          },
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: false,
         },
         location: "/",
         isFull: true,
@@ -39,23 +37,21 @@ describe("loadRouteMatches", () => {
   test("1 match with _layout.tsx module", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            test: regexparam.parse("/", true),
-            modules: [
-              {
-                id: "_layout.tsx",
-                fileName: "_layout.tsx",
-                load: async () => ({
-                  components: {
-                    main: () => <div>Layout</div>,
-                  },
-                }),
-              },
-            ],
-            loaded: false,
-          },
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "_layout.tsx",
+              fileName: "_layout.tsx",
+              load: async () => ({
+                components: {
+                  main: () => <div>Layout</div>,
+                },
+              }),
+            },
+          ],
+          loaded: false,
         },
         location: "/",
         isFull: true,
@@ -71,23 +67,21 @@ describe("loadRouteMatches", () => {
   test("1 match with _index.tsx module", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            test: regexparam.parse("/", true),
-            modules: [
-              {
-                id: "_index.tsx",
-                fileName: "_index.tsx",
-                load: async () => ({
-                  components: {
-                    main: () => <div>Index</div>,
-                  },
-                }),
-              },
-            ],
-            loaded: false,
-          },
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "_index.tsx",
+              fileName: "_index.tsx",
+              load: async () => ({
+                components: {
+                  main: () => <div>Index</div>,
+                },
+              }),
+            },
+          ],
+          loaded: false,
         },
         location: "/",
         isFull: true,

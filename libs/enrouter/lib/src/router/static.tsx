@@ -3,28 +3,24 @@ import { useMemo } from "react";
 import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 
-import type { RouteHandler } from "#lib/handler/mod.js";
+import type { Route } from "#lib/route/mod.js";
 import type { RouteMatch } from "#lib/match/mod.js";
 import type { TRouterContext } from "./context.js";
 
 export interface StaticRouterProps {
-  handlers: RouteHandler;
+  routes: Route;
   location: string;
   matches: RouteMatch[];
 }
 
-export function StaticRouter({
-  handlers,
-  location,
-  matches,
-}: StaticRouterProps) {
+export function StaticRouter({ routes, location, matches }: StaticRouterProps) {
   const context = useMemo<TRouterContext>(
     () => ({
-      handlers,
+      routes,
       location,
       navigate: () => undefined,
     }),
-    [handlers, location],
+    [routes, location],
   );
 
   const children = useMemo(() => renderMatches(matches), [matches]);

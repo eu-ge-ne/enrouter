@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import * as regexparam from "regexparam";
 
 import { logger } from "#lib/debug.js";
@@ -33,6 +34,10 @@ export interface Route {
   }[];
 
   loaded: boolean;
+
+  layout?: Record<string, ReactElement>;
+  index?: Record<string, ReactElement>;
+  notFound?: Record<string, ReactElement>;
 
   /**
    * Route tree

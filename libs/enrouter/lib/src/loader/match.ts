@@ -17,19 +17,15 @@ export async function loadRouteMatches({
 
   const promises: Promise<unknown>[] = [];
 
-  for (const { handler } of matches) {
-    if (handler.route.loaded) {
+  for (const { route } of matches) {
+    if (route.loaded) {
       continue;
     }
 
-    for (const module of handler.route.modules) {
-      const { fileName, load } = handler.route.modules.find(
-        (x) => x.id === module.id,
-      )!;
-
-      const promise = loaders[fileName]?.({ handler, load });
+    for (const { fileName, load } of route.modules) {
+      const promise = loaders[fileName]?.({ route, load });
       if (promise) {
-        promises.push(promise.then(() => (handler.route.loaded = true)));
+        promises.push(promise.then(() => (route.loaded = true)));
       }
     }
   }

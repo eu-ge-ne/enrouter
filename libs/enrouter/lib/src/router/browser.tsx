@@ -6,16 +6,16 @@ import { loadRouteMatches } from "#lib/loader/match.js";
 import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 
-import type { RouteHandler } from "#lib/handler/mod.js";
+import type { Route } from "#lib/route/mod.js";
 import type { TRouterContext } from "./context.js";
 
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
-  handlers: RouteHandler;
+  routes: Route;
 }
 
-export function BrowserRouter({ handlers }: BrowserRouterProps) {
+export function BrowserRouter({ routes }: BrowserRouterProps) {
   const [location, setLocation] = useState(window.location.pathname);
 
   const handlePopState = useCallback((e: PopStateEvent) => {
@@ -31,7 +31,7 @@ export function BrowserRouter({ handlers }: BrowserRouterProps) {
   const navigate = useCallback(async (to: string) => {
     log("Navigating to %s", to);
 
-    const matches = matchRoutes({ handlers, location: to });
+    const matches = matchRoutes({ routes, location: to });
     await loadRouteMatches({ matches });
 
     window.history.pushState({}, "", to);
@@ -40,17 +40,17 @@ export function BrowserRouter({ handlers }: BrowserRouterProps) {
   }, []);
 
   const matches = useMemo(
-    () => matchRoutes({ handlers, location }),
-    [handlers, location],
+    () => matchRoutes({ routes, location }),
+    [routes, location],
   );
 
   const context = useMemo<TRouterContext>(
     () => ({
-      handlers,
+      routes,
       location,
       navigate,
     }),
-    [handlers, location, navigate],
+    [routes, location, navigate],
   );
 
   const children = useMemo(() => renderMatches(matches), [matches]);

@@ -12,7 +12,7 @@ import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 import manifest from "@enrouter/web/manifest";
 //@ts-ignore
-import { handlers } from "virtual:routes";
+import { routes } from "virtual:routes";
 
 debug(console.debug);
 
@@ -32,7 +32,7 @@ export async function createSSRHandler() {
 
       const location = new URL(req.url, "http://localhost").pathname;
 
-      const matches = matchRoutes({ handlers, location });
+      const matches = matchRoutes({ routes, location });
       if (!matches.at(-1)?.isFull) {
         status = 404;
       }
@@ -44,7 +44,7 @@ export async function createSSRHandler() {
       });
 
       const matchedAssets = matches.flatMap((x) =>
-        x.handler.route.modules.map((x) =>
+        x.route.modules.map((x) =>
           getModuleAssets({
             manifest,
             moduleId: x.id,
@@ -72,11 +72,7 @@ export async function createSSRHandler() {
 
       const children = (
         <Shell stylesheets={stylesheets}>
-          <StaticRouter
-            handlers={handlers}
-            location={location}
-            matches={matches}
-          />
+          <StaticRouter routes={routes} location={location} matches={matches} />
         </Shell>
       );
 

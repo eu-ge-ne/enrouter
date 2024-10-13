@@ -18,13 +18,11 @@ describe("outlets", () => {
   test("using index elements", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            test: regexparam.parse("/", true),
-            modules: [],
-            loaded: true,
-          },
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
           layout: {
             main: (
               <div>
@@ -52,13 +50,11 @@ describe("outlets", () => {
   test("using next layout elements", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            test: regexparam.parse("/", true),
-            modules: [],
-            loaded: true,
-          },
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
           layout: {
             main: (
               <div>
@@ -73,13 +69,11 @@ describe("outlets", () => {
         params: {},
       },
       {
-        handler: {
-          route: {
-            path: "/a",
-            test: regexparam.parse("/a", true),
-            modules: [],
-            loaded: true,
-          },
+        route: {
+          path: "/a",
+          test: regexparam.parse("/a", true),
+          modules: [],
+          loaded: true,
           layout: {
             main: (
               <div>

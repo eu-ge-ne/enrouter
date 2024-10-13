@@ -28,7 +28,7 @@ export function renderMatches(matches: RouteMatch[]): ReactElement[] {
   if (!nodes.at(-1)?.match.isFull) {
     log("404: %o", nodes);
 
-    const i = nodes.findLastIndex((x) => x.match.handler.notFound);
+    const i = nodes.findLastIndex((x) => x.match.route.notFound);
     if (i === -1) {
       return [<NotFound />];
     }
@@ -36,7 +36,7 @@ export function renderMatches(matches: RouteMatch[]): ReactElement[] {
     nodes = nodes.slice(0, i + 1);
 
     const node = nodes[i]!;
-    node.index = node.match.handler.notFound;
+    node.index = node.match.route.notFound;
   }
 
   const last = nodes.at(-1);
@@ -66,26 +66,26 @@ function createRouteNodes(match: RouteMatch): RouteNodes {
   }
 
   // do not render if match.next !== undefined
-  if (!match.next && match.handler.index) {
+  if (!match.next && match.route.index) {
     nodes.index = Object.fromEntries(
-      Object.entries(match.handler.index).map((entry) => {
+      Object.entries(match.route.index).map((entry) => {
         log(
           'Rendering index component "%s" for match "%s"',
           entry[0],
-          match.handler.route.path,
+          match.route.path,
         );
         return wrapChildren(entry);
       }),
     );
   }
 
-  if (match.handler.layout) {
+  if (match.route.layout) {
     nodes.layout = Object.fromEntries(
-      Object.entries(match.handler.layout).map((entry) => {
+      Object.entries(match.route.layout).map((entry) => {
         log(
           'Rendering layout component "%s" for match "%s"',
           entry[0],
-          match.handler.route.path,
+          match.route.path,
         );
         return wrapChildren(entry);
       }),

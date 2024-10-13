@@ -61,15 +61,13 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
       return `
 const started = Date.now();
 
-import { buildRoutes, buildRouteHandlers } from "enrouter";
+import { buildRoutes } from "enrouter";
 
 const modules = {
   ${str}
 };
 
-const routes = buildRoutes({ modules });
-
-export const handlers = buildRouteHandlers(routes);
+export const routes = buildRoutes({ modules });
 
 console.log("virtual:routes loaded in ", Date.now() - started, "ms");
 `;
