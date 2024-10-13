@@ -20,9 +20,9 @@ describe("loadRouteMatches", () => {
         handler: {
           route: {
             path: "/",
+            test: regexparam.parse("/", true),
             modules: [],
           },
-          test: regexparam.parse("/", true),
           modules: [],
         },
         location: "/",
@@ -42,6 +42,7 @@ describe("loadRouteMatches", () => {
         handler: {
           route: {
             path: "/",
+            test: regexparam.parse("/", true),
             modules: [
               {
                 id: "_layout.tsx",
@@ -54,7 +55,6 @@ describe("loadRouteMatches", () => {
               },
             ],
           },
-          test: regexparam.parse("/", true),
           modules: [{ id: "_layout.tsx" }],
         },
         location: "/",
@@ -74,6 +74,7 @@ describe("loadRouteMatches", () => {
         handler: {
           route: {
             path: "/",
+            test: regexparam.parse("/", true),
             modules: [
               {
                 id: "_index.tsx",
@@ -86,7 +87,6 @@ describe("loadRouteMatches", () => {
               },
             ],
           },
-          test: regexparam.parse("/", true),
           modules: [{ id: "_index.tsx" }],
         },
         location: "/",

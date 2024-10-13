@@ -21,9 +21,9 @@ describe("outlets", () => {
         handler: {
           route: {
             path: "/",
+            test: regexparam.parse("/", true),
             modules: [],
           },
-          test: regexparam.parse("/", true),
           modules: [],
           layout: {
             main: (
@@ -55,9 +55,9 @@ describe("outlets", () => {
         handler: {
           route: {
             path: "/",
+            test: regexparam.parse("/", true),
             modules: [],
           },
-          test: regexparam.parse("/", true),
           modules: [],
           layout: {
             main: (
@@ -76,9 +76,9 @@ describe("outlets", () => {
         handler: {
           route: {
             path: "/a",
+            test: regexparam.parse("/a", true),
             modules: [],
           },
-          test: regexparam.parse("/a", true),
           modules: [],
           layout: {
             main: (

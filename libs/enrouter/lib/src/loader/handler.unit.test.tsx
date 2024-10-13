@@ -10,9 +10,9 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
+        test: regexparam.parse("/", true),
         modules: [],
       },
-      test: regexparam.parse("/", true),
       modules: [],
     };
 
@@ -25,17 +25,17 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
+        test: regexparam.parse("/", true),
         modules: [],
       },
-      test: regexparam.parse("/", true),
       modules: [],
       tree: [
         {
           route: {
             path: "/abc",
+            test: regexparam.parse("/abc", true),
             modules: [],
           },
-          test: regexparam.parse("/abc", true),
           modules: [],
         },
       ],
@@ -50,6 +50,7 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
+        test: regexparam.parse("/", true),
         modules: [
           {
             id: "_layout.tsx",
@@ -62,7 +63,6 @@ describe("loadRouteHandlers", () => {
           },
         ],
       },
-      test: regexparam.parse("/", true),
       modules: [{ id: "_layout.tsx" }],
     };
 
@@ -75,6 +75,7 @@ describe("loadRouteHandlers", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
+        test: regexparam.parse("/", true),
         modules: [
           {
             id: "_index.tsx",
@@ -87,7 +88,6 @@ describe("loadRouteHandlers", () => {
           },
         ],
       },
-      test: regexparam.parse("/", true),
       modules: [{ id: "_index.tsx" }],
     };
 

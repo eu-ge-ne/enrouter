@@ -7,9 +7,9 @@ export const RouteRenderContext = createContext<RouteNodes>({
     handler: {
       route: {
         path: "",
+        test: { keys: [], pattern: new RegExp("") },
         modules: [],
       },
-      test: { keys: [], pattern: new RegExp("") },
       modules: [],
     },
     location: "",

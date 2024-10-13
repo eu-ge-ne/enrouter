@@ -1,3 +1,5 @@
+import * as regexparam from "regexparam";
+
 import { logger } from "#lib/debug.js";
 
 import type { RouteModules } from "#lib/modules.js";
@@ -13,9 +15,13 @@ const log = logger("route");
 export interface Route {
   /**
    * Full path to url segment
-   * @see https://github.com/lukeed/regexparam
    */
   path: string;
+
+  /**
+   * @see https://github.com/lukeed/regexparam
+   */
+  test: { keys: string[]; pattern: RegExp };
 
   /**
    * Modules belonging to the route
@@ -72,6 +78,7 @@ export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
     if (!route) {
       route = {
         path,
+        test: regexparam.parse(path, true),
         modules: [],
       };
       routes.set(path, route);

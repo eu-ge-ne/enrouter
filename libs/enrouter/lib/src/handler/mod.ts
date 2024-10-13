@@ -1,5 +1,4 @@
 import type { ReactElement } from "react";
-import * as regexparam from "regexparam";
 
 import { logger } from "#lib/debug.js";
 import type { Route } from "#lib/route/mod.js";
@@ -13,11 +12,6 @@ const log = logger("handler");
  */
 export interface RouteHandler {
   route: Route;
-
-  /**
-   * @see https://github.com/lukeed/regexparam
-   */
-  test: { keys: string[]; pattern: RegExp };
 
   modules: { id: string; loaded?: true }[];
 
@@ -44,7 +38,6 @@ export function buildRouteHandlers(route: Route): RouteHandler {
 function recur(route: Route): RouteHandler {
   const handler: RouteHandler = {
     route,
-    test: regexparam.parse(route.path, true),
     modules: route.modules.map(({ id }) => ({ id })),
   };
 

@@ -10,9 +10,9 @@ describe("matchRoutes", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/abc",
+        test: regexparam.parse("/abc", true),
         modules: [],
       },
-      test: regexparam.parse("/abc", true),
       modules: [],
     };
 
@@ -23,9 +23,9 @@ describe("matchRoutes", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
+        test: regexparam.parse("/", true),
         modules: [],
       },
-      test: regexparam.parse("/", true),
       modules: [],
     };
 
@@ -36,17 +36,17 @@ describe("matchRoutes", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/",
+        test: regexparam.parse("/", true),
         modules: [],
       },
-      test: regexparam.parse("/", true),
       modules: [],
       tree: [
         {
           route: {
             path: "/abc",
+            test: regexparam.parse("/abc", true),
             modules: [],
           },
-          test: regexparam.parse("/abc", true),
           modules: [],
         },
       ],
@@ -59,9 +59,9 @@ describe("matchRoutes", () => {
     const handlers: RouteHandler = {
       route: {
         path: "/[:id]",
+        test: regexparam.parse("/:id", true),
         modules: [],
       },
-      test: regexparam.parse("/:id", true),
       modules: [],
     };
 
