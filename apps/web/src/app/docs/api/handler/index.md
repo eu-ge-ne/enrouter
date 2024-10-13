@@ -3,7 +3,12 @@
 ## Interfaces
 
 ```ts
-interface RouteHandler {
+/**
+ * "Hydrated" instance of `Route`.
+ * Contains corresponding path `RegExp`, imported modules
+ * and rendered React components
+ */
+export interface RouteHandler {
   route: Route;
 
   /**
@@ -24,6 +29,9 @@ interface RouteHandler {
 ## Functions
 
 ```ts
+/**
+ * Build `RouteHandler` tree from `Route`s.
+ */
 declare function buildRouteHandlers(route: Route): RouteHandler;
 ```
 
@@ -32,5 +40,7 @@ declare function buildRouteHandlers(route: Route): RouteHandler;
 ### buildRouteHandlers
 
 ```ts
+import { buildRouteHandlers } from "enrouter";
 
+const handlers = buildRouteHandlers(routes);
 ```
