@@ -11,6 +11,7 @@ describe("buildRouteHandlers", () => {
       path: "/",
       test: regexparam.parse("/", true),
       modules: [],
+      loaded: false,
     };
 
     expect(buildRouteHandlers(route)).toMatchSnapshot();
@@ -21,11 +22,13 @@ describe("buildRouteHandlers", () => {
       path: "/",
       test: regexparam.parse("/", true),
       modules: [],
+      loaded: false,
       tree: [
         {
           path: "/abc",
           test: regexparam.parse("/abc", true),
           modules: [],
+          loaded: false,
         },
       ],
     };

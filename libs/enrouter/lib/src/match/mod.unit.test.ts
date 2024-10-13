@@ -12,8 +12,8 @@ describe("matchRoutes", () => {
         path: "/abc",
         test: regexparam.parse("/abc", true),
         modules: [],
+        loaded: false,
       },
-      modules: [],
     };
 
     expect(matchRoutes({ handlers, location: "/x" })).toMatchSnapshot();
@@ -25,8 +25,8 @@ describe("matchRoutes", () => {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
+        loaded: false,
       },
-      modules: [],
     };
 
     expect(matchRoutes({ handlers, location: "/" })).toMatchSnapshot();
@@ -38,16 +38,16 @@ describe("matchRoutes", () => {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
+        loaded: false,
       },
-      modules: [],
       tree: [
         {
           route: {
             path: "/abc",
             test: regexparam.parse("/abc", true),
             modules: [],
+            loaded: false,
           },
-          modules: [],
         },
       ],
     };
@@ -61,8 +61,8 @@ describe("matchRoutes", () => {
         path: "/[:id]",
         test: regexparam.parse("/:id", true),
         modules: [],
+        loaded: false,
       },
-      modules: [],
     };
 
     expect(matchRoutes({ handlers, location: "/100" })).toMatchSnapshot();

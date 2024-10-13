@@ -26,18 +26,18 @@ export async function loadRouteHandlers({
 
 function recur(handlers: RouteHandler[], promises: Promise<unknown>[]): void {
   for (const handler of handlers) {
-    for (const module of handler.modules) {
-      if (module.loaded) {
-        continue;
-      }
+    if (handler.route.loaded) {
+      continue;
+    }
 
-      //const { fileName, load } = modules[module.id]!;
-      const mod = handler.route.modules.find((x) => x.id === module.id)!;
-      const { fileName, load } = mod;
+    for (const module of handler.route.modules) {
+      const { fileName, load } = handler.route.modules.find(
+        (x) => x.id === module.id,
+      )!;
 
-      const promise = loaders[fileName]?.({ handler, module, load });
+      const promise = loaders[fileName]?.({ handler, load });
       if (promise) {
-        promises.push(promise);
+        promises.push(promise.then(() => (handler.route.loaded = true)));
       }
     }
 

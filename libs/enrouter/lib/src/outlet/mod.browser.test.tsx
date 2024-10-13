@@ -23,8 +23,8 @@ describe("outlets", () => {
             path: "/",
             test: regexparam.parse("/", true),
             modules: [],
+            loaded: true,
           },
-          modules: [],
           layout: {
             main: (
               <div>
@@ -57,8 +57,8 @@ describe("outlets", () => {
             path: "/",
             test: regexparam.parse("/", true),
             modules: [],
+            loaded: true,
           },
-          modules: [],
           layout: {
             main: (
               <div>
@@ -78,8 +78,8 @@ describe("outlets", () => {
             path: "/a",
             test: regexparam.parse("/a", true),
             modules: [],
+            loaded: true,
           },
-          modules: [],
           layout: {
             main: (
               <div>

@@ -32,6 +32,8 @@ export interface Route {
     load: () => Promise<unknown>;
   }[];
 
+  loaded: boolean;
+
   /**
    * Route tree
    */
@@ -80,6 +82,7 @@ export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
         path,
         test: regexparam.parse(path, true),
         modules: [],
+        loaded: false,
       };
       routes.set(path, route);
     }

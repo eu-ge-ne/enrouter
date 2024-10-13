@@ -4,7 +4,6 @@ import type { RouteHandler } from "#lib/handler/mod.js";
 
 type Loader = (params: {
   handler: RouteHandler;
-  module: RouteHandler["modules"][0];
   load: () => Promise<unknown>;
 }) => Promise<void> | void;
 
@@ -21,16 +20,13 @@ async function render(load: () => Promise<unknown>) {
 }
 
 export const loaders: Record<string, Loader> = {
-  "_layout.tsx": async ({ handler, module, load }) => {
+  "_layout.tsx": async ({ handler, load }) => {
     handler.layout = await render(load);
-    module.loaded = true;
   },
-  "_index.tsx": async ({ handler, module, load }) => {
+  "_index.tsx": async ({ handler, load }) => {
     handler.index = await render(load);
-    module.loaded = true;
   },
-  "_notFound.tsx": async ({ handler, module, load }) => {
+  "_notFound.tsx": async ({ handler, load }) => {
     handler.notFound = await render(load);
-    module.loaded = true;
   },
 };

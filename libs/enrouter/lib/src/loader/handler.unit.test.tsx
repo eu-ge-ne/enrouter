@@ -12,8 +12,8 @@ describe("loadRouteHandlers", () => {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
+        loaded: false,
       },
-      modules: [],
     };
 
     await loadRouteHandlers({ handlers });
@@ -27,16 +27,16 @@ describe("loadRouteHandlers", () => {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
+        loaded: false,
       },
-      modules: [],
       tree: [
         {
           route: {
             path: "/abc",
             test: regexparam.parse("/abc", true),
             modules: [],
+            loaded: false,
           },
-          modules: [],
         },
       ],
     };
@@ -62,8 +62,8 @@ describe("loadRouteHandlers", () => {
             }),
           },
         ],
+        loaded: false,
       },
-      modules: [{ id: "_layout.tsx" }],
     };
 
     await loadRouteHandlers({ handlers });
@@ -87,8 +87,8 @@ describe("loadRouteHandlers", () => {
             }),
           },
         ],
+        loaded: false,
       },
-      modules: [{ id: "_index.tsx" }],
     };
 
     await loadRouteHandlers({ handlers });

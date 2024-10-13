@@ -13,8 +13,6 @@ const log = logger("handler");
 export interface RouteHandler {
   route: Route;
 
-  modules: { id: string; loaded?: true }[];
-
   layout?: Record<string, ReactElement>;
   index?: Record<string, ReactElement>;
   notFound?: Record<string, ReactElement>;
@@ -38,7 +36,6 @@ export function buildRouteHandlers(route: Route): RouteHandler {
 function recur(route: Route): RouteHandler {
   const handler: RouteHandler = {
     route,
-    modules: route.modules.map(({ id }) => ({ id })),
   };
 
   if (route.tree) {
