@@ -4,10 +4,8 @@ See also: [RouteModules](/docs/api/modules), [Route](/docs/api/route).
 
 ```mermaid
 graph TB
-  VG(ViteGlobs)
-  VM(ViteManifest)
-  BRM([buildRouteModulesFromViteGlobs])
   RM(RouteModules)
+  VM(ViteManifest)
   BR([buildRoutesWithViteManifest])
   subgraph RTT [" "]
     direction TB
@@ -22,11 +20,7 @@ graph TB
     RT2-->RT3
   end;
 
-  VG-->BRM
-  BRM-->RM
   RM-->BR
-
   VM-->BR
-
   BR-->RTT
 ```

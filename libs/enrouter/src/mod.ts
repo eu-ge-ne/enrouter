@@ -1,10 +1,6 @@
 export { debug } from "./debug.js";
 
-export {
-  type RouteModules,
-  type BuildRouteModulesFromViteGlobsParams,
-  buildRouteModulesFromViteGlobs,
-} from "./modules.js";
+export { type RouteModules } from "./modules.js";
 
 export {
   type Route,
