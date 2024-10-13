@@ -1,7 +1,7 @@
 export { debug } from "./debug.js";
 
 export type { Route } from "./route/mod.js";
-export { type BuildRoutesParams, buildRoutes } from "./route/build.js";
+export { buildRoutes } from "./route/build.js";
 export { loadRoutes } from "./route/load.js";
 
 export {

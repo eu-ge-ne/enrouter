@@ -40,7 +40,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
             ? {
                 key: files[i]!.slice(pathRoot.length + 1),
                 path: files[i]!.slice(pathPrefix.length + 1),
-                id: x.id,
+                resolvedId: x.id,
               }
             : undefined,
         )
@@ -48,11 +48,12 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
 
       const str = modules
         .map(
-          ({ key, path, id }) => `
-"${key}": {
-  dirPath: ${JSON.stringify(path.split("/").slice(0, -1))},
+          ({ key, path, resolvedId }) => `
+{
+  id: "${key}",
+  dir: ${JSON.stringify(path.split("/").slice(0, -1))},
   fileName: "${path.split("/").at(-1)}",
-  load: () => import("${id}"),
+  load: () => import("${resolvedId}"),
 },
 `,
         )
@@ -63,11 +64,9 @@ const started = Date.now();
 
 import { buildRoutes } from "enrouter";
 
-const modules = {
-  ${str}
-};
+const modules = [${str}];
 
-export const routes = buildRoutes({ modules });
+export const routes = buildRoutes(modules);
 
 console.log("virtual:routes loaded in ", Date.now() - started, "ms");
 `;

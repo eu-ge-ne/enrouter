@@ -37,7 +37,7 @@ describe("loadRoutes", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "_layout.tsx",
+            id: "src/_layout.tsx",
             fileName: "_layout.tsx",
             load: async () => ({
               components: {
@@ -63,7 +63,7 @@ describe("loadRoutes", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "_index.tsx",
+            id: "src/_index.tsx",
             fileName: "_index.tsx",
             load: async () => ({
               components: {
