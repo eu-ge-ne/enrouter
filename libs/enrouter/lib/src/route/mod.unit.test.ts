@@ -22,23 +22,6 @@ describe("buildRoutes", () => {
           load: async () => undefined,
         },
       },
-      /*
-      manifest: {
-        "src/main.tsx": {
-          file: "assets/main.js",
-          css: ["assets/main.css"],
-        },
-        "src/_layout.tsx": {
-          file: "assets/_layout.js",
-          imports: ["log.js"],
-        },
-        "log.js": {
-          file: "assets/log.js",
-        },
-      },
-      mapAssetUrl: (x) => x,
-      entryId: "src/main.tsx",
-      */
     };
 
     expect(buildRoutes(params)).toMatchSnapshot();
@@ -58,27 +41,6 @@ describe("buildRoutes", () => {
           load: async () => undefined,
         },
       },
-      /*
-      manifest: {
-        "src/main.tsx": {
-          file: "assets/main.js",
-          css: ["assets/main.css"],
-        },
-        "src/_layout.tsx": {
-          file: "assets/_layout.js",
-          imports: ["log.js"],
-        },
-        "src/abc/_layout.tsx": {
-          file: "assets/abc-_layout.js",
-          imports: ["log.js"],
-        },
-        "log.js": {
-          file: "assets/log.js",
-        },
-      },
-      mapAssetUrl: (x) => x,
-      entryId: "src/main.tsx",
-      */
     };
 
     expect(buildRoutes(params)).toMatchSnapshot();
