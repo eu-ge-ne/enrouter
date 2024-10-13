@@ -4,6 +4,9 @@ import type { RouteHandler } from "#handler/mod.js";
 
 const log = logger("match");
 
+/**
+ * Represents matched `Route` instance.
+ */
 export interface RouteMatch {
   handler: RouteHandler;
 
