@@ -59,9 +59,15 @@ export function routeModules({ routeModulesPath }: RouteModulesParams): Plugin {
         .join("");
 
       return `
+import { buildRoutes, buildRouteHandlers } from "enrouter";
+
 export const modules = {
   ${str}
 };
+
+export const routes = buildRoutes({ modules });
+
+export const handlers = buildRouteHandlers(routes);
 `;
     },
   };

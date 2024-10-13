@@ -2,18 +2,11 @@ import { hydrateRoot } from "react-dom/client";
 
 import "./index.css";
 
-import {
-  buildRoutes,
-  buildRouteHandlers,
-  loadRouteMatches,
-  matchRoutes,
-  BrowserRouter,
-  debug,
-} from "enrouter";
+import { loadRouteMatches, matchRoutes, BrowserRouter, debug } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 //@ts-ignore
-import { modules } from "virtual:routeModules";
+import { modules, handlers } from "virtual:routeModules";
 
 debug(console.debug);
 
@@ -25,13 +18,6 @@ declare const window: {
 
 async function main() {
   log("Hydrating DOM");
-
-  const routes = buildRoutes({ modules });
-  if (!routes) {
-    throw new Error("No routes found");
-  }
-
-  const handlers = buildRouteHandlers(routes);
 
   const matches = matchRoutes({ handlers, location: window.location.pathname });
   await loadRouteMatches({ matches, modules });

@@ -3,8 +3,6 @@ import { renderToReadableStream } from "react-dom/server.edge";
 
 import {
   debug,
-  buildRoutes,
-  buildRouteHandlers,
   loadRouteMatches,
   matchRoutes,
   StaticRouter,
@@ -14,7 +12,7 @@ import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 import manifest from "@enrouter/web/manifest";
 //@ts-ignore
-import { modules } from "virtual:routeModules";
+import { modules, handlers } from "virtual:routeModules";
 
 debug(console.debug);
 
@@ -23,13 +21,6 @@ const log = createLog("ssr");
 const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
 export async function createSSRHandler() {
-  const routes = buildRoutes({ modules });
-  if (!routes) {
-    throw new Error("No routes found");
-  }
-
-  const handlers = buildRouteHandlers(routes);
-
   return async function ssrHandler(req: Request) {
     const isCrawler = false;
 
