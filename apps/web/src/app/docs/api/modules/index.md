@@ -26,23 +26,6 @@ type RouteModules = Record<
 
 ## Functions
 
-```ts
-interface BuildRouteModulesFromViteGlobsParams {
-  globs: Record<string, () => Promise<unknown>>;
-  moduleId: (key: string) => string;
-  path: (key: string) => string;
-}
-
-/**
- * Builds `RouteModules` from Vite glob import
- */
-declare function buildRouteModulesFromViteGlobs({
-  globs,
-  moduleId,
-  path,
-}: BuildRouteModulesFromViteGlobsParams): RouteModules;
-```
-
 ## Examples
 
 ### Build manually
@@ -56,16 +39,4 @@ const modules: RouteModules = {
     load: () => import("src/app/_layout.tsx"),
   },
 };
-```
-
-### Build from Vite glob import
-
-```ts
-import { buildRouteModulesFromViteGlobs } from "enrouter";
-
-const modules = buildRouteModulesFromViteGlobs({
-  globs: import.meta.glob(["./app/**/_*.tsx"]),
-  moduleId: (key) => "src" + key.slice(".".length),
-  path: (key) => key.slice("./app/".length),
-});
 ```

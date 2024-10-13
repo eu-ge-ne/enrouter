@@ -4,6 +4,8 @@ import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import { globSync } from "glob";
 
+import { routeModules } from "enrouter/vite";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -15,6 +17,7 @@ export default defineConfig({
       }),
     },
     react({ include: /\.(jsx|js|tsx|ts|mdx|md)$/ }),
+    routeModules({ routeModulesPath: "src/app" }),
   ],
   appType: "custom",
   server: {

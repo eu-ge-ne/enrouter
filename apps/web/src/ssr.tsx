@@ -11,7 +11,9 @@ import {
 } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
-import { modules } from "./modules.js";
+//import { modules } from "./modules.js";
+//@ts-ignore
+import { modules } from "virtual:routeModules";
 import manifest from "@enrouter/web/manifest";
 
 debug(console.debug);

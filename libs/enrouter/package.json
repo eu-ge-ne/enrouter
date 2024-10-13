@@ -5,21 +5,56 @@
   "description": "",
   "exports": {
     ".": {
-      "types": "./dist/mod.d.ts",
-      "default": "./dist/mod.js"
+      "types": "./dist/lib/mod.d.ts",
+      "default": "./dist/lib/mod.js"
+    },
+    "./vite": {
+      "types": "./dist/vite/mod.d.ts",
+      "default": "./dist/vite/mod.js"
     }
   },
   "imports": {
-    "#*": "./src/*"
+    "#lib/*": "./lib/src/*"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./coverage",
-    "lint": "tsc",
+    "lint": "tsc -p lib/tsconfig.json && tsc -p vite/tsconfig.json",
     "test": "vitest run --config configs/vitest.config.ts",
-    "build": "tsup --config configs/tsup.config.ts"
+    "build": "true",
+    "build:lib": "tsup --config configs/tsup.lib.config.ts",
+    "build:vite": "tsup --config configs/tsup.vite.config.ts"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "dependsOn": [
+          "build:*"
+        ]
+      },
+      "build:lib": {
+        "cache": true,
+        "outputs": [
+          "{projectRoot}/dist/lib"
+        ],
+        "dependsOn": [
+          "^build",
+          "clean"
+        ]
+      },
+      "build:vite": {
+        "cache": true,
+        "outputs": [
+          "{projectRoot}/dist/vite"
+        ],
+        "dependsOn": [
+          "^build",
+          "clean"
+        ]
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -35,11 +70,15 @@
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
+  "peerDependencies": {
+    "vite": "^5.4.8"
+  },
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
     "@types/react": "npm:types-react@rc",
     "@vitest/browser": "^2.1.2",
     "@vitest/coverage-v8": "^2.1.2",
+    "glob": "^11.0.0",
     "playwright": "^1.48.0",
     "react": "19.0.0-rc-1460d67c-20241003",
     "regexparam": "^3.0.0",
