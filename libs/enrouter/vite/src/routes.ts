@@ -59,15 +59,19 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         .join("");
 
       return `
+const started = Date.now();
+
 import { buildRoutes, buildRouteHandlers } from "enrouter";
 
 export const modules = {
   ${str}
 };
 
-export const routes = buildRoutes({ modules });
+const routes = buildRoutes({ modules });
 
 export const handlers = buildRouteHandlers(routes);
+
+console.log("virtual:routes loaded in ", Date.now() - started, "ms");
 `;
     },
   };
