@@ -22,7 +22,10 @@ export interface Route {
   /**
    * @see https://github.com/lukeed/regexparam
    */
-  test: { keys: string[]; pattern: RegExp };
+  test: {
+    keys: string[];
+    pattern: RegExp;
+  };
 
   /**
    * Modules belonging to the route
@@ -35,9 +38,11 @@ export interface Route {
 
   loaded: boolean;
 
-  layout?: Record<string, ReactElement>;
-  index?: Record<string, ReactElement>;
-  notFound?: Record<string, ReactElement>;
+  elements: {
+    layout?: Record<string, ReactElement>;
+    index?: Record<string, ReactElement>;
+    notFound?: Record<string, ReactElement>;
+  };
 
   /**
    * Route tree
@@ -88,6 +93,7 @@ export function buildRoutes({ modules }: BuildRoutesParams): Route | undefined {
         test: regexparam.parse(path, true),
         modules: [],
         loaded: false,
+        elements: {},
       };
       routes.set(path, route);
     }

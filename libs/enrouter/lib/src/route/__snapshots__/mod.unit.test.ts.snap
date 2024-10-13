@@ -4,6 +4,8 @@ exports[`buildRoutes > from 0 modules 1`] = `undefined`;
 
 exports[`buildRoutes > from 1 module 1`] = `
 {
+  "elements": {},
+  "loaded": false,
   "modules": [
     {
       "fileName": "_layout.tsx",
@@ -12,11 +14,17 @@ exports[`buildRoutes > from 1 module 1`] = `
     },
   ],
   "path": "/",
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
 }
 `;
 
 exports[`buildRoutes > from 2 parent-child modules 1`] = `
 {
+  "elements": {},
+  "loaded": false,
   "modules": [
     {
       "fileName": "_layout.tsx",
@@ -25,8 +33,14 @@ exports[`buildRoutes > from 2 parent-child modules 1`] = `
     },
   ],
   "path": "/",
+  "test": {
+    "keys": [],
+    "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+  },
   "tree": [
     {
+      "elements": {},
+      "loaded": false,
       "modules": [
         {
           "fileName": "_layout.tsx",
@@ -35,6 +49,10 @@ exports[`buildRoutes > from 2 parent-child modules 1`] = `
         },
       ],
       "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
     },
   ],
 }
