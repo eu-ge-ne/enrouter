@@ -28,11 +28,10 @@ function Menu() {
         <li>
           <MenuLink2 to="/docs/api/match">RouteMatch</MenuLink2>
         </li>
-
-        {/* TODO */}
         <li>
           <MenuLink2 to="/docs/api/loaders">Loaders</MenuLink2>
         </li>
+        {/* TODO */}
         <li>
           <MenuLink2 to="/docs/api/router/static">StaticRouter</MenuLink2>
         </li>
