@@ -23,6 +23,7 @@ describe("renderMatches", () => {
         test: { keys: [], pattern: new RegExp("") },
         modules: [],
         loaded: false,
+        elements: {},
       },
       location: "/",
       navigate: () => undefined,
@@ -52,6 +53,7 @@ describe("renderMatches", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: false,
+          elements: {},
         },
         location: "/",
         isFull: true,
@@ -73,8 +75,10 @@ describe("renderMatches", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          layout: {
-            main: <div>Layout</div>,
+          elements: {
+            layout: {
+              main: <div>Layout</div>,
+            },
           },
         },
         location: "/",
