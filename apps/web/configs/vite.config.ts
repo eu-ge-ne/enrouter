@@ -27,6 +27,24 @@ export default defineConfig({
     emptyOutDir: false,
     rollupOptions: {
       input: ["src/main.tsx", ...globSync("./src/app/**/_*.tsx")],
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) {
+            return;
+          }
+
+          if (
+            [
+              "/react/",
+              "/react-dom/",
+              "/react/jsx-runtime/",
+              "/react-dom/client/",
+            ].some((x) => id.includes(x))
+          ) {
+            return "react";
+          }
+        },
+      },
     },
   },
   css: {
