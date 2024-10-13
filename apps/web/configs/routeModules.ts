@@ -1,6 +1,6 @@
 import * as path from "node:path";
 
-import { globSync } from "glob";
+import { glob } from "glob";
 
 import { type Plugin } from "vite";
 
@@ -25,31 +25,30 @@ export function routeModules(): Plugin {
         return null;
       }
 
-      const files = globSync("src/app/**/_*.tsx");
-      let src = "const globs = {\n";
-      for (const file of files) {
-        const { id } = (await this.resolve(file))!;
-        src += `"${file}": () => import("${id}"),\n`;
-      }
-      src += "};\n";
+      const files = await glob("src/app/**/_*.tsx");
+      const mods = await Promise.all(
+        files.map((file) =>
+          this.resolve(file).then((resolved) => [file, resolved!.id] as const),
+        ),
+      );
+      const globs = mods
+        .map(([file, id]) => `"${file}": () => import("${id}"),`)
+        .join("\n");
 
       return `
 import { buildRouteModulesFromViteGlobs } from "enrouter";
 
-${src}
-
-console.log({ globs });
+const globs = {
+${globs}
+};
 
 export const modules = buildRouteModulesFromViteGlobs({
-  //globs: import.meta.glob(["/src/app/**/_*.tsx"]),
   globs,
   moduleId: (key) => key,//.slice("/".length),
   path: (key) => key.slice("src/app/".length),
 });
 
-console.log("Hello from virtual module");
 console.log({ modules });
-//console.log({ globs: import.meta.glob(["/src/app/**/_*.tsx"]) });
 `;
     },
   };
@@ -75,9 +74,6 @@ console.log({ modules });
       }
       return null;
       */
-
-
-
 
 /*
       Hello from virtual module
