@@ -1,14 +1,5 @@
 export { debug } from "./debug.js";
 
-// TODO: move to /vite
-export {
-  type ViteManifest,
-  type ViteManifestItem,
-  type ModuleAssets,
-  type GetModuleAssetsParams,
-  getModuleAssets,
-} from "./assets.js";
-
 export type { Route } from "./route/mod.js";
 export { type BuildRoutesParams, buildRoutes } from "./route/build.js";
 export { loadRoutes } from "./route/load.js";

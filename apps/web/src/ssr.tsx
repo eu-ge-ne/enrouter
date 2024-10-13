@@ -1,13 +1,9 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
-import {
-  debug,
-  loadRoutes,
-  matchRoutes,
-  StaticRouter,
-  getModuleAssets,
-} from "enrouter";
+import { debug, loadRoutes, matchRoutes, StaticRouter } from "enrouter";
+import { getModuleAssets } from "enrouter/vite/manifest";
+
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 import manifest from "@enrouter/web/manifest";

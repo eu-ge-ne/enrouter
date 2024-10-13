@@ -7,7 +7,7 @@ import { type Plugin } from "vite";
 const virtualModuleId = "virtual:routes";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
 
-interface RoutesParams {
+export interface RoutesParams {
   routesFsPath: string;
 }
 
