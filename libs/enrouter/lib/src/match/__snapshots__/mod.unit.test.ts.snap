@@ -6,7 +6,7 @@ exports[`matchRoutes > 1 match 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "mod": [],
+        "modules": [],
         "path": "/",
       },
       "test": {
@@ -29,7 +29,7 @@ exports[`matchRoutes > 1 match with params 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "mod": [],
+        "modules": [],
         "path": "/[:id]",
       },
       "test": {
@@ -56,7 +56,7 @@ exports[`matchRoutes > 2 matches 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "mod": [],
+        "modules": [],
         "path": "/",
       },
       "test": {
@@ -67,7 +67,7 @@ exports[`matchRoutes > 2 matches 1`] = `
         {
           "modules": [],
           "route": {
-            "mod": [],
+            "modules": [],
             "path": "/abc",
           },
           "test": {
@@ -82,7 +82,7 @@ exports[`matchRoutes > 2 matches 1`] = `
       "handler": {
         "modules": [],
         "route": {
-          "mod": [],
+          "modules": [],
           "path": "/abc",
         },
         "test": {
@@ -101,7 +101,7 @@ exports[`matchRoutes > 2 matches 1`] = `
       "handler": {
         "modules": [],
         "route": {
-          "mod": [],
+          "modules": [],
           "path": "/abc",
         },
         "test": {
@@ -121,7 +121,7 @@ exports[`matchRoutes > 2 matches 1`] = `
     "handler": {
       "modules": [],
       "route": {
-        "mod": [],
+        "modules": [],
         "path": "/abc",
       },
       "test": {
