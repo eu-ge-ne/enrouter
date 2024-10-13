@@ -1,4 +1,4 @@
-import { useLocation } from "#hooks.js";
+import { useLocation } from "#lib/hooks.js";
 
 export function NotFound() {
   const location = useLocation();

@@ -3,8 +3,8 @@ import * as regexparam from "regexparam";
 
 import { loadRouteMatches } from "./match.js";
 
-import type { RouteModules } from "#modules.js";
-import type { RouteMatch } from "#match/mod.js";
+import type { RouteModules } from "#lib/modules.js";
+import type { RouteMatch } from "#lib/match/mod.js";
 
 describe("loadRouteMatches", () => {
   test("no matches", async () => {

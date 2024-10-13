@@ -3,8 +3,8 @@ import * as regexparam from "regexparam";
 
 import { loadRouteHandlers } from "./handler.js";
 
-import type { RouteModules } from "#modules.js";
-import type { RouteHandler } from "#handler/mod.js";
+import type { RouteModules } from "#lib/modules.js";
+import type { RouteHandler } from "#lib/handler/mod.js";
 
 describe("loadRouteHandlers", () => {
   test("1 route handler with no modules", async () => {

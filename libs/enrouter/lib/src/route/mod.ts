@@ -1,6 +1,6 @@
-import { logger } from "#debug.js";
+import { logger } from "#lib/debug.js";
 
-import type { RouteModules } from "#modules.js";
+import type { RouteModules } from "#lib/modules.js";
 
 import { updateRouteAssets } from "./assets.js";
 

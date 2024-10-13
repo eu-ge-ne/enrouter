@@ -3,7 +3,7 @@ import * as regexparam from "regexparam";
 
 import { matchRoutes } from "./mod.js";
 
-import type { RouteHandler } from "#handler/mod.js";
+import type { RouteHandler } from "#lib/handler/mod.js";
 
 describe("matchRoutes", () => {
   test("no matches", () => {

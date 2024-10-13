@@ -1,13 +1,13 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 
-import { logger } from "#debug.js";
-import { matchRoutes } from "#match/mod.js";
-import { loadRouteMatches } from "#loader/match.js";
-import { renderMatches } from "#render/mod.js";
+import { logger } from "#lib/debug.js";
+import { matchRoutes } from "#lib/match/mod.js";
+import { loadRouteMatches } from "#lib/loader/match.js";
+import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 
-import type { RouteHandler } from "#handler/mod.js";
-import type { RouteModules } from "#modules.js";
+import type { RouteHandler } from "#lib/handler/mod.js";
+import type { RouteModules } from "#lib/modules.js";
 import type { TRouterContext } from "./context.js";
 
 const log = logger("router/browser");

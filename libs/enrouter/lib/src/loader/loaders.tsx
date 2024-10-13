@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-import type { RouteHandler } from "#handler/mod.js";
+import type { RouteHandler } from "#lib/handler/mod.js";
 
 type Loader = (params: {
   handler: RouteHandler;

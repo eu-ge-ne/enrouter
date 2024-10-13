@@ -1,0 +1,7 @@
+{
+  "extends": ["@enrouter/tsconfig"],
+  "compilerOptions": {
+    "module": "preserve",
+    "lib": ["es2022"]
+  }
+}

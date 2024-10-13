@@ -1,9 +1,9 @@
-import { logger } from "#debug.js";
+import { logger } from "#lib/debug.js";
 
 import { loaders } from "./loaders.js";
 
-import type { RouteModules } from "#modules.js";
-import type { RouteMatch } from "#match/mod.js";
+import type { RouteModules } from "#lib/modules.js";
+import type { RouteMatch } from "#lib/match/mod.js";
 
 const log = logger("loader/match");
 

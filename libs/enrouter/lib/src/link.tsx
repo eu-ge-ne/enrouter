@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import type { MouseEvent, AnchorHTMLAttributes } from "react";
 
-import { logger } from "#debug.js";
+import { logger } from "./debug.js";
 import { RouterContext } from "./router/context.js";
 
 const log = logger("link");

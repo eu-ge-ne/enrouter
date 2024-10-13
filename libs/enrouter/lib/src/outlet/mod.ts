@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import type { ReactNode, ReactElement } from "react";
 
-import { RouteRenderContext } from "#render/context.js";
+import { RouteRenderContext } from "#lib/render/context.js";
 
 export interface OutletProps {
   name: string;

@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 
-import { renderMatches } from "#render/mod.js";
+import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 
-import type { RouteHandler } from "#handler/mod.js";
-import type { RouteMatch } from "#match/mod.js";
+import type { RouteHandler } from "#lib/handler/mod.js";
+import type { RouteMatch } from "#lib/match/mod.js";
 import type { TRouterContext } from "./context.js";
 
 export interface StaticRouterProps {

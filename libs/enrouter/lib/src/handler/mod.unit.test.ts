@@ -2,7 +2,7 @@ import { describe, test, expect } from "vitest";
 
 import { buildRouteHandlers } from "./mod.js";
 
-import type { Route } from "#route/mod.js";
+import type { Route } from "#lib/route/mod.js";
 
 describe("buildRouteHandlers", () => {
   test("from 1 route", () => {

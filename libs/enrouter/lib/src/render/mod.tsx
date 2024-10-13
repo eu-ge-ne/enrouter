@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
 
-import { logger } from "#debug.js";
+import { logger } from "#lib/debug.js";
 import { RouteRenderContext } from "./context.js";
 import { NotFound } from "./notFound.js";
 
-import type { RouteMatch } from "#match/mod.js";
+import type { RouteMatch } from "#lib/match/mod.js";
 
 const log = logger("render");
 

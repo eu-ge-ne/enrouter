@@ -1,6 +1,6 @@
-import { logger } from "#debug.js";
+import { logger } from "#lib/debug.js";
 
-import type { RouteHandler } from "#handler/mod.js";
+import type { RouteHandler } from "#lib/handler/mod.js";
 
 const log = logger("match");
 

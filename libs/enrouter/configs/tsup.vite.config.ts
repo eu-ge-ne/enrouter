@@ -1,10 +1,11 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/mod.ts"],
+  entry: ["vite/src/mod.ts"],
+  outDir: "dist/vite",
   format: "esm",
+  target: "es2023",
   dts: true,
-  external: ["react"],
   treeshake: true,
   minify: "terser",
 });

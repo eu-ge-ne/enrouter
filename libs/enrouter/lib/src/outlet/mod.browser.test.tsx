@@ -3,11 +3,10 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import { renderMatches } from "./mod.js";
-import { RouterContext } from "#router/context.js";
+import { renderMatches } from "#lib/render/mod.js";
+import { Outlet } from "./mod.js";
 
-import type { RouteMatch } from "#match/mod.js";
-import type { TRouterContext } from "#router/context.js";
+import type { RouteMatch } from "#lib/match/mod.js";
 
 const wrapperId = "test-wrapper";
 
@@ -15,39 +14,8 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
   <div data-testid={wrapperId}>{children}</div>
 );
 
-describe("renderMatches", () => {
-  test("no matches", async () => {
-    const context: TRouterContext = {
-      handlers: {
-        route: {
-          path: "",
-          mod: [],
-          link: [[], []],
-        },
-        test: { keys: [], pattern: new RegExp("") },
-        modules: [],
-      },
-      location: "/",
-      navigate: () => undefined,
-    };
-
-    const matches: RouteMatch[] = [];
-
-    const screen = render(renderMatches(matches), {
-      wrapper: ({ children }) => (
-        <div data-testid={wrapperId}>
-          <RouterContext.Provider value={context}>
-            {children}
-          </RouterContext.Provider>
-        </div>
-      ),
-    });
-
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
-    expect(screen.container).toMatchSnapshot();
-  });
-
-  test("1 match with no elements", async () => {
+describe("outlets", () => {
+  test("using index elements", async () => {
     const matches: RouteMatch[] = [
       {
         handler: {
@@ -58,6 +26,17 @@ describe("renderMatches", () => {
           },
           test: regexparam.parse("/", true),
           modules: [],
+          layout: {
+            main: (
+              <div>
+                <div>Layout</div>
+                <Outlet name="main" />
+              </div>
+            ),
+          },
+          index: {
+            main: <div>Index</div>,
+          },
         },
         location: "/",
         isFull: true,
@@ -71,7 +50,7 @@ describe("renderMatches", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("1 match with layout elements", async () => {
+  test("using next layout elements", async () => {
     const matches: RouteMatch[] = [
       {
         handler: {
@@ -83,14 +62,41 @@ describe("renderMatches", () => {
           test: regexparam.parse("/", true),
           modules: [],
           layout: {
-            main: <div>Layout</div>,
+            main: (
+              <div>
+                <div>Layout</div>
+                <Outlet name="main" />
+              </div>
+            ),
           },
         },
         location: "/",
+        isFull: false,
+        params: {},
+      },
+      {
+        handler: {
+          route: {
+            path: "/a",
+            mod: [],
+            link: [[], []],
+          },
+          test: regexparam.parse("/a", true),
+          modules: [],
+          layout: {
+            main: (
+              <div>
+                <div>Next layout</div>
+              </div>
+            ),
+          },
+        },
+        location: "/a",
         isFull: true,
         params: {},
       },
     ];
+    matches[0]!.next = matches[1];
 
     const screen = render(renderMatches(matches), { wrapper });
 

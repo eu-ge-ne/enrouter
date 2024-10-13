@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 import * as regexparam from "regexparam";
 
-import { logger } from "#debug.js";
-import type { Route } from "#route/mod.js";
+import { logger } from "#lib/debug.js";
+import type { Route } from "#lib/route/mod.js";
 
 const log = logger("handler");
 
