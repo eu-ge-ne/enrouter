@@ -16,7 +16,7 @@
     },
     "build": {
       "cache": true,
-      "dependsOn": ["clean", "^build"],
+      "dependsOn": ["^build", "clean"],
       "outputs": ["{projectRoot}/dist"]
     },
     "deploy": {

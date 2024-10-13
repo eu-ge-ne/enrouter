@@ -21,19 +21,28 @@
     "targets": {
       "build": {
         "dependsOn": [
-          "build:client",
-          "build:server"
+          "build:*"
         ]
       },
       "build:client": {
+        "cache": true,
+        "outputs": [
+          "{projectRoot}/dist/client"
+        ],
         "dependsOn": [
-          "^build"
+          "^build",
+          "clean"
         ]
       },
       "build:server": {
+        "cache": true,
+        "outputs": [
+          "{projectRoot}/dist/server"
+        ],
         "dependsOn": [
           "^build",
-          "build:client"
+          "build:client",
+          "clean"
         ]
       }
     }
