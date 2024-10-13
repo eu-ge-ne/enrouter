@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`loadRoutes > 1 route no modules 1`] = `
+[
+  {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`loadRoutes > 1 route with _index.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "index": {
+        "main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_index.tsx",
+        "id": "_index.tsx",
+        "load": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "layout": {
+        "main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_layout.tsx",
+        "id": "_layout.tsx",
+        "load": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`loadRoutes > no routes 1`] = `[]`;
