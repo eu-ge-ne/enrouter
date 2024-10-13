@@ -3,7 +3,7 @@ import { renderToReadableStream } from "react-dom/server.edge";
 
 import {
   debug,
-  loadRouteMatches,
+  loadRoutes,
   matchRoutes,
   StaticRouter,
   getModuleAssets,
@@ -36,7 +36,8 @@ export async function createSSRHandler() {
       if (!matches.at(-1)?.isFull) {
         status = 404;
       }
-      await loadRouteMatches({ matches });
+
+      await loadRoutes(matches.map((x) => x.route));
 
       const entryAssets = getModuleAssets({
         manifest,

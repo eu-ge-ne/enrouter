@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 
 import { logger } from "#lib/debug.js";
+import { loadRoutes } from "#lib/route/load.js";
 import { matchRoutes } from "#lib/match/mod.js";
-import { loadRouteMatches } from "#lib/loader/match.js";
 import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 
@@ -32,7 +32,8 @@ export function BrowserRouter({ routes }: BrowserRouterProps) {
     log("Navigating to %s", to);
 
     const matches = matchRoutes({ routes, location: to });
-    await loadRouteMatches({ matches });
+
+    await loadRoutes(matches.map((x) => x.route));
 
     window.history.pushState({}, "", to);
 

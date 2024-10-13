@@ -2,7 +2,7 @@ import { hydrateRoot } from "react-dom/client";
 
 import "./index.css";
 
-import { loadRouteMatches, matchRoutes, BrowserRouter, debug } from "enrouter";
+import { loadRoutes, matchRoutes, BrowserRouter, debug } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 //@ts-ignore
@@ -20,7 +20,8 @@ async function main() {
   log("Hydrating DOM");
 
   const matches = matchRoutes({ routes, location: window.location.pathname });
-  await loadRouteMatches({ matches });
+
+  await loadRoutes(matches.map((x) => x.route));
 
   hydrateRoot(
     document,

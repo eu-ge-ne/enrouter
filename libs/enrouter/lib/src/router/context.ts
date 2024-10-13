@@ -14,6 +14,7 @@ export const RouterContext = createContext<TRouterContext>({
     test: { keys: [], pattern: new RegExp("") },
     modules: [],
     loaded: false,
+    elements: {},
   },
   location: "",
   navigate: () => undefined,
