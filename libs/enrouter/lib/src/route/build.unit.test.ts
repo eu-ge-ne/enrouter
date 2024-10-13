@@ -1,8 +1,8 @@
 import { describe, test, expect } from "vitest";
 
-import { buildRoutes } from "./mod.js";
+import { buildRoutes } from "./build.js";
 
-import type { BuildRoutesParams } from "./mod.js";
+import type { BuildRoutesParams } from "./build.js";
 
 describe("buildRoutes", () => {
   test("from 0 modules", () => {
