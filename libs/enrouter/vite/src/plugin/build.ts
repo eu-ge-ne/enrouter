@@ -1,4 +1,5 @@
 import { parseRoutePath } from "./modules.js";
+
 import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
