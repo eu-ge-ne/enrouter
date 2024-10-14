@@ -13,12 +13,12 @@ export interface RoutesParams {
 }
 
 export function routes({ routesFsPath }: RoutesParams): Plugin {
-  let pathRoot: string;
+  let rootPath: string;
 
   return {
     name: "vite-plugin-routes",
     configResolved(config) {
-      pathRoot = config.root;
+      rootPath = config.root;
     },
     resolveId(id) {
       if (id === virtualModuleId) {
@@ -34,7 +34,8 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
 
       const files = await glob(resolve(prefix, "**/_*.tsx"));
       const resolves = await Promise.all(files.map((x) => this.resolve(x)));
-      const ids = files.map((x) => x.slice(pathRoot.length + 1));
+
+      const moduleIds = files.map((x) => x.slice(rootPath.length + 1));
       const dirs = files.map((x) =>
         x
           .slice(prefix.length + 1)
@@ -53,7 +54,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         .map((x, i) =>
           x
             ? {
-                moduleId: ids[i]!,
+                moduleId: moduleIds[i]!,
                 dir: dirs[i]!,
                 fileName: fileNames[i]!,
                 importFn: async () => undefined, //importFn: () => import(x.id),
@@ -63,15 +64,13 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         )
         .filter((x) => x !== undefined);
 
-      //this.info("routeModules: " + JSON.stringify(routeModules, null, 2));
-
       const routes = buildRoutes(routeModules);
 
-      const result = `export const routes = ${routes};`;
+      const source = `export const routes = ${routes};`;
 
-      this.info("module: " + result);
+      this.info("module: " + source);
 
-      return result;
+      return source;
     },
   };
 }
