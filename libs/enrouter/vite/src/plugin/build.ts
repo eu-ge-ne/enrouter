@@ -1,10 +1,6 @@
 import * as regexparam from "regexparam";
 
-import { logger } from "#lib/debug.js";
-
 import type { Route } from "#lib/route/mod.js";
-
-const log = logger("route/build");
 
 export type RouteModules = {
   id: string;
@@ -18,8 +14,6 @@ export type RouteModules = {
  * Builds `Route`s from `RouteModules`
  */
 export function buildRoutes(modules: RouteModules): string {
-  log("Building routes");
-
   const sorted = modules.sort((a, b) => a.dir.length - b.dir.length);
 
   const routes = new Map<string, Route>();
@@ -77,8 +71,6 @@ export function buildRoutes(modules: RouteModules): string {
   if (!root) {
     throw new Error("Routes were not built");
   }
-
-  log("Routes built: %o", routes);
 
   return toJS(root, modules);
 }
