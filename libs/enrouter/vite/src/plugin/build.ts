@@ -3,7 +3,7 @@ import * as regexparam from "regexparam";
 import type { Route } from "#lib/route/mod.js";
 
 export type RouteModules = {
-  moduleId: string;
+  id: string;
   dir: string[];
   fileName: string;
   importFn: () => Promise<unknown>;
@@ -33,7 +33,7 @@ export function buildRoutes(modules: RouteModules): string {
     throw new Error("Parent not found");
   }
 
-  for (const { moduleId, dir, fileName, importFn } of sorted) {
+  for (const { id, dir, fileName, importFn } of sorted) {
     const isRoot = dir.length === 0;
 
     const path = isRoot ? "/" : parsePath("/" + dir.join("/"));
@@ -61,7 +61,7 @@ export function buildRoutes(modules: RouteModules): string {
     }
 
     route.modules.push({
-      id: moduleId,
+      id,
       fileName,
       importFn,
     });
@@ -95,7 +95,7 @@ ${tree.join(",\n")}
 {
     id: "${x.id}",
     fileName: "${x.fileName}",
-    importFn: ${modules.find(({ moduleId }) => moduleId === x.id)?.importStr},
+    importFn: ${modules.find(({ id }) => id === x.id)?.importStr},
 }`,
     )
     .join(",")
