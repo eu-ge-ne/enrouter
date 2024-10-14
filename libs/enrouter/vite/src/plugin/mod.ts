@@ -54,7 +54,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         .map((x, i) =>
           x
             ? {
-                id: id[i]!,
+                id: ids[i]!,
                 dir: dirs[i]!,
                 fileName: fileNames[i]!,
                 importFn: async () => undefined, //importFn: () => import(x.id),
