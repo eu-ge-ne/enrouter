@@ -1,7 +1,6 @@
 export { debug } from "./debug.js";
 
 export type { Route } from "./route/mod.js";
-export { buildRoutes, routeToJS } from "./route/build.js";
 export { loadRoutes } from "./route/load.js";
 
 export {

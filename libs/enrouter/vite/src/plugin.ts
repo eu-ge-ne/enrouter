@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { glob } from "glob";
 import { type Plugin } from "vite";
 
-import { type RouteModules, buildRoutes, routeToJS } from "#lib/route/build.js";
+import { type RouteModules, buildRoutes, routeToJS } from "./build.js";
 
 const virtualModuleId = "virtual:routes";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;

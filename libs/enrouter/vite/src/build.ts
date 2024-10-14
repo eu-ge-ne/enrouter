@@ -2,7 +2,7 @@ import * as regexparam from "regexparam";
 
 import { logger } from "#lib/debug.js";
 
-import type { Route } from "./mod.js";
+import type { Route } from "#lib/route/mod.js";
 
 const log = logger("route/build");
 
