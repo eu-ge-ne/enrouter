@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildRoutes > from 0 modules 1`] = `[Error: Routes were not built]`;
+
+exports[`buildRoutes > from 1 module 1`] = `
+"{
+    path: "/",
+    test: {
+      keys: [],
+      pattern: /^(?=$|\\/)/i,
+    },
+    modules: [    
+    {
+        id: "src/_layout.tsx",
+        fileName: "_layout.tsx",
+        importFn: () => import("/home/src/_layout.tsx"),
+    }],
+    loaded: false,
+    elements: {},
+    tree: undefined,
+}"
+`;
