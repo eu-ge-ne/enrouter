@@ -3,7 +3,6 @@ import { resolve } from "node:path";
 import { type Plugin } from "vite";
 import { glob } from "glob";
 
-import { buildRoutes } from "./build.js";
 import { compileRoutes } from "./compile.js";
 import { buildModuleTree } from "./modules.js";
 
@@ -47,14 +46,11 @@ export function routes(params: RoutesParams): Plugin {
         resolvedFiles,
       });
 
-      const routes = buildRoutes(routeModules);
-      const source = compileRoutes(routeModules, routes);
+      const compiled = compileRoutes(routeModules);
 
-      const str = `export const routes = ${source};`;
+      this.info("module: " + compiled);
 
-      this.info("module: " + str);
-
-      return str;
+      return compiled;
     },
   };
 }

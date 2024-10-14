@@ -8,8 +8,8 @@
     "format:fix": "prettier . --write",
     "clean": "nx run-many -t clean",
     "lint": "nx run-many -t lint",
-    "test": "nx run-many -t test",
-    "build": "nx run-many -t build",
+    "test": "nx run-many -t test --verbose",
+    "build": "nx run-many -t build --verbose",
     "deploy": "nx deploy @enrouter/edge"
   },
   "repository": {
