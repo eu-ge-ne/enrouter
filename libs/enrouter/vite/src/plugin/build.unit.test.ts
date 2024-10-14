@@ -23,24 +23,52 @@ describe("buildRoutes", () => {
     expect(buildRoutes(modules)).toMatchSnapshot();
   });
 
-  /*
-  test("from 2 parent-child modules", () => {
+  test("from 2 modules", () => {
     const modules: RouteModules = [
       {
         id: "src/_layout.tsx",
         dir: [],
         fileName: "_layout.tsx",
-        load: async () => undefined,
+        importFn: async () => undefined,
+        importStr: '() => import("/home/src/_layout.tsx")',
       },
       {
         id: "src/abc/_layout.tsx",
         dir: ["abc"],
         fileName: "_layout.tsx",
-        load: async () => undefined,
+        importFn: async () => undefined,
+        importStr: '() => import("/home/src/abc/_layout.tsx")',
       },
     ];
 
     expect(buildRoutes(modules)).toMatchSnapshot();
   });
-  */
+
+  test("from 3 modules", () => {
+    const modules: RouteModules = [
+      {
+        id: "src/_layout.tsx",
+        dir: [],
+        fileName: "_layout.tsx",
+        importFn: async () => undefined,
+        importStr: '() => import("/home/src/_layout.tsx")',
+      },
+      {
+        id: "src/xyz/_layout.tsx",
+        dir: ["xyz"],
+        fileName: "_layout.tsx",
+        importFn: async () => undefined,
+        importStr: '() => import("/home/src/xyz/_layout.tsx")',
+      },
+      {
+        id: "src/xyz/_index.tsx",
+        dir: ["xyz"],
+        fileName: "_index.tsx",
+        importFn: async () => undefined,
+        importStr: '() => import("/home/src/xyz/_layout.tsx")',
+      },
+    ];
+
+    expect(buildRoutes(modules)).toMatchSnapshot();
+  });
 });
