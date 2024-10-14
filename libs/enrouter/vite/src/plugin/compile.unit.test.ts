@@ -9,17 +9,6 @@ import { compileRoutes } from "./compile.js";
 import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
-async function getCompiledRoutes(compiled: string): Promise<Route> {
-  const script = new vm.SourceTextModule(compiled, {
-    context: vm.createContext({}),
-  });
-  //@ts-ignore
-  await script.link(() => {});
-  await script.evaluate();
-  //@ts-ignore
-  return script.namespace.routes;
-}
-
 describe("compileRoutes", () => {
   test("from 0 modules", () => {
     expect(() => compileRoutes([])).toThrowErrorMatchingSnapshot();
@@ -47,16 +36,8 @@ describe("compileRoutes", () => {
     const compiled = compileRoutes(modules);
     const compiledRoutes = await getCompiledRoutes(compiled);
 
-    builtRoutes.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    compiledRoutes.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
+    deleteImports(builtRoutes);
+    deleteImports(compiledRoutes);
 
     expect(builtRoutes).toEqual(compiledRoutes);
   });
@@ -96,26 +77,8 @@ describe("compileRoutes", () => {
     const compiled = compileRoutes(modules);
     const compiledRoutes = await getCompiledRoutes(compiled);
 
-    builtRoutes.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    builtRoutes.tree![0]!.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    compiledRoutes.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    compiledRoutes.tree![0]!.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
+    deleteImports(builtRoutes);
+    deleteImports(compiledRoutes);
 
     expect(builtRoutes).toEqual(compiledRoutes);
   });
@@ -161,27 +124,32 @@ describe("compileRoutes", () => {
     const compiled = compileRoutes(modules);
     const compiledRoutes = await getCompiledRoutes(compiled);
 
-    builtRoutes.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    builtRoutes.tree![0]!.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    compiledRoutes.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
-    compiledRoutes.tree![0]!.modules.forEach(
-      (x) =>
-        //@ts-ignore
-        delete x.importFn,
-    );
+    deleteImports(builtRoutes);
+    deleteImports(compiledRoutes);
 
     expect(builtRoutes).toEqual(compiledRoutes);
   });
 });
+
+async function getCompiledRoutes(compiled: string): Promise<Route> {
+  const script = new vm.SourceTextModule(compiled, {
+    context: vm.createContext({}),
+  });
+  //@ts-ignore
+  await script.link(() => {});
+  await script.evaluate();
+  //@ts-ignore
+  return script.namespace.routes;
+}
+
+function deleteImports(route: Route) {
+  for (const mod of route.modules) {
+    //@ts-ignore
+    delete mod.importFn;
+  }
+  if (route.tree) {
+    for (const child of route.tree) {
+      deleteImports(child);
+    }
+  }
+}
