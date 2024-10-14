@@ -82,3 +82,42 @@ export function buildRoutes(modules: RouteModules): Route | undefined {
 function parsePath(str: string) {
   return str.replace(/\[(.+)\]/, ":$1");
 }
+
+export function routeToJS(
+  route: Route,
+  getLoad: (id: string) => string,
+  tab = 0,
+): string {
+  const tree = route.tree
+    ? route.tree.map((x) => routeToJS(x, getLoad, 4))
+    : undefined;
+  const treeStr = tree
+    ? `[
+${tree.join(",\n")}
+  ]`
+    : undefined;
+
+  const mods = route.modules
+    .map(
+      (x) => `
+{
+    id: "${x.id}",
+    fileName: "${x.fileName}",
+    load: ${getLoad(x.id)},
+}`,
+    )
+    .join(",")
+    .replace(/^/gm, " ".repeat(4));
+
+  return `{
+    path: "${route.path}",
+    test: {
+      keys: [${route.test.keys.map((x) => "${x}").join(",")}],
+      pattern: ${route.test.pattern},
+    },
+    modules: [${mods}],
+    loaded: false,
+    elements: {},
+    tree: ${treeStr},
+}`.replace(/^/gm, " ".repeat(tab));
+}

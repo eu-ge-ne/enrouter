@@ -1,8 +1,9 @@
 import * as path from "node:path";
 
 import { glob } from "glob";
-
 import { type Plugin } from "vite";
+
+import { type RouteModules, buildRoutes, routeToJS } from "#lib/route/build.js";
 
 const virtualModuleId = "virtual:routes";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
@@ -15,7 +16,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
   let pathRoot: string;
 
   return {
-    name: "vite-plugin-route-modules",
+    name: "vite-plugin-routes",
     configResolved(config) {
       pathRoot = config.root;
     },
@@ -33,43 +34,49 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
 
       const files = await glob(path.resolve(pathPrefix, "**/_*.tsx"));
       const resolves = await Promise.all(files.map((x) => this.resolve(x)));
+      const ids = files.map((x) => x.slice(pathRoot.length + 1));
+      const dirs = files.map((x) =>
+        x
+          .slice(pathPrefix.length + 1)
+          .split("/")
+          .slice(0, -1),
+      );
+      const fileNames = files.map(
+        (x) =>
+          x
+            .slice(pathPrefix.length + 1)
+            .split("/")
+            .at(-1)!,
+      );
 
-      const modules = resolves
+      const routeModules: RouteModules = resolves
         .map((x, i) =>
           x
             ? {
-                key: files[i]!.slice(pathRoot.length + 1),
-                path: files[i]!.slice(pathPrefix.length + 1),
-                resolvedId: x.id,
+                id: ids[i]!,
+                dir: dirs[i]!,
+                fileName: fileNames[i]!,
+                load: () => import(x.id),
               }
             : undefined,
         )
         .filter((x) => x !== undefined);
 
-      const str = modules
-        .map(
-          ({ key, path, resolvedId }) => `
-{
-  id: "${key}",
-  dir: ${JSON.stringify(path.split("/").slice(0, -1))},
-  fileName: "${path.split("/").at(-1)}",
-  load: () => import("${resolvedId}"),
-},
-`,
-        )
-        .join("");
+      //this.info("routeModules: " + JSON.stringify(routeModules, null, 2));
 
-      return `
-const started = Date.now();
+      const routes = buildRoutes(routeModules);
 
-import { buildRoutes } from "enrouter";
+      const routesStr = routeToJS(routes!, (id) => {
+        const i = ids.findIndex((x) => x === id);
+        const resolved = resolves[i]!;
+        return `() => import("${resolved.id}")`;
+      });
 
-const modules = [${str}];
+      const result = `export const routes = ${routesStr};`;
 
-export const routes = buildRoutes(modules);
+      this.info("module: " + result);
 
-console.log("virtual:routes loaded in ", Date.now() - started, "ms");
-`;
+      return result;
     },
   };
 }
