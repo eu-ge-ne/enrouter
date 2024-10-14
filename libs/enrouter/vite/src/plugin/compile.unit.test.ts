@@ -22,16 +22,19 @@ describe("compileRoutes", () => {
       test: regexparam.parse("/", true),
     };
 
-    const modules: RouteModules = [
+    const modules: RouteModules[] = [
       {
-        id: "src/_layout.tsx",
-        fileName: "_layout.tsx",
-        importFn: async () => undefined,
-        importStr: '() => import("/home/src/_layout.tsx")',
-
         routeDir: [],
         routePath: "/",
         routeTest: regexparam.parse("/", true),
+        routeModules: [
+          {
+            id: "src/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: async () => undefined,
+            importStr: '() => import("/home/src/_layout.tsx")',
+          },
+        ],
       },
     ];
 
@@ -68,26 +71,32 @@ describe("compileRoutes", () => {
       ],
     };
 
-    const modules: RouteModules = [
+    const modules: RouteModules[] = [
       {
-        id: "src/_layout.tsx",
-        fileName: "_layout.tsx",
-        importFn: async () => undefined,
-        importStr: '() => import("/home/src/_layout.tsx")',
-
         routeDir: [],
         routePath: "/",
         routeTest: regexparam.parse("/", true),
+        routeModules: [
+          {
+            id: "src/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: async () => undefined,
+            importStr: '() => import("/home/src/_layout.tsx")',
+          },
+        ],
       },
       {
-        id: "src/abc/_layout.tsx",
-        fileName: "_layout.tsx",
-        importFn: async () => undefined,
-        importStr: '() => import("/home/src/abc/_layout.tsx")',
-
         routeDir: ["abc"],
         routePath: "/abc",
         routeTest: regexparam.parse("/abc", true),
+        routeModules: [
+          {
+            id: "src/abc/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: async () => undefined,
+            importStr: '() => import("/home/src/abc/_layout.tsx")',
+          },
+        ],
       },
     ];
 
@@ -129,36 +138,38 @@ describe("compileRoutes", () => {
       ],
     };
 
-    const modules: RouteModules = [
+    const modules: RouteModules[] = [
       {
-        id: "src/_layout.tsx",
-        fileName: "_layout.tsx",
-        importFn: async () => undefined,
-        importStr: '() => import("/home/src/_layout.tsx")',
-
         routeDir: [],
         routePath: "/",
         routeTest: regexparam.parse("/", true),
+        routeModules: [
+          {
+            id: "src/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: async () => undefined,
+            importStr: '() => import("/home/src/_layout.tsx")',
+          },
+        ],
       },
       {
-        id: "src/xyz/_layout.tsx",
-        fileName: "_layout.tsx",
-        importFn: async () => undefined,
-        importStr: '() => import("/home/src/xyz/_layout.tsx")',
-
         routeDir: ["xyz"],
         routePath: "/xyz",
         routeTest: regexparam.parse("/xyz", true),
-      },
-      {
-        id: "src/xyz/_index.tsx",
-        fileName: "_index.tsx",
-        importFn: async () => undefined,
-        importStr: '() => import("/home/src/xyz/_layout.tsx")',
-
-        routeDir: ["xyz"],
-        routePath: "/xyz",
-        routeTest: regexparam.parse("/xyz", true),
+        routeModules: [
+          {
+            id: "src/xyz/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: async () => undefined,
+            importStr: '() => import("/home/src/xyz/_layout.tsx")',
+          },
+          {
+            id: "src/xyz/_index.tsx",
+            fileName: "_index.tsx",
+            importFn: async () => undefined,
+            importStr: '() => import("/home/src/xyz/_layout.tsx")',
+          },
+        ],
       },
     ];
 

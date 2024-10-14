@@ -1,25 +1,25 @@
 import * as regexparam from "regexparam";
+import groupBy from "lodash.groupby";
 
 export type RouteModules = {
-  id: string;
-  fileName: string;
-  importFn: () => Promise<unknown>;
-  importStr: string;
-
   routeDir: string[];
   routePath: string;
   routeTest: {
     keys: string[];
     pattern: RegExp;
   };
-}[];
+
+  routeModules: {
+    id: string;
+    fileName: string;
+    importFn: () => Promise<unknown>;
+    importStr: string;
+  }[];
+};
 
 export function parseRoutePath(routeDir: string[]): {
   routePath: string;
-  routeTest: {
-    keys: string[];
-    pattern: RegExp;
-  };
+  routeTest: { keys: string[]; pattern: RegExp };
 } {
   const str = "/" + routeDir.join("/");
 
@@ -42,30 +42,51 @@ export function buildModuleTree({
   rootPath,
   routesPath,
   resolvedFiles,
-}: BuildModuleTreeParams): RouteModules {
-  const routeModules: RouteModules = resolvedFiles
-    .map((x) => {
-      const routeDir = x.file
+}: BuildModuleTreeParams): RouteModules[] {
+  const items = resolvedFiles.map((x) => {
+    const routeDir = x.file
+      .slice(routesPath.length + 1)
+      .split("/")
+      .slice(0, -1);
+    const { routePath, routeTest } = parseRoutePath(routeDir);
+
+    const module = {
+      routeDir,
+      routePath,
+      routeTest,
+
+      id: x.file.slice(rootPath.length + 1),
+      fileName: x.file
         .slice(routesPath.length + 1)
         .split("/")
-        .slice(0, -1);
+        .at(-1)!,
+      importFn: () => import(x.resolvedId),
+      importStr: `() => import("${x.resolvedId}")`,
+    };
 
-      const module = {
-        id: x.file.slice(rootPath.length + 1),
-        fileName: x.file
-          .slice(routesPath.length + 1)
-          .split("/")
-          .at(-1)!,
-        importFn: () => import(x.resolvedId),
-        importStr: `() => import("${x.resolvedId}")`,
+    return module;
+  });
 
-        routeDir,
-        ...parseRoutePath(routeDir),
-      };
+  const groups = Object.entries(groupBy(items, (x) => x.routePath));
 
-      return module;
-    })
-    .sort((a, b) => a.routeDir.length - b.routeDir.length);
+  const routeModules = groups.map(([, items]) => {
+    const { routeDir, routePath, routeTest } = items[0]!;
 
-  return routeModules;
+    const routeModules = items.map(({ id, fileName, importFn, importStr }) => ({
+      id,
+      fileName,
+      importFn,
+      importStr,
+    }));
+
+    return {
+      routeDir,
+      routePath,
+      routeTest,
+
+      routeModules,
+    };
+  });
+
+  return routeModules.sort((a, b) => a.routeDir.length - b.routeDir.length);
 }

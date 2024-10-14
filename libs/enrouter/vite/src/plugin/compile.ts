@@ -2,13 +2,14 @@ import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
 export function compileRoutes(
-  modules: RouteModules,
+  modules: RouteModules[],
   route: Route,
   tab = 0,
 ): string {
   const tree = route.tree
     ? route.tree.map((x) => compileRoutes(modules, x, 4))
     : undefined;
+
   const treeStr = tree
     ? `[
 ${tree.join(",\n")}
@@ -21,7 +22,7 @@ ${tree.join(",\n")}
 {
     id: "${x.id}",
     fileName: "${x.fileName}",
-    importFn: ${modules.find(({ id }) => id === x.id)?.importStr},
+    importFn: ${modules.find(({ routePath }) => routePath === route.path)!.routeModules.find(({ id }) => id === x.id)?.importStr},
 }`,
     )
     .join(",")

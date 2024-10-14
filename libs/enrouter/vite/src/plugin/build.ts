@@ -5,7 +5,7 @@ import type { RouteModules } from "./modules.js";
 /**
  * Builds `Route`s from `RouteModules`
  */
-export function buildRoutes(modules: RouteModules): Route {
+export function buildRoutes(modules: RouteModules[]): Route {
   const routes = new Map<string, Route>();
 
   function findParent(dp: string[]): Route | undefined {
@@ -27,20 +27,13 @@ export function buildRoutes(modules: RouteModules): Route {
     throw new Error("Parent not found");
   }
 
-  for (const {
-    id,
-    fileName,
-    importFn,
-    routeDir,
-    routePath,
-    routeTest,
-  } of modules) {
+  for (const { routeDir, routePath, routeTest, routeModules } of modules) {
     let route = routes.get(routePath);
     if (!route) {
       route = {
         path: routePath,
         test: routeTest,
-        modules: [],
+        modules: routeModules.map(({ importStr, ...x }) => x),
         loaded: false,
         elements: {},
       };
@@ -56,12 +49,6 @@ export function buildRoutes(modules: RouteModules): Route {
         parent.tree.push(route);
       }
     }
-
-    route.modules.push({
-      id,
-      fileName,
-      importFn,
-    });
   }
 
   const root = routes.get("/");
