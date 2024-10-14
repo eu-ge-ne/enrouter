@@ -4,7 +4,7 @@ import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import { globSync } from "glob";
 
-import { routes } from "enrouter/vite";
+import { routes } from "enrouter/vite/plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({

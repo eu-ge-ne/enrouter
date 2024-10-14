@@ -1,18 +1,14 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
-import {
-  debug,
-  loadRouteMatches,
-  matchRoutes,
-  StaticRouter,
-  getModuleAssets,
-} from "enrouter";
+import { debug, loadRoutes, matchRoutes, StaticRouter } from "enrouter";
+import { getModuleAssets } from "enrouter/vite/manifest";
+
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 import manifest from "@enrouter/web/manifest";
 //@ts-ignore
-import { modules, handlers } from "virtual:routes";
+import { routes } from "virtual:routes";
 
 debug(console.debug);
 
@@ -32,11 +28,12 @@ export async function createSSRHandler() {
 
       const location = new URL(req.url, "http://localhost").pathname;
 
-      const matches = matchRoutes({ handlers, location });
+      const matches = matchRoutes({ routes, location });
       if (!matches.at(-1)?.isFull) {
         status = 404;
       }
-      await loadRouteMatches({ matches, modules });
+
+      await loadRoutes(matches.map((x) => x.route));
 
       const entryAssets = getModuleAssets({
         manifest,
@@ -44,10 +41,10 @@ export async function createSSRHandler() {
       });
 
       const matchedAssets = matches.flatMap((x) =>
-        x.handler.route.mod.map((moduleId) =>
+        x.route.modules.map((x) =>
           getModuleAssets({
             manifest,
-            moduleId,
+            moduleId: x.id,
           }),
         ),
       );
@@ -72,11 +69,7 @@ export async function createSSRHandler() {
 
       const children = (
         <Shell stylesheets={stylesheets}>
-          <StaticRouter
-            handlers={handlers}
-            location={location}
-            matches={matches}
-          />
+          <StaticRouter routes={routes} location={location} matches={matches} />
         </Shell>
       );
 

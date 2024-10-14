@@ -18,13 +18,12 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("renderMatches", () => {
   test("no matches", async () => {
     const context: TRouterContext = {
-      handlers: {
-        route: {
-          path: "",
-          mod: [],
-        },
+      routes: {
+        path: "",
         test: { keys: [], pattern: new RegExp("") },
         modules: [],
+        loaded: false,
+        elements: {},
       },
       location: "/",
       navigate: () => undefined,
@@ -49,13 +48,12 @@ describe("renderMatches", () => {
   test("1 match with no elements", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            mod: [],
-          },
+        route: {
+          path: "/",
           test: regexparam.parse("/", true),
           modules: [],
+          loaded: false,
+          elements: {},
         },
         location: "/",
         isFull: true,
@@ -72,15 +70,15 @@ describe("renderMatches", () => {
   test("1 match with layout elements", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            mod: [],
-          },
+        route: {
+          path: "/",
           test: regexparam.parse("/", true),
           modules: [],
-          layout: {
-            main: <div>Layout</div>,
+          loaded: true,
+          elements: {
+            layout: {
+              main: <div>Layout</div>,
+            },
           },
         },
         location: "/",

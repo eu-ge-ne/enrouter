@@ -2,11 +2,11 @@ import { hydrateRoot } from "react-dom/client";
 
 import "./index.css";
 
-import { loadRouteMatches, matchRoutes, BrowserRouter, debug } from "enrouter";
+import { loadRoutes, matchRoutes, BrowserRouter, debug } from "enrouter";
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 //@ts-ignore
-import { modules, handlers } from "virtual:routes";
+import { routes } from "virtual:routes";
 
 debug(console.debug);
 
@@ -19,13 +19,14 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  const matches = matchRoutes({ handlers, location: window.location.pathname });
-  await loadRouteMatches({ matches, modules });
+  const matches = matchRoutes({ routes, location: window.location.pathname });
+
+  await loadRoutes(matches.map((x) => x.route));
 
   hydrateRoot(
     document,
     <Shell>
-      <BrowserRouter handlers={handlers} modules={modules} />
+      <BrowserRouter routes={routes} />
     </Shell>,
   );
 

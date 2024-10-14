@@ -4,13 +4,12 @@ import type { RouteNodes } from "./mod.js";
 
 export const RouteRenderContext = createContext<RouteNodes>({
   match: {
-    handler: {
-      route: {
-        path: "",
-        mod: [],
-      },
+    route: {
+      path: "",
       test: { keys: [], pattern: new RegExp("") },
       modules: [],
+      loaded: false,
+      elements: {},
     },
     location: "",
     isFull: false,

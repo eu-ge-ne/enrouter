@@ -8,9 +8,13 @@
       "types": "./dist/lib/mod.d.ts",
       "default": "./dist/lib/mod.js"
     },
-    "./vite": {
-      "types": "./dist/vite/mod.d.ts",
-      "default": "./dist/vite/mod.js"
+    "./vite/plugin": {
+      "types": "./dist/vite/plugin/mod.d.ts",
+      "default": "./dist/vite/plugin/mod.js"
+    },
+    "./vite/manifest": {
+      "types": "./dist/vite/manifest.d.ts",
+      "default": "./dist/vite/manifest.js"
     }
   },
   "imports": {

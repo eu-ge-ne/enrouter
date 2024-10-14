@@ -13,7 +13,7 @@ export function useLocation(): string {
 export function usePath(path: string): RouteMatch | undefined {
   let nodes = useContext(RouteRenderContext).last;
   while (nodes) {
-    if (nodes.match.handler.route.path === path) {
+    if (nodes.match.route.path === path) {
       return nodes.match;
     }
     nodes = nodes.prev;

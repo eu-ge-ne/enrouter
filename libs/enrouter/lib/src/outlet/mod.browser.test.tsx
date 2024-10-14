@@ -18,23 +18,23 @@ describe("outlets", () => {
   test("using index elements", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            mod: [],
-          },
+        route: {
+          path: "/",
           test: regexparam.parse("/", true),
           modules: [],
-          layout: {
-            main: (
-              <div>
-                <div>Layout</div>
-                <Outlet name="main" />
-              </div>
-            ),
-          },
-          index: {
-            main: <div>Index</div>,
+          loaded: true,
+          elements: {
+            layout: {
+              main: (
+                <div>
+                  <div>Layout</div>
+                  <Outlet name="main" />
+                </div>
+              ),
+            },
+            index: {
+              main: <div>Index</div>,
+            },
           },
         },
         location: "/",
@@ -52,20 +52,20 @@ describe("outlets", () => {
   test("using next layout elements", async () => {
     const matches: RouteMatch[] = [
       {
-        handler: {
-          route: {
-            path: "/",
-            mod: [],
-          },
+        route: {
+          path: "/",
           test: regexparam.parse("/", true),
           modules: [],
-          layout: {
-            main: (
-              <div>
-                <div>Layout</div>
-                <Outlet name="main" />
-              </div>
-            ),
+          loaded: true,
+          elements: {
+            layout: {
+              main: (
+                <div>
+                  <div>Layout</div>
+                  <Outlet name="main" />
+                </div>
+              ),
+            },
           },
         },
         location: "/",
@@ -73,19 +73,19 @@ describe("outlets", () => {
         params: {},
       },
       {
-        handler: {
-          route: {
-            path: "/a",
-            mod: [],
-          },
+        route: {
+          path: "/a",
           test: regexparam.parse("/a", true),
           modules: [],
-          layout: {
-            main: (
-              <div>
-                <div>Next layout</div>
-              </div>
-            ),
+          loaded: true,
+          elements: {
+            layout: {
+              main: (
+                <div>
+                  <div>Next layout</div>
+                </div>
+              ),
+            },
           },
         },
         location: "/a",

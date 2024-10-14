@@ -1,21 +1,20 @@
 import { createContext } from "react";
 
-import type { RouteHandler } from "#lib/handler/mod.js";
+import type { Route } from "#lib/route/mod.js";
 
 export interface TRouterContext {
-  handlers: RouteHandler;
+  routes: Route;
   location: string;
   navigate: (to: string) => void;
 }
 
 export const RouterContext = createContext<TRouterContext>({
-  handlers: {
-    route: {
-      path: "",
-      mod: [],
-    },
+  routes: {
+    path: "",
     test: { keys: [], pattern: new RegExp("") },
     modules: [],
+    loaded: false,
+    elements: {},
   },
   location: "",
   navigate: () => undefined,
