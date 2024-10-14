@@ -1,5 +1,6 @@
 import * as regexparam from "regexparam";
 
+import { parseRoutePath } from "./modules.js";
 import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
@@ -7,8 +8,6 @@ import type { RouteModules } from "./modules.js";
  * Builds `Route`s from `RouteModules`
  */
 export function buildRoutes(modules: RouteModules): Route {
-  const sorted = modules.sort((a, b) => a.dir.length - b.dir.length);
-
   const routes = new Map<string, Route>();
 
   function findParent(dp: string[]) {
@@ -16,7 +15,7 @@ export function buildRoutes(modules: RouteModules): Route {
 
     while (parentPath.length > 0) {
       parentPath.pop();
-      const path = parsePath("/" + parentPath.join("/"));
+      const path = parseRoutePath(parentPath);
       const parent = routes.get(path);
       if (parent) {
         return parent;
@@ -26,24 +25,29 @@ export function buildRoutes(modules: RouteModules): Route {
     throw new Error("Parent not found");
   }
 
-  for (const { dir, isRoot, id, fileName, importFn } of sorted) {
-    const path = isRoot ? "/" : parsePath("/" + dir.join("/"));
-
-    let route = routes.get(path);
+  for (const {
+    id,
+    fileName,
+    importFn,
+    routePath,
+    isRootRoute,
+    routeDir,
+  } of modules) {
+    let route = routes.get(routePath);
     if (!route) {
       route = {
-        path,
-        test: regexparam.parse(path, true),
+        path: routePath,
+        test: regexparam.parse(routePath, true),
         modules: [],
         loaded: false,
         elements: {},
       };
-      routes.set(path, route);
+      routes.set(routePath, route);
     }
 
-    if (!isRoot) {
-      const parent = findParent(dir);
-      if (!parent.tree?.find((x) => x.path === path)) {
+    if (!isRootRoute) {
+      const parent = findParent(routeDir);
+      if (!parent.tree?.find((x) => x.path === routePath)) {
         if (!parent.tree) {
           parent.tree = [];
         }
@@ -64,8 +68,4 @@ export function buildRoutes(modules: RouteModules): Route {
   }
 
   return root;
-}
-
-function parsePath(str: string) {
-  return str.replace(/\[(.+)\]/, ":$1");
 }

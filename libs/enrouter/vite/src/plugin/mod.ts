@@ -5,6 +5,7 @@ import { type Plugin } from "vite";
 
 import { buildRoutes } from "./build.js";
 import { compileRoutes } from "./compile.js";
+import { parseRoutePath } from "./modules.js";
 import { type RouteModules } from "./modules.js";
 
 const virtualModuleId = "virtual:routes";
@@ -41,29 +42,32 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         .map((x, i) => (x ? { file: _files[i]!, resolvedId: x.id } : undefined))
         .filter((x) => x !== undefined);
 
-      const routeModules: RouteModules = resolvedFiles.map((x) => {
-        const dir = x.file
-          .slice(prefix.length + 1)
-          .split("/")
-          .slice(0, -1);
-
-        const isRoot = dir.length === 0;
-
-        const module = {
-          dir,
-          isRoot,
-
-          id: x.file.slice(rootPath.length + 1),
-          fileName: x.file
+      const routeModules: RouteModules = resolvedFiles
+        .map((x) => {
+          const routeDir = x.file
             .slice(prefix.length + 1)
             .split("/")
-            .at(-1)!,
-          importFn: () => import(x.resolvedId),
-          importStr: `() => import("${x.resolvedId}")`,
-        };
+            .slice(0, -1);
 
-        return module;
-      });
+          const isRootRoute = routeDir.length === 0;
+
+          const module = {
+            id: x.file.slice(rootPath.length + 1),
+            fileName: x.file
+              .slice(prefix.length + 1)
+              .split("/")
+              .at(-1)!,
+            importFn: () => import(x.resolvedId),
+            importStr: `() => import("${x.resolvedId}")`,
+
+            routeDir,
+            isRootRoute,
+            routePath: parseRoutePath(routeDir),
+          };
+
+          return module;
+        })
+        .sort((a, b) => a.routeDir.length - b.routeDir.length);
 
       const routes = buildRoutes(routeModules);
       const source = compileRoutes(routeModules, routes);

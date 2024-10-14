@@ -12,13 +12,14 @@ describe("buildRoutes", () => {
   test("from 1 module", () => {
     const modules: RouteModules = [
       {
-        dir: [],
-        isRoot: true,
-
         id: "src/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/_layout.tsx")',
+
+        routeDir: [],
+        isRootRoute: true,
+        routePath: "/",
       },
     ];
 
@@ -28,22 +29,24 @@ describe("buildRoutes", () => {
   test("from 2 modules", () => {
     const modules: RouteModules = [
       {
-        dir: [],
-        isRoot: true,
-
         id: "src/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/_layout.tsx")',
+
+        routeDir: [],
+        isRootRoute: true,
+        routePath: "/",
       },
       {
-        dir: ["abc"],
-        isRoot: false,
-
         id: "src/abc/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/abc/_layout.tsx")',
+
+        routeDir: ["abc"],
+        isRootRoute: false,
+        routePath: "/abc",
       },
     ];
 
@@ -53,31 +56,34 @@ describe("buildRoutes", () => {
   test("from 3 modules", () => {
     const modules: RouteModules = [
       {
-        dir: [],
-        isRoot: true,
-
         id: "src/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/_layout.tsx")',
+
+        routeDir: [],
+        isRootRoute: true,
+        routePath: "/",
       },
       {
-        dir: ["xyz"],
-        isRoot: false,
-
         id: "src/xyz/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
+
+        routeDir: ["xyz"],
+        isRootRoute: false,
+        routePath: "/xyz",
       },
       {
-        dir: ["xyz"],
-        isRoot: false,
-
         id: "src/xyz/_index.tsx",
         fileName: "_index.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
+
+        routeDir: ["xyz"],
+        isRootRoute: false,
+        routePath: "/xyz",
       },
     ];
 
