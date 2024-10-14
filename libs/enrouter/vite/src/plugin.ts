@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { glob } from "glob";
 import { type Plugin } from "vite";
 
-import { type RouteModules, buildRoutes, routeToJS } from "./build.js";
+import { type RouteModules, buildRoutes } from "./build.js";
 
 const virtualModuleId = "virtual:routes";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
@@ -56,7 +56,8 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
                 id: ids[i]!,
                 dir: dirs[i]!,
                 fileName: fileNames[i]!,
-                load: () => import(x.id),
+                importFn: async () => undefined, //importFn: () => import(x.id),
+                importStr: `() => import("${x.id}")`,
               }
             : undefined,
         )
@@ -66,13 +67,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
 
       const routes = buildRoutes(routeModules);
 
-      const routesStr = routeToJS(routes!, (id) => {
-        const i = ids.findIndex((x) => x === id);
-        const resolved = resolves[i]!;
-        return `() => import("${resolved.id}")`;
-      });
-
-      const result = `export const routes = ${routesStr};`;
+      const result = `export const routes = ${routes};`;
 
       this.info("module: " + result);
 

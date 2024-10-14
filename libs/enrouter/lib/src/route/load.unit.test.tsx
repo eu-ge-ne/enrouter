@@ -39,7 +39,7 @@ describe("loadRoutes", () => {
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
-            load: async () => ({
+            importFn: async () => ({
               components: {
                 main: () => <div>Layout</div>,
               },
@@ -65,7 +65,7 @@ describe("loadRoutes", () => {
           {
             id: "src/_index.tsx",
             fileName: "_index.tsx",
-            load: async () => ({
+            importFn: async () => ({
               components: {
                 main: () => <div>Index</div>,
               },

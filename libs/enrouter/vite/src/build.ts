@@ -10,13 +10,14 @@ export type RouteModules = {
   id: string;
   dir: string[];
   fileName: string;
-  load: () => Promise<unknown>;
+  importFn: () => Promise<unknown>;
+  importStr: string;
 }[];
 
 /**
  * Builds `Route`s from `RouteModules`
  */
-export function buildRoutes(modules: RouteModules): Route | undefined {
+export function buildRoutes(modules: RouteModules): string {
   log("Building routes");
 
   const sorted = modules.sort((a, b) => a.dir.length - b.dir.length);
@@ -38,7 +39,7 @@ export function buildRoutes(modules: RouteModules): Route | undefined {
     throw new Error("Parent not found");
   }
 
-  for (const { id, dir, fileName, load } of sorted) {
+  for (const { id, dir, fileName, importFn } of sorted) {
     const isRoot = dir.length === 0;
 
     const path = isRoot ? "/" : parsePath("/" + dir.join("/"));
@@ -68,28 +69,27 @@ export function buildRoutes(modules: RouteModules): Route | undefined {
     route.modules.push({
       id,
       fileName,
-      load,
+      importFn,
     });
   }
 
-  const result = routes.get("/");
+  const root = routes.get("/");
+  if (!root) {
+    throw new Error("Routes were not built");
+  }
 
   log("Routes built: %o", routes);
 
-  return result;
+  return toJS(root, modules);
 }
 
 function parsePath(str: string) {
   return str.replace(/\[(.+)\]/, ":$1");
 }
 
-export function routeToJS(
-  route: Route,
-  getLoad: (id: string) => string,
-  tab = 0,
-): string {
+function toJS(route: Route, modules: RouteModules, tab = 0): string {
   const tree = route.tree
-    ? route.tree.map((x) => routeToJS(x, getLoad, 4))
+    ? route.tree.map((x) => toJS(x, modules, 4))
     : undefined;
   const treeStr = tree
     ? `[
@@ -103,7 +103,7 @@ ${tree.join(",\n")}
 {
     id: "${x.id}",
     fileName: "${x.fileName}",
-    load: ${getLoad(x.id)},
+    importFn: ${modules.find((mod) => mod.id === x.id)?.importStr},
 }`,
     )
     .join(",")

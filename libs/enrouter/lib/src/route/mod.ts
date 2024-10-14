@@ -26,7 +26,7 @@ export interface Route {
   modules: {
     id: string;
     fileName: string;
-    load: () => Promise<unknown>;
+    importFn: () => Promise<unknown>;
   }[];
 
   loaded: boolean;

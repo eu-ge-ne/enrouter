@@ -16,8 +16,8 @@ export async function loadRoutes(routes: Route[]): Promise<void> {
       continue;
     }
 
-    for (const { fileName, load } of route.modules) {
-      const promise = loaders[fileName]?.(route, load);
+    for (const { fileName, importFn } of route.modules) {
+      const promise = loaders[fileName]?.(route, importFn);
       if (promise) {
         promises.push(promise.then(() => (route.loaded = true)));
       }
@@ -31,15 +31,15 @@ export async function loadRoutes(routes: Route[]): Promise<void> {
 
 type Loader = (
   route: Route,
-  load: () => Promise<unknown>,
+  importFn: () => Promise<unknown>,
 ) => Promise<void> | void;
 
 interface _Components {
   components: Record<string, ComponentType>;
 }
 
-async function render(load: () => Promise<unknown>) {
-  const fn = load as () => Promise<_Components>;
+async function load(importFn: () => Promise<unknown>) {
+  const fn = importFn as () => Promise<_Components>;
   const { components } = await fn();
   return Object.fromEntries(
     Object.entries(components).map(([key, C]) => [key, <C />]),
@@ -47,13 +47,13 @@ async function render(load: () => Promise<unknown>) {
 }
 
 export const loaders: Record<string, Loader> = {
-  "_layout.tsx": async (route, load) => {
-    route.elements.layout = await render(load);
+  "_layout.tsx": async (route, importFn) => {
+    route.elements.layout = await load(importFn);
   },
-  "_index.tsx": async (route, load) => {
-    route.elements.index = await render(load);
+  "_index.tsx": async (route, importFn) => {
+    route.elements.index = await load(importFn);
   },
-  "_notFound.tsx": async (route, load) => {
-    route.elements.notFound = await render(load);
+  "_notFound.tsx": async (route, importFn) => {
+    route.elements.notFound = await load(importFn);
   },
 };
