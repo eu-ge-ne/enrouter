@@ -6,7 +6,11 @@ import { compileRoutes } from "./compile.js";
 import type { RouteModules } from "./modules.js";
 
 describe("compileRoutes", () => {
-  test("1 route", () => {
+  test("from 0 modules", () => {
+    expect(() => compileRoutes([])).toThrowErrorMatchingSnapshot();
+  });
+
+  test("from 1 module", () => {
     const modules: RouteModules[] = [
       {
         dir: [],
@@ -26,7 +30,7 @@ describe("compileRoutes", () => {
     expect(compileRoutes(modules)).toMatchSnapshot();
   });
 
-  test("2 routes", () => {
+  test("from 2 modules", () => {
     const modules: RouteModules[] = [
       {
         dir: [],
@@ -59,7 +63,7 @@ describe("compileRoutes", () => {
     expect(compileRoutes(modules)).toMatchSnapshot();
   });
 
-  test("3 routes", () => {
+  test("from 3 modules", () => {
     const modules: RouteModules[] = [
       {
         dir: [],
