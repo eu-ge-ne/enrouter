@@ -52,7 +52,7 @@ export function compileRoutes(routeModules: RouteModules[]): string {
     throw new Error("Routes were not built");
   }
 
-  return compile(routeModules, root);
+  return `export const routes = ${compile(routeModules, root)};`;
 }
 
 function compile(routeModules: RouteModules[], route: Route, tab = 0): string {

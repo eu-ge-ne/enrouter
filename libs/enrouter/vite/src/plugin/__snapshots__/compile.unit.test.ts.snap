@@ -3,7 +3,7 @@
 exports[`compileRoutes > from 0 modules 1`] = `[Error: Routes were not built]`;
 
 exports[`compileRoutes > from 1 module 1`] = `
-"{
+"export const routes = {
     path: "/",
     test: {
       keys: [],
@@ -18,11 +18,11 @@ exports[`compileRoutes > from 1 module 1`] = `
     loaded: false,
     elements: {},
     tree: undefined,
-}"
+};"
 `;
 
 exports[`compileRoutes > from 2 modules 1`] = `
-"{
+"export const routes = {
     path: "/",
     test: {
       keys: [],
@@ -54,11 +54,11 @@ exports[`compileRoutes > from 2 modules 1`] = `
         tree: undefined,
     }
   ],
-}"
+};"
 `;
 
 exports[`compileRoutes > from 3 modules 1`] = `
-"{
+"export const routes = {
     path: "/",
     test: {
       keys: [],
@@ -95,5 +95,5 @@ exports[`compileRoutes > from 3 modules 1`] = `
         tree: undefined,
     }
   ],
-}"
+};"
 `;

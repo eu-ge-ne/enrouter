@@ -46,13 +46,11 @@ export function routes(params: RoutesParams): Plugin {
         resolvedFiles,
       });
 
-      const source = compileRoutes(routeModules);
+      const compiled = compileRoutes(routeModules);
 
-      const str = `export const routes = ${source};`;
+      this.info("module: " + compiled);
 
-      this.info("module: " + str);
-
-      return str;
+      return compiled;
     },
   };
 }
