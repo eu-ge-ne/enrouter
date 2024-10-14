@@ -1,4 +1,4 @@
-import * as path from "node:path";
+import { resolve } from "node:path";
 
 import { glob } from "glob";
 import { type Plugin } from "vite";
@@ -30,21 +30,21 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         return null;
       }
 
-      const pathPrefix = path.resolve(routesFsPath);
+      const prefix = resolve(routesFsPath);
 
-      const files = await glob(path.resolve(pathPrefix, "**/_*.tsx"));
+      const files = await glob(resolve(prefix, "**/_*.tsx"));
       const resolves = await Promise.all(files.map((x) => this.resolve(x)));
       const ids = files.map((x) => x.slice(pathRoot.length + 1));
       const dirs = files.map((x) =>
         x
-          .slice(pathPrefix.length + 1)
+          .slice(prefix.length + 1)
           .split("/")
           .slice(0, -1),
       );
       const fileNames = files.map(
         (x) =>
           x
-            .slice(pathPrefix.length + 1)
+            .slice(prefix.length + 1)
             .split("/")
             .at(-1)!,
       );
@@ -53,7 +53,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
         .map((x, i) =>
           x
             ? {
-                id: ids[i]!,
+                moduleId: ids[i]!,
                 dir: dirs[i]!,
                 fileName: fileNames[i]!,
                 importFn: async () => undefined, //importFn: () => import(x.id),
