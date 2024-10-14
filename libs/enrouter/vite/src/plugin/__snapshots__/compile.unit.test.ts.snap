@@ -1,0 +1,97 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`compileRoutes > 1 route 1`] = `
+"{
+    path: "/",
+    test: {
+      keys: [],
+      pattern: /^(?=$|\\/)/i,
+    },
+    modules: [    
+    {
+        id: "src/_layout.tsx",
+        fileName: "_layout.tsx",
+        importFn: () => import("/home/src/_layout.tsx"),
+    }],
+    loaded: false,
+    elements: {},
+    tree: undefined,
+}"
+`;
+
+exports[`compileRoutes > 2 routes 1`] = `
+"{
+    path: "/",
+    test: {
+      keys: [],
+      pattern: /^(?=$|\\/)/i,
+    },
+    modules: [    
+    {
+        id: "src/_layout.tsx",
+        fileName: "_layout.tsx",
+        importFn: () => import("/home/src/_layout.tsx"),
+    }],
+    loaded: false,
+    elements: {},
+    tree: [
+    {
+        path: "/abc",
+        test: {
+          keys: [],
+          pattern: /^\\/abc(?=$|\\/)/i,
+        },
+        modules: [    
+        {
+            id: "src/abc/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: () => import("/home/src/abc/_layout.tsx"),
+        }],
+        loaded: false,
+        elements: {},
+        tree: undefined,
+    }
+  ],
+}"
+`;
+
+exports[`compileRoutes > 3 routes 1`] = `
+"{
+    path: "/",
+    test: {
+      keys: [],
+      pattern: /^(?=$|\\/)/i,
+    },
+    modules: [    
+    {
+        id: "src/_layout.tsx",
+        fileName: "_layout.tsx",
+        importFn: () => import("/home/src/_layout.tsx"),
+    }],
+    loaded: false,
+    elements: {},
+    tree: [
+    {
+        path: "/xyz",
+        test: {
+          keys: [],
+          pattern: /^\\/xyz(?=$|\\/)/i,
+        },
+        modules: [    
+        {
+            id: "src/xyz/_layout.tsx",
+            fileName: "_layout.tsx",
+            importFn: () => import("/home/src/xyz/_layout.tsx"),
+        },
+        {
+            id: "src/xyz/_index.tsx",
+            fileName: "_index.tsx",
+            importFn: () => import("/home/src/xyz/_layout.tsx"),
+        }],
+        loaded: false,
+        elements: {},
+        tree: undefined,
+    }
+  ],
+}"
+`;
