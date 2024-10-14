@@ -44,12 +44,8 @@ export function buildRoutes(routeModules: RouteModules[]): Route {
 
     const parent = findParent(dir);
     if (parent) {
-      if (!parent.tree?.find((x) => x.path === path)) {
-        if (!parent.tree) {
-          parent.tree = [];
-        }
-        parent.tree.push(route);
-      }
+      parent.tree = parent.tree ?? [];
+      parent.tree.push(route);
     }
   }
 
