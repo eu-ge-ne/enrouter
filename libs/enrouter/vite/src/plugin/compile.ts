@@ -2,12 +2,12 @@ import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
 export function compileRoutes(
-  route: Route,
   modules: RouteModules,
+  route: Route,
   tab = 0,
 ): string {
   const tree = route.tree
-    ? route.tree.map((x) => compileRoutes(x, modules, 4))
+    ? route.tree.map((x) => compileRoutes(modules, x, 4))
     : undefined;
   const treeStr = tree
     ? `[

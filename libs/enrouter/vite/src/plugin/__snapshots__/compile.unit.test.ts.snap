@@ -1,8 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`buildRoutes > from 0 modules 1`] = `[Error: Routes were not built]`;
-
-exports[`buildRoutes > from 1 module 1`] = `
+exports[`compileRoutes > 1 route 1`] = `
 "{
     path: "/",
     test: {
@@ -21,7 +19,7 @@ exports[`buildRoutes > from 1 module 1`] = `
 }"
 `;
 
-exports[`buildRoutes > from 2 modules 1`] = `
+exports[`compileRoutes > 2 routes 1`] = `
 "{
     path: "/",
     test: {
@@ -57,7 +55,7 @@ exports[`buildRoutes > from 2 modules 1`] = `
 }"
 `;
 
-exports[`buildRoutes > from 3 modules 1`] = `
+exports[`compileRoutes > 3 routes 1`] = `
 "{
     path: "/",
     test: {
