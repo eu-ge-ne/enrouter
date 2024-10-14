@@ -24,10 +24,10 @@ describe("compileRoutes", () => {
 
     const modules: RouteModules[] = [
       {
-        routeDir: [],
-        routePath: "/",
-        routeTest: regexparam.parse("/", true),
-        routeModules: [
+        dir: [],
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
@@ -73,10 +73,10 @@ describe("compileRoutes", () => {
 
     const modules: RouteModules[] = [
       {
-        routeDir: [],
-        routePath: "/",
-        routeTest: regexparam.parse("/", true),
-        routeModules: [
+        dir: [],
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
@@ -86,10 +86,10 @@ describe("compileRoutes", () => {
         ],
       },
       {
-        routeDir: ["abc"],
-        routePath: "/abc",
-        routeTest: regexparam.parse("/abc", true),
-        routeModules: [
+        dir: ["abc"],
+        path: "/abc",
+        test: regexparam.parse("/abc", true),
+        modules: [
           {
             id: "src/abc/_layout.tsx",
             fileName: "_layout.tsx",
@@ -140,10 +140,10 @@ describe("compileRoutes", () => {
 
     const modules: RouteModules[] = [
       {
-        routeDir: [],
-        routePath: "/",
-        routeTest: regexparam.parse("/", true),
-        routeModules: [
+        dir: [],
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
@@ -153,10 +153,10 @@ describe("compileRoutes", () => {
         ],
       },
       {
-        routeDir: ["xyz"],
-        routePath: "/xyz",
-        routeTest: regexparam.parse("/xyz", true),
-        routeModules: [
+        dir: ["xyz"],
+        path: "/xyz",
+        test: regexparam.parse("/xyz", true),
+        modules: [
           {
             id: "src/xyz/_layout.tsx",
             fileName: "_layout.tsx",

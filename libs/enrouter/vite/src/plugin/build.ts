@@ -5,7 +5,7 @@ import type { RouteModules } from "./modules.js";
 /**
  * Builds `Route`s from `RouteModules`
  */
-export function buildRoutes(modules: RouteModules[]): Route {
+export function buildRoutes(routeModules: RouteModules[]): Route {
   const routes = new Map<string, Route>();
 
   function findParent(dp: string[]): Route | undefined {
@@ -17,8 +17,8 @@ export function buildRoutes(modules: RouteModules[]): Route {
 
     while (parentPath.length > 0) {
       parentPath.pop();
-      const { routePath } = parseRoutePath(parentPath);
-      const parent = routes.get(routePath);
+      const { path } = parseRoutePath(parentPath);
+      const parent = routes.get(path);
       if (parent) {
         return parent;
       }
@@ -27,22 +27,22 @@ export function buildRoutes(modules: RouteModules[]): Route {
     throw new Error("Parent not found");
   }
 
-  for (const { routeDir, routePath, routeTest, routeModules } of modules) {
-    let route = routes.get(routePath);
+  for (const { dir, path, test, modules } of routeModules) {
+    let route = routes.get(path);
     if (!route) {
       route = {
-        path: routePath,
-        test: routeTest,
-        modules: routeModules.map(({ importStr, ...x }) => x),
+        path,
+        test,
+        modules: modules.map(({ importStr, ...x }) => x),
         loaded: false,
         elements: {},
       };
-      routes.set(routePath, route);
+      routes.set(path, route);
     }
 
-    const parent = findParent(routeDir);
+    const parent = findParent(dir);
     if (parent) {
-      if (!parent.tree?.find((x) => x.path === routePath)) {
+      if (!parent.tree?.find((x) => x.path === path)) {
         if (!parent.tree) {
           parent.tree = [];
         }

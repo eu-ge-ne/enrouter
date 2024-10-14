@@ -22,7 +22,7 @@ ${tree.join(",\n")}
 {
     id: "${x.id}",
     fileName: "${x.fileName}",
-    importFn: ${modules.find(({ routePath }) => routePath === route.path)!.routeModules.find(({ id }) => id === x.id)?.importStr},
+    importFn: ${modules.find(({ path }) => path === route.path)!.modules.find(({ id }) => id === x.id)?.importStr},
 }`,
     )
     .join(",")
