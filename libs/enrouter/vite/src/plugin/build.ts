@@ -26,9 +26,7 @@ export function buildRoutes(modules: RouteModules): Route {
     throw new Error("Parent not found");
   }
 
-  for (const { id, dir, fileName, importFn } of sorted) {
-    const isRoot = dir.length === 0;
-
+  for (const { dir, isRoot, id, fileName, importFn } of sorted) {
     const path = isRoot ? "/" : parsePath("/" + dir.join("/"));
 
     let route = routes.get(path);

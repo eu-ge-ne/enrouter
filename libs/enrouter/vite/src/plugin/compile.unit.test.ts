@@ -24,8 +24,10 @@ describe("compileRoutes", () => {
 
     const modules: RouteModules = [
       {
-        id: "src/_layout.tsx",
         dir: [],
+        isRoot: true,
+
+        id: "src/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/_layout.tsx")',
@@ -67,15 +69,19 @@ describe("compileRoutes", () => {
 
     const modules: RouteModules = [
       {
-        id: "src/_layout.tsx",
         dir: [],
+        isRoot: true,
+
+        id: "src/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/_layout.tsx")',
       },
       {
-        id: "src/abc/_layout.tsx",
         dir: ["abc"],
+        isRoot: false,
+
+        id: "src/abc/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/abc/_layout.tsx")',
@@ -122,22 +128,28 @@ describe("compileRoutes", () => {
 
     const modules: RouteModules = [
       {
-        id: "src/_layout.tsx",
         dir: [],
+        isRoot: true,
+
+        id: "src/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/_layout.tsx")',
       },
       {
-        id: "src/xyz/_layout.tsx",
         dir: ["xyz"],
+        isRoot: false,
+
+        id: "src/xyz/_layout.tsx",
         fileName: "_layout.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
       },
       {
-        id: "src/xyz/_index.tsx",
         dir: ["xyz"],
+        isRoot: false,
+
+        id: "src/xyz/_index.tsx",
         fileName: "_index.tsx",
         importFn: async () => undefined,
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
