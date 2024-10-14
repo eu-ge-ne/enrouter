@@ -47,10 +47,21 @@ describe("compileRoutes", () => {
     const compiled = compileRoutes(modules);
     const compiledRoutes = await getCompiledRoutes(compiled);
 
-    expect(compiledRoutes).toEqual(builtRoutes);
+    builtRoutes.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    compiledRoutes.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+
+    expect(builtRoutes).toEqual(compiledRoutes);
   });
 
-  test("from 2 modules", () => {
+  test("from 2 modules", async () => {
     const modules: RouteModules[] = [
       {
         dir: [],
@@ -80,10 +91,36 @@ describe("compileRoutes", () => {
       },
     ];
 
-    expect(compileRoutes(modules)).toMatchSnapshot();
+    const builtRoutes = buildRoutes(modules);
+
+    const compiled = compileRoutes(modules);
+    const compiledRoutes = await getCompiledRoutes(compiled);
+
+    builtRoutes.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    builtRoutes.tree![0]!.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    compiledRoutes.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    compiledRoutes.tree![0]!.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+
+    expect(builtRoutes).toEqual(compiledRoutes);
   });
 
-  test("from 3 modules", () => {
+  test("from 3 modules", async () => {
     const modules: RouteModules[] = [
       {
         dir: [],
@@ -119,6 +156,32 @@ describe("compileRoutes", () => {
       },
     ];
 
-    expect(compileRoutes(modules)).toMatchSnapshot();
+    const builtRoutes = buildRoutes(modules);
+
+    const compiled = compileRoutes(modules);
+    const compiledRoutes = await getCompiledRoutes(compiled);
+
+    builtRoutes.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    builtRoutes.tree![0]!.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    compiledRoutes.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+    compiledRoutes.tree![0]!.modules.forEach(
+      (x) =>
+        //@ts-ignore
+        delete x.importFn,
+    );
+
+    expect(builtRoutes).toEqual(compiledRoutes);
   });
 });

@@ -78,7 +78,7 @@ ${tree.join(",\n")}
     .join(",")
     .replace(/^/gm, " ".repeat(4));
 
-  return `{
+  let res = `{
     path: "${route.path}",
     test: {
       keys: [${route.test.keys.map((x) => "${x}").join(",")}],
@@ -87,6 +87,13 @@ ${tree.join(",\n")}
     modules: [${mods}],
     loaded: false,
     elements: {},
-    tree: ${treeStr},
-}`.replace(/^/gm, " ".repeat(tab));
+`;
+  if (tree) {
+    res += `    tree: ${treeStr},
+`;
+  }
+
+  res += "}";
+
+  return res.replace(/^/gm, " ".repeat(tab));
 }
