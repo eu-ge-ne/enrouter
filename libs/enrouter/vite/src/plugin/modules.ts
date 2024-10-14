@@ -82,5 +82,5 @@ export function buildModuleTree({
     };
   });
 
-  return routeModules.sort((a, b) => a.dir.length - b.dir.length);
+  return routeModules;
 }

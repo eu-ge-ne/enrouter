@@ -27,7 +27,9 @@ export function buildRoutes(routeModules: RouteModules[]): Route {
     throw new Error("Parent not found");
   }
 
-  for (const { dir, path, test, modules } of routeModules) {
+  const sorted = routeModules.sort((a, b) => a.dir.length - b.dir.length);
+
+  for (const { dir, path, test, modules } of sorted) {
     let route = routes.get(path);
     if (!route) {
       route = {
