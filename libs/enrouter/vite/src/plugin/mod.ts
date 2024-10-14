@@ -32,37 +32,26 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
 
       const prefix = resolve(routesFsPath);
 
-      const files = await glob(resolve(prefix, "**/_*.tsx"));
-      const resolves = await Promise.all(files.map((x) => this.resolve(x)));
+      const _files = await glob(resolve(prefix, "**/_*.tsx"));
+      const _resolves = await Promise.all(_files.map((x) => this.resolve(x)));
 
-      const ids = files.map((x) => x.slice(rootPath.length + 1));
-      const dirs = files.map((x) =>
-        x
+      const resolvedFiles = _resolves
+        .map((x, i) => (x ? { file: _files[i]!, resolvedId: x.id } : undefined))
+        .filter((x) => x !== undefined);
+
+      const routeModules: RouteModules = resolvedFiles.map((x) => ({
+        dir: x.file
           .slice(prefix.length + 1)
           .split("/")
           .slice(0, -1),
-      );
-      const fileNames = files.map(
-        (x) =>
-          x
-            .slice(prefix.length + 1)
-            .split("/")
-            .at(-1)!,
-      );
-
-      const routeModules: RouteModules = resolves
-        .map((x, i) =>
-          x
-            ? {
-                id: ids[i]!,
-                dir: dirs[i]!,
-                fileName: fileNames[i]!,
-                importFn: async () => undefined, //importFn: () => import(x.id),
-                importStr: `() => import("${x.id}")`,
-              }
-            : undefined,
-        )
-        .filter((x) => x !== undefined);
+        id: x.file.slice(rootPath.length + 1),
+        fileName: x.file
+          .slice(prefix.length + 1)
+          .split("/")
+          .at(-1)!,
+        importFn: () => import(x.resolvedId),
+        importStr: `() => import("${x.resolvedId}")`,
+      }));
 
       const routes = buildRoutes(routeModules);
 

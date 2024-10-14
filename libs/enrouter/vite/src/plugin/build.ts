@@ -3,8 +3,9 @@ import * as regexparam from "regexparam";
 import type { Route } from "#lib/route/mod.js";
 
 export type RouteModules = {
-  id: string;
   dir: string[];
+
+  id: string;
   fileName: string;
   importFn: () => Promise<unknown>;
   importStr: string;
