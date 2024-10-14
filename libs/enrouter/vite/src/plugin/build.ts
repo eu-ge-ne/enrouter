@@ -1,20 +1,12 @@
 import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
-
-export type RouteModules = {
-  dir: string[];
-
-  id: string;
-  fileName: string;
-  importFn: () => Promise<unknown>;
-  importStr: string;
-}[];
+import type { RouteModules } from "./modules.js";
 
 /**
  * Builds `Route`s from `RouteModules`
  */
-export function buildRoutes(modules: RouteModules): string {
+export function buildRoutes(modules: RouteModules): Route {
   const sorted = modules.sort((a, b) => a.dir.length - b.dir.length);
 
   const routes = new Map<string, Route>();
@@ -73,44 +65,9 @@ export function buildRoutes(modules: RouteModules): string {
     throw new Error("Routes were not built");
   }
 
-  return toJS(root, modules);
+  return root;
 }
 
 function parsePath(str: string) {
   return str.replace(/\[(.+)\]/, ":$1");
-}
-
-function toJS(route: Route, modules: RouteModules, tab = 0): string {
-  const tree = route.tree
-    ? route.tree.map((x) => toJS(x, modules, 4))
-    : undefined;
-  const treeStr = tree
-    ? `[
-${tree.join(",\n")}
-  ]`
-    : undefined;
-
-  const mods = route.modules
-    .map(
-      (x) => `
-{
-    id: "${x.id}",
-    fileName: "${x.fileName}",
-    importFn: ${modules.find(({ id }) => id === x.id)?.importStr},
-}`,
-    )
-    .join(",")
-    .replace(/^/gm, " ".repeat(4));
-
-  return `{
-    path: "${route.path}",
-    test: {
-      keys: [${route.test.keys.map((x) => "${x}").join(",")}],
-      pattern: ${route.test.pattern},
-    },
-    modules: [${mods}],
-    loaded: false,
-    elements: {},
-    tree: ${treeStr},
-}`.replace(/^/gm, " ".repeat(tab));
 }

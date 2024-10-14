@@ -3,7 +3,9 @@ import { resolve } from "node:path";
 import { glob } from "glob";
 import { type Plugin } from "vite";
 
-import { type RouteModules, buildRoutes } from "./build.js";
+import { buildRoutes } from "./build.js";
+import { compileRoutes } from "./compile.js";
+import { type RouteModules } from "./modules.js";
 
 const virtualModuleId = "virtual:routes";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
@@ -54,12 +56,13 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
       }));
 
       const routes = buildRoutes(routeModules);
+      const source = compileRoutes(routes, routeModules);
 
-      const source = `export const routes = ${routes};`;
+      const str = `export const routes = ${source};`;
 
-      this.info("module: " + source);
+      this.info("module: " + str);
 
-      return source;
+      return str;
     },
   };
 }
