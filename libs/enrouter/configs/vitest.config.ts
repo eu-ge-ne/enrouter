@@ -4,7 +4,7 @@ export default {
   test: {
     coverage: {
       enabled: true,
-      include: ["lib/src/**"],
+      include: ["lib/src/**", "vite/src/**"],
       reporter: ["text", "html"],
     },
   },
