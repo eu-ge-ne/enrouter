@@ -26,7 +26,7 @@
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./coverage",
     "lint": "tsc -p lib/tsconfig.json && tsc -p vite/tsconfig.json",
-    "test": "vitest run --config configs/vitest.config.ts",
+    "test": "NODE_OPTIONS=--experimental-vm-modules vitest run --config configs/vitest.config.ts",
     "build": "true",
     "build:lib": "tsup --config configs/tsup.lib.config.ts",
     "build:vite": "tsup --config configs/tsup.vite.config.ts"

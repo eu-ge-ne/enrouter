@@ -1,16 +1,31 @@
+import * as vm from "node:vm";
+
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
+import { buildRoutes } from "./build.js";
 import { compileRoutes } from "./compile.js";
 
+import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
+
+async function getCompiledRoutes(compiled: string): Promise<Route> {
+  const script = new vm.SourceTextModule(compiled, {
+    context: vm.createContext({}),
+  });
+  //@ts-ignore
+  await script.link(() => {});
+  await script.evaluate();
+  //@ts-ignore
+  return script.namespace.routes;
+}
 
 describe("compileRoutes", () => {
   test("from 0 modules", () => {
     expect(() => compileRoutes([])).toThrowErrorMatchingSnapshot();
   });
 
-  test("from 1 module", () => {
+  test("from 1 module", async () => {
     const modules: RouteModules[] = [
       {
         dir: [],
@@ -27,7 +42,12 @@ describe("compileRoutes", () => {
       },
     ];
 
-    expect(compileRoutes(modules)).toMatchSnapshot();
+    const builtRoutes = buildRoutes(modules);
+
+    const compiled = compileRoutes(modules);
+    const compiledRoutes = await getCompiledRoutes(compiled);
+
+    expect(compiledRoutes).toEqual(builtRoutes);
   });
 
   test("from 2 modules", () => {
