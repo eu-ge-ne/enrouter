@@ -1,4 +1,5 @@
 import { describe, test, expect } from "vitest";
+import * as regexparam from "regexparam";
 
 import { buildRoutes } from "./build.js";
 
@@ -18,8 +19,8 @@ describe("buildRoutes", () => {
         importStr: '() => import("/home/src/_layout.tsx")',
 
         routeDir: [],
-        isRootRoute: true,
         routePath: "/",
+        routeTest: regexparam.parse("/", true),
       },
     ];
 
@@ -35,8 +36,8 @@ describe("buildRoutes", () => {
         importStr: '() => import("/home/src/_layout.tsx")',
 
         routeDir: [],
-        isRootRoute: true,
         routePath: "/",
+        routeTest: regexparam.parse("/", true),
       },
       {
         id: "src/abc/_layout.tsx",
@@ -45,8 +46,8 @@ describe("buildRoutes", () => {
         importStr: '() => import("/home/src/abc/_layout.tsx")',
 
         routeDir: ["abc"],
-        isRootRoute: false,
         routePath: "/abc",
+        routeTest: regexparam.parse("/abc", true),
       },
     ];
 
@@ -62,8 +63,8 @@ describe("buildRoutes", () => {
         importStr: '() => import("/home/src/_layout.tsx")',
 
         routeDir: [],
-        isRootRoute: true,
         routePath: "/",
+        routeTest: regexparam.parse("/", true),
       },
       {
         id: "src/xyz/_layout.tsx",
@@ -72,8 +73,8 @@ describe("buildRoutes", () => {
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
 
         routeDir: ["xyz"],
-        isRootRoute: false,
         routePath: "/xyz",
+        routeTest: regexparam.parse("/xyz", true),
       },
       {
         id: "src/xyz/_index.tsx",
@@ -82,8 +83,8 @@ describe("buildRoutes", () => {
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
 
         routeDir: ["xyz"],
-        isRootRoute: false,
         routePath: "/xyz",
+        routeTest: regexparam.parse("/xyz", true),
       },
     ];
 

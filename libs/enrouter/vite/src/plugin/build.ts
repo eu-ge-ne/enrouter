@@ -1,5 +1,3 @@
-import * as regexparam from "regexparam";
-
 import { parseRoutePath } from "./modules.js";
 import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
@@ -10,13 +8,17 @@ import type { RouteModules } from "./modules.js";
 export function buildRoutes(modules: RouteModules): Route {
   const routes = new Map<string, Route>();
 
-  function findParent(dp: string[]) {
+  function findParent(dp: string[]): Route | undefined {
+    if (dp.length === 0) {
+      return;
+    }
+
     const parentPath = [...dp];
 
     while (parentPath.length > 0) {
       parentPath.pop();
-      const path = parseRoutePath(parentPath);
-      const parent = routes.get(path);
+      const { routePath } = parseRoutePath(parentPath);
+      const parent = routes.get(routePath);
       if (parent) {
         return parent;
       }
@@ -29,15 +31,15 @@ export function buildRoutes(modules: RouteModules): Route {
     id,
     fileName,
     importFn,
-    routePath,
-    isRootRoute,
     routeDir,
+    routePath,
+    routeTest,
   } of modules) {
     let route = routes.get(routePath);
     if (!route) {
       route = {
         path: routePath,
-        test: regexparam.parse(routePath, true),
+        test: routeTest,
         modules: [],
         loaded: false,
         elements: {},
@@ -45,8 +47,8 @@ export function buildRoutes(modules: RouteModules): Route {
       routes.set(routePath, route);
     }
 
-    if (!isRootRoute) {
-      const parent = findParent(routeDir);
+    const parent = findParent(routeDir);
+    if (parent) {
       if (!parent.tree?.find((x) => x.path === routePath)) {
         if (!parent.tree) {
           parent.tree = [];

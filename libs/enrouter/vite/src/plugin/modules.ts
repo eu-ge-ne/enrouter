@@ -1,3 +1,5 @@
+import * as regexparam from "regexparam";
+
 export type RouteModules = {
   id: string;
   fileName: string;
@@ -5,12 +7,27 @@ export type RouteModules = {
   importStr: string;
 
   routeDir: string[];
-  isRootRoute: boolean;
   routePath: string;
+  routeTest: {
+    keys: string[];
+    pattern: RegExp;
+  };
 }[];
 
-export function parseRoutePath(routeDir: string[]) {
+export function parseRoutePath(routeDir: string[]): {
+  routePath: string;
+  routeTest: {
+    keys: string[];
+    pattern: RegExp;
+  };
+} {
   const str = "/" + routeDir.join("/");
 
-  return str.replace(/\[(.+)\]/, ":$1");
+  const routePath = str.replace(/\[(.+)\]/, ":$1");
+  const routeTest = regexparam.parse(routePath, true);
+
+  return {
+    routePath,
+    routeTest,
+  };
 }

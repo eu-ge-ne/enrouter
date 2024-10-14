@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 
-import { glob } from "glob";
 import { type Plugin } from "vite";
+import { glob } from "glob";
 
 import { buildRoutes } from "./build.js";
 import { compileRoutes } from "./compile.js";
@@ -49,8 +49,6 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
             .split("/")
             .slice(0, -1);
 
-          const isRootRoute = routeDir.length === 0;
-
           const module = {
             id: x.file.slice(rootPath.length + 1),
             fileName: x.file
@@ -61,8 +59,7 @@ export function routes({ routesFsPath }: RoutesParams): Plugin {
             importStr: `() => import("${x.resolvedId}")`,
 
             routeDir,
-            isRootRoute,
-            routePath: parseRoutePath(routeDir),
+            ...parseRoutePath(routeDir),
           };
 
           return module;

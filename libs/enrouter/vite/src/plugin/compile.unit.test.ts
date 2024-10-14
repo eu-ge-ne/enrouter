@@ -30,8 +30,8 @@ describe("compileRoutes", () => {
         importStr: '() => import("/home/src/_layout.tsx")',
 
         routeDir: [],
-        isRootRoute: true,
         routePath: "/",
+        routeTest: regexparam.parse("/", true),
       },
     ];
 
@@ -76,8 +76,8 @@ describe("compileRoutes", () => {
         importStr: '() => import("/home/src/_layout.tsx")',
 
         routeDir: [],
-        isRootRoute: true,
         routePath: "/",
+        routeTest: regexparam.parse("/", true),
       },
       {
         id: "src/abc/_layout.tsx",
@@ -86,8 +86,8 @@ describe("compileRoutes", () => {
         importStr: '() => import("/home/src/abc/_layout.tsx")',
 
         routeDir: ["abc"],
-        isRootRoute: false,
         routePath: "/abc",
+        routeTest: regexparam.parse("/abc", true),
       },
     ];
 
@@ -137,8 +137,8 @@ describe("compileRoutes", () => {
         importStr: '() => import("/home/src/_layout.tsx")',
 
         routeDir: [],
-        isRootRoute: true,
         routePath: "/",
+        routeTest: regexparam.parse("/", true),
       },
       {
         id: "src/xyz/_layout.tsx",
@@ -147,8 +147,8 @@ describe("compileRoutes", () => {
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
 
         routeDir: ["xyz"],
-        isRootRoute: false,
         routePath: "/xyz",
+        routeTest: regexparam.parse("/xyz", true),
       },
       {
         id: "src/xyz/_index.tsx",
@@ -157,8 +157,8 @@ describe("compileRoutes", () => {
         importStr: '() => import("/home/src/xyz/_layout.tsx")',
 
         routeDir: ["xyz"],
-        isRootRoute: false,
         routePath: "/xyz",
+        routeTest: regexparam.parse("/xyz", true),
       },
     ];
 
