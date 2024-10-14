@@ -17,7 +17,7 @@ export default defineConfig({
       }),
     },
     react({ include: /\.(jsx|js|tsx|ts|mdx|md)$/ }),
-    routes({ routesFsPath: "src/app" }),
+    routes({ path: "src/app" }),
   ],
   appType: "custom",
   server: {
