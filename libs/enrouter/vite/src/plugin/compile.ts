@@ -1,12 +1,16 @@
 import { parseRoutePath } from "./modules.js";
 
-import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
-export function compileRoutes(routeModules: RouteModules[]): string {
-  const routes = new Map<string, Route>();
+interface RouteProps {
+  props: string;
+  tree?: RouteProps[];
+}
 
-  function findParent(dp: string[]): Route | undefined {
+export function compileRoutes(routeModules: RouteModules[]): string {
+  const routes = new Map<string, RouteProps>();
+
+  function findParent(dp: string[]): RouteProps | undefined {
     if (dp.length === 0) {
       return;
     }
@@ -30,12 +34,27 @@ export function compileRoutes(routeModules: RouteModules[]): string {
   for (const { dir, path, test, modules } of sorted) {
     let route = routes.get(path);
     if (!route) {
+      const mods = modules
+        .map((x) =>
+          `{
+  id: "${x.id}",
+  fileName: "${x.fileName}",
+  importFn: ${x.importStr},
+}`.replace(/^/gm, " ".repeat(2)),
+        )
+        .join(",\n");
+
       route = {
-        path,
-        test,
-        modules: modules.map(({ importStr, ...x }) => x),
-        loaded: false,
-        elements: {},
+        props: `path: "${path}",
+test: {
+  keys: [${test.keys.map((x) => "${x}").join(",")}],
+  pattern: ${test.pattern},
+},
+modules: [
+${mods}
+],
+loaded: false,
+elements: {},`.replace(/^/gm, " ".repeat(2)),
       };
       routes.set(path, route);
     }
@@ -49,51 +68,23 @@ export function compileRoutes(routeModules: RouteModules[]): string {
 
   const root = routes.get("/");
   if (!root) {
-    throw new Error("Routes were not built");
+    throw new Error("Routes were not compiled");
   }
 
-  return `export const routes = ${compile(routeModules, root)};`;
+  return `export const routes = ${compileProps(root)};`;
 }
 
-function compile(routeModules: RouteModules[], route: Route, tab = 0): string {
+function compileProps(route: RouteProps, tab = 0): string {
   const tree = route.tree
-    ? route.tree.map((x) => compile(routeModules, x, 4))
-    : undefined;
+    ? `
+tree: [
+${route.tree.map((x) => compileProps(x, 2)).join(",\n")}
+]`.replace(/^/gm, " ".repeat(2))
+    : "";
 
-  const treeStr = tree
-    ? `[
-${tree.join(",\n")}
-  ]`
-    : undefined;
-
-  const mods = route.modules
-    .map(
-      (x) => `
-{
-    id: "${x.id}",
-    fileName: "${x.fileName}",
-    importFn: ${routeModules.find(({ path }) => path === route.path)!.modules.find(({ id }) => id === x.id)?.importStr},
-}`,
-    )
-    .join(",")
-    .replace(/^/gm, " ".repeat(4));
-
-  let res = `{
-    path: "${route.path}",
-    test: {
-      keys: [${route.test.keys.map((x) => "${x}").join(",")}],
-      pattern: ${route.test.pattern},
-    },
-    modules: [${mods}],
-    loaded: false,
-    elements: {},
-`;
-  if (tree) {
-    res += `    tree: ${treeStr},
-`;
-  }
-
-  res += "}";
+  const res = `{
+${route.props}${tree}
+}`;
 
   return res.replace(/^/gm, " ".repeat(tab));
 }
