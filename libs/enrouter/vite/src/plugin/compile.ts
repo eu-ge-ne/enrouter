@@ -35,8 +35,8 @@ export function compileRoutes(routeModules: RouteModules[]): string {
     let route = routes.get(path);
     if (!route) {
       const mods = modules
-        .map(
-          (x) => `{
+        .map((x) =>
+          `{
   id: "${x.id}",
   fileName: "${x.fileName}",
   importFn: ${x.importStr},
@@ -68,17 +68,17 @@ elements: {},`.replace(/^/gm, " ".repeat(2)),
 
   const root = routes.get("/");
   if (!root) {
-    throw new Error("Routes were not built");
+    throw new Error("Routes were not compiled");
   }
 
-  return `export const routes = ${compile(root)};`;
+  return `export const routes = ${compileProps(root)};`;
 }
 
-function compile(route: RouteProps, tab = 0): string {
+function compileProps(route: RouteProps, tab = 0): string {
   const tree = route.tree
     ? `
 tree: [
-${route.tree.map((x) => compile(x, 2)).join(",\n")}
+${route.tree.map((x) => compileProps(x, 2)).join(",\n")}
 ]`.replace(/^/gm, " ".repeat(2))
     : "";
 
