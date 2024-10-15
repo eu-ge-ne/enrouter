@@ -1,5 +1,5 @@
 import { createLog } from "#log.js";
-import Content from "./content.mdx";
+import Index from "./index.mdx";
 
 const log = createLog("docs/start/_layout");
 
@@ -10,5 +10,5 @@ export const components = {
 function Layout() {
   log("Rendering");
 
-  return <Content />;
+  return <Index />;
 }
