@@ -6,12 +6,13 @@
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "dev": "nx run-many -t dev --verbose",
     "clean": "nx run-many -t clean",
     "lint": "nx run-many -t lint",
     "test": "nx run-many -t test --verbose",
     "build": "nx run-many -t build --verbose",
-    "deploy": "nx deploy @enrouter/edge"
+    "preview": "nx run @enrouter/edge:preview",
+    "deploy": "nx run @enrouter/edge:deploy",
+    "dev": "nx run @enrouter/dev:dev"
   },
   "repository": {
     "type": "git",
