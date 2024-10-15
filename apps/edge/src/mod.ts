@@ -11,14 +11,22 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { type ViteManifest } from "enrouter/vite/manifest";
+
 //@ts-ignore
-import { createSSRHandler as _createSSRHandler } from "@enrouter/web/ssr";
+import _createSsrHandler from "@enrouter/web/ssr";
 
-const createSSRHandler = _createSSRHandler as () => Promise<
-  (req: Request) => Promise<Response>
->;
+// TODO: export from @enrouter/web
+type CreateSsrHandler = (manifest?: ViteManifest) => (
+  req: Request,
+  ctx: {
+    isBot: boolean;
+  },
+) => Promise<Response>;
 
-const ssrHandler = await createSSRHandler();
+const createSsrHandler = _createSsrHandler as CreateSsrHandler;
+
+const ssrHandler = createSsrHandler();
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
@@ -27,7 +35,7 @@ export default {
       case "/random":
         return new Response(crypto.randomUUID());
       default:
-        return ssrHandler(request);
+        return ssrHandler(request, { isBot: false });
     }
   },
 } satisfies ExportedHandler<Env>;

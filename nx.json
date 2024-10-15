@@ -2,9 +2,6 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "main",
   "targetDefaults": {
-    "dev": {
-      "dependsOn": ["^build"]
-    },
     "clean": {
       "dependsOn": ["^clean"]
     },
@@ -22,8 +19,14 @@
       "dependsOn": ["^build", "clean"],
       "outputs": ["{projectRoot}/dist"]
     },
+    "preview": {
+      "dependsOn": ["^build"]
+    },
     "deploy": {
       "dependsOn": ["clean", "test", "build"]
+    },
+    "dev": {
+      "dependsOn": ["^build"]
     }
   }
 }

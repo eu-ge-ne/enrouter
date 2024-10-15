@@ -65,6 +65,9 @@ importers:
       '@enrouter/web':
         specifier: workspace:*
         version: link:../web
+      enrouter:
+        specifier: workspace:*
+        version: link:../../libs/enrouter
       typescript:
         specifier: ^5.6.3
         version: 5.6.3

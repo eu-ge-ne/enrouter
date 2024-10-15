@@ -13,14 +13,13 @@ const VITE_CONFIG_PATH = resolve(WEB_PATH, "configs/vite.config.ts");
 const SSR_PATH = resolve(WEB_PATH, "src/ssr.tsx");
 const PORT = 8000;
 
-interface SsrModule {
-  createSsrHandler: (manifest?: ViteManifest) => (
-    req: Request,
-    ctx: {
-      isBot: boolean;
-    },
-  ) => Promise<Response>;
-}
+// TODO: export from @enrouter/web
+type CreateSsrHandler = (manifest?: ViteManifest) => (
+  req: Request,
+  ctx: {
+    isBot: boolean;
+  },
+) => Promise<Response>;
 
 const app = express();
 
@@ -33,9 +32,9 @@ const vite = await createViteServer({
 app.use(vite.middlewares);
 
 app.use(async (req, res) => {
-  const { createSsrHandler } = (await vite.ssrLoadModule(SSR_PATH, {
+  const { default: createSsrHandler } = (await vite.ssrLoadModule(SSR_PATH, {
     fixStacktrace: true,
-  })) as SsrModule;
+  })) as { default: CreateSsrHandler };
 
   const ssrHandler = createSsrHandler();
 

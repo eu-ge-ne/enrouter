@@ -9,6 +9,8 @@ import { createLog } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
 
+export default createSsrHandler;
+
 //debug(console.debug);
 
 const log = createLog("ssr");
@@ -19,7 +21,7 @@ interface SsrHandlerCtx {
   isBot: boolean;
 }
 
-export function createSsrHandler(manifest: ViteManifest) {
+function createSsrHandler(manifest: ViteManifest) {
   return async function handleSsrRequest(
     req: Request,
     { isBot }: SsrHandlerCtx,
