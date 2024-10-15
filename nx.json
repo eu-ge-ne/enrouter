@@ -7,7 +7,7 @@
     },
     "lint": {
       "cache": true,
-      "dependsOn": ["build"]
+      "dependsOn": ["^build", "build"]
     },
     "test": {
       "cache": true,
