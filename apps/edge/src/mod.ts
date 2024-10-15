@@ -11,10 +11,11 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { type ViteManifest } from "enrouter/vite/manifest";
-
 //@ts-ignore
 import _createSsrHandler from "@enrouter/web/ssr";
+import manifest from "@enrouter/web/manifest";
+
+import { type ViteManifest } from "enrouter/vite/manifest";
 
 // TODO: export from @enrouter/web
 type CreateSsrHandler = (manifest?: ViteManifest) => (
@@ -26,7 +27,7 @@ type CreateSsrHandler = (manifest?: ViteManifest) => (
 
 const createSsrHandler = _createSsrHandler as CreateSsrHandler;
 
-const ssrHandler = createSsrHandler();
+const ssrHandler = createSsrHandler(manifest);
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
