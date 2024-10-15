@@ -11,20 +11,6 @@
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types"
   },
-  "nx": {
-    "targets": {
-      "preview": {
-        "dependsOn": [
-          "^build"
-        ]
-      },
-      "deploy": {
-        "dependsOn": [
-          "build"
-        ]
-      }
-    }
-  },
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
     "@enrouter/web": "workspace:*",

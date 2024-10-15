@@ -11,8 +11,8 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "dev": "turbo run dev --filter=@enrouter/dev",
+    "preview": "turbo run preview --filter=@enrouter/edge",
 
-    "preview": "nx run @enrouter/edge:preview",
     "deploy": "nx run @enrouter/edge:deploy"
   },
   "repository": {
