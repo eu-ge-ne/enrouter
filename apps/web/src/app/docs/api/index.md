@@ -1,7 +1,6 @@
 # API
 
 - [Route](/docs/api/route)
-- [RouteHandler](/docs/api/handler)
 - [RouteMatch](/docs/api/match)
 
 Will soon be updated...

@@ -20,9 +20,6 @@ function Menu() {
           <MenuLink2 to="/docs/api/route">Route</MenuLink2>
         </li>
         <li>
-          <MenuLink2 to="/docs/api/handler">RouteHandler</MenuLink2>
-        </li>
-        <li>
           <MenuLink2 to="/docs/api/match">RouteMatch</MenuLink2>
         </li>
         {/* TODO */}

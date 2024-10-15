@@ -6,8 +6,8 @@
 /**
  * Represents matched `Route` instance.
  */
-interface RouteMatch {
-  handler: RouteHandler;
+export interface RouteMatch {
+  route: Route;
 
   location: string;
   isFull: boolean;
@@ -22,12 +22,12 @@ interface RouteMatch {
 
 ```ts
 interface MatchRoutesParams {
-  handlers: RouteHandler;
+  routes: Route;
   location: string;
 }
 
 declare function matchRoutes({
-  handlers,
+  routes,
   location,
 }: MatchRoutesParams): RouteMatch[];
 ```
