@@ -1,25 +1,31 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
-import { debug, loadRoutes, matchRoutes, StaticRouter } from "enrouter";
-import { getModuleAssets } from "enrouter/vite/manifest";
+import { loadRoutes, matchRoutes, StaticRouter } from "enrouter";
+import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
-import manifest from "@enrouter/web/manifest";
 //@ts-ignore
 import { routes } from "virtual:routes";
 
-debug(console.debug);
+export default createSsrHandler;
+
+//debug(console.debug);
 
 const log = createLog("ssr");
 
 const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
-export async function createSSRHandler() {
-  return async function ssrHandler(req: Request) {
-    const isCrawler = false;
+interface SsrHandlerCtx {
+  isBot: boolean;
+}
 
+function createSsrHandler(manifest: ViteManifest) {
+  return async function handleSsrRequest(
+    req: Request,
+    { isBot }: SsrHandlerCtx,
+  ) {
     let status = 200;
 
     try {
@@ -35,31 +41,36 @@ export async function createSSRHandler() {
 
       await loadRoutes(matches.map((x) => x.route));
 
-      const entryAssets = getModuleAssets({
-        manifest,
-        moduleId: "src/main.tsx",
-      });
+      let stylesheets: string[] = [];
+      let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];
 
-      const matchedAssets = matches.flatMap((x) =>
-        x.route.modules.map((x) =>
-          getModuleAssets({
-            manifest,
-            moduleId: x.id,
-          }),
-        ),
-      );
+      if (manifest) {
+        const entryAssets = getModuleAssets({
+          manifest,
+          moduleId: "src/main.tsx",
+        });
 
-      const assets = [entryAssets, ...matchedAssets].filter(
-        (x) => x !== undefined,
-      );
+        const matchedAssets = matches.flatMap((x) =>
+          x.route.modules.map((x) =>
+            getModuleAssets({
+              manifest,
+              moduleId: x.id,
+            }),
+          ),
+        );
 
-      const stylesheets = [...new Set(assets.flatMap((x) => x.styles))].map(
-        mapAssetUrl,
-      );
+        const assets = [entryAssets, ...matchedAssets].filter(
+          (x) => x !== undefined,
+        );
 
-      const bootstrapModules = [
-        ...new Set([...assets.flatMap((x) => x.modules)]),
-      ].map(mapAssetUrl);
+        stylesheets = [...new Set(assets.flatMap((x) => x.styles))].map(
+          mapAssetUrl,
+        );
+
+        bootstrapModules = [
+          ...new Set([...assets.flatMap((x) => x.modules)]),
+        ].map(mapAssetUrl);
+      }
 
       log("Rendering Shell: %o", {
         location,
@@ -82,7 +93,7 @@ export async function createSSRHandler() {
         },
       });
 
-      if (isCrawler) {
+      if (isBot) {
         await stream.allReady;
       }
 

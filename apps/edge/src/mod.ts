@@ -12,13 +12,22 @@
  */
 
 //@ts-ignore
-import { createSSRHandler as _createSSRHandler } from "@enrouter/web/ssr";
+import _createSsrHandler from "@enrouter/web/ssr";
+import manifest from "@enrouter/web/manifest";
 
-const createSSRHandler = _createSSRHandler as () => Promise<
-  (req: Request) => Promise<Response>
->;
+import { type ViteManifest } from "enrouter/vite/manifest";
 
-const ssrHandler = await createSSRHandler();
+// TODO: export from @enrouter/web
+type CreateSsrHandler = (manifest?: ViteManifest) => (
+  req: Request,
+  ctx: {
+    isBot: boolean;
+  },
+) => Promise<Response>;
+
+const createSsrHandler = _createSsrHandler as CreateSsrHandler;
+
+const ssrHandler = createSsrHandler(manifest);
 
 export default {
   async fetch(request, env, ctx): Promise<Response> {
@@ -27,7 +36,7 @@ export default {
       case "/random":
         return new Response(crypto.randomUUID());
       default:
-        return ssrHandler(request);
+        return ssrHandler(request, { isBot: false });
     }
   },
 } satisfies ExportedHandler<Env>;

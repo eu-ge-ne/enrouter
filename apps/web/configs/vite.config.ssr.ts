@@ -1,3 +1,5 @@
+import { resolve } from "node:path";
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
@@ -6,8 +8,10 @@ import { globSync } from "glob";
 
 import { routes } from "enrouter/vite/plugin";
 
-// https://vitejs.dev/config/
+const root = resolve(import.meta.dirname, "..");
+
 export default defineConfig({
+  root,
   plugins: [
     {
       enforce: "pre",
@@ -17,12 +21,8 @@ export default defineConfig({
       }),
     },
     react({ include: /\.(jsx|js|tsx|ts|mdx|md)$/ }),
-    routes({ path: "src/app" }),
+    routes({ path: resolve(root, "src/app") }),
   ],
-  appType: "custom",
-  server: {
-    middlewareMode: true,
-  },
   build: {
     outDir: "dist/server",
     emptyOutDir: false,

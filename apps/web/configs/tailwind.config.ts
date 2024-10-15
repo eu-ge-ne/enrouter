@@ -1,7 +1,14 @@
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import type { Config } from "tailwindcss";
 
+const content = [
+  resolve(fileURLToPath(new URL(".", import.meta.url)), "../src/**/*.{ts,tsx}"),
+];
+
 export default {
-  content: ["src/**/*.{ts,tsx}"],
+  content,
   theme: {
     extend: {
       colors: {
