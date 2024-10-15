@@ -2,11 +2,11 @@
 import { renderToReadableStream } from "react-dom/server.edge";
 
 import { debug, loadRoutes, matchRoutes, StaticRouter } from "enrouter";
-import { getModuleAssets } from "enrouter/vite/manifest";
+import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
-import manifest from "@enrouter/web/manifest";
+//import manifest from "@enrouter/web/manifest";
 //@ts-ignore
 import { routes } from "virtual:routes";
 
@@ -16,7 +16,7 @@ const log = createLog("ssr");
 
 const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
-export async function createSSRHandler() {
+export async function createSSRHandler(manifest: ViteManifest) {
   return async function ssrHandler(req: Request) {
     const isCrawler = false;
 
@@ -35,19 +35,23 @@ export async function createSSRHandler() {
 
       await loadRoutes(matches.map((x) => x.route));
 
-      const entryAssets = getModuleAssets({
-        manifest,
-        moduleId: "src/main.tsx",
-      });
-
-      const matchedAssets = matches.flatMap((x) =>
-        x.route.modules.map((x) =>
-          getModuleAssets({
+      const entryAssets = manifest
+        ? getModuleAssets({
             manifest,
-            moduleId: x.id,
-          }),
-        ),
-      );
+            moduleId: "src/main.tsx",
+          })
+        : { styles: [], modules: ["src/main.tsx"] };
+
+      const matchedAssets = manifest
+        ? matches.flatMap((x) =>
+            x.route.modules.map((x) =>
+              getModuleAssets({
+                manifest,
+                moduleId: x.id,
+              }),
+            ),
+          )
+        : [];
 
       const assets = [entryAssets, ...matchedAssets].filter(
         (x) => x !== undefined,
