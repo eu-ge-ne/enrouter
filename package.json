@@ -6,12 +6,10 @@
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-
     "clean": "turbo run clean",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
-
     "preview": "nx run @enrouter/edge:preview",
     "deploy": "nx run @enrouter/edge:deploy",
     "dev": "nx run @enrouter/dev:dev"
