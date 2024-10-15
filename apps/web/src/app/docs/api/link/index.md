@@ -1,13 +1,9 @@
-# Link API
-
-Will soon be updated...
+# Link
 
 ## Hooks
 
-### useLinkProps
-
-```typescript
-function useLinkProps(
+```ts
+declare function useLinkProps(
   href: string,
 ): Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick">;
 ```
