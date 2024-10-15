@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "lint": "tsc",
-    "dev": "wrangler dev --port 8000",
+    "_dev": "wrangler dev --port 8000",
     "build": "wrangler deploy --dry-run --outdir dist --minify",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types"
