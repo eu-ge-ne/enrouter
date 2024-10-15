@@ -51,7 +51,7 @@ export default defineConfig({
     },
   },
   css: {
-    postcss: "configs/postcss.config.js",
+    postcss: resolve(root, "configs/postcss.config.js"),
   },
   // dev server
   appType: "custom",
