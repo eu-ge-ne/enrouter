@@ -6,6 +6,7 @@
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
+    "dev": "nx run-many -t dev --verbose",
     "clean": "nx run-many -t clean",
     "lint": "nx run-many -t lint",
     "test": "nx run-many -t test --verbose",
