@@ -12,8 +12,7 @@
     "test": "turbo run test",
     "dev": "turbo run dev --filter=@enrouter/dev",
     "preview": "turbo run preview --filter=@enrouter/edge",
-
-    "deploy": "nx run @enrouter/edge:deploy"
+    "deploy": "turbo run deploy --filter=@enrouter/edge"
   },
   "repository": {
     "type": "git",
