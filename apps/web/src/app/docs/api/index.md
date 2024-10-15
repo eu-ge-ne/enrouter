@@ -1,6 +1,5 @@
 # API
 
-- [RouteModules](/docs/api/modules)
 - [Route](/docs/api/route)
 - [RouteHandler](/docs/api/handler)
 - [RouteMatch](/docs/api/match)

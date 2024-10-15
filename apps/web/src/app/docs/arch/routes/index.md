@@ -1,6 +1,6 @@
 # Building Routes
 
-See also: [RouteModules](/docs/api/modules), [Route](/docs/api/route).
+See also: [Route](/docs/api/route).
 
 ```mermaid
 graph TB
