@@ -1,7 +1,7 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
-import { debug, loadRoutes, matchRoutes, StaticRouter } from "enrouter";
+import { loadRoutes, matchRoutes, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { Shell } from "./shell.js";
@@ -10,7 +10,7 @@ import { createLog } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
 
-debug(console.debug);
+//debug(console.debug);
 
 const log = createLog("ssr");
 
