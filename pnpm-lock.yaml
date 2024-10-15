@@ -35,6 +35,9 @@ importers:
       '@types/node':
         specifier: ^22.7.5
         version: 22.7.5
+      enrouter:
+        specifier: workspace:*
+        version: link:../../libs/enrouter
       express:
         specifier: ^5.0.1
         version: 5.0.1

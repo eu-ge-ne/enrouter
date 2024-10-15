@@ -4,6 +4,7 @@ import { Readable } from "node:stream";
 import express from "express";
 import morgan from "morgan";
 import { createServer as createViteServer } from "vite";
+import { type ViteManifest } from "enrouter/vite/manifest";
 
 import { createFetchRequest } from "./fetch.js";
 
@@ -11,6 +12,15 @@ const WEB_PATH = resolve(import.meta.dirname, "../../web");
 const VITE_CONFIG_PATH = resolve(WEB_PATH, "configs/vite.config.ts");
 const SSR_PATH = resolve(WEB_PATH, "src/ssr.tsx");
 const PORT = 8000;
+
+interface SsrModule {
+  createSsrHandler: (manifest?: ViteManifest) => (
+    req: Request,
+    ctx: {
+      isBot: boolean;
+    },
+  ) => Promise<Response>;
+}
 
 const app = express();
 
@@ -23,16 +33,15 @@ const vite = await createViteServer({
 app.use(vite.middlewares);
 
 app.use(async (req, res) => {
-  const { createSSRHandler } = (await vite.ssrLoadModule(SSR_PATH, {
+  const { createSsrHandler } = (await vite.ssrLoadModule(SSR_PATH, {
     fixStacktrace: true,
-  })) as {
-    createSSRHandler: () => Promise<(req: Request) => Promise<Response>>;
-  };
+  })) as SsrModule;
 
-  const ssrHandler = await createSSRHandler();
+  const ssrHandler = createSsrHandler();
 
-  const fetchRequest = createFetchRequest(req, res);
-  const { body } = await ssrHandler(fetchRequest);
+  const fetchReq = createFetchRequest(req, res);
+
+  const { body } = await ssrHandler(fetchReq, { isBot: false });
 
   Readable.fromWeb(body!).pipe(res);
 });
