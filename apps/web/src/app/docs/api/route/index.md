@@ -8,28 +8,42 @@ See also: [Building Routes](/docs/arch/routes).
 /**
  * Base building block of routing.
  * Routes are orginized into a tree.
- * Every branch of the tree maps a segment of url to a code and its assets.
- * The code will generate the UI which corresponds to the segment of the url.
+ * Every branch of the tree maps a segment of url to a code,
+ * which will generate corresponding UI.
  */
 export interface Route {
   /**
    * Full path to url segment
-   * @see https://github.com/lukeed/regexparam
    */
   path: string;
 
   /**
-   * Ids of route's modules
+   * @see https://github.com/lukeed/regexparam
    */
-  mod: string[];
+  test: {
+    keys: string[];
+    pattern: RegExp;
+  };
 
   /**
-   * Urls of assets associated with the route
+   * Modules belonging to the route
    */
-  link: [string[], string[]]; // [styles[], modules[]]
+  modules: {
+    id: string;
+    fileName: string;
+    importFn: () => Promise<unknown>;
+  }[];
+
+  loaded: boolean;
+
+  elements: {
+    layout?: Record<string, ReactElement>;
+    index?: Record<string, ReactElement>;
+    notFound?: Record<string, ReactElement>;
+  };
 
   /**
-   * Child routes
+   * Route tree
    */
   tree?: Route[];
 }
@@ -38,38 +52,5 @@ export interface Route {
 ## Functions
 
 ```ts
-interface BuildRoutesWithViteManifestParams {
-  modules: RouteModules;
-  manifest: unknown;
-  mapAssetUrl: (x: string) => string;
-  entryId: string;
-}
-
-/**
- * Builds `Route`s from `RouteModules` and Vite manifest
- */
-declare function buildRoutesWithViteManifest({
-  modules,
-  manifest,
-  mapAssetUrl,
-  entryId,
-}: BuildRoutesWithViteManifestParams): Route | undefined;
-```
-
-## Examples
-
-### buildRoutesWithViteManifest
-
-```ts
-import { buildRoutesWithViteManifest } from "enrouter";
-
-import { modules } from "./modules.js";
-import manifest from "@app/web/manifest";
-
-const routes = buildRoutesWithViteManifest({
-  modules,
-  manifest,
-  mapAssetUrl: (x) => new URL(x, "http://localhost").pathname,
-  entryId: "src/main.tsx",
-});
+declare async function loadRoutes(routes: Route[]): Promise<void>;
 ```
