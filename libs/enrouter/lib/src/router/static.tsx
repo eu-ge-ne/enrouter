@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 
@@ -14,16 +12,13 @@ export interface StaticRouterProps {
 }
 
 export function StaticRouter({ routes, location, matches }: StaticRouterProps) {
-  const context = useMemo<TRouterContext>(
-    () => ({
-      routes,
-      location,
-      navigate: () => undefined,
-    }),
-    [routes, location],
-  );
+  const context: TRouterContext = {
+    routes,
+    location,
+    navigate: () => undefined,
+  };
 
-  const children = useMemo(() => renderMatches(matches), [matches]);
+  const children = renderMatches(matches);
 
   return (
     <RouterContext.Provider value={context}>{children}</RouterContext.Provider>
