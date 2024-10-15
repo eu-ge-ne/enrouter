@@ -1,0 +1,20 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["build:lib", "build:vite"]
+    },
+    "build:lib": {
+      "outputs": ["dist/lib/**"],
+      "dependsOn": ["clean", "^build"]
+    },
+    "build:vite": {
+      "outputs": ["dist/vite/**"],
+      "dependsOn": ["clean", "^build"]
+    },
+    "test": {
+      "outputs": ["coverage/**"]
+    }
+  }
+}

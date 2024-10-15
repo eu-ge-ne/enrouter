@@ -12,40 +12,9 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist",
-    "lint": "tsc",
-    "build": "true",
     "build:client": "vite build -c configs/vite.config.ts",
-    "build:server": "vite build -c configs/vite.config.ssr.ts"
-  },
-  "nx": {
-    "targets": {
-      "build": {
-        "dependsOn": [
-          "build:*"
-        ]
-      },
-      "build:client": {
-        "cache": true,
-        "outputs": [
-          "{projectRoot}/dist/client"
-        ],
-        "dependsOn": [
-          "^build",
-          "clean"
-        ]
-      },
-      "build:server": {
-        "cache": true,
-        "outputs": [
-          "{projectRoot}/dist/server"
-        ],
-        "dependsOn": [
-          "^build",
-          "build:client",
-          "clean"
-        ]
-      }
-    }
+    "build:server": "vite build -c configs/vite.config.ssr.ts",
+    "lint": "tsc"
   },
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",

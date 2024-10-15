@@ -5,7 +5,17 @@
   "private": true,
   "scripts": {
     "lint": "tsc",
+
     "dev": "tsx src/main.ts"
+  },
+  "nx": {
+    "targets": {
+      "dev": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
   },
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
