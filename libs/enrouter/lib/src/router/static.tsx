@@ -2,7 +2,7 @@ import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import type { TRouterContext } from "./context.js";
 import { createContent } from "#lib/content/create.js";
-import { RouterContext } from "./context.js";
+import { RouterProvider } from "./context.js";
 
 export interface StaticRouterProps {
   routes: Route;
@@ -19,7 +19,5 @@ export function StaticRouter({ routes, location, matches }: StaticRouterProps) {
 
   const children = createContent(matches);
 
-  return (
-    <RouterContext.Provider value={context}>{children}</RouterContext.Provider>
-  );
+  return <RouterProvider value={context}>{children}</RouterProvider>;
 }
