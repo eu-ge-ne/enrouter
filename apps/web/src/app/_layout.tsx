@@ -1,9 +1,8 @@
+import type { PropsWithChildren } from "react";
 import { Outlet, useLinkProps } from "enrouter";
 
 import github_logo from "/github-light.svg";
-
 import { createLog } from "#log.js";
-import { MenuLink1 } from "#links.js";
 
 const log = createLog("_layout");
 
@@ -19,16 +18,16 @@ function Layout() {
       <div className="container mx-auto flex items-center justify-between p-4">
         <a
           className="text-2xl font-medium tracking-wider"
-          {...useLinkProps("/")}
+          {...useLinkProps({ href: "/" })}
         >
           enrouter
         </a>
         <ul className="flex justify-end gap-x-4">
           <li>
-            <MenuLink1 to="/docs">Docs</MenuLink1>
+            <Link href="/docs">Docs</Link>
           </li>
           <li>
-            <MenuLink1 to="/docs/api">API</MenuLink1>
+            <Link href="/docs/api">API</Link>
           </li>
           <li>
             <a href="https://github.com/eu-ge-ne/enrouter" target="_blank">
@@ -49,5 +48,13 @@ function Layout() {
         </div>
       </div>
     </div>
+  );
+}
+
+function Link({ href, children }: PropsWithChildren<{ href: string }>) {
+  return (
+    <a className="font-semibold" {...useLinkProps({ href })}>
+      {children}
+    </a>
   );
 }

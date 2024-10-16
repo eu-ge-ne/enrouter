@@ -24,12 +24,16 @@ function useOnClick(href: string) {
   );
 }
 
+export interface UseLinkPropsParams {
+  href: string;
+}
+
 export type LinkProps = Pick<
   AnchorHTMLAttributes<HTMLAnchorElement>,
   "href" | "onClick"
 >;
 
-export function useLinkProps(href: string): LinkProps {
+export function useLinkProps({ href }: UseLinkPropsParams): LinkProps {
   const onClick = useOnClick(href);
 
   return {
@@ -57,10 +61,8 @@ export function useActiveLinkProps({
   const onClick = useOnClick(href);
 
   const match = usePath(href);
-  let isActive = match !== undefined;
-  if (isActive && !loose) {
-    isActive = Boolean(match?.isFull);
-  }
+
+  const isActive = loose ? match !== undefined : Boolean(match?.isFull);
 
   return {
     className: className(isActive),

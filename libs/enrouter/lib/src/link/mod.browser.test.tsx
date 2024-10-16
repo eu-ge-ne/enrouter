@@ -9,7 +9,7 @@ const wrapperId = "test-wrapper";
 describe("link", () => {
   test("useLinkProps", async () => {
     function TestLink() {
-      const props = useLinkProps("/abc");
+      const props = useLinkProps({ href: "/abc" });
       return <a {...props}>link to /abc</a>;
     }
 
