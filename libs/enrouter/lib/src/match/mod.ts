@@ -11,8 +11,8 @@ export interface RouteMatch {
   route: Route;
 
   location: string;
-  isFull: boolean;
   params: Record<string, string>;
+  isFull: boolean;
 
   next?: RouteMatch;
   last?: RouteMatch;
@@ -71,8 +71,8 @@ function recur(routes: Route[], location: string, matches: RouteMatch[]): void {
   matches.push({
     route,
     location: matchedLocation,
-    isFull: matchedLocation === location,
     params,
+    isFull: matchedLocation === location,
   });
 
   if (route.tree) {

@@ -2,14 +2,14 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 
 import { type TRouterContext, RouterContext } from "#lib/router/context.js";
-import { useLinkProps } from "./mod.js";
+import { useLink } from "./mod.js";
 
 const wrapperId = "test-wrapper";
 
 describe("link", () => {
-  test("useLinkProps", async () => {
+  test("useLink", async () => {
     function TestLink() {
-      const props = useLinkProps({ href: "/abc" });
+      const props = useLink("/abc");
       return <a {...props}>link to /abc</a>;
     }
 

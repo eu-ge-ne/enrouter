@@ -1,4 +1,4 @@
-import { useLinkProps } from "enrouter";
+import { useLink } from "enrouter";
 
 import { createLog } from "#log.js";
 import github_logo from "/github-light.svg";
@@ -25,7 +25,7 @@ function Index() {
       <div className="flex justify-center gap-8">
         <a
           className="rounded-md border border-paperBorder px-4 py-2 text-sm"
-          {...useLinkProps({ href: "/docs/start" })}
+          {...useLink("/docs/start")}
         >
           Get started
         </a>
