@@ -3,13 +3,12 @@ import type { ReactElement } from "react";
 import { logger } from "#lib/debug.js";
 import { RouteRenderContext } from "./context.js";
 import { NotFound } from "./notFound.js";
-
-import type { RouteMatch } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/mod.js";
 
 const log = logger("render");
 
 export interface RouteNodes {
-  match: RouteMatch;
+  match: Match;
 
   layout?: Record<string, ReactElement>;
   index?: Record<string, ReactElement>;
@@ -19,7 +18,7 @@ export interface RouteNodes {
   last?: RouteNodes;
 }
 
-export function renderMatches(matches: RouteMatch[]): ReactElement[] {
+export function renderMatches(matches: Match[]): ReactElement[] {
   log("Rendering matches");
 
   let nodes = matches.map(createRouteNodes);
@@ -51,7 +50,7 @@ export function renderMatches(matches: RouteMatch[]): ReactElement[] {
   return Object.values(nodes[0]?.layout ?? {});
 }
 
-function createRouteNodes(match: RouteMatch): RouteNodes {
+function createRouteNodes(match: Match): RouteNodes {
   const nodes: RouteNodes = {
     match,
   };

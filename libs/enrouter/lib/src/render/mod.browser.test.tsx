@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import { type TRouterContext, RouterContext } from "#lib/router/context.js";
-import type { RouteMatch } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/mod.js";
 import { renderMatches } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -27,7 +27,7 @@ describe("renderMatches", () => {
       navigate: () => undefined,
     };
 
-    const matches: RouteMatch[] = [];
+    const matches: Match[] = [];
 
     const screen = render(renderMatches(matches), {
       wrapper: ({ children }) => (
@@ -44,7 +44,7 @@ describe("renderMatches", () => {
   });
 
   test("1 match with no elements", async () => {
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: {
           path: "/",
@@ -66,7 +66,7 @@ describe("renderMatches", () => {
   });
 
   test("1 match with layout elements", async () => {
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: {
           path: "/",

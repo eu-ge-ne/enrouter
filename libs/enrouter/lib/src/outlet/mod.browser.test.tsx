@@ -5,8 +5,7 @@ import * as regexparam from "regexparam";
 
 import { renderMatches } from "#lib/render/mod.js";
 import { Outlet } from "./mod.js";
-
-import type { RouteMatch } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/mod.js";
 
 const wrapperId = "test-wrapper";
 
@@ -16,7 +15,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 
 describe("outlet", () => {
   test("using index elements", async () => {
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: {
           path: "/",
@@ -50,7 +49,7 @@ describe("outlet", () => {
   });
 
   test("using next layout elements", async () => {
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: {
           path: "/",

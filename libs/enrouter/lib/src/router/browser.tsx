@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 
 import { logger } from "#lib/debug.js";
 import { loadRoutes } from "#lib/route/load.js";
-import { matchRoutes } from "#lib/match/mod.js";
+import { matchRoutes } from "#lib/match/match.js";
 import { renderMatches } from "#lib/render/mod.js";
 import { RouterContext } from "./context.js";
 

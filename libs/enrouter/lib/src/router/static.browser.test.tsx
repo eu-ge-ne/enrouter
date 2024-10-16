@@ -5,7 +5,7 @@ import * as regexparam from "regexparam";
 
 import { StaticRouter } from "./static.js";
 import type { Route } from "#lib/route/mod.js";
-import type { RouteMatch } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/mod.js";
 
 const wrapperId = "test-wrapper";
 
@@ -27,7 +27,7 @@ describe("router/static", () => {
       },
     };
 
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: routes,
         location: "/",
