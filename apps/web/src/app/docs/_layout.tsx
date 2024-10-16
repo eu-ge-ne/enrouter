@@ -43,7 +43,7 @@ function Layout() {
         </ul>
         <Outlet name="menu" />
       </div>
-      <div className="w-full p-8 pt-0">
+      <div className="w-full p-8 pr-0 pt-0">
         <Mdx>
           <Outlet name="docs" />
         </Mdx>
