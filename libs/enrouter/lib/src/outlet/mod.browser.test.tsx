@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
   <div data-testid={wrapperId}>{children}</div>
 );
 
-describe("outlets", () => {
+describe("outlet", () => {
   test("using index elements", async () => {
     const matches: RouteMatch[] = [
       {

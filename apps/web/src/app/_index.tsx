@@ -25,7 +25,7 @@ function Index() {
       <div className="flex justify-center gap-8">
         <a
           className="rounded-md border border-paperBorder px-4 py-2 text-sm"
-          {...useLinkProps("/docs/start")}
+          {...useLinkProps({ href: "/docs/start" })}
         >
           Get started
         </a>

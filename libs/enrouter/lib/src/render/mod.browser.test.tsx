@@ -3,11 +3,9 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import { renderMatches } from "./mod.js";
-import { RouterContext } from "#lib/router/context.js";
-
+import { type TRouterContext, RouterContext } from "#lib/router/context.js";
 import type { RouteMatch } from "#lib/match/mod.js";
-import type { TRouterContext } from "#lib/router/context.js";
+import { renderMatches } from "./mod.js";
 
 const wrapperId = "test-wrapper";
 

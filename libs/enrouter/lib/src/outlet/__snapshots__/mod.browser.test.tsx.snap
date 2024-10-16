@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`outlets > using index elements 1`] = `
+exports[`outlet > using index elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -17,7 +17,7 @@ exports[`outlets > using index elements 1`] = `
 </div>
 `;
 
-exports[`outlets > using next layout elements 1`] = `
+exports[`outlet > using next layout elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"

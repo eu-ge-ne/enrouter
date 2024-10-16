@@ -31,7 +31,7 @@ export function Mdx({ children }: PropsWithChildren) {
         a: ({ children, href }) => {
           if (href?.startsWith("/")) {
             return (
-              <a className="underline" {...useLinkProps(href)}>
+              <a className="underline" {...useLinkProps({ href })}>
                 {children as any}
               </a>
             );

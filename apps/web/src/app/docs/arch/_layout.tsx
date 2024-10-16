@@ -17,7 +17,7 @@ function Menu() {
     <div className="mt-4 border-t border-paperBorder">
       <ul className="mt-4 flex flex-col gap-y-2">
         <li>
-          <MenuLink2 to="/docs/arch/routes">Building Routes</MenuLink2>
+          <MenuLink2 href="/docs/arch/routes">Building Routes</MenuLink2>
         </li>
       </ul>
     </div>
