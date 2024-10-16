@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./dist",
-    "lint": "tsc",
     "build": "wrangler deploy --dry-run --outdir dist --minify",
+    "lint": "tsc",
     "preview": "wrangler dev --port 8000",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types"

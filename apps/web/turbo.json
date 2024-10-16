@@ -1,0 +1,18 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["build:client", "build:server"]
+    },
+    "build:client": {
+      "outputs": ["dist/client/**"],
+      "dependsOn": ["clean", "^build"]
+    },
+    "build:server": {
+      "outputs": ["dist/server/**"],
+      "dependsOn": ["clean", "^build"]
+    }
+  }
+}

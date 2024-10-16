@@ -3,5 +3,4 @@ dist
 coverage
 .wrangler
 .DS_Store
-.nx/cache
-.nx/workspace-data
+.turbo

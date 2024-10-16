@@ -6,13 +6,13 @@
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "clean": "nx run-many -t clean",
-    "lint": "nx run-many -t lint",
-    "test": "nx run-many -t test --verbose",
-    "build": "nx run-many -t build --verbose",
-    "preview": "nx run @enrouter/edge:preview",
-    "deploy": "nx run @enrouter/edge:deploy",
-    "dev": "nx run @enrouter/dev:dev"
+    "clean": "turbo run clean",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "dev": "turbo run dev --filter=@enrouter/dev",
+    "preview": "turbo run preview --filter=@enrouter/edge",
+    "deploy": "turbo run deploy --filter=@enrouter/edge"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,8 @@
   "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
   "packageManager": "pnpm@9.12.1",
   "devDependencies": {
-    "nx": "20.0.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8"
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "turbo": "^2.1.3"
   }
 }
