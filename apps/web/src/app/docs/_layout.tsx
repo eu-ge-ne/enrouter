@@ -18,19 +18,27 @@ function Layout() {
       <div className="flex w-[15rem] flex-col pr-4">
         <ul className="flex flex-col gap-y-2">
           <li>
-            <MenuLink1 to="/docs">Docs</MenuLink1>
+            <MenuLink1 href="/docs">Docs</MenuLink1>
           </li>
           <li>
-            <MenuLink1 to="/docs/start">Getting Started</MenuLink1>
+            <MenuLink1 loose href="/docs/start">
+              Getting Started
+            </MenuLink1>
           </li>
           <li>
-            <MenuLink1 to="/docs/features">Features</MenuLink1>
+            <MenuLink1 loose href="/docs/features">
+              Features
+            </MenuLink1>
           </li>
           <li>
-            <MenuLink1 to="/docs/arch">Architecture</MenuLink1>
+            <MenuLink1 loose href="/docs/arch">
+              Architecture
+            </MenuLink1>
           </li>
           <li>
-            <MenuLink1 to="/docs/api">API</MenuLink1>
+            <MenuLink1 loose href="/docs/api">
+              API
+            </MenuLink1>
           </li>
         </ul>
         <Outlet name="menu" />
