@@ -38,16 +38,16 @@ export function useLinkProps(href: string): LinkProps {
   };
 }
 
-export type ActiveLinkProps = Pick<
-  AnchorHTMLAttributes<HTMLAnchorElement>,
-  "className" | "href" | "onClick"
->;
-
-interface UseActiveLinkPropsParams {
+export interface UseActiveLinkPropsParams {
   href: string;
   loose?: boolean;
   className: (isActive: boolean) => string;
 }
+
+export type ActiveLinkProps = Pick<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  "className" | "href" | "onClick"
+>;
 
 export function useActiveLinkProps({
   href,
