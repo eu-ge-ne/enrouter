@@ -20,7 +20,7 @@ function Menu() {
           <MenuLink2 href="/docs/api/route">Route</MenuLink2>
         </li>
         <li>
-          <MenuLink2 href="/docs/api/match">RouteMatch</MenuLink2>
+          <MenuLink2 href="/docs/api/match">Match</MenuLink2>
         </li>
         <li>
           <MenuLink2 href="/docs/api/router/static">StaticRouter</MenuLink2>
