@@ -16,6 +16,7 @@ export { type BrowserRouterProps, BrowserRouter } from "./router/browser.js";
 export { type OutletProps, Outlet } from "./outlet/mod.js";
 
 export {
+  type UseLinkPropsParams,
   type LinkProps,
   type UseActiveLinkPropsParams,
   type ActiveLinkProps,
