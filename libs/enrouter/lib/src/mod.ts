@@ -13,7 +13,7 @@ export { StaticRouter } from "./router/static.js";
 export { BrowserRouter } from "./router/browser.js";
 
 export { Outlet } from "./outlet/mod.js";
-export { useLinkProps } from "./link.js";
+export { useLinkProps, useActiveLinkProps } from "./link.js";
 export { useLocation, usePath, useMatch } from "./hooks.js";
 
 export type { StaticRouterProps } from "./router/static.js";
