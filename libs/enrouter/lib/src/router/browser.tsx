@@ -1,13 +1,12 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 
+import type { Route } from "#lib/route/mod.js";
+import type { TRouterContext } from "./context.js";
 import { logger } from "#lib/debug.js";
 import { loadRoutes } from "#lib/route/load.js";
 import { matchRoutes } from "#lib/match/match.js";
-import { renderMatches } from "#lib/render/mod.js";
+import { createContent } from "#lib/content/create.js";
 import { RouterContext } from "./context.js";
-
-import type { Route } from "#lib/route/mod.js";
-import type { TRouterContext } from "./context.js";
 
 const log = logger("router/browser");
 
@@ -54,7 +53,7 @@ export function BrowserRouter({ routes }: BrowserRouterProps) {
     [routes, location, navigate],
   );
 
-  const children = useMemo(() => renderMatches(matches), [matches]);
+  const children = useMemo(() => createContent(matches), [matches]);
 
   return (
     <RouterContext.Provider value={context}>{children}</RouterContext.Provider>

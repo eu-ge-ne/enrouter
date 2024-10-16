@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import type { ReactNode, ReactElement } from "react";
 
-import { RouteRenderContext } from "#lib/render/context.js";
+import { useContent } from "#lib/content/context.js";
 
 export interface OutletProps {
   name: string;
@@ -12,15 +12,15 @@ export function Outlet({ name }: OutletProps): ReactNode {
 }
 
 function useOutlets(): Record<string, ReactElement> | undefined {
-  let nodes = useContext(RouteRenderContext);
+  let x = useContent();
 
-  if (!nodes.next) {
-    return nodes.index;
+  if (!x.next) {
+    return x.index;
   }
 
-  while (nodes.next) {
-    nodes = nodes.next;
-    const outlets = nodes.layout || nodes.index;
+  while (x.next) {
+    x = x.next;
+    const outlets = x.layout || x.index;
     if (outlets) {
       return outlets;
     }

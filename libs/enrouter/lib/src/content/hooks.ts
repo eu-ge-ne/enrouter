@@ -1,19 +1,17 @@
-import { useContext } from "react";
-
-import { RouteRenderContext } from "./context.js";
 import type { Match } from "#lib/match/mod.js";
+import { useContent } from "./context.js";
 
 export function useMatch(): Match {
-  return useContext(RouteRenderContext).match;
+  return useContent().match;
 }
 
 export function usePath(path: string): Match | undefined {
-  let nodes = useContext(RouteRenderContext).last;
-  while (nodes) {
-    if (nodes.match.route.path === path) {
-      return nodes.match;
+  let x = useContent().last;
+  while (x) {
+    if (x.match.route.path === path) {
+      return x.match;
     }
-    nodes = nodes.prev;
+    x = x.prev;
   }
 }
 

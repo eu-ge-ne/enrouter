@@ -12,7 +12,7 @@ export {
   useMatch,
   usePath,
   useActive,
-} from "./render/hooks.js";
+} from "./content/hooks.js";
 
 export { type StaticRouterProps, StaticRouter } from "./router/static.js";
 export { type BrowserRouterProps, BrowserRouter } from "./router/browser.js";
