@@ -21,6 +21,6 @@ export {
   type ActiveLinkProps,
   useLinkProps,
   useActiveLinkProps,
-} from "./link.js";
+} from "./link/mod.js";
 
 export { useLocation, usePath, useMatch } from "./hooks.js";

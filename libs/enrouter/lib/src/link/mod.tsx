@@ -5,9 +5,9 @@ import {
   type AnchorHTMLAttributes,
 } from "react";
 
-import { logger } from "./debug.js";
-import { RouterContext } from "./router/context.js";
-import { usePath } from "./hooks.js";
+import { logger } from "#lib/debug.js";
+import { RouterContext } from "#lib/router/context.js";
+import { usePath } from "#lib/hooks.js";
 
 const log = logger("link");
 
