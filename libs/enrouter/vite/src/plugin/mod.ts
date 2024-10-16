@@ -1,4 +1,5 @@
 import { resolve } from "node:path";
+import { format } from "node:util";
 
 import { type Plugin } from "vite";
 import { glob } from "glob";
@@ -17,7 +18,7 @@ export function routes(params: RoutesParams): Plugin {
   let rootPath: string;
 
   return {
-    name: "vite-plugin-routes",
+    name: "vite-plugin-enrouter",
     configResolved(config) {
       rootPath = config.root;
     },
@@ -33,12 +34,27 @@ export function routes(params: RoutesParams): Plugin {
 
       const routesPath = resolve(params.path);
 
-      const _files = await glob(resolve(routesPath, "**/_*.tsx"));
-      const _resolves = await Promise.all(_files.map((x) => this.resolve(x)));
+      this.info(format("Searching modules in %s", routesPath));
 
-      const resolvedFiles = _resolves
-        .map((x, i) => (x ? { file: _files[i]!, resolvedId: x.id } : undefined))
+      const files = await glob(resolve(routesPath, "**/_*.tsx"));
+      const resolves = await Promise.all(
+        files.map((x) => {
+          return this.resolve(x).then((y) => {
+            if (y) {
+              this.info(format("Found module: %s", y.id));
+            }
+            return y;
+          });
+        }),
+      );
+
+      const resolvedFiles = resolves
+        .map((x, i) => (x ? { file: files[i]!, resolvedId: x.id } : undefined))
         .filter((x) => x !== undefined);
+
+      this.info(format("Found %d modules", resolvedFiles.length));
+
+      this.info("Building module tree");
 
       const routeModules = buildModuleTree({
         rootPath,
@@ -46,9 +62,9 @@ export function routes(params: RoutesParams): Plugin {
         resolvedFiles,
       });
 
-      const compiled = compileRoutes(routeModules);
+      this.info(format("Module tree: %o", routeModules));
 
-      this.info("module: " + compiled);
+      const compiled = compileRoutes(routeModules);
 
       return compiled;
     },
