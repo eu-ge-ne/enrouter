@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`link > useLinkProps 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <a
+      href="/abc"
+    >
+      link to /abc
+    </a>
+  </div>
+</div>
+`;
