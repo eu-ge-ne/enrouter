@@ -5,7 +5,7 @@ import * as regexparam from "regexparam";
 
 import { type TRouterContext, RouterContext } from "#lib/router/context.js";
 import type { Match } from "#lib/match/mod.js";
-import { arrangeMatches } from "./arrange.js";
+import { createContent } from "./create.js";
 
 const wrapperId = "test-wrapper";
 
@@ -13,8 +13,8 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
   <div data-testid={wrapperId}>{children}</div>
 );
 
-describe("arrangeMatches", () => {
-  test("no matches", async () => {
+describe("createContent", () => {
+  test("from 0 matches", async () => {
     const context: TRouterContext = {
       routes: {
         path: "",
@@ -29,7 +29,7 @@ describe("arrangeMatches", () => {
 
     const matches: Match[] = [];
 
-    const screen = render(renderMatches(matches), {
+    const screen = render(createContent(matches), {
       wrapper: ({ children }) => (
         <div data-testid={wrapperId}>
           <RouterContext.Provider value={context}>
@@ -43,7 +43,7 @@ describe("arrangeMatches", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("1 match with no elements", async () => {
+  test("from 1 match with no elements", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -59,13 +59,13 @@ describe("arrangeMatches", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(createContent(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("1 match with layout elements", async () => {
+  test("from 1 match with layout elements", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -85,7 +85,7 @@ describe("arrangeMatches", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(createContent(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
