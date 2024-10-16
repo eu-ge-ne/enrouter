@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
-import { matchRoutes } from "./mod.js";
+import { matchRoutes } from "./match.js";
 
 import type { Route } from "#lib/route/mod.js";
 

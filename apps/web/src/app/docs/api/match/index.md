@@ -1,4 +1,4 @@
-# RouteMatch
+# Match
 
 ## Interfaces
 
@@ -6,15 +6,15 @@
 /**
  * Represents matched `Route` instance.
  */
-export interface RouteMatch {
+export interface Match {
   route: Route;
 
   location: string;
-  isFull: boolean;
   params: Record<string, string>;
+  isFull: boolean;
 
-  next?: RouteMatch;
-  last?: RouteMatch;
+  next?: Match;
+  last?: Match;
 }
 ```
 
@@ -26,8 +26,5 @@ interface MatchRoutesParams {
   location: string;
 }
 
-declare function matchRoutes({
-  routes,
-  location,
-}: MatchRoutesParams): RouteMatch[];
+declare function matchRoutes({ routes, location }: MatchRoutesParams): Match[];
 ```

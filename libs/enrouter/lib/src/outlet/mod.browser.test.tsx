@@ -3,10 +3,9 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import { renderMatches } from "#lib/render/mod.js";
+import type { Match } from "#lib/match/mod.js";
+import { createContent } from "#lib/content/create.js";
 import { Outlet } from "./mod.js";
-
-import type { RouteMatch } from "#lib/match/mod.js";
 
 const wrapperId = "test-wrapper";
 
@@ -16,7 +15,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 
 describe("outlet", () => {
   test("using index elements", async () => {
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: {
           path: "/",
@@ -43,14 +42,14 @@ describe("outlet", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(createContent(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
   });
 
   test("using next layout elements", async () => {
-    const matches: RouteMatch[] = [
+    const matches: Match[] = [
       {
         route: {
           path: "/",
@@ -95,7 +94,7 @@ describe("outlet", () => {
     ];
     matches[0]!.next = matches[1];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(createContent(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();

@@ -4,8 +4,8 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import { type TRouterContext, RouterContext } from "#lib/router/context.js";
-import type { RouteMatch } from "#lib/match/mod.js";
-import { renderMatches } from "./mod.js";
+import type { Match } from "#lib/match/mod.js";
+import { createContent } from "./create.js";
 
 const wrapperId = "test-wrapper";
 
@@ -13,8 +13,8 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
   <div data-testid={wrapperId}>{children}</div>
 );
 
-describe("renderMatches", () => {
-  test("no matches", async () => {
+describe("createContent", () => {
+  test("from 0 matches", async () => {
     const context: TRouterContext = {
       routes: {
         path: "",
@@ -27,9 +27,9 @@ describe("renderMatches", () => {
       navigate: () => undefined,
     };
 
-    const matches: RouteMatch[] = [];
+    const matches: Match[] = [];
 
-    const screen = render(renderMatches(matches), {
+    const screen = render(createContent(matches), {
       wrapper: ({ children }) => (
         <div data-testid={wrapperId}>
           <RouterContext.Provider value={context}>
@@ -43,8 +43,8 @@ describe("renderMatches", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("1 match with no elements", async () => {
-    const matches: RouteMatch[] = [
+  test("from 1 match with no elements", async () => {
+    const matches: Match[] = [
       {
         route: {
           path: "/",
@@ -59,14 +59,14 @@ describe("renderMatches", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(createContent(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("1 match with layout elements", async () => {
-    const matches: RouteMatch[] = [
+  test("from 1 match with layout elements", async () => {
+    const matches: Match[] = [
       {
         route: {
           path: "/",
@@ -85,7 +85,7 @@ describe("renderMatches", () => {
       },
     ];
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = render(createContent(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
