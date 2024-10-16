@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { Outlet, useLinkProps } from "enrouter";
+import { Outlet, useLink } from "enrouter";
 
 import github_logo from "/github-light.svg";
 import { createLog } from "#log.js";
@@ -16,10 +16,7 @@ function Layout() {
   return (
     <div className="flex flex-col divide-y divide-paperBorder">
       <div className="container mx-auto flex items-center justify-between p-4">
-        <a
-          className="text-2xl font-medium tracking-wider"
-          {...useLinkProps({ href: "/" })}
-        >
+        <a className="text-2xl font-medium tracking-wider" {...useLink("/")}>
           enrouter
         </a>
         <ul className="flex justify-end gap-x-4">
@@ -53,7 +50,7 @@ function Layout() {
 
 function Link({ href, children }: PropsWithChildren<{ href: string }>) {
   return (
-    <a className="font-semibold" {...useLinkProps({ href })}>
+    <a className="font-semibold" {...useLink(href)}>
       {children}
     </a>
   );

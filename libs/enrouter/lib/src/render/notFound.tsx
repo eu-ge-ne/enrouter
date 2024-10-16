@@ -1,4 +1,4 @@
-import { useLocation } from "#lib/hooks.js";
+import { useLocation } from "#lib/router/hooks.js";
 
 export function NotFound() {
   const location = useLocation();

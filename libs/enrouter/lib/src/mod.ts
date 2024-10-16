@@ -10,18 +10,17 @@ export {
   matchRoutes,
 } from "./match/mod.js";
 
+export {
+  type UseActiveParams,
+  useMatch,
+  usePath,
+  useActive,
+} from "./render/hooks.js";
+
 export { type StaticRouterProps, StaticRouter } from "./router/static.js";
 export { type BrowserRouterProps, BrowserRouter } from "./router/browser.js";
+export { useLocation } from "./router/hooks.js";
 
 export { type OutletProps, Outlet } from "./outlet/mod.js";
 
-export {
-  type UseLinkPropsParams,
-  type LinkProps,
-  type UseActiveLinkPropsParams,
-  type ActiveLinkProps,
-  useLinkProps,
-  useActiveLinkProps,
-} from "./link/mod.js";
-
-export { useLocation, usePath, useMatch } from "./hooks.js";
+export { type LinkProps, useLink } from "./link/mod.js";
