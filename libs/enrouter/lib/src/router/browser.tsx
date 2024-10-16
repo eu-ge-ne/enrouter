@@ -6,7 +6,7 @@ import { logger } from "#lib/debug.js";
 import { loadRoutes } from "#lib/route/load.js";
 import { matchRoutes } from "#lib/match/match.js";
 import { createContent } from "#lib/content/create.js";
-import { RouterContext } from "./context.js";
+import { RouterProvider } from "./context.js";
 
 const log = logger("router/browser");
 
@@ -55,7 +55,5 @@ export function BrowserRouter({ routes }: BrowserRouterProps) {
 
   const children = useMemo(() => createContent(matches), [matches]);
 
-  return (
-    <RouterContext.Provider value={context}>{children}</RouterContext.Provider>
-  );
+  return <RouterProvider value={context}>{children}</RouterProvider>;
 }

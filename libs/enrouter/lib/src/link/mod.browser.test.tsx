@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { type TRouterContext, RouterContext } from "#lib/router/context.js";
+import { type TRouterContext, RouterProvider } from "#lib/router/context.js";
 import { useLink } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -28,9 +28,7 @@ describe("link", () => {
     const screen = render(<TestLink />, {
       wrapper: ({ children }) => (
         <div data-testid={wrapperId}>
-          <RouterContext.Provider value={context}>
-            {children}
-          </RouterContext.Provider>
+          <RouterProvider value={context}>{children}</RouterProvider>
         </div>
       ),
     });

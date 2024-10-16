@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 import type { Route } from "#lib/route/mod.js";
 
@@ -8,7 +8,7 @@ export interface TRouterContext {
   navigate: (to: string) => void;
 }
 
-export const RouterContext = createContext<TRouterContext>({
+const RouterContext = createContext<TRouterContext>({
   routes: {
     path: "",
     test: { keys: [], pattern: new RegExp("") },
@@ -19,3 +19,9 @@ export const RouterContext = createContext<TRouterContext>({
   location: "",
   navigate: () => undefined,
 });
+
+export const RouterProvider = RouterContext.Provider;
+
+export function useRouter() {
+  return useContext(RouterContext);
+}

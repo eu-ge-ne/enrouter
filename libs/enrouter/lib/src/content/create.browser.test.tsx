@@ -3,7 +3,7 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import { type TRouterContext, RouterContext } from "#lib/router/context.js";
+import { type TRouterContext, RouterProvider } from "#lib/router/context.js";
 import type { Match } from "#lib/match/mod.js";
 import { createContent } from "./create.js";
 
@@ -32,9 +32,7 @@ describe("createContent", () => {
     const screen = render(createContent(matches), {
       wrapper: ({ children }) => (
         <div data-testid={wrapperId}>
-          <RouterContext.Provider value={context}>
-            {children}
-          </RouterContext.Provider>
+          <RouterProvider value={context}>{children}</RouterProvider>
         </div>
       ),
     });
