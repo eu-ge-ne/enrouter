@@ -3,8 +3,8 @@
 exports[`matchRoutes > 1 match 1`] = `
 [
   {
+    "fist": [Circular],
     "isFull": true,
-    "last": [Circular],
     "location": "/",
     "next": undefined,
     "params": {},
@@ -25,8 +25,8 @@ exports[`matchRoutes > 1 match 1`] = `
 exports[`matchRoutes > 1 match with params 1`] = `
 [
   {
+    "fist": [Circular],
     "isFull": true,
-    "last": [Circular],
     "location": "/100",
     "next": undefined,
     "params": {
@@ -51,28 +51,12 @@ exports[`matchRoutes > 1 match with params 1`] = `
 exports[`matchRoutes > 2 matches 1`] = `
 [
   {
+    "fist": [Circular],
     "isFull": false,
-    "last": {
-      "isFull": true,
-      "last": [Circular],
-      "location": "/abc",
-      "next": undefined,
-      "params": {},
-      "route": {
-        "elements": {},
-        "loaded": false,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-    },
     "location": "/",
     "next": {
+      "fist": [Circular],
       "isFull": true,
-      "last": [Circular],
       "location": "/abc",
       "next": undefined,
       "params": {},
@@ -112,8 +96,36 @@ exports[`matchRoutes > 2 matches 1`] = `
     },
   },
   {
+    "fist": {
+      "fist": [Circular],
+      "isFull": false,
+      "location": "/",
+      "next": [Circular],
+      "params": {},
+      "route": {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+        "tree": [
+          {
+            "elements": {},
+            "loaded": false,
+            "modules": [],
+            "path": "/abc",
+            "test": {
+              "keys": [],
+              "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+            },
+          },
+        ],
+      },
+    },
     "isFull": true,
-    "last": [Circular],
     "location": "/abc",
     "next": undefined,
     "params": {},
