@@ -2,7 +2,10 @@ import type { ReactNode } from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
-import { StaticProvider, DynamicProvider } from "./context.js";
+import { RouterStaticProvider, RouterDynamicProvider } from "./context.js";
+import { renderMatches } from "#lib/match/render.js";
+
+const navigate = () => undefined;
 
 export interface StaticRouterProps {
   routes: Route;
@@ -17,13 +20,19 @@ export function StaticRouter({
   matches,
   ctx,
 }: StaticRouterProps): ReactNode {
-  const children = Object.values(matches[0]?.elements?.layout ?? {})[0];
+  const staticContext = { routes, navigate, ctx };
+
+  const dynamicContext = {
+    location,
+    matches,
+    children: renderMatches(matches),
+  };
 
   return (
-    <StaticProvider value={{ routes, navigate: () => undefined, ctx }}>
-      <DynamicProvider value={{ location, matches }}>
-        {children}
-      </DynamicProvider>
-    </StaticProvider>
+    <RouterStaticProvider value={staticContext}>
+      <RouterDynamicProvider value={dynamicContext}>
+        {dynamicContext.children}
+      </RouterDynamicProvider>
+    </RouterStaticProvider>
   );
 }

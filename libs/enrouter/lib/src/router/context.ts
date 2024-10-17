@@ -1,20 +1,21 @@
-import { createContext, useContext } from "react";
+import { type ReactNode, createContext, useContext } from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 
-export interface StaticContext {
+export interface TRouterStaticContext {
   routes: Route;
   navigate: (to: string) => void;
   ctx: unknown;
 }
 
-export interface DynamicContext {
+export interface TRouterDynamicContext {
   location: string;
   matches: Match[];
+  children: ReactNode;
 }
 
-const RouterStaticContext = createContext<StaticContext>({
+const RouterStaticContext = createContext<TRouterStaticContext>({
   routes: {
     path: "",
     test: { keys: [], pattern: new RegExp("") },
@@ -26,18 +27,19 @@ const RouterStaticContext = createContext<StaticContext>({
   ctx: undefined,
 });
 
-const RouterDynamicContext = createContext<DynamicContext>({
+const RouterDynamicContext = createContext<TRouterDynamicContext>({
   location: "",
   matches: [],
+  children: undefined,
 });
 
-export const StaticProvider = RouterStaticContext.Provider;
-export const DynamicProvider = RouterDynamicContext.Provider;
+export const RouterStaticProvider = RouterStaticContext.Provider;
+export const RouterDynamicProvider = RouterDynamicContext.Provider;
 
-export function useStaticContext(): StaticContext {
+export function useRouterStatic(): TRouterStaticContext {
   return useContext(RouterStaticContext);
 }
 
-export function useDynamicContext(): DynamicContext {
+export function useRouterDynamic(): TRouterDynamicContext {
   return useContext(RouterDynamicContext);
 }
