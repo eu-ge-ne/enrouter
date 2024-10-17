@@ -23,9 +23,9 @@ export async function prepareMatches(matches: Match[]) {
         : undefined;
 
     match.elements = {
-      layout: wrap(match.route.elements.layout),
-      index: wrap(match.route.elements.index),
-      notFound: wrap(match.route.elements.notFound),
+      layout: wrap(match.route?.elements.layout),
+      index: wrap(match.route?.elements.index),
+      notFound: wrap(match.route?.elements.notFound),
     };
   }
 }
