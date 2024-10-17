@@ -24,7 +24,7 @@ describe("link", () => {
         loaded: false,
         elements: {},
       },
-      navigate: () => undefined,
+      navigate: () => {},
       ctx: undefined,
     };
 
