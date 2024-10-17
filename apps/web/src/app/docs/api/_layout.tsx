@@ -7,7 +7,7 @@ const log = createLog("docs/api/_layout");
 
 export const components = {
   menu: Menu,
-  docs: Layout,
+  docs: Docs,
 };
 
 function Menu() {
@@ -31,7 +31,7 @@ function Menu() {
   );
 }
 
-function Layout() {
+function Docs() {
   log("Rendering");
 
   return <Outlet name="api" />;

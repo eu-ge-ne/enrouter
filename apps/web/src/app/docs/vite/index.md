@@ -1,3 +1,4 @@
 # Vite
 
-Will soon be updated...
+- [Plugin](/docs/vite/plugin)
+- [Manifest](/docs/vite/manifest)

@@ -1,13 +1,13 @@
 import { createLog } from "#log.js";
 import Index from "./index.md";
 
-const log = createLog("docs/api/_index");
+const log = createLog("docs/vite/_index");
 
 export const components = {
-  api: Api,
+  vite: Vite,
 };
 
-function Api() {
+function Vite() {
   log("Rendering");
 
   return <Index />;
