@@ -6,7 +6,7 @@ import { loadRoutes } from "./load.js";
 import type { Route } from "./mod.js";
 
 describe("loadRoutes", () => {
-  test("no routes", async () => {
+  test("0 routes", async () => {
     const routes: Route[] = [];
 
     await loadRoutes(routes);

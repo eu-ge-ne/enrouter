@@ -1,5 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`loadRoutes > 0 routes 1`] = `[]`;
+
 exports[`loadRoutes > 1 route no modules 1`] = `
 [
   {
@@ -78,5 +80,3 @@ exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
   },
 ]
 `;
-
-exports[`loadRoutes > no routes 1`] = `[]`;

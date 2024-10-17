@@ -5,7 +5,7 @@ import { logger } from "#lib/debug.js";
 
 const log = logger("route/load");
 
-export async function loadRoutes2(routes: Route[]): Promise<void> {
+export async function loadRoutes(routes: Route[]): Promise<void> {
   log("Loading routes");
 
   const promises: Promise<unknown>[] = [];
