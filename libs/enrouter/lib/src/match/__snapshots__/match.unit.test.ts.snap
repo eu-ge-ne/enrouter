@@ -1,5 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`matchRoutes > 0 matches 1`] = `
+[
+  {
+    "fist": [Circular],
+    "isFull": true,
+    "location": "/x",
+    "next": undefined,
+    "params": {},
+  },
+]
+`;
+
 exports[`matchRoutes > 1 match 1`] = `
 [
   {
@@ -142,5 +154,3 @@ exports[`matchRoutes > 2 matches 1`] = `
   },
 ]
 `;
-
-exports[`matchRoutes > no matches 1`] = `[]`;

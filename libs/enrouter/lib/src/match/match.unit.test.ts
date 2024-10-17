@@ -1,12 +1,11 @@
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
+import type { Route } from "#lib/route/mod.js";
 import { matchRoutes } from "./match.js";
 
-import type { Route } from "#lib/route/mod.js";
-
 describe("matchRoutes", () => {
-  test("no matches", () => {
+  test("0 matches", () => {
     const routes: Route = {
       path: "/abc",
       test: regexparam.parse("/abc", true),

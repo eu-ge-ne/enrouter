@@ -6,7 +6,7 @@ import type { Route } from "#lib/route/mod.js";
  * Represents matched `Route` instance.
  */
 export interface Match {
-  route: Route;
+  route?: Route; // may be undefined in case of 404
 
   isFull: boolean;
   location: string;

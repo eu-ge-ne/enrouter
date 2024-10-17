@@ -16,6 +16,10 @@ export function matchRoutes({ routes, location }: MatchRoutesParams): Match[] {
 
   recur([routes], location, matches);
 
+  if (matches.at(-1)?.location !== location) {
+    matches.push({ isFull: true, location, params: {} });
+  }
+
   matches.forEach((x, i) => {
     x.fist = matches[0];
     x.next = matches[i + 1];
@@ -48,13 +52,13 @@ function recur(routes: Route[], location: string, matches: Match[]): void {
     }),
   );
 
-  const matchedLocation = results[0] || "/";
+  const loc = results[0] || "/";
 
   matches.push({
     route,
 
-    isFull: matchedLocation === location,
-    location: matchedLocation,
+    isFull: loc === location,
+    location: loc,
     params,
   });
 
