@@ -26,3 +26,26 @@ export function PrimaryLinkItem({
     </li>
   );
 }
+
+export function SecondaryLinkItem({
+  href,
+  children,
+}: PropsWithChildren<{ href: string }>) {
+  const liClassName = useActive({
+    path: href,
+    value: ["border-r-2 border-black", ""],
+  });
+
+  const aClassName = useActive({
+    path: href,
+    value: ["font-semibold text-sm", "text-sm"],
+  });
+
+  return (
+    <li className={liClassName}>
+      <a className={aClassName} {...useLink(href)}>
+        {children}
+      </a>
+    </li>
+  );
+}
