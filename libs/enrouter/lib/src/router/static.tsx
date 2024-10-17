@@ -21,6 +21,7 @@ export function StaticRouter({
   const context: TRouterContext = {
     routes,
     location,
+    matches,
     navigate: () => undefined,
     ctx,
   };
