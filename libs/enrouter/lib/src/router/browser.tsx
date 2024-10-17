@@ -1,32 +1,55 @@
-import {
-  type ReactNode,
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { type ReactNode, useState, useCallback, useEffect } from "react";
 
 import type { Route } from "#lib/route/mod.js";
-import type { TRouterContext } from "./context.js";
+import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
-import { loadRoutes } from "#lib/route/load.js";
 import { matchRoutes } from "#lib/match/match.js";
-import { createContent } from "#lib/content/create.js";
-import { RouterProvider } from "./context.js";
+import { prepareMatches } from "#lib/match/prepare.js";
+import { renderMatches } from "#lib/match/render.js";
+import {
+  type TRouterDynamicContext,
+  RouterStaticProvider,
+  RouterDynamicProvider,
+} from "./context.js";
 
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
   routes: Route;
-  ctx?: unknown;
+  matches: Match[];
 }
 
-export function BrowserRouter({ routes, ctx }: BrowserRouterProps): ReactNode {
-  const [location, setLocation] = useState(window.location.pathname);
+export function BrowserRouter({
+  routes,
+  matches: initialMatches,
+}: BrowserRouterProps): ReactNode {
+  const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
+    location: window.location.pathname,
+    matches: initialMatches,
+    children: renderMatches(initialMatches),
+  });
 
-  const handlePopState = useCallback((e: PopStateEvent) => {
+  const navigate = useCallback(async (location: string) => {
+    log("Navigating to %s", location);
+
+    window.history.pushState({}, "", location);
+
+    const matches = matchRoutes({ routes, location });
+    await prepareMatches(matches);
+    const children = renderMatches(matches);
+
+    setDynamicContext({ location, matches, children });
+  }, []);
+
+  const handlePopState = useCallback(async (e: PopStateEvent) => {
     log("handlePopState %o", e);
-    setLocation(window.location.pathname);
+
+    const location = window.location.pathname;
+    const matches = matchRoutes({ routes, location });
+    await prepareMatches(matches);
+    const children = renderMatches(matches);
+
+    setDynamicContext({ location, matches, children });
   }, []);
 
   useEffect(() => {
@@ -34,34 +57,13 @@ export function BrowserRouter({ routes, ctx }: BrowserRouterProps): ReactNode {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handlePopState]);
 
-  const navigate = useCallback(async (to: string) => {
-    log("Navigating to %s", to);
+  const staticContext = { routes, navigate };
 
-    const matches = matchRoutes({ routes, location: to });
-
-    await loadRoutes(matches.map((x) => x.route));
-
-    window.history.pushState({}, "", to);
-
-    setLocation(to);
-  }, []);
-
-  const matches = useMemo(
-    () => matchRoutes({ routes, location }),
-    [routes, location],
+  return (
+    <RouterStaticProvider value={staticContext}>
+      <RouterDynamicProvider value={dynamicContext}>
+        {dynamicContext.children}
+      </RouterDynamicProvider>
+    </RouterStaticProvider>
   );
-
-  const context = useMemo<TRouterContext>(
-    () => ({
-      routes,
-      location,
-      navigate,
-      ctx,
-    }),
-    [routes, location, navigate, ctx],
-  );
-
-  const children = useMemo(() => createContent(matches), [matches]);
-
-  return <RouterProvider value={context}>{children}</RouterProvider>;
 }

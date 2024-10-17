@@ -1,21 +1,24 @@
-import { useContext } from "react";
 import type { ReactNode, ReactElement } from "react";
 
-import { useContent } from "#lib/content/context.js";
+import { useMatch } from "#lib/match/context.js";
 
 export interface OutletProps {
   name: string;
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
-  return useOutlets()?.[name];
+  let match = useMatch();
+
+  if (match.next?.elements?.layout?.[name]) {
+    return match.next?.elements.layout?.[name];
+  }
+
+  return match.elements?.index?.[name];
 }
 
-function useOutlets(): Record<string, ReactElement> | undefined {
-  let x = useContent();
-
+/*
   if (!x.next) {
-    return x.index;
+    return x.next;
   }
 
   while (x.next) {
@@ -25,4 +28,4 @@ function useOutlets(): Record<string, ReactElement> | undefined {
       return outlets;
     }
   }
-}
+  */

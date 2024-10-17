@@ -20,7 +20,7 @@ describe("buildRoutes", () => {
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
-            importFn: async () => undefined,
+            importFn: async () => {},
             importStr: '() => import("/home/src/_layout.tsx")',
           },
         ],
@@ -40,7 +40,7 @@ describe("buildRoutes", () => {
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
-            importFn: async () => undefined,
+            importFn: async () => {},
             importStr: '() => import("/home/src/_layout.tsx")',
           },
         ],
@@ -53,7 +53,7 @@ describe("buildRoutes", () => {
           {
             id: "src/abc/_layout.tsx",
             fileName: "_layout.tsx",
-            importFn: async () => undefined,
+            importFn: async () => {},
             importStr: '() => import("/home/src/abc/_layout.tsx")',
           },
         ],
@@ -73,7 +73,7 @@ describe("buildRoutes", () => {
           {
             id: "src/_layout.tsx",
             fileName: "_layout.tsx",
-            importFn: async () => undefined,
+            importFn: async () => {},
             importStr: '() => import("/home/src/_layout.tsx")',
           },
         ],
@@ -86,13 +86,13 @@ describe("buildRoutes", () => {
           {
             id: "src/xyz/_layout.tsx",
             fileName: "_layout.tsx",
-            importFn: async () => undefined,
+            importFn: async () => {},
             importStr: '() => import("/home/src/xyz/_layout.tsx")',
           },
           {
             id: "src/xyz/_index.tsx",
             fileName: "_index.tsx",
-            importFn: async () => undefined,
+            importFn: async () => {},
             importStr: '() => import("/home/src/xyz/_layout.tsx")',
           },
         ],

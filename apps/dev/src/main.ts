@@ -40,8 +40,8 @@ app.use(async (req, res) => {
 
   const fetchReq = createFetchRequest(req, res);
 
-  const { body } = await ssrHandler(fetchReq, { isBot: false });
-
+  const { status, body } = await ssrHandler(fetchReq, { isBot: false });
+  res.statusCode = status;
   Readable.fromWeb(body!).pipe(res);
 });
 
