@@ -1,12 +1,11 @@
-import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
+import { debug, matchRoutes, prepareMatches, BrowserRouter } from "enrouter";
 
 import "./index.css";
-
-import { debug, matchRoutes, prepareMatches, BrowserRouter } from "enrouter";
 import { createLog } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
+import { Shell } from "./shell.js";
 
 debug(console.debug);
 
@@ -24,9 +23,9 @@ async function main() {
 
   hydrateRoot(
     document,
-    <StrictMode>
+    <Shell>
       <BrowserRouter routes={routes} matches={matches} />
-    </StrictMode>,
+    </Shell>,
   );
 
   log("DOM Hydrated");

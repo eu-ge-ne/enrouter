@@ -1,13 +1,12 @@
-import { StrictMode } from "react";
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
-
 import { debug, matchRoutes, prepareMatches, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { createLog } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
+import { Shell } from "./shell.js";
 
 export default createSsrHandler;
 
@@ -78,14 +77,9 @@ function createSsrHandler(manifest: ViteManifest) {
       });
 
       const children = (
-        <StrictMode>
-          <StaticRouter
-            routes={routes}
-            location={location}
-            matches={matches}
-            ctx={{ styles: bootstrapStyles }}
-          />
-        </StrictMode>
+        <Shell styles={bootstrapStyles}>
+          <StaticRouter routes={routes} location={location} matches={matches} />
+        </Shell>
       );
 
       const stream = await renderToReadableStream(children, {
