@@ -5,7 +5,7 @@ import { loadRoutes } from "#lib/route/load.js";
 import { MatchProvider } from "./context.js";
 
 export async function prepareMatches(matches: Match[]) {
-  await loadRoutes(matches.map((x) => x.route));
+  await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
   for (let i = matches.length - 1; i >= 0; i -= 1) {
     const match = matches[i]!;
