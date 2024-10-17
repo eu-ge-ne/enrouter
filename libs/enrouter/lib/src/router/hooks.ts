@@ -1,13 +1,16 @@
-import { useRouter } from "./context.js";
+import { useStaticContext, useDynamicContext } from "./context.js";
 
-export function useLocation(): string {
-  const { location } = useRouter();
-
-  return location;
+export function useNavigate(): (location: string) => void {
+  const { navigate } = useStaticContext();
+  return navigate;
 }
 
 export function useContext<T>(): T {
-  const { ctx } = useRouter();
-
+  const { ctx } = useStaticContext();
   return ctx as T;
+}
+
+export function useLocation(): string {
+  const { location } = useDynamicContext();
+  return location;
 }

@@ -3,15 +3,18 @@ import { createContext, useContext } from "react";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 
-export interface TRouterContext {
+export interface StaticContext {
   routes: Route;
-  location: string;
-  matches: Match[];
   navigate: (to: string) => void;
   ctx: unknown;
 }
 
-const RouterContext = createContext<TRouterContext>({
+export interface DynamicContext {
+  location: string;
+  matches: Match[];
+}
+
+const RouterStaticContext = createContext<StaticContext>({
   routes: {
     path: "",
     test: { keys: [], pattern: new RegExp("") },
@@ -19,14 +22,22 @@ const RouterContext = createContext<TRouterContext>({
     loaded: false,
     elements: {},
   },
-  location: "",
-  matches: [],
   navigate: () => undefined,
   ctx: undefined,
 });
 
-export const RouterProvider = RouterContext.Provider;
+const RouterDynamicContext = createContext<DynamicContext>({
+  location: "",
+  matches: [],
+});
 
-export function useRouter(): TRouterContext {
-  return useContext(RouterContext);
+export const StaticProvider = RouterStaticContext.Provider;
+export const DynamicProvider = RouterDynamicContext.Provider;
+
+export function useStaticContext(): StaticContext {
+  return useContext(RouterStaticContext);
+}
+
+export function useDynamicContext(): DynamicContext {
+  return useContext(RouterDynamicContext);
 }
