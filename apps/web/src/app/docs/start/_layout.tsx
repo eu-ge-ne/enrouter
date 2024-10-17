@@ -1,14 +1,7 @@
-import { createLog } from "#log.js";
-import Index from "./index.mdx";
+import Index from "./index.md";
 
-const log = createLog("docs/start/_layout");
-
-export const components = {
-  docs: Layout,
+export default {
+  Docs() {
+    return <Index />;
+  },
 };
-
-function Layout() {
-  log("Rendering");
-
-  return <Index />;
-}

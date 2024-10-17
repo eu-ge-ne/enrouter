@@ -1,9 +1,7 @@
 import Index from "./index.md";
 
-export const components = {
-  arch: Layout,
+export default {
+  Arch() {
+    return <Index />;
+  },
 };
-
-function Layout() {
-  return <Index />;
-}

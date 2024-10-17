@@ -1,7 +1,7 @@
 import Index from "./index.md";
 
 export default {
-  Docs() {
+  Vite() {
     return <Index />;
   },
 };

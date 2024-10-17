@@ -3,12 +3,10 @@ import Index from "./index.md";
 
 const log = createLog("docs/api/_index");
 
-export const components = {
-  api: Layout,
+export default {
+  Api() {
+    log("Rendering");
+
+    return <Index />;
+  },
 };
-
-function Layout() {
-  log("Rendering");
-
-  return <Index />;
-}

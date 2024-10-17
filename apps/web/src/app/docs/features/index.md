@@ -1,14 +1,16 @@
-### Features
+# Features
 
-Will soon be updated...
-
-- NotFound
-- Nesting
-- Matching
 - Outlets
 - Links
+- Matching
+- Nesting
+
+## TODO
+
+- NotFound
 - Ordering
 - Params
 - Redirects
 - Navigation
 - Assets
+- Redirects
