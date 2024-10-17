@@ -23,7 +23,7 @@ const RouterStaticContext = createContext<TRouterStaticContext>({
     loaded: false,
     elements: {},
   },
-  navigate: () => undefined,
+  navigate: () => {},
   ctx: undefined,
 });
 
