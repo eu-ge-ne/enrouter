@@ -35,7 +35,7 @@ function createSsrHandler(manifest: ViteManifest) {
       const location = new URL(req.url, "http://localhost").pathname;
 
       const matches = matchRoutes({ routes, location });
-      if (!matches.at(-1)?.isFull) {
+      if (!matches.at(-1)?.route) {
         status = 404;
       }
       await prepareMatches(matches);
@@ -50,7 +50,7 @@ function createSsrHandler(manifest: ViteManifest) {
         });
 
         const matchedAssets = matches.flatMap((x) =>
-          x.route.modules.map((x) =>
+          x.route?.modules.map((x) =>
             getModuleAssets({
               manifest,
               moduleId: x.id,
