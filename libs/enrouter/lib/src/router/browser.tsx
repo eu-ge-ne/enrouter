@@ -7,22 +7,28 @@ import {
 } from "react";
 
 import type { Route } from "#lib/route/mod.js";
+import type { Match } from "#lib/match/mod.js";
 import type { TRouterContext } from "./context.js";
 import { logger } from "#lib/debug.js";
-import { loadRoutes } from "#lib/route/load.js";
 import { matchRoutes } from "#lib/match/match.js";
-import { createContent } from "#lib/content/create.js";
+import { renderMatches } from "#lib/match/render.js";
 import { RouterProvider } from "./context.js";
 
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
   routes: Route;
+  matches: Match[];
   ctx?: unknown;
 }
 
-export function BrowserRouter({ routes, ctx }: BrowserRouterProps): ReactNode {
+export function BrowserRouter({
+  routes,
+  matches: m,
+  ctx,
+}: BrowserRouterProps): ReactNode {
   const [location, setLocation] = useState(window.location.pathname);
+  const [matches, setMatches] = useState(m);
 
   const handlePopState = useCallback((e: PopStateEvent) => {
     log("handlePopState %o", e);
@@ -37,20 +43,16 @@ export function BrowserRouter({ routes, ctx }: BrowserRouterProps): ReactNode {
   const navigate = useCallback(async (to: string) => {
     log("Navigating to %s", to);
 
-    const matches = matchRoutes({ routes, location: to });
-
-    await loadRoutes(matches.map((x) => x.route));
+    const mm = matchRoutes({ routes, location: to });
+    await renderMatches(mm);
 
     window.history.pushState({}, "", to);
 
     setLocation(to);
+    setMatches(mm);
   }, []);
 
-  const matches = useMemo(
-    () => matchRoutes({ routes, location }),
-    [routes, location],
-  );
-
+  //TODO: useState
   const context = useMemo<TRouterContext>(
     () => ({
       routes,
@@ -61,7 +63,10 @@ export function BrowserRouter({ routes, ctx }: BrowserRouterProps): ReactNode {
     [routes, location, navigate, ctx],
   );
 
-  const children = useMemo(() => createContent(matches), [matches]);
+  const children = useMemo(
+    () => Object.values(matches[0]?.elements?.layout ?? {})[0],
+    [matches],
+  );
 
   return <RouterProvider value={context}>{children}</RouterProvider>;
 }
