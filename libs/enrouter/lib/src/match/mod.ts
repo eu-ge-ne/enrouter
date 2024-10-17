@@ -1,3 +1,5 @@
+import type { ReactElement } from "react";
+
 import type { Route } from "#lib/route/mod.js";
 
 /**
@@ -6,10 +8,16 @@ import type { Route } from "#lib/route/mod.js";
 export interface Match {
   route: Route;
 
+  isFull: boolean;
   location: string;
   params: Record<string, string>;
-  isFull: boolean;
 
+  elements?: {
+    layout?: Record<string, ReactElement>;
+    index?: Record<string, ReactElement>;
+    notFound?: Record<string, ReactElement>;
+  };
+
+  fist?: Match;
   next?: Match;
-  last?: Match;
 }
