@@ -25,7 +25,6 @@ describe("link", () => {
         elements: {},
       },
       navigate: () => {},
-      ctx: undefined,
     };
 
     const screen = render(<TestLink />, {

@@ -10,7 +10,7 @@ export { type UseActiveParams, usePath, useActive } from "./match/hooks.js";
 
 export { type StaticRouterProps, StaticRouter } from "./router/static.js";
 export { type BrowserRouterProps, BrowserRouter } from "./router/browser.js";
-export { useLocation, useContext } from "./router/hooks.js";
+export { useLocation } from "./router/hooks.js";
 
 export { type OutletProps, Outlet } from "./outlet/mod.js";
 
