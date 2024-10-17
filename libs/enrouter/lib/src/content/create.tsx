@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode } from "react";
 
 import type { Match } from "#lib/match/mod.js";
 import type { Content } from "./mod.js";
@@ -8,15 +8,15 @@ import { NotFound } from "./notFound.js";
 
 const log = logger("content/create");
 
-export function createContent(matches: Match[]): ReactElement[] {
+export function createContent(matches: Match[]): ReactNode {
   log("Creating matched content");
 
   const content = matches.map(toContent);
-  const elements = render(content);
+  const node = render(content);
 
   log("Matched content created");
 
-  return elements;
+  return node;
 }
 
 function toContent(match: Match): Content {
@@ -63,14 +63,14 @@ function toContent(match: Match): Content {
   return content;
 }
 
-function render(content: Content[]): ReactElement[] {
+function render(content: Content[]): ReactNode {
   // 404?
   if (!content.at(-1)?.match.isFull) {
     log("404: %o", content);
 
     const i = content.findLastIndex((x) => x.match.route.elements.notFound);
     if (i === -1) {
-      return [<NotFound />];
+      return <NotFound />;
     }
 
     content = content.slice(0, i + 1);
@@ -86,5 +86,5 @@ function render(content: Content[]): ReactElement[] {
     x.last = last;
   });
 
-  return Object.values(content[0]?.layout ?? {});
+  return Object.values(content[0]?.layout ?? {})[0];
 }

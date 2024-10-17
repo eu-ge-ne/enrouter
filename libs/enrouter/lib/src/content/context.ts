@@ -22,6 +22,6 @@ const ContentContext = createContext<Content>({
 
 export const ContentProvider = ContentContext.Provider;
 
-export function useContent() {
+export function useContent(): Content {
   return useContext(ContentContext);
 }
