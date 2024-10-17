@@ -4,11 +4,9 @@ import Index from "./index.md";
 const log = createLog("docs/vite/_index");
 
 export default {
-  Vite,
+  Vite() {
+    log("Rendering");
+
+    return <Index />;
+  },
 };
-
-function Vite() {
-  log("Rendering");
-
-  return <Index />;
-}

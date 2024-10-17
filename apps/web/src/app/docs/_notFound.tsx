@@ -5,13 +5,11 @@ import { createLog } from "#log.js";
 const log = createLog("docs/_notFound");
 
 export default {
-  Docs,
+  Docs() {
+    log("Rendering");
+
+    const location = useLocation();
+
+    return <div>{location} is not found</div>;
+  },
 };
-
-function Docs() {
-  log("Rendering");
-
-  const location = useLocation();
-
-  return <div>{location} is not found</div>;
-}

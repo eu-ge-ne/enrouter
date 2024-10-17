@@ -4,11 +4,9 @@ import Index from "./index.md";
 const log = createLog("docs/api/_index");
 
 export default {
-  Api,
+  Api() {
+    log("Rendering");
+
+    return <Index />;
+  },
 };
-
-function Api() {
-  log("Rendering");
-
-  return <Index />;
-}

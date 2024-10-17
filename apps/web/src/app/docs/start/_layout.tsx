@@ -1,9 +1,7 @@
 import Index from "./index.md";
 
 export default {
-  Docs,
+  Docs() {
+    return <Index />;
+  },
 };
-
-function Docs() {
-  return <Index />;
-}

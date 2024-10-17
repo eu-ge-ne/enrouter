@@ -1,9 +1,7 @@
 import Index from "./index.md";
 
 export default {
-  Arch,
+  Arch() {
+    return <Index />;
+  },
 };
-
-function Arch() {
-  return <Index />;
-}

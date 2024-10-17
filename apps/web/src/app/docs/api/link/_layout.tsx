@@ -1,9 +1,7 @@
 import Index from "./index.md";
 
 export default {
-  Api,
+  Api() {
+    return <Index />;
+  },
 };
-
-function Api() {
-  return <Index />;
-}
