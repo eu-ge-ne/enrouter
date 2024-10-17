@@ -5,3 +5,9 @@ export function useLocation(): string {
 
   return location;
 }
+
+export function useContext<T>(): T {
+  const { ctx } = useRouter();
+
+  return ctx as T;
+}
