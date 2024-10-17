@@ -11,7 +11,7 @@ import type { Match } from "#lib/match/mod.js";
 import type { TRouterContext } from "./context.js";
 import { logger } from "#lib/debug.js";
 import { matchRoutes } from "#lib/match/match.js";
-import { renderMatches } from "#lib/match/render.js";
+import { prepareMatches } from "#lib/match/prepare.js";
 import { RouterProvider } from "./context.js";
 
 const log = logger("router/browser");
@@ -44,7 +44,7 @@ export function BrowserRouter({
     log("Navigating to %s", to);
 
     const mm = matchRoutes({ routes, location: to });
-    await renderMatches(mm);
+    await prepareMatches(mm);
 
     window.history.pushState({}, "", to);
 

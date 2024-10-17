@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
 
 import type { Match } from "./mod.js";
-import { loadRoutes2 } from "#lib/route/load.js";
+import { loadRoutes } from "#lib/route/load.js";
 import { MatchProvider } from "./context.js";
 
-export async function renderMatches(matches: Match[]) {
-  await loadRoutes2(matches.map((x) => x.route));
+export async function prepareMatches(matches: Match[]) {
+  await loadRoutes(matches.map((x) => x.route));
 
   for (let i = matches.length - 1; i >= 0; i -= 1) {
     const match = matches[i]!;

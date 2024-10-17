@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
-import { debug, renderMatches, matchRoutes, StaticRouter } from "enrouter";
+import { debug, matchRoutes, prepareMatches, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { createLog } from "#log.js";
@@ -38,7 +38,7 @@ function createSsrHandler(manifest: ViteManifest) {
       if (!matches.at(-1)?.isFull) {
         status = 404;
       }
-      await renderMatches(matches);
+      await prepareMatches(matches);
 
       let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];

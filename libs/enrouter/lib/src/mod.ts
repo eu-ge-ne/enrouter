@@ -4,7 +4,7 @@ export type { Route } from "./route/mod.js";
 
 export type { Match } from "./match/mod.js";
 export { type MatchRoutesParams, matchRoutes } from "./match/match.js";
-export { renderMatches } from "./match/render.js";
+export { prepareMatches } from "./match/prepare.js";
 export { useMatch } from "./match/context.js";
 export { type UseActiveParams, usePath, useActive } from "./match/hooks.js";
 
