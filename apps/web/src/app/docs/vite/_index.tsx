@@ -3,7 +3,7 @@ import Index from "./index.md";
 
 const log = createLog("docs/vite/_index");
 
-export const components = {
+export default {
   Vite,
 };
 

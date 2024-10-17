@@ -6,7 +6,7 @@ import { createLog } from "#log.js";
 
 const log = createLog("_layout");
 
-export const components = {
+export default {
   Main,
 };
 

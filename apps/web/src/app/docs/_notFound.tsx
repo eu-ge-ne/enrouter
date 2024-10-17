@@ -4,7 +4,7 @@ import { createLog } from "#log.js";
 
 const log = createLog("docs/_notFound");
 
-export const components = {
+export default {
   Docs,
 };
 

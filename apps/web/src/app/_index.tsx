@@ -5,7 +5,7 @@ import github_logo from "/github-light.svg";
 
 const log = createLog("_index");
 
-export const components = {
+export default {
   Main,
 };
 

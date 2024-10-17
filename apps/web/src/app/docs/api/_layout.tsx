@@ -5,7 +5,7 @@ import { SecondaryLinkItem } from "#app/docs/links.js";
 
 const log = createLog("docs/api/_layout");
 
-export const components = {
+export default {
   Menu,
   Docs,
 };

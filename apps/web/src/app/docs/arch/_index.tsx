@@ -3,7 +3,7 @@ import Index from "./index.md";
 
 const log = createLog("docs/arch/_layout");
 
-export const components = {
+export default {
   Arch,
 };
 

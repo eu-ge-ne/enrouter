@@ -1,6 +1,6 @@
 import Index from "./index.md";
 
-export const components = {
+export default {
   Docs,
 };
 

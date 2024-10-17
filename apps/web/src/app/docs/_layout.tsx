@@ -6,7 +6,7 @@ import { PrimaryLinkItem } from "./links.js";
 
 const log = createLog("docs/_layout");
 
-export const components = {
+export default {
   Main,
 };
 

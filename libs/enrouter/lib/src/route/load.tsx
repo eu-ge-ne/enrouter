@@ -34,13 +34,11 @@ type Loader = (
   importFn: () => Promise<unknown>,
 ) => Promise<void> | void;
 
-interface _Components {
-  components: Record<string, ComponentType>;
-}
-
 async function load(importFn: () => Promise<unknown>) {
-  const fn = importFn as () => Promise<_Components>;
-  const { components } = await fn();
+  const fn = importFn as () => Promise<{
+    default: Record<string, ComponentType>;
+  }>;
+  const { default: components } = await fn();
   return Object.fromEntries(
     Object.entries(components).map(([key, C]) => [key, <C />]),
   );
