@@ -25,6 +25,7 @@ describe("createContent", () => {
       },
       location: "/",
       navigate: () => undefined,
+      ctx: undefined,
     };
 
     const matches: Match[] = [];

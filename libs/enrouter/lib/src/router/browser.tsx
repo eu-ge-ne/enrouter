@@ -1,4 +1,10 @@
-import { useState, useCallback, useEffect, useMemo } from "react";
+import {
+  type ReactNode,
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { TRouterContext } from "./context.js";
@@ -12,9 +18,10 @@ const log = logger("router/browser");
 
 export interface BrowserRouterProps {
   routes: Route;
+  ctx?: unknown;
 }
 
-export function BrowserRouter({ routes }: BrowserRouterProps) {
+export function BrowserRouter({ routes, ctx }: BrowserRouterProps): ReactNode {
   const [location, setLocation] = useState(window.location.pathname);
 
   const handlePopState = useCallback((e: PopStateEvent) => {
@@ -49,8 +56,9 @@ export function BrowserRouter({ routes }: BrowserRouterProps) {
       routes,
       location,
       navigate,
+      ctx,
     }),
-    [routes, location, navigate],
+    [routes, location, navigate, ctx],
   );
 
   const children = useMemo(() => createContent(matches), [matches]);
