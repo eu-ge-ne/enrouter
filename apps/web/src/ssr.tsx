@@ -1,10 +1,10 @@
+import { StrictMode } from "react";
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
 import { loadRoutes, matchRoutes, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
-import { Shell } from "./shell.js";
 import { createLog } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
@@ -41,7 +41,7 @@ function createSsrHandler(manifest: ViteManifest) {
 
       await loadRoutes(matches.map((x) => x.route));
 
-      let stylesheets: string[] = [];
+      let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];
 
       if (manifest) {
@@ -63,7 +63,7 @@ function createSsrHandler(manifest: ViteManifest) {
           (x) => x !== undefined,
         );
 
-        stylesheets = [...new Set(assets.flatMap((x) => x.styles))].map(
+        bootstrapStyles = [...new Set(assets.flatMap((x) => x.styles))].map(
           mapAssetUrl,
         );
 
@@ -79,9 +79,14 @@ function createSsrHandler(manifest: ViteManifest) {
       });
 
       const children = (
-        <Shell stylesheets={stylesheets}>
-          <StaticRouter routes={routes} location={location} matches={matches} />
-        </Shell>
+        <StrictMode>
+          <StaticRouter
+            routes={routes}
+            location={location}
+            matches={matches}
+            ctx={{ styles: bootstrapStyles }}
+          />
+        </StrictMode>
       );
 
       const stream = await renderToReadableStream(children, {
