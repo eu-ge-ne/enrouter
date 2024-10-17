@@ -9,16 +9,17 @@ export interface StaticRouterProps {
   routes: Route;
   location: string;
   matches: Match[];
-  ctx?: unknown;
 }
 
 export function StaticRouter({
   routes,
   location,
   matches,
-  ctx,
 }: StaticRouterProps): ReactNode {
-  const staticContext = { routes, navigate: () => {}, ctx };
+  const staticContext = {
+    routes,
+    navigate: () => {},
+  };
 
   const dynamicContext = {
     location,

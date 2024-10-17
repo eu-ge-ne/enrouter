@@ -17,13 +17,11 @@ const log = logger("router/browser");
 export interface BrowserRouterProps {
   routes: Route;
   matches: Match[];
-  ctx?: unknown;
 }
 
 export function BrowserRouter({
   routes,
   matches: initialMatches,
-  ctx,
 }: BrowserRouterProps): ReactNode {
   const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
     location: window.location.pathname,
@@ -59,7 +57,7 @@ export function BrowserRouter({
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handlePopState]);
 
-  const staticContext = { routes, navigate, ctx };
+  const staticContext = { routes, navigate };
 
   return (
     <RouterStaticProvider value={staticContext}>

@@ -6,7 +6,6 @@ import type { Match } from "#lib/match/mod.js";
 export interface TRouterStaticContext {
   routes: Route;
   navigate: (to: string) => void;
-  ctx: unknown;
 }
 
 export interface TRouterDynamicContext {
@@ -24,7 +23,6 @@ const RouterStaticContext = createContext<TRouterStaticContext>({
     elements: {},
   },
   navigate: () => {},
-  ctx: undefined,
 });
 
 const RouterDynamicContext = createContext<TRouterDynamicContext>({
