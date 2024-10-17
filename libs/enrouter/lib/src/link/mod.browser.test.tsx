@@ -23,6 +23,7 @@ describe("link", () => {
       },
       location: "/",
       navigate: () => undefined,
+      ctx: undefined,
     };
 
     const screen = render(<TestLink />, {
