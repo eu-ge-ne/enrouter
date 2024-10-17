@@ -1,6 +1,6 @@
-import { logger } from "#lib/debug.js";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "./mod.js";
+import { logger } from "#lib/debug.js";
 
 const log = logger("match");
 
@@ -16,10 +16,9 @@ export function matchRoutes({ routes, location }: MatchRoutesParams): Match[] {
 
   recur([routes], location, matches);
 
-  const last = matches.at(-1);
   matches.forEach((x, i) => {
+    x.fist = matches[0];
     x.next = matches[i + 1];
-    x.last = last;
   });
 
   log("Matched routes: %o", matches);
@@ -53,9 +52,10 @@ function recur(routes: Route[], location: string, matches: Match[]): void {
 
   matches.push({
     route,
+
+    isFull: matchedLocation === location,
     location: matchedLocation,
     params,
-    isFull: matchedLocation === location,
   });
 
   if (route.tree) {
