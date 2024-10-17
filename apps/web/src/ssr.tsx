@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
 
-import { loadRoutes, matchRoutes, StaticRouter } from "enrouter";
+import { debug, renderMatches, matchRoutes, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { createLog } from "#log.js";
@@ -11,7 +11,7 @@ import { routes } from "virtual:routes";
 
 export default createSsrHandler;
 
-//debug(console.debug);
+debug(console.debug);
 
 const log = createLog("ssr");
 
@@ -38,8 +38,7 @@ function createSsrHandler(manifest: ViteManifest) {
       if (!matches.at(-1)?.isFull) {
         status = 404;
       }
-
-      await loadRoutes(matches.map((x) => x.route));
+      await renderMatches(matches);
 
       let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];
