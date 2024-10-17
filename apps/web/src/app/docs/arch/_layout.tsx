@@ -6,8 +6,8 @@ import { SecondaryLinkItem } from "#app/docs/links.js";
 const log = createLog("docs/arch/_layout");
 
 export const components = {
-  menu: Menu,
-  docs: Layout,
+  Menu,
+  Docs,
 };
 
 function Menu() {
@@ -24,8 +24,8 @@ function Menu() {
   );
 }
 
-function Layout() {
+function Docs() {
   log("Rendering");
 
-  return <Outlet name="arch" />;
+  return <Outlet name="Arch" />;
 }

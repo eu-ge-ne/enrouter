@@ -5,10 +5,10 @@ import { createLog } from "#log.js";
 const log = createLog("docs/_notFound");
 
 export const components = {
-  docs: NotFound,
+  Docs,
 };
 
-function NotFound() {
+function Docs() {
   log("Rendering");
 
   const location = useLocation();

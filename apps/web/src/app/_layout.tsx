@@ -7,10 +7,10 @@ import { createLog } from "#log.js";
 const log = createLog("_layout");
 
 export const components = {
-  main: Layout,
+  Main,
 };
 
-function Layout() {
+function Main() {
   log("Rendering");
 
   return (
@@ -41,7 +41,7 @@ function Layout() {
       </div>
       <div>
         <div className="container mx-auto">
-          <Outlet name="main" />
+          <Outlet name="Main" />
         </div>
       </div>
     </div>

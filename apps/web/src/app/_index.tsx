@@ -6,10 +6,10 @@ import github_logo from "/github-light.svg";
 const log = createLog("_index");
 
 export const components = {
-  main: Index,
+  Main,
 };
 
-function Index() {
+function Main() {
   log("Rendering");
 
   return (

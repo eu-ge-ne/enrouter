@@ -4,10 +4,10 @@ import Index from "./index.md";
 const log = createLog("docs/arch/_layout");
 
 export const components = {
-  arch: Layout,
+  Arch,
 };
 
-function Layout() {
+function Arch() {
   log("Rendering");
 
   return <Index />;

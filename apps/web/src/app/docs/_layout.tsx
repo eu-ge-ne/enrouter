@@ -7,10 +7,10 @@ import { PrimaryLinkItem } from "./links.js";
 const log = createLog("docs/_layout");
 
 export const components = {
-  main: Layout,
+  Main,
 };
 
-function Layout() {
+function Main() {
   log("Rendering");
 
   return (
@@ -34,11 +34,11 @@ function Layout() {
             Vite
           </PrimaryLinkItem>
         </ul>
-        <Outlet name="menu" />
+        <Outlet name="Menu" />
       </div>
       <div className="w-full p-8 pr-0 pt-0">
         <Mdx>
-          <Outlet name="docs" />
+          <Outlet name="Docs" />
         </Mdx>
       </div>
     </div>

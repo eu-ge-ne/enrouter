@@ -4,7 +4,7 @@ import Index from "./index.md";
 const log = createLog("docs/vite/_index");
 
 export const components = {
-  vite: Vite,
+  Vite,
 };
 
 function Vite() {

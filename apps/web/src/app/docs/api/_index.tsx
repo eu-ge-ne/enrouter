@@ -4,7 +4,7 @@ import Index from "./index.md";
 const log = createLog("docs/api/_index");
 
 export const components = {
-  api: Api,
+  Api,
 };
 
 function Api() {

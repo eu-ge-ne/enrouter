@@ -1,7 +1,7 @@
 import Index from "./index.md";
 
 export const components = {
-  vite: Vite,
+  Vite,
 };
 
 function Vite() {

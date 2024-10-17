@@ -6,8 +6,8 @@ import { SecondaryLinkItem } from "#app/docs/links.js";
 const log = createLog("docs/vite/_layout");
 
 export const components = {
-  menu: Menu,
-  docs: Docs,
+  Menu,
+  Docs,
 };
 
 function Menu() {
@@ -28,5 +28,5 @@ function Menu() {
 function Docs() {
   log("Rendering");
 
-  return <Outlet name="vite" />;
+  return <Outlet name="Vite" />;
 }

@@ -6,8 +6,8 @@ import { SecondaryLinkItem } from "#app/docs/links.js";
 const log = createLog("docs/api/_layout");
 
 export const components = {
-  menu: Menu,
-  docs: Docs,
+  Menu,
+  Docs,
 };
 
 function Menu() {
@@ -34,5 +34,5 @@ function Menu() {
 function Docs() {
   log("Rendering");
 
-  return <Outlet name="api" />;
+  return <Outlet name="Api" />;
 }

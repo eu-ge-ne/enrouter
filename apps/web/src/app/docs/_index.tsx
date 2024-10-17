@@ -4,7 +4,7 @@ import Index from "./index.md";
 const log = createLog("docs/_index");
 
 export const components = {
-  docs: Docs,
+  Docs,
 };
 
 function Docs() {
