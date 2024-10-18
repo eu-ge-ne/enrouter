@@ -4,7 +4,8 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
-import { createContent } from "#lib/content/create.js";
+import { prepareMatches } from "#lib/match/prepare.js";
+import { renderMatches } from "#lib/match/render.js";
 import { Outlet } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -24,15 +25,15 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             layout: {
-              main: (
+              Root: (
                 <div>
                   <div>Layout</div>
-                  <Outlet name="main" />
+                  <Outlet name="Main" />
                 </div>
               ),
             },
             index: {
-              main: <div>Index</div>,
+              Main: <div>Index</div>,
             },
           },
         },
@@ -41,8 +42,9 @@ describe("outlet", () => {
         params: {},
       },
     ];
+    await prepareMatches(matches);
 
-    const screen = render(createContent(matches), { wrapper });
+    const screen = render(renderMatches(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();
@@ -58,10 +60,10 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             layout: {
-              main: (
+              Root: (
                 <div>
                   <div>Layout</div>
-                  <Outlet name="main" />
+                  <Outlet name="Main" />
                 </div>
               ),
             },
@@ -79,7 +81,7 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             layout: {
-              main: (
+              Main: (
                 <div>
                   <div>Next layout</div>
                 </div>
@@ -93,8 +95,9 @@ describe("outlet", () => {
       },
     ];
     matches[0]!.next = matches[1];
+    await prepareMatches(matches);
 
-    const screen = render(createContent(matches), { wrapper });
+    const screen = render(renderMatches(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
     expect(screen.container).toMatchSnapshot();

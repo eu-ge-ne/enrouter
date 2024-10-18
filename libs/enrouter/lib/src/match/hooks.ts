@@ -1,17 +1,14 @@
-import type { Match } from "#lib/match/mod.js";
-import { useContent } from "./context.js";
-
-export function useMatch(): Match {
-  return useContent().match;
-}
+import type { Match } from "./mod.js";
+import { useMatch } from "./context.js";
 
 export function usePath(path: string): Match | undefined {
-  let x = useContent().last;
-  while (x) {
-    if (x.match.route.path === path) {
-      return x.match;
+  let match = useMatch().fist;
+
+  while (match) {
+    if (match.route?.path === path) {
+      return match;
     }
-    x = x.prev;
+    match = match.next;
   }
 }
 

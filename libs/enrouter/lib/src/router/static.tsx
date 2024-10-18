@@ -2,31 +2,36 @@ import type { ReactNode } from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
-import type { TRouterContext } from "./context.js";
-import { createContent } from "#lib/content/create.js";
-import { RouterProvider } from "./context.js";
+import { renderMatches } from "#lib/match/render.js";
+import { RouterStaticProvider, RouterDynamicProvider } from "./context.js";
 
 export interface StaticRouterProps {
   routes: Route;
   location: string;
   matches: Match[];
-  ctx?: unknown;
 }
 
 export function StaticRouter({
   routes,
   location,
   matches,
-  ctx,
 }: StaticRouterProps): ReactNode {
-  const context: TRouterContext = {
+  const staticContext = {
     routes,
-    location,
-    navigate: () => undefined,
-    ctx,
+    navigate: () => {},
   };
 
-  const children = createContent(matches);
+  const dynamicContext = {
+    location,
+    matches,
+    children: renderMatches(matches),
+  };
 
-  return <RouterProvider value={context}>{children}</RouterProvider>;
+  return (
+    <RouterStaticProvider value={staticContext}>
+      <RouterDynamicProvider value={dynamicContext}>
+        {dynamicContext.children}
+      </RouterDynamicProvider>
+    </RouterStaticProvider>
+  );
 }

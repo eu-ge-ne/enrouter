@@ -1,7 +1,7 @@
 import { type MouseEvent, type AnchorHTMLAttributes, useCallback } from "react";
 
 import { logger } from "#lib/debug.js";
-import { useRouter } from "#lib/router/context.js";
+import { useNavigate } from "#lib/router/hooks.js";
 
 const log = logger("link");
 
@@ -11,7 +11,7 @@ export type LinkProps = Pick<
 >;
 
 export function useLink(href: string): LinkProps {
-  const { navigate } = useRouter();
+  const navigate = useNavigate();
 
   const onClick = useCallback(
     (e: MouseEvent) => {

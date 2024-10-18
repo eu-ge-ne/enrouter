@@ -3,9 +3,10 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import { StaticRouter } from "./static.js";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
+import { StaticRouter } from "./static.js";
+import { prepareMatches } from "#lib/match/prepare.js";
 
 const wrapperId = "test-wrapper";
 
@@ -22,7 +23,7 @@ describe("router/static", () => {
       loaded: true,
       elements: {
         layout: {
-          main: <div>Layout</div>,
+          Root: <div>Layout</div>,
         },
       },
     };
@@ -35,6 +36,8 @@ describe("router/static", () => {
         params: {},
       },
     ];
+
+    await prepareMatches(matches);
 
     const screen = render(
       <StaticRouter routes={routes} location="/" matches={matches} />,

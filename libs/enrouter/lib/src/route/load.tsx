@@ -1,8 +1,7 @@
 import type { ComponentType } from "react";
 
-import { logger } from "#lib/debug.js";
-
 import type { Route } from "./mod.js";
+import { logger } from "#lib/debug.js";
 
 const log = logger("route/load");
 

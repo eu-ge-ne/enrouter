@@ -1,7 +1,10 @@
 import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { type TRouterContext, RouterProvider } from "#lib/router/context.js";
+import {
+  type TRouterStaticContext,
+  RouterStaticProvider,
+} from "#lib/router/context.js";
 import { useLink } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -13,7 +16,7 @@ describe("link", () => {
       return <a {...props}>link to /abc</a>;
     }
 
-    const context: TRouterContext = {
+    const context: TRouterStaticContext = {
       routes: {
         path: "",
         test: { keys: [], pattern: new RegExp("") },
@@ -21,15 +24,15 @@ describe("link", () => {
         loaded: false,
         elements: {},
       },
-      location: "/",
-      navigate: () => undefined,
-      ctx: undefined,
+      navigate: () => {},
     };
 
     const screen = render(<TestLink />, {
       wrapper: ({ children }) => (
         <div data-testid={wrapperId}>
-          <RouterProvider value={context}>{children}</RouterProvider>
+          <RouterStaticProvider value={context}>
+            {children}
+          </RouterStaticProvider>
         </div>
       ),
     });

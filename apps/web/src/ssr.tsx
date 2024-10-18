@@ -1,17 +1,16 @@
-import { StrictMode } from "react";
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
-
-import { loadRoutes, matchRoutes, StaticRouter } from "enrouter";
+import { debug, matchRoutes, prepareMatches, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { createLog } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
+import { Shell } from "./shell.js";
 
 export default createSsrHandler;
 
-//debug(console.debug);
+debug(console.debug);
 
 const log = createLog("ssr");
 
@@ -35,11 +34,10 @@ function createSsrHandler(manifest: ViteManifest) {
       const location = new URL(req.url, "http://localhost").pathname;
 
       const matches = matchRoutes({ routes, location });
-      if (!matches.at(-1)?.isFull) {
+      if (!matches.at(-1)?.route) {
         status = 404;
       }
-
-      await loadRoutes(matches.map((x) => x.route));
+      await prepareMatches(matches);
 
       let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];
@@ -51,7 +49,7 @@ function createSsrHandler(manifest: ViteManifest) {
         });
 
         const matchedAssets = matches.flatMap((x) =>
-          x.route.modules.map((x) =>
+          x.route?.modules.map((x) =>
             getModuleAssets({
               manifest,
               moduleId: x.id,
@@ -79,14 +77,9 @@ function createSsrHandler(manifest: ViteManifest) {
       });
 
       const children = (
-        <StrictMode>
-          <StaticRouter
-            routes={routes}
-            location={location}
-            matches={matches}
-            ctx={{ styles: bootstrapStyles }}
-          />
-        </StrictMode>
+        <Shell styles={bootstrapStyles}>
+          <StaticRouter routes={routes} location={location} matches={matches} />
+        </Shell>
       );
 
       const stream = await renderToReadableStream(children, {
