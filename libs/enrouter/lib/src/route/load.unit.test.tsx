@@ -5,106 +5,108 @@ import { loadRoutes } from "./load.js";
 
 import type { Route } from "./mod.js";
 
-describe("loadRoutes", () => {
-  test("0 routes", async () => {
-    const routes: Route[] = [];
+describe("route", () => {
+  describe("loadRoutes", () => {
+    test("0 routes", async () => {
+      const routes: Route[] = [];
 
-    await loadRoutes(routes);
+      await loadRoutes(routes);
 
-    expect(routes).toMatchSnapshot();
-  });
+      expect(routes).toMatchSnapshot();
+    });
 
-  test("1 route no modules", async () => {
-    const routes: Route[] = [
-      {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: false,
-        elements: {},
-      },
-    ];
+    test("1 route no modules", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: false,
+          elements: {},
+        },
+      ];
 
-    await loadRoutes(routes);
+      await loadRoutes(routes);
 
-    expect(routes).toMatchSnapshot();
-  });
+      expect(routes).toMatchSnapshot();
+    });
 
-  test("1 route with _layout.tsx module", async () => {
-    const routes: Route[] = [
-      {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [
-          {
-            id: "src/_layout.tsx",
-            fileName: "_layout.tsx",
-            importFn: async () => ({
-              default: {
-                Main: () => <div>Layout</div>,
-              },
-            }),
-          },
-        ],
-        loaded: false,
-        elements: {},
-      },
-    ];
+    test("1 route with _layout.tsx module", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "src/_layout.tsx",
+              fileName: "_layout.tsx",
+              importFn: async () => ({
+                default: {
+                  Main: () => <div>Layout</div>,
+                },
+              }),
+            },
+          ],
+          loaded: false,
+          elements: {},
+        },
+      ];
 
-    await loadRoutes(routes);
+      await loadRoutes(routes);
 
-    expect(routes).toMatchSnapshot();
-  });
+      expect(routes).toMatchSnapshot();
+    });
 
-  test("1 route with _index.tsx module", async () => {
-    const routes: Route[] = [
-      {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [
-          {
-            id: "src/_index.tsx",
-            fileName: "_index.tsx",
-            importFn: async () => ({
-              default: {
-                Main: () => <div>Index</div>,
-              },
-            }),
-          },
-        ],
-        loaded: false,
-        elements: {},
-      },
-    ];
+    test("1 route with _index.tsx module", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "src/_index.tsx",
+              fileName: "_index.tsx",
+              importFn: async () => ({
+                default: {
+                  Main: () => <div>Index</div>,
+                },
+              }),
+            },
+          ],
+          loaded: false,
+          elements: {},
+        },
+      ];
 
-    await loadRoutes(routes);
+      await loadRoutes(routes);
 
-    expect(routes).toMatchSnapshot();
-  });
+      expect(routes).toMatchSnapshot();
+    });
 
-  test("1 route with _notFound.tsx module", async () => {
-    const routes: Route[] = [
-      {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [
-          {
-            id: "src/_notFound.tsx",
-            fileName: "_notFound.tsx",
-            importFn: async () => ({
-              default: {
-                Main: () => <div>NotFound</div>,
-              },
-            }),
-          },
-        ],
-        loaded: false,
-        elements: {},
-      },
-    ];
+    test("1 route with _notFound.tsx module", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "src/_notFound.tsx",
+              fileName: "_notFound.tsx",
+              importFn: async () => ({
+                default: {
+                  Main: () => <div>NotFound</div>,
+                },
+              }),
+            },
+          ],
+          loaded: false,
+          elements: {},
+        },
+      ];
 
-    await loadRoutes(routes);
+      await loadRoutes(routes);
 
-    expect(routes).toMatchSnapshot();
+      expect(routes).toMatchSnapshot();
+    });
   });
 });
