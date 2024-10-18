@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`matchRoutes > 0 matches 1`] = `
+exports[`match > matchRoutes > 0 matches 1`] = `
 [
   {
     "fist": [Circular],
@@ -12,7 +12,7 @@ exports[`matchRoutes > 0 matches 1`] = `
 ]
 `;
 
-exports[`matchRoutes > 1 match 1`] = `
+exports[`match > matchRoutes > 1 match 1`] = `
 [
   {
     "fist": [Circular],
@@ -34,7 +34,7 @@ exports[`matchRoutes > 1 match 1`] = `
 ]
 `;
 
-exports[`matchRoutes > 1 match and 1 match with params 1`] = `
+exports[`match > matchRoutes > 1 match and 1 match with params 1`] = `
 [
   {
     "fist": [Circular],
@@ -153,7 +153,7 @@ exports[`matchRoutes > 1 match and 1 match with params 1`] = `
 ]
 `;
 
-exports[`matchRoutes > 1 match with params 1`] = `
+exports[`match > matchRoutes > 1 match with params 1`] = `
 [
   {
     "fist": [Circular],
@@ -179,7 +179,7 @@ exports[`matchRoutes > 1 match with params 1`] = `
 ]
 `;
 
-exports[`matchRoutes > 2 matches 1`] = `
+exports[`match > matchRoutes > 2 matches 1`] = `
 [
   {
     "fist": [Circular],
