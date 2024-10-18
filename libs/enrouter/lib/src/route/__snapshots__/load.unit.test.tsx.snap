@@ -22,7 +22,7 @@ exports[`loadRoutes > 1 route with _index.tsx module 1`] = `
   {
     "elements": {
       "index": {
-        "main": {
+        "Main": {
           "$$typeof": Symbol(react.transitional.element),
           "_owner": null,
           "_store": {},
@@ -54,7 +54,7 @@ exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
   {
     "elements": {
       "layout": {
-        "main": {
+        "Main": {
           "$$typeof": Symbol(react.transitional.element),
           "_owner": null,
           "_store": {},
@@ -69,6 +69,38 @@ exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
       {
         "fileName": "_layout.tsx",
         "id": "src/_layout.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`loadRoutes > 1 route with _notFound.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "notFound": {
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_notFound.tsx",
+        "id": "src/_notFound.tsx",
         "importFn": [Function],
       },
     ],
