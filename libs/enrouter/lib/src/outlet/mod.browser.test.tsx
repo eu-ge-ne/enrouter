@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
-import { prepareMatches } from "#lib/match/prepare.js";
+import { loadMatches } from "#lib/match/load.js";
 import { renderMatches } from "#lib/match/render.js";
 import { Outlet } from "./mod.js";
 
@@ -42,7 +42,7 @@ describe("outlet", () => {
         params: {},
       },
     ];
-    await prepareMatches(matches);
+    await loadMatches(matches);
 
     const screen = render(renderMatches(matches), { wrapper });
 
@@ -95,7 +95,7 @@ describe("outlet", () => {
       },
     ];
     matches[0]!.next = matches[1];
-    await prepareMatches(matches);
+    await loadMatches(matches);
 
     const screen = render(renderMatches(matches), { wrapper });
 

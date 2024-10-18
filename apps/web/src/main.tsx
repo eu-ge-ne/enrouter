@@ -1,5 +1,5 @@
 import { hydrateRoot } from "react-dom/client";
-import { debug, matchRoutes, prepareMatches, BrowserRouter } from "enrouter";
+import { debug, matchRoutes, loadMatches, BrowserRouter } from "enrouter";
 
 import "./index.css";
 import { log } from "#log.js";
@@ -17,7 +17,7 @@ async function main() {
   log("Hydrating DOM");
 
   const matches = matchRoutes({ routes, location: window.location.pathname });
-  await prepareMatches(matches);
+  await loadMatches(matches);
 
   hydrateRoot(
     document,
