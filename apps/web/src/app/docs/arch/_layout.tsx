@@ -1,9 +1,7 @@
 import { Outlet } from "enrouter";
 
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import { SecondaryLinkItem } from "#app/docs/links.js";
-
-const log = createLog("docs/arch/_layout");
 
 export default {
   Menu,
@@ -11,7 +9,7 @@ export default {
 };
 
 function Menu() {
-  log("Rendering");
+  log("Rendering: /docs/arch/_layout#Menu");
 
   return (
     <div className="mt-4 border-t border-paperBorder">
@@ -25,7 +23,7 @@ function Menu() {
 }
 
 function Docs() {
-  log("Rendering");
+  log("Rendering: /docs/arch/_layout#Docs");
 
   return <Outlet name="Arch" />;
 }

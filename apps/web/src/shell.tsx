@@ -1,15 +1,13 @@
 import { type PropsWithChildren, StrictMode } from "react";
 
-import { createLog } from "#log.js";
-
-const log = createLog("shell");
+import { log } from "#log.js";
 
 interface ShellProps {
   styles?: string[];
 }
 
 export function Shell({ styles, children }: PropsWithChildren<ShellProps>) {
-  log("Rendering");
+  log("Rendering Shell");
 
   return (
     <StrictMode>

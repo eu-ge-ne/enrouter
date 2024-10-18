@@ -3,7 +3,7 @@ import { renderToReadableStream } from "react-dom/server.edge";
 import { debug, matchRoutes, prepareMatches, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 //@ts-ignore
 import { routes } from "virtual:routes";
 import { Shell } from "./shell.js";
@@ -11,8 +11,6 @@ import { Shell } from "./shell.js";
 export default createSsrHandler;
 
 debug(console.debug);
-
-const log = createLog("ssr");
 
 const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
@@ -70,7 +68,7 @@ function createSsrHandler(manifest: ViteManifest) {
         ].map(mapAssetUrl);
       }
 
-      log("Rendering Shell: %o", {
+      log("SSR: %o", {
         location,
         status,
         bootstrapModules,

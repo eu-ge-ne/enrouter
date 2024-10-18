@@ -1,13 +1,11 @@
 import { useLink } from "enrouter";
 
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import github_logo from "/github-light.svg";
-
-const log = createLog("_index");
 
 export default {
   Main() {
-    log("Rendering");
+    log("Rendering: /_index#Main");
 
     return (
       <div className="fixed bottom-0 left-0 right-0 top-0 -z-10 flex flex-col items-center justify-center gap-8 p-4">
