@@ -3,6 +3,7 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
+import type { Match } from "./mod.js";
 import { MatchProvider, useMatch } from "./context.js";
 
 const wrapperId = "test-wrapper";
@@ -14,7 +15,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("match", () => {
   describe("useMatch", () => {
     test("1 match", async () => {
-      const context = {
+      const context: Match = {
         route: {
           path: "/",
           test: regexparam.parse("/", true),

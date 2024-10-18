@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`match > useActive > with 2 matches 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <p>
+        / is not active
+      </p>
+      <p>
+        /abc is active
+      </p>
+      <p>
+        / is active (loose)
+      </p>
+      <p>
+        /xyz is not active
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`match > usePath > with 2 matches 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      Layout /abc
+    </div>
+  </div>
+</div>
+`;
