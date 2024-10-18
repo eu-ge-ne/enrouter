@@ -1,11 +1,9 @@
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import Index from "./index.md";
-
-const log = createLog("docs/api/_index");
 
 export default {
   Api() {
-    log("Rendering");
+    log("Rendering: /docs/api/_index");
 
     return <Index />;
   },

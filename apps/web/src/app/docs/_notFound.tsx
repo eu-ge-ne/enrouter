@@ -1,12 +1,10 @@
 import { useLocation } from "enrouter";
 
-import { createLog } from "#log.js";
-
-const log = createLog("docs/_notFound");
+import { log } from "#log.js";
 
 export default {
   Docs() {
-    log("Rendering");
+    log("Rendering: /docs/_notFound#Docs");
 
     const location = useLocation();
 

@@ -2,12 +2,9 @@ import { useEffect, useRef } from "react";
 import type { PropsWithChildren } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useLocation, useLink } from "enrouter";
-
 import "prism-themes/themes/prism-vsc-dark-plus.min.css";
 
-import { createLog } from "#log.js";
-
-const log = createLog("mdx");
+import { log } from "#log.js";
 
 export function Mdx({ children }: PropsWithChildren) {
   return (

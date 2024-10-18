@@ -1,14 +1,12 @@
 import { Outlet } from "enrouter";
 
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import { Mdx } from "#mdx.js";
 import { PrimaryLinkItem } from "./links.js";
 
-const log = createLog("docs/_layout");
-
 export default {
   Main() {
-    log("Rendering");
+    log("Rendering: /docs/_layout#Main");
 
     return (
       <div className="flex divide-x divide-paperBorder p-4 pt-8">

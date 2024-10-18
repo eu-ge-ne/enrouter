@@ -1,9 +1,7 @@
 import { Outlet } from "enrouter";
 
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import { SecondaryLinkItem } from "#app/docs/links.js";
-
-const log = createLog("docs/vite/_layout");
 
 export default {
   Menu,
@@ -11,7 +9,7 @@ export default {
 };
 
 function Menu() {
-  log("Rendering");
+  log("Rendering: /docs/vite/_layout#Menu");
 
   return (
     <div className="mt-4 border-t border-paperBorder">
@@ -26,7 +24,7 @@ function Menu() {
 }
 
 function Docs() {
-  log("Rendering");
+  log("Rendering: /docs/vite/_layout#Docs");
 
   return <Outlet name="Vite" />;
 }

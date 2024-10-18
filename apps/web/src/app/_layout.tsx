@@ -1,14 +1,12 @@
 import type { PropsWithChildren } from "react";
 import { Outlet, useLink } from "enrouter";
 
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import github_logo from "/github-light.svg";
-
-const log = createLog("_layout");
 
 export default {
   Root() {
-    log("Rendering");
+    log("Rendering: /_layout#Root");
 
     return (
       <div className="flex flex-col divide-y divide-paperBorder">

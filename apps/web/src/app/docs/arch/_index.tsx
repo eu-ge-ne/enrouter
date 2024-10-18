@@ -1,11 +1,9 @@
-import { createLog } from "#log.js";
+import { log } from "#log.js";
 import Index from "./index.md";
-
-const log = createLog("docs/arch/_layout");
 
 export default {
   Arch() {
-    log("Rendering");
+    log("Rendering: /docs/arch/_layout#Arch");
 
     return <Index />;
   },
