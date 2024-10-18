@@ -41,7 +41,7 @@ describe("loadRoutes", () => {
             fileName: "_layout.tsx",
             importFn: async () => ({
               default: {
-                main: () => <div>Layout</div>,
+                Main: () => <div>Layout</div>,
               },
             }),
           },
@@ -67,7 +67,33 @@ describe("loadRoutes", () => {
             fileName: "_index.tsx",
             importFn: async () => ({
               default: {
-                main: () => <div>Index</div>,
+                Main: () => <div>Index</div>,
+              },
+            }),
+          },
+        ],
+        loaded: false,
+        elements: {},
+      },
+    ];
+
+    await loadRoutes(routes);
+
+    expect(routes).toMatchSnapshot();
+  });
+
+  test("1 route with _notFound.tsx module", async () => {
+    const routes: Route[] = [
+      {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [
+          {
+            id: "src/_notFound.tsx",
+            fileName: "_notFound.tsx",
+            importFn: async () => ({
+              default: {
+                Main: () => <div>NotFound</div>,
               },
             }),
           },
