@@ -14,15 +14,15 @@ import {
 
 const log = logger("router/browser");
 
-export interface BrowserRouterProps {
+export interface BrowserProps {
   routes: Route;
   matches: Match[];
 }
 
-export function BrowserRouter({
+export function Browser({
   routes,
   matches: initialMatches,
-}: BrowserRouterProps): ReactNode {
+}: BrowserProps): ReactNode {
   const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
     location: window.location.pathname,
     matches: initialMatches,

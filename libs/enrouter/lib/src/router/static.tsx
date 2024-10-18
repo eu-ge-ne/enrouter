@@ -5,17 +5,13 @@ import type { Match } from "#lib/match/mod.js";
 import { render } from "#lib/match/render.js";
 import { RouterStaticProvider, RouterDynamicProvider } from "./context.js";
 
-export interface StaticRouterProps {
+export interface StaticProps {
   routes: Route;
   location: string;
   matches: Match[];
 }
 
-export function StaticRouter({
-  routes,
-  location,
-  matches,
-}: StaticRouterProps): ReactNode {
+export function Static({ routes, location, matches }: StaticProps): ReactNode {
   const staticContext = {
     routes,
     navigate: () => {},
