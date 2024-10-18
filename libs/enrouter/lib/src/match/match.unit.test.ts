@@ -2,10 +2,10 @@ import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
-import { matchRoutes } from "./match.js";
+import { match } from "./match.js";
 
 describe("match", () => {
-  describe("matchRoutes", () => {
+  describe("match", () => {
     test("0 matches", () => {
       const routes: Route = {
         path: "/abc",
@@ -15,7 +15,7 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(matchRoutes({ routes, location: "/x" })).toMatchSnapshot();
+      expect(match({ routes, location: "/x" })).toMatchSnapshot();
     });
 
     test("1 match", () => {
@@ -27,7 +27,7 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(matchRoutes({ routes, location: "/" })).toMatchSnapshot();
+      expect(match({ routes, location: "/" })).toMatchSnapshot();
     });
 
     test("2 matches", () => {
@@ -48,7 +48,7 @@ describe("match", () => {
         ],
       };
 
-      expect(matchRoutes({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(match({ routes, location: "/abc" })).toMatchSnapshot();
     });
 
     test("1 match with params", () => {
@@ -60,7 +60,7 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(matchRoutes({ routes, location: "/100" })).toMatchSnapshot();
+      expect(match({ routes, location: "/100" })).toMatchSnapshot();
     });
 
     test("1 match and 1 match with params", () => {
@@ -88,7 +88,7 @@ describe("match", () => {
         ],
       };
 
-      expect(matchRoutes({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(match({ routes, location: "/abc" })).toMatchSnapshot();
     });
   });
 });

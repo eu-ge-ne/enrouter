@@ -1,11 +1,11 @@
 import type { FC, PropsWithChildren } from "react";
 import { describe, test, expect } from "vitest";
-import { render } from "vitest-browser-react";
+import * as vitestReact from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
-import { loadMatches } from "#lib/match/load.js";
-import { renderMatches } from "#lib/match/render.js";
+import { load } from "#lib/match/load.js";
+import { render } from "#lib/match/render.js";
 import { Outlet } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -42,11 +42,12 @@ describe("outlet", () => {
         params: {},
       },
     ];
-    await loadMatches(matches);
+    await load(matches);
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = vitestReact.render(render(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
     expect(screen.container).toMatchSnapshot();
   });
 
@@ -95,11 +96,12 @@ describe("outlet", () => {
       },
     ];
     matches[0]!.next = matches[1];
-    await loadMatches(matches);
+    await load(matches);
 
-    const screen = render(renderMatches(matches), { wrapper });
+    const screen = vitestReact.render(render(matches), { wrapper });
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
     expect(screen.container).toMatchSnapshot();
   });
 });

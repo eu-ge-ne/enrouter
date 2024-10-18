@@ -1,6 +1,6 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
-import { debug, matchRoutes, loadMatches, StaticRouter } from "enrouter";
+import * as enrouter from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { log } from "#log.js";
@@ -10,7 +10,7 @@ import { Shell } from "./shell.js";
 
 export default createSsrHandler;
 
-debug(console.debug);
+enrouter.debug(console.debug);
 
 const mapAssetUrl = (x: string) => new URL(x, "http://localhost").pathname;
 
@@ -31,11 +31,12 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const location = new URL(req.url, "http://localhost").pathname;
 
-      const matches = matchRoutes({ routes, location });
+      const matches = enrouter.match({ routes, location });
       if (!matches.at(-1)?.route) {
         status = 404;
       }
-      await loadMatches(matches);
+
+      await enrouter.load(matches);
 
       let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];
@@ -76,7 +77,11 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const children = (
         <Shell styles={bootstrapStyles}>
-          <StaticRouter routes={routes} location={location} matches={matches} />
+          <enrouter.Static
+            routes={routes}
+            location={location}
+            matches={matches}
+          />
         </Shell>
       );
 

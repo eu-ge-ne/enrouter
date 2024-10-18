@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > loadMatches > 0 matches 1`] = `[]`;
+exports[`match > load > 0 matches 1`] = `[]`;
 
-exports[`match > loadMatches > 1 match 1`] = `
+exports[`match > load > 1 match 1`] = `
 [
   {
     "elements": {
