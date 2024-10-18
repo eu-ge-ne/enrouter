@@ -1,6 +1,6 @@
 //@ts-ignore
 import { renderToReadableStream } from "react-dom/server.edge";
-import { debug, matchRoutes, prepareMatches, StaticRouter } from "enrouter";
+import { debug, matchRoutes, loadMatches, StaticRouter } from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 
 import { log } from "#log.js";
@@ -35,7 +35,7 @@ function createSsrHandler(manifest: ViteManifest) {
       if (!matches.at(-1)?.route) {
         status = 404;
       }
-      await prepareMatches(matches);
+      await loadMatches(matches);
 
       let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];

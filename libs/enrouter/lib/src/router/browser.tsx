@@ -4,7 +4,7 @@ import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
 import { matchRoutes } from "#lib/match/match.js";
-import { prepareMatches } from "#lib/match/prepare.js";
+import { loadMatches } from "#lib/match/load.js";
 import { renderMatches } from "#lib/match/render.js";
 import {
   type TRouterDynamicContext,
@@ -35,7 +35,7 @@ export function BrowserRouter({
     window.history.pushState({}, "", location);
 
     const matches = matchRoutes({ routes, location });
-    await prepareMatches(matches);
+    await loadMatches(matches);
     const children = renderMatches(matches);
 
     setDynamicContext({ location, matches, children });
@@ -46,7 +46,7 @@ export function BrowserRouter({
 
     const location = window.location.pathname;
     const matches = matchRoutes({ routes, location });
-    await prepareMatches(matches);
+    await loadMatches(matches);
     const children = renderMatches(matches);
 
     setDynamicContext({ location, matches, children });

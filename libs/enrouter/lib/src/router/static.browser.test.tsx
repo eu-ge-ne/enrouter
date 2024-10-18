@@ -6,7 +6,7 @@ import * as regexparam from "regexparam";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { StaticRouter } from "./static.js";
-import { prepareMatches } from "#lib/match/prepare.js";
+import { loadMatches } from "#lib/match/load.js";
 
 const wrapperId = "test-wrapper";
 
@@ -37,7 +37,7 @@ describe("router/static", () => {
       },
     ];
 
-    await prepareMatches(matches);
+    await loadMatches(matches);
 
     const screen = render(
       <StaticRouter routes={routes} location="/" matches={matches} />,
