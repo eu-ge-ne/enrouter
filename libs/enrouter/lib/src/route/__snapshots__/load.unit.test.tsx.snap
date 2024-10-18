@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`loadRoutes > 0 routes 1`] = `[]`;
+exports[`route > loadRoutes > 0 routes 1`] = `[]`;
 
-exports[`loadRoutes > 1 route no modules 1`] = `
+exports[`route > loadRoutes > 1 route no modules 1`] = `
 [
   {
     "elements": {},
@@ -17,7 +17,7 @@ exports[`loadRoutes > 1 route no modules 1`] = `
 ]
 `;
 
-exports[`loadRoutes > 1 route with _index.tsx module 1`] = `
+exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
 [
   {
     "elements": {
@@ -49,7 +49,7 @@ exports[`loadRoutes > 1 route with _index.tsx module 1`] = `
 ]
 `;
 
-exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
+exports[`route > loadRoutes > 1 route with _layout.tsx module 1`] = `
 [
   {
     "elements": {
@@ -81,7 +81,7 @@ exports[`loadRoutes > 1 route with _layout.tsx module 1`] = `
 ]
 `;
 
-exports[`loadRoutes > 1 route with _notFound.tsx module 1`] = `
+exports[`route > loadRoutes > 1 route with _notFound.tsx module 1`] = `
 [
   {
     "elements": {
