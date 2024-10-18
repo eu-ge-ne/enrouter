@@ -1,13 +1,7 @@
-import type { ComponentType } from "react";
-
 import type { Route } from "./mod.js";
-import { logger } from "#lib/debug.js";
-
-const log = logger("route/load");
+import { loaders } from "./loaders.js";
 
 export async function loadRoutes(routes: Route[]): Promise<void> {
-  log("Loading routes");
-
   const promises: Promise<unknown>[] = [];
 
   for (const route of routes) {
@@ -24,33 +18,4 @@ export async function loadRoutes(routes: Route[]): Promise<void> {
   }
 
   await Promise.all(promises);
-
-  log("Routes loaded");
 }
-
-type Loader = (
-  route: Route,
-  importFn: () => Promise<unknown>,
-) => Promise<void> | void;
-
-async function load(importFn: () => Promise<unknown>) {
-  const fn = importFn as () => Promise<{
-    default: Record<string, ComponentType>;
-  }>;
-  const { default: components } = await fn();
-  return Object.fromEntries(
-    Object.entries(components).map(([key, C]) => [key, <C />]),
-  );
-}
-
-export const loaders: Record<string, Loader> = {
-  "_layout.tsx": async (route, importFn) => {
-    route.elements.layout = await load(importFn);
-  },
-  "_index.tsx": async (route, importFn) => {
-    route.elements.index = await load(importFn);
-  },
-  "_notFound.tsx": async (route, importFn) => {
-    route.elements.notFound = await load(importFn);
-  },
-};
