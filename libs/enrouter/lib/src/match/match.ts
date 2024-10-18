@@ -1,5 +1,8 @@
+import { logger } from "#lib/debug.js";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "./mod.js";
+
+const log = logger("match");
 
 export interface MatchParams {
   routes: Route;
@@ -33,6 +36,8 @@ function recur(
   if (!match) {
     return;
   }
+
+  log(`location: "%s"; path: "%s"`, location, match.route?.path);
 
   matches.push(match);
 
