@@ -39,7 +39,7 @@ function recur(
 
   log(`location: "%s"; path: "%s"`, location, match.route?.path);
 
-  matches.push(match);
+  matches[i] = match;
 
   if (match?.route?.tree) {
     recur(match.route.tree, location, matches, i + 1);
