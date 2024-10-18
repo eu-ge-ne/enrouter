@@ -10,5 +10,5 @@ export function renderMatches(matches: Match[]): ReactNode {
     return <NotFound />;
   }
 
-  return Object.values(matches[0]?.elements?.layout ?? {})[0];
+  return matches[0]?.elements?.layout?.["Root"];
 }

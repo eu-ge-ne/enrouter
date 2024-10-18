@@ -23,7 +23,7 @@ describe("router/static", () => {
       loaded: true,
       elements: {
         layout: {
-          main: <div>Layout</div>,
+          Root: <div>Layout</div>,
         },
       },
     };

@@ -25,15 +25,15 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             layout: {
-              main: (
+              Root: (
                 <div>
                   <div>Layout</div>
-                  <Outlet name="main" />
+                  <Outlet name="Main" />
                 </div>
               ),
             },
             index: {
-              main: <div>Index</div>,
+              Main: <div>Index</div>,
             },
           },
         },
@@ -60,10 +60,10 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             layout: {
-              main: (
+              Root: (
                 <div>
                   <div>Layout</div>
-                  <Outlet name="main" />
+                  <Outlet name="Main" />
                 </div>
               ),
             },
@@ -81,7 +81,7 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             layout: {
-              main: (
+              Main: (
                 <div>
                   <div>Next layout</div>
                 </div>

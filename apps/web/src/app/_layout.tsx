@@ -7,7 +7,7 @@ import github_logo from "/github-light.svg";
 const log = createLog("_layout");
 
 export default {
-  Main() {
+  Root() {
     log("Rendering");
 
     return (
