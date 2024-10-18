@@ -18,9 +18,6 @@ export default {
           </a>
           <ul className="flex justify-end gap-x-4">
             <li>
-              <Link href="/abc">Abc</Link>
-            </li>
-            <li>
               <Link href="/docs">Docs</Link>
             </li>
             <li>
