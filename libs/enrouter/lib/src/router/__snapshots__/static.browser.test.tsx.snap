@@ -1,5 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`router > StaticRouter > 1 route and 1 match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      Layout
+    </div>
+  </div>
+</div>
+`;
+
 exports[`router/static > 1 route and 1 match 1`] = `
 <div>
   <div

@@ -2,14 +2,14 @@ import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
 import type { Match } from "./mod.js";
-import { loadMatches } from "./load.js";
+import { load } from "./load.js";
 
 describe("match", () => {
-  describe("loadMatches", () => {
+  describe("load", () => {
     test("0 matches", async () => {
       const matches: Match[] = [];
 
-      await loadMatches(matches);
+      await load(matches);
 
       expect(matches).toMatchSnapshot();
     });
@@ -35,7 +35,7 @@ describe("match", () => {
       ];
       matches[0]!.fist = matches[0];
 
-      await loadMatches(matches);
+      await load(matches);
 
       expect(matches).toMatchSnapshot();
     });

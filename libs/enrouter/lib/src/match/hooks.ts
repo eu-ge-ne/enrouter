@@ -8,6 +8,7 @@ export function usePath(path: string): Match | undefined {
     if (match.route?.path === path) {
       return match;
     }
+
     match = match.next;
   }
 }

@@ -3,9 +3,9 @@ import { type ReactNode, useState, useCallback, useEffect } from "react";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
-import { matchRoutes } from "#lib/match/match.js";
-import { loadMatches } from "#lib/match/load.js";
-import { renderMatches } from "#lib/match/render.js";
+import { match } from "#lib/match/match.js";
+import { load } from "#lib/match/load.js";
+import { render } from "#lib/match/render.js";
 import {
   type TRouterDynamicContext,
   RouterStaticProvider,
@@ -26,7 +26,7 @@ export function BrowserRouter({
   const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
     location: window.location.pathname,
     matches: initialMatches,
-    children: renderMatches(initialMatches),
+    children: render(initialMatches),
   });
 
   const navigate = useCallback(async (location: string) => {
@@ -34,9 +34,9 @@ export function BrowserRouter({
 
     window.history.pushState({}, "", location);
 
-    const matches = matchRoutes({ routes, location });
-    await loadMatches(matches);
-    const children = renderMatches(matches);
+    const matches = match({ routes, location });
+    await load(matches);
+    const children = render(matches);
 
     setDynamicContext({ location, matches, children });
   }, []);
@@ -45,9 +45,9 @@ export function BrowserRouter({
     log("handlePopState %o", e);
 
     const location = window.location.pathname;
-    const matches = matchRoutes({ routes, location });
-    await loadMatches(matches);
-    const children = renderMatches(matches);
+    const matches = match({ routes, location });
+    await load(matches);
+    const children = render(matches);
 
     setDynamicContext({ location, matches, children });
   }, []);

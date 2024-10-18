@@ -4,7 +4,7 @@ import type { Match } from "./mod.js";
 import { loadRoutes } from "#lib/route/load.js";
 import { MatchProvider } from "./context.js";
 
-export async function loadMatches(matches: Match[]) {
+export async function load(matches: Match[]) {
   await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
   for (let i = matches.length - 1; i >= 0; i -= 1) {
