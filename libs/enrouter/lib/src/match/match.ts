@@ -9,7 +9,7 @@ export interface MatchParams {
 export function match({ routes, location }: MatchParams): Match[] {
   const matches: Match[] = [];
 
-  recur([routes], location, matches);
+  recur([routes], location, matches, 0);
 
   if (matches.at(-1)?.location !== location) {
     matches.push({ isFull: true, location, params: {} });
@@ -23,39 +23,25 @@ export function match({ routes, location }: MatchParams): Match[] {
   return matches;
 }
 
-function recur(routes: Route[], location: string, matches: Match[]): void {
-  const matched = matchOneOf(routes, location);
-
-  if (!matched) {
+function recur(
+  routes: Route[],
+  location: string,
+  matches: Match[],
+  i: number,
+): void {
+  const match = matchOneOf(routes, location);
+  if (!match) {
     return;
   }
 
-  const { route, execs } = matched;
+  matches.push(match);
 
-  const params = Object.fromEntries(
-    route.test.keys.map((key, i) => {
-      return [key, execs![i + 1]!] as const;
-    }),
-  );
-
-  const loc = execs[0] || "/";
-
-  matches.push({
-    route,
-    isFull: loc === location,
-    location: loc,
-    params,
-  });
-
-  if (route.tree) {
-    recur(route.tree, location, matches);
+  if (match?.route?.tree) {
+    recur(match.route.tree, location, matches, i + 1);
   }
 }
 
-function matchOneOf(
-  routes: Route[],
-  location: string,
-): { route: Route; execs: RegExpExecArray } | undefined {
+function matchOneOf(routes: Route[], location: string): Match | undefined {
   let matched = routes
     .map((route) => {
       const execs = route.test.pattern.exec(location);
@@ -80,5 +66,15 @@ function matchOneOf(
     throw new Error("Found >1 match");
   }
 
-  return matched[0];
+  const { route, execs } = matched[0]!;
+  const loc = execs[0] || "/";
+
+  return {
+    route,
+    isFull: loc === location,
+    location: loc,
+    params: Object.fromEntries(
+      route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
+    ),
+  };
 }
