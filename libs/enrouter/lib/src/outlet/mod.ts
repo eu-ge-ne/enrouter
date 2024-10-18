@@ -1,4 +1,4 @@
-import type { ReactNode, ReactElement } from "react";
+import type { ReactNode } from "react";
 
 import { useMatch } from "#lib/match/context.js";
 
