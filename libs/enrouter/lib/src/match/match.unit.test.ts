@@ -61,4 +61,32 @@ describe("matchRoutes", () => {
 
     expect(matchRoutes({ routes, location: "/100" })).toMatchSnapshot();
   });
+
+  test("1 match and 1 match with params", () => {
+    const routes: Route = {
+      path: "/",
+      test: regexparam.parse("/", true),
+      modules: [],
+      loaded: false,
+      elements: {},
+      tree: [
+        {
+          path: "/abc",
+          test: regexparam.parse("/abc", true),
+          modules: [],
+          loaded: false,
+          elements: {},
+        },
+        {
+          path: "/[:id]",
+          test: regexparam.parse("/:id", true),
+          modules: [],
+          loaded: false,
+          elements: {},
+        },
+      ],
+    };
+
+    expect(matchRoutes({ routes, location: "/abc" })).toMatchSnapshot();
+  });
 });

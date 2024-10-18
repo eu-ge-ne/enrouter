@@ -34,6 +34,125 @@ exports[`matchRoutes > 1 match 1`] = `
 ]
 `;
 
+exports[`matchRoutes > 1 match and 1 match with params 1`] = `
+[
+  {
+    "fist": [Circular],
+    "isFull": false,
+    "location": "/",
+    "next": {
+      "fist": [Circular],
+      "isFull": true,
+      "location": "/abc",
+      "next": undefined,
+      "params": {},
+      "route": {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/abc",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+    },
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/[:id]",
+          "test": {
+            "keys": [
+              "id",
+            ],
+            "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+    },
+  },
+  {
+    "fist": {
+      "fist": [Circular],
+      "isFull": false,
+      "location": "/",
+      "next": [Circular],
+      "params": {},
+      "route": {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+        "tree": [
+          {
+            "elements": {},
+            "loaded": false,
+            "modules": [],
+            "path": "/abc",
+            "test": {
+              "keys": [],
+              "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+            },
+          },
+          {
+            "elements": {},
+            "loaded": false,
+            "modules": [],
+            "path": "/[:id]",
+            "test": {
+              "keys": [
+                "id",
+              ],
+              "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+            },
+          },
+        ],
+      },
+    },
+    "isFull": true,
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
+
 exports[`matchRoutes > 1 match with params 1`] = `
 [
   {
