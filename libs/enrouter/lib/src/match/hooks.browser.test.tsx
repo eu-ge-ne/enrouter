@@ -22,16 +22,15 @@ describe("match", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          elements: {},
+          elements: {
+            layout: {
+              Main: <div>Layout /</div>,
+            },
+          },
         },
         isFull: false,
         location: "/",
         params: {},
-        elements: {
-          layout: {
-            Main: <div>Layout /</div>,
-          },
-        },
 
         next: {
           route: {
@@ -39,23 +38,22 @@ describe("match", () => {
             test: regexparam.parse("/abc", true),
             modules: [],
             loaded: true,
-            elements: {},
+            elements: {
+              layout: {
+                Main: <div>Layout /abc</div>,
+              },
+            },
           },
           isFull: true,
           location: "/abc",
           params: {},
-          elements: {
-            layout: {
-              Main: <div>Layout /abc</div>,
-            },
-          },
         },
       };
       context.fist = context;
 
       const Test: FC = () => {
         const match = usePath("/abc");
-        return Object.values(match?.elements?.layout ?? {});
+        return Object.values(match?.route?.elements?.layout ?? {});
       };
 
       const screen = render(
@@ -81,16 +79,15 @@ describe("match", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          elements: {},
+          elements: {
+            layout: {
+              Main: <div>Layout /</div>,
+            },
+          },
         },
         isFull: false,
         location: "/",
         params: {},
-        elements: {
-          layout: {
-            Main: <div>Layout /</div>,
-          },
-        },
 
         next: {
           route: {
@@ -98,16 +95,15 @@ describe("match", () => {
             test: regexparam.parse("/abc", true),
             modules: [],
             loaded: true,
-            elements: {},
+            elements: {
+              layout: {
+                Main: <div>Layout /abc</div>,
+              },
+            },
           },
           isFull: true,
           location: "/abc",
           params: {},
-          elements: {
-            layout: {
-              Main: <div>Layout /abc</div>,
-            },
-          },
         },
       };
       context.fist = context;
