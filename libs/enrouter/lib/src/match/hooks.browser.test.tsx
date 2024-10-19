@@ -49,7 +49,8 @@ describe("match", () => {
           params: {},
         },
       };
-      context.fist = context;
+
+      context.first = context;
 
       const Test: FC = () => {
         const match = usePath("/abc");
@@ -106,7 +107,8 @@ describe("match", () => {
           params: {},
         },
       };
-      context.fist = context;
+
+      context.first = context;
 
       const Test: FC = () => {
         const match1 = useActive({

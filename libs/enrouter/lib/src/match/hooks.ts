@@ -2,7 +2,7 @@ import type { Match } from "./mod.js";
 import { useMatch } from "./context.js";
 
 export function usePath(path: string): Match | undefined {
-  let match = useMatch().fist;
+  let match = useMatch().first;
 
   while (match) {
     if (match.route?.path === path) {

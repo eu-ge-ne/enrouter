@@ -10,6 +10,6 @@ export interface Match {
   location: string;
   params: Record<string, string>;
 
-  fist?: Match;
+  first?: Match;
   next?: Match;
 }

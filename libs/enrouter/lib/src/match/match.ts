@@ -19,7 +19,7 @@ export function match({ routes, location }: MatchParams): Match[] {
   }
 
   matches.forEach((x, i) => {
-    x.fist = matches[0];
+    x.first = matches[0];
     x.next = matches[i + 1];
   });
 

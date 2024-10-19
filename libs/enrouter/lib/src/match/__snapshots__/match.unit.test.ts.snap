@@ -3,7 +3,7 @@
 exports[`match > match > 0 matches 1`] = `
 [
   {
-    "fist": [Circular],
+    "first": [Circular],
     "isFull": true,
     "location": "/x",
     "next": undefined,
@@ -15,7 +15,7 @@ exports[`match > match > 0 matches 1`] = `
 exports[`match > match > 1 match 1`] = `
 [
   {
-    "fist": [Circular],
+    "first": [Circular],
     "isFull": true,
     "location": "/",
     "next": undefined,
@@ -37,11 +37,11 @@ exports[`match > match > 1 match 1`] = `
 exports[`match > match > 1 match and 1 match with params 1`] = `
 [
   {
-    "fist": [Circular],
+    "first": [Circular],
     "isFull": false,
     "location": "/",
     "next": {
-      "fist": [Circular],
+      "first": [Circular],
       "isFull": true,
       "location": "/abc",
       "next": undefined,
@@ -94,8 +94,8 @@ exports[`match > match > 1 match and 1 match with params 1`] = `
     },
   },
   {
-    "fist": {
-      "fist": [Circular],
+    "first": {
+      "first": [Circular],
       "isFull": false,
       "location": "/",
       "next": [Circular],
@@ -156,7 +156,7 @@ exports[`match > match > 1 match and 1 match with params 1`] = `
 exports[`match > match > 1 match with params 1`] = `
 [
   {
-    "fist": [Circular],
+    "first": [Circular],
     "isFull": true,
     "location": "/100",
     "next": undefined,
@@ -182,11 +182,11 @@ exports[`match > match > 1 match with params 1`] = `
 exports[`match > match > 2 matches 1`] = `
 [
   {
-    "fist": [Circular],
+    "first": [Circular],
     "isFull": false,
     "location": "/",
     "next": {
-      "fist": [Circular],
+      "first": [Circular],
       "isFull": true,
       "location": "/abc",
       "next": undefined,
@@ -227,8 +227,8 @@ exports[`match > match > 2 matches 1`] = `
     },
   },
   {
-    "fist": {
-      "fist": [Circular],
+    "first": {
+      "first": [Circular],
       "isFull": false,
       "location": "/",
       "next": [Circular],
