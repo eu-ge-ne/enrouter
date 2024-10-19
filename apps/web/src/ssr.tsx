@@ -77,11 +77,7 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const children = (
         <Shell styles={bootstrapStyles}>
-          <enrouter.Static
-            routes={routes}
-            location={location}
-            matches={matches}
-          />
+          <enrouter.Static location={location} matches={matches} />
         </Shell>
       );
 
