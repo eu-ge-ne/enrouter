@@ -35,3 +35,20 @@ exports[`outlet > using next layout elements 1`] = `
   </div>
 </div>
 `;
+
+exports[`outlet > using notFound elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        Layout
+      </div>
+      <div>
+        Main outlet is not found
+      </div>
+    </div>
+  </div>
+</div>
+`;
