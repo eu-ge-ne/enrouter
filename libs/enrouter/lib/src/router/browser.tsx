@@ -1,10 +1,4 @@
-import {
-  type ReactNode,
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { type ReactNode, useState, useCallback, useEffect } from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
@@ -13,11 +7,10 @@ import { match } from "#lib/match/match.js";
 import { load } from "#lib/match/load.js";
 import { MatchProvider } from "#lib/match/context.js";
 import {
-  type TRouterStaticContext,
   type TRouterDynamicContext,
-  RouterStaticProvider,
   RouterDynamicProvider,
 } from "./context.js";
+import { NavigateProvider } from "./navigate.js";
 import { Root } from "./root.js";
 
 const log = logger("router/browser");
@@ -61,18 +54,13 @@ export function Browser(props: BrowserProps): ReactNode {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handlePopState]);
 
-  const staticContext = useMemo<TRouterStaticContext>(
-    () => ({ navigate }),
-    [navigate],
-  );
-
   return (
-    <RouterStaticProvider value={staticContext}>
+    <NavigateProvider value={navigate}>
       <RouterDynamicProvider value={dynamicContext}>
         <MatchProvider value={matches[0]!}>
           <Root />
         </MatchProvider>
       </RouterDynamicProvider>
-    </RouterStaticProvider>
+    </NavigateProvider>
   );
 }
