@@ -22,13 +22,12 @@ export function Static({ location, matches }: StaticProps): ReactNode {
 
   const dynamicContext: TRouterDynamicContext = {
     location,
-    matches,
   };
 
   return (
     <RouterStaticProvider value={staticContext}>
       <RouterDynamicProvider value={dynamicContext}>
-        <MatchProvider value={dynamicContext.matches[0]!}>
+        <MatchProvider value={matches[0]!}>
           <Root />
         </MatchProvider>
       </RouterDynamicProvider>
