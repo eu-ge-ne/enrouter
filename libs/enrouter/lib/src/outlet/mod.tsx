@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { MatchProvider, useMatch } from "#lib/match/context.js";
-import { NotFound } from "./notFound.js";
+import { NotFound } from "#lib/notFound.js";
 
 export interface OutletProps {
   name: string;
