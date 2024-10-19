@@ -1,4 +1,4 @@
-import { type ReactNode, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
@@ -11,7 +11,6 @@ export interface TRouterStaticContext {
 export interface TRouterDynamicContext {
   location: string;
   matches: Match[];
-  children: ReactNode;
 }
 
 const RouterStaticContext = createContext<TRouterStaticContext>({
@@ -28,7 +27,6 @@ const RouterStaticContext = createContext<TRouterStaticContext>({
 const RouterDynamicContext = createContext<TRouterDynamicContext>({
   location: "",
   matches: [],
-  children: undefined,
 });
 
 export const RouterStaticProvider = RouterStaticContext.Provider;

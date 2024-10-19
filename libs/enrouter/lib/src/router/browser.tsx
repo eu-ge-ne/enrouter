@@ -5,12 +5,14 @@ import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
 import { match } from "#lib/match/match.js";
 import { load } from "#lib/match/load.js";
-import { render } from "#lib/match/render.js";
+import { MatchProvider } from "#lib/match/context.js";
 import {
+  type TRouterStaticContext,
   type TRouterDynamicContext,
   RouterStaticProvider,
   RouterDynamicProvider,
 } from "./context.js";
+import { Root } from "./root.js";
 
 const log = logger("router/browser");
 
@@ -26,7 +28,6 @@ export function Browser({
   const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
     location: window.location.pathname,
     matches: initialMatches,
-    children: render(initialMatches),
   });
 
   const navigate = useCallback(async (location: string) => {
@@ -36,9 +37,8 @@ export function Browser({
 
     const matches = match({ routes, location });
     await load(matches);
-    const children = render(matches);
 
-    setDynamicContext({ location, matches, children });
+    setDynamicContext({ location, matches });
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {
@@ -47,9 +47,8 @@ export function Browser({
     const location = window.location.pathname;
     const matches = match({ routes, location });
     await load(matches);
-    const children = render(matches);
 
-    setDynamicContext({ location, matches, children });
+    setDynamicContext({ location, matches });
   }, []);
 
   useEffect(() => {
@@ -57,12 +56,14 @@ export function Browser({
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handlePopState]);
 
-  const staticContext = { routes, navigate };
+  const staticContext: TRouterStaticContext = { routes, navigate };
 
   return (
     <RouterStaticProvider value={staticContext}>
       <RouterDynamicProvider value={dynamicContext}>
-        {dynamicContext.children}
+        <MatchProvider value={dynamicContext.matches[0]!}>
+          <Root />
+        </MatchProvider>
       </RouterDynamicProvider>
     </RouterStaticProvider>
   );
