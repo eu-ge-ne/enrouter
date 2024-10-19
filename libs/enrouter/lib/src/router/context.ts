@@ -1,14 +1,11 @@
 import { createContext, useContext } from "react";
 
-import type { Match } from "#lib/match/mod.js";
-
 export interface TRouterStaticContext {
   navigate: (to: string) => void;
 }
 
 export interface TRouterDynamicContext {
   location: string;
-  matches: Match[];
 }
 
 const RouterStaticContext = createContext<TRouterStaticContext>({
@@ -17,7 +14,6 @@ const RouterStaticContext = createContext<TRouterStaticContext>({
 
 const RouterDynamicContext = createContext<TRouterDynamicContext>({
   location: "",
-  matches: [],
 });
 
 export const RouterStaticProvider = RouterStaticContext.Provider;

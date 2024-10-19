@@ -27,34 +27,33 @@ export interface BrowserProps {
   matches: Match[];
 }
 
-export function Browser({
-  routes,
-  matches: initialMatches,
-}: BrowserProps): ReactNode {
+export function Browser(props: BrowserProps): ReactNode {
   const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
     location: window.location.pathname,
-    matches: initialMatches,
   });
+  const [matches, setMatches] = useState(props.matches);
 
   const navigate = useCallback(async (location: string) => {
     log("Navigating to %s", location);
 
     window.history.pushState({}, "", location);
 
-    const matches = match({ routes, location });
+    const matches = match({ routes: props.routes, location });
     await load(matches);
 
-    setDynamicContext({ location, matches });
+    setDynamicContext({ location });
+    setMatches(matches);
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {
     log("handlePopState %o", e);
 
     const location = window.location.pathname;
-    const matches = match({ routes, location });
+    const matches = match({ routes: props.routes, location });
     await load(matches);
 
-    setDynamicContext({ location, matches });
+    setDynamicContext({ location });
+    setMatches(matches);
   }, []);
 
   useEffect(() => {
@@ -63,14 +62,14 @@ export function Browser({
   }, [handlePopState]);
 
   const staticContext = useMemo<TRouterStaticContext>(
-    () => ({ routes, navigate }),
-    [routes, navigate],
+    () => ({ navigate }),
+    [navigate],
   );
 
   return (
     <RouterStaticProvider value={staticContext}>
       <RouterDynamicProvider value={dynamicContext}>
-        <MatchProvider value={dynamicContext.matches[0]!}>
+        <MatchProvider value={matches[0]!}>
           <Root />
         </MatchProvider>
       </RouterDynamicProvider>
