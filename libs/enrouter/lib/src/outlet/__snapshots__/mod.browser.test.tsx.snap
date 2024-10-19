@@ -1,5 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`outlet > using default NotFound 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        Layout
+      </div>
+      /x is not found
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > using index elements 1`] = `
 <div>
   <div
@@ -30,6 +45,23 @@ exports[`outlet > using next layout elements 1`] = `
         <div>
           Next layout
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using notFound elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        Layout
+      </div>
+      <div>
+        Main outlet is not found
       </div>
     </div>
   </div>
