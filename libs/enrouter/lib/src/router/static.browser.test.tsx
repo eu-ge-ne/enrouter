@@ -40,12 +40,9 @@ describe("router", () => {
 
       await load(matches);
 
-      const screen = render(
-        <Static routes={routes} location="/" matches={matches} />,
-        {
-          wrapper,
-        },
-      );
+      const screen = render(<Static location="/" matches={matches} />, {
+        wrapper,
+      });
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 

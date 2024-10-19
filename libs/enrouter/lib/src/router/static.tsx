@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { MatchProvider } from "#lib/match/context.js";
 import {
@@ -12,14 +11,12 @@ import {
 import { Root } from "./root.js";
 
 export interface StaticProps {
-  routes: Route;
   location: string;
   matches: Match[];
 }
 
-export function Static({ routes, location, matches }: StaticProps): ReactNode {
+export function Static({ location, matches }: StaticProps): ReactNode {
   const staticContext: TRouterStaticContext = {
-    routes,
     navigate: () => {},
   };
 

@@ -1,10 +1,8 @@
 import { createContext, useContext } from "react";
 
-import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 
 export interface TRouterStaticContext {
-  routes: Route;
   navigate: (to: string) => void;
 }
 
@@ -14,13 +12,6 @@ export interface TRouterDynamicContext {
 }
 
 const RouterStaticContext = createContext<TRouterStaticContext>({
-  routes: {
-    path: "",
-    test: { keys: [], pattern: new RegExp("") },
-    modules: [],
-    loaded: false,
-    elements: {},
-  },
   navigate: () => {},
 });
 
