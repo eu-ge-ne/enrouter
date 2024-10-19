@@ -4,6 +4,7 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
+import { LocationProvider } from "#lib/router/location.js";
 import { MatchProvider } from "#lib/match/context.js";
 import { Outlet } from "./mod.js";
 
@@ -134,9 +135,11 @@ describe("outlet", () => {
     matches[0]!.next = matches[1];
 
     const screen = render(
-      <MatchProvider value={matches[0]!}>
-        {Object.values(matches[0]?.route?.elements.layout ?? {})}
-      </MatchProvider>,
+      <LocationProvider value="/x">
+        <MatchProvider value={matches[0]!}>
+          {Object.values(matches[0]?.route?.elements.layout ?? {})}
+        </MatchProvider>
+      </LocationProvider>,
       { wrapper },
     );
 

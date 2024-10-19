@@ -9,7 +9,7 @@ exports[`outlet > using default NotFound 1`] = `
       <div>
         Layout
       </div>
-       is not found
+      /x is not found
     </div>
   </div>
 </div>
