@@ -21,21 +21,20 @@ describe("match", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          elements: {},
+          elements: {
+            layout: {
+              Main: <div>Layout /</div>,
+            },
+          },
         },
         isFull: true,
         location: "/",
         params: {},
-        elements: {
-          layout: {
-            Main: <div>Layout /</div>,
-          },
-        },
       };
 
       const Test: FC = () => {
         const match = useMatch();
-        return Object.values(match.elements?.layout ?? {});
+        return Object.values(match.route?.elements?.layout ?? {});
       };
 
       const screen = render(
