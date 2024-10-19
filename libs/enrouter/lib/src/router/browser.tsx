@@ -5,12 +5,9 @@ import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
 import { match } from "#lib/match/match.js";
 import { load } from "#lib/match/load.js";
-import { MatchProvider } from "#lib/match/context.js";
-import {
-  type TRouterDynamicContext,
-  RouterDynamicProvider,
-} from "./context.js";
 import { NavigateProvider } from "./navigate.js";
+import { LocationProvider } from "./location.js";
+import { MatchProvider } from "#lib/match/context.js";
 import { Root } from "./root.js";
 
 const log = logger("router/browser");
@@ -21,31 +18,29 @@ export interface BrowserProps {
 }
 
 export function Browser(props: BrowserProps): ReactNode {
-  const [dynamicContext, setDynamicContext] = useState<TRouterDynamicContext>({
-    location: window.location.pathname,
-  });
+  const [location, setLocation] = useState(window.location.pathname);
   const [matches, setMatches] = useState(props.matches);
 
-  const navigate = useCallback(async (location: string) => {
-    log("Navigating to %s", location);
-
-    window.history.pushState({}, "", location);
-
-    const matches = match({ routes: props.routes, location });
+  const navigate = useCallback(async (to: string) => {
+    const matches = match({ routes: props.routes, location: to });
     await load(matches);
 
-    setDynamicContext({ location });
+    window.history.pushState({}, "", to);
+
+    setLocation(to);
     setMatches(matches);
+
+    log("Navigated to %s", to);
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {
     log("handlePopState %o", e);
 
-    const location = window.location.pathname;
-    const matches = match({ routes: props.routes, location });
+    const to = window.location.pathname;
+    const matches = match({ routes: props.routes, location: to });
     await load(matches);
 
-    setDynamicContext({ location });
+    setLocation(to);
     setMatches(matches);
   }, []);
 
@@ -56,11 +51,11 @@ export function Browser(props: BrowserProps): ReactNode {
 
   return (
     <NavigateProvider value={navigate}>
-      <RouterDynamicProvider value={dynamicContext}>
+      <LocationProvider value={location}>
         <MatchProvider value={matches[0]!}>
           <Root />
         </MatchProvider>
-      </RouterDynamicProvider>
+      </LocationProvider>
     </NavigateProvider>
   );
 }
