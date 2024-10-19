@@ -12,7 +12,7 @@ export interface MatchParams {
 export function match({ routes, location }: MatchParams): Match[] {
   const matches: Match[] = [];
 
-  recur([routes], location, matches, 0);
+  recur([routes], location, matches);
 
   if (matches.at(-1)?.location !== location) {
     matches.push({ isFull: true, location, params: {} });
@@ -26,23 +26,18 @@ export function match({ routes, location }: MatchParams): Match[] {
   return matches;
 }
 
-function recur(
-  routes: Route[],
-  location: string,
-  matches: Match[],
-  i: number,
-): void {
+function recur(routes: Route[], location: string, matches: Match[]): void {
   const match = matchOneOf(routes, location);
   if (!match) {
     return;
   }
 
-  log(`location: "%s"; path: "%s"`, location, match.route?.path);
+  log(`path: "%s", location: "%s"`, match.route?.path, match.location);
 
-  matches[i] = match;
+  matches.push(match);
 
   if (match?.route?.tree) {
-    recur(match.route.tree, location, matches, i + 1);
+    recur(match.route.tree, location, matches);
   }
 }
 
