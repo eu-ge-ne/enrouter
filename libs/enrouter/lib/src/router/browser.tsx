@@ -1,4 +1,10 @@
-import { type ReactNode, useState, useCallback, useEffect } from "react";
+import {
+  type ReactNode,
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
@@ -56,7 +62,10 @@ export function Browser({
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handlePopState]);
 
-  const staticContext: TRouterStaticContext = { routes, navigate };
+  const staticContext = useMemo<TRouterStaticContext>(
+    () => ({ routes, navigate }),
+    [routes, navigate],
+  );
 
   return (
     <RouterStaticProvider value={staticContext}>
