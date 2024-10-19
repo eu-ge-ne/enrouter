@@ -7,25 +7,31 @@ import { MatchProvider } from "./context.js";
 export async function load(matches: Match[]) {
   await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
-  for (let i = matches.length - 1; i >= 0; i -= 1) {
-    const match = matches[i]!;
+  matches
+    .filter((x) => x.elements === undefined)
+    .forEach((x) => {
+      x.elements = {
+        layout: wrap(x, x.route?.elements.layout),
+        index: wrap(x, x.route?.elements.index),
+        notFound: wrap(x, x.route?.elements.notFound),
+      };
+    });
+}
 
-    const wrap = (els?: Record<string, ReactElement>) =>
-      els
-        ? Object.fromEntries(
-            Object.entries(els).map(([key, children]) => [
-              key,
-              <MatchProvider key={key} value={match}>
-                {children}
-              </MatchProvider>,
-            ]),
-          )
-        : undefined;
-
-    match.elements = {
-      layout: wrap(match.route?.elements.layout),
-      index: wrap(match.route?.elements.index),
-      notFound: wrap(match.route?.elements.notFound),
-    };
+function wrap(
+  match: Match,
+  els: Record<string, ReactElement> | undefined,
+): Record<string, ReactElement> | undefined {
+  if (!els) {
+    return;
   }
+
+  return Object.fromEntries(
+    Object.entries(els).map(([key, children]) => [
+      key,
+      <MatchProvider key={key} value={match}>
+        {children}
+      </MatchProvider>,
+    ]),
+  );
 }

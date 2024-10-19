@@ -1,5 +1,8 @@
+import { logger } from "#lib/debug.js";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "./mod.js";
+
+const log = logger("match");
 
 export interface MatchParams {
   routes: Route;
@@ -24,37 +27,54 @@ export function match({ routes, location }: MatchParams): Match[] {
 }
 
 function recur(routes: Route[], location: string, matches: Match[]): void {
+  const match = matchOneOf(routes, location);
+  if (!match) {
+    return;
+  }
+
+  log(`path: "%s", location: "%s"`, match.route?.path, match.location);
+
+  matches.push(match);
+
+  if (match?.route?.tree) {
+    recur(match.route.tree, location, matches);
+  }
+}
+
+function matchOneOf(routes: Route[], location: string): Match | undefined {
   let matched = routes
-    .map((x) => [x, x.test.pattern.exec(location)] as const)
-    .filter((x): x is [Route, RegExpExecArray] => Boolean(x[1]));
+    .map((route) => {
+      const execs = route.test.pattern.exec(location);
+      if (!execs) {
+        return;
+      }
+      return { route, execs };
+    })
+    .filter((x) => x !== undefined);
 
   if (matched.length === 0) {
     return;
   }
 
   // TODO: improve
+
   if (matched.length > 1) {
-    matched = matched.filter((x) => x[0].test.keys.length === 0);
+    matched = matched.filter((x) => x.route.test.keys.length === 0);
   }
 
-  const [route, results] = matched[0]!;
+  if (matched.length !== 1) {
+    throw new Error("Found >1 match");
+  }
 
-  const params = Object.fromEntries(
-    route.test.keys.map((key, i) => {
-      return [key, results![i + 1]!] as const;
-    }),
-  );
+  const { route, execs } = matched[0]!;
+  const loc = execs[0] || "/";
 
-  const loc = results[0] || "/";
-
-  matches.push({
+  return {
     route,
     isFull: loc === location,
     location: loc,
-    params,
-  });
-
-  if (route.tree) {
-    recur(route.tree, location, matches);
-  }
+    params: Object.fromEntries(
+      route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
+    ),
+  };
 }
