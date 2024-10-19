@@ -101,6 +101,50 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
+  test("using default NotFound", async () => {
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            layout: {
+              Root: (
+                <div>
+                  <div>Layout</div>
+                  <Outlet name="Main" />
+                </div>
+              ),
+            },
+          },
+        },
+        location: "/",
+        isFull: false,
+        params: {},
+      },
+      {
+        location: "/x",
+        isFull: true,
+        params: {},
+      },
+    ];
+
+    matches[0]!.next = matches[1];
+
+    const screen = render(
+      <MatchProvider value={matches[0]!}>
+        {Object.values(matches[0]?.route?.elements.layout ?? {})}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
   test("using next layout elements", async () => {
     const matches: Match[] = [
       {
