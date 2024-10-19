@@ -2,10 +2,7 @@ import type { FC, PropsWithChildren } from "react";
 import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  type TRouterStaticContext,
-  RouterStaticProvider,
-} from "#lib/router/context.js";
+import { NavigateProvider, noNavigate } from "#lib/router/navigate.js";
 import { useLink } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -21,14 +18,10 @@ describe("link", () => {
       return <a {...props}>link to /abc</a>;
     }
 
-    const context: TRouterStaticContext = {
-      navigate: () => {},
-    };
-
     const screen = render(
-      <RouterStaticProvider value={context}>
+      <NavigateProvider value={noNavigate}>
         <TestLink />
-      </RouterStaticProvider>,
+      </NavigateProvider>,
       { wrapper },
     );
 
