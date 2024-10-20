@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test("notFound", async () => {
+  test("using notFound elements", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -31,24 +31,20 @@ describe("outlet", () => {
                 </div>
               ),
             },
+            notFound: {
+              Main: <div>Root/Main: not found</div>,
+            },
           },
         },
         location: "/",
         isFull: false,
         params: {},
       },
-      {
-        location: "/x",
-        isFull: true,
-        params: {},
-      },
     ];
-
-    matches[0]!.next = matches[1];
 
     const screen = render(
       <MatchProvider value={matches[0]!}>
-        {Object.values(matches[0]?.route?.elements.layout ?? {})}
+        {matches[0]?.route.elements.layout?.Root}
       </MatchProvider>,
       { wrapper },
     );
