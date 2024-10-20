@@ -8,19 +8,19 @@ export interface OutletProps {
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
-  const { route, next } = useMatch();
+  const { route, next, isFull } = useMatch();
 
-  if (!next) {
-    return route?.elements.index?.[name];
+  if (!isFull && !next) {
+    return route.elements.notFound?.[name] ?? <NotFound />;
   }
 
-  if (!next.route) {
-    return route?.elements.notFound?.[name] ?? <NotFound />;
+  if (!next) {
+    return route.elements.index?.[name];
   }
 
   return (
     <MatchProvider value={next}>
-      {next.route?.elements.layout?.[name]}
+      {next.route.elements.layout?.[name]}
     </MatchProvider>
   );
 }

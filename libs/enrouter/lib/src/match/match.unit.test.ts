@@ -6,7 +6,7 @@ import { match } from "./match.js";
 
 describe("match", () => {
   describe("match", () => {
-    test("0 matches", () => {
+    test("0 matches", async () => {
       const routes: Route = {
         path: "/abc",
         test: regexparam.parse("/abc", true),
@@ -15,10 +15,10 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(match({ routes, location: "/x" })).toMatchSnapshot();
+      expect(await match({ routes, location: "/x" })).toMatchSnapshot();
     });
 
-    test("1 match", () => {
+    test("1 match", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -27,10 +27,10 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(match({ routes, location: "/" })).toMatchSnapshot();
+      expect(await match({ routes, location: "/" })).toMatchSnapshot();
     });
 
-    test("2 matches", () => {
+    test("2 matches", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -48,10 +48,10 @@ describe("match", () => {
         ],
       };
 
-      expect(match({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(await match({ routes, location: "/abc" })).toMatchSnapshot();
     });
 
-    test("1 match with params", () => {
+    test("1 match with params", async () => {
       const routes: Route = {
         path: "/[:id]",
         test: regexparam.parse("/:id", true),
@@ -60,10 +60,10 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(match({ routes, location: "/100" })).toMatchSnapshot();
+      expect(await match({ routes, location: "/100" })).toMatchSnapshot();
     });
 
-    test("1 match and 1 match with params", () => {
+    test("1 match and 1 match with params", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -88,7 +88,7 @@ describe("match", () => {
         ],
       };
 
-      expect(match({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(await match({ routes, location: "/abc" })).toMatchSnapshot();
     });
   });
 });

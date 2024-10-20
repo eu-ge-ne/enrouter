@@ -1,6 +1,7 @@
-import { logger } from "#lib/debug.js";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "./mod.js";
+import { logger } from "#lib/debug.js";
+import { load } from "./load.js";
 
 const log = logger("match");
 
@@ -9,14 +10,24 @@ export interface MatchParams {
   location: string;
 }
 
-export function match({ routes, location }: MatchParams): Match[] {
+export async function match({
+  routes,
+  location,
+}: MatchParams): Promise<Match[]> {
   const matches: Match[] = [];
 
   recur([routes], location, matches);
 
-  if (matches.at(-1)?.location !== location) {
-    matches.push({ isFull: true, location, params: {} });
+  await load(matches);
+
+  if (!matches.at(-1)?.isFull) {
+    const i = matches.findLastIndex(
+      (x) => Object.values(x.route.elements.notFound ?? {}).length > 0,
+    );
+    matches.splice(Math.max(1, i + 1));
   }
+
+  log("matched: %o", matches);
 
   matches.forEach((x, i) => {
     x.first = matches[0];

@@ -11,27 +11,3 @@ exports[`router > Static > 1 route and 1 match 1`] = `
   </div>
 </div>
 `;
-
-exports[`router > StaticRouter > 1 route and 1 match 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      Layout
-    </div>
-  </div>
-</div>
-`;
-
-exports[`router/static > 1 route and 1 match 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      Layout
-    </div>
-  </div>
-</div>
-`;

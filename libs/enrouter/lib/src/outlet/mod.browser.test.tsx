@@ -4,7 +4,6 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
-import { LocationProvider } from "#lib/router/location.js";
 import { MatchProvider } from "#lib/match/context.js";
 import { Outlet } from "./mod.js";
 
@@ -15,6 +14,46 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
+  test("using notFound elements", async () => {
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            layout: {
+              Root: (
+                <div>
+                  <div>Layout</div>
+                  <Outlet name="Main" />
+                </div>
+              ),
+            },
+            notFound: {
+              Main: <div>Root/Main: not found</div>,
+            },
+          },
+        },
+        location: "/",
+        isFull: false,
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <MatchProvider value={matches[0]!}>
+        {matches[0]?.route.elements.layout?.Root}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
   test("using index elements", async () => {
     const matches: Match[] = [
       {
@@ -47,99 +86,6 @@ describe("outlet", () => {
       <MatchProvider value={matches[0]!}>
         {Object.values(matches[0]?.route?.elements.layout ?? {})}
       </MatchProvider>,
-      { wrapper },
-    );
-
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
-
-    expect(screen.container).toMatchSnapshot();
-  });
-
-  test("using notFound elements", async () => {
-    const matches: Match[] = [
-      {
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            layout: {
-              Root: (
-                <div>
-                  <div>Layout</div>
-                  <Outlet name="Main" />
-                </div>
-              ),
-            },
-            notFound: {
-              Main: <div>Main outlet is not found</div>,
-            },
-          },
-        },
-        location: "/",
-        isFull: false,
-        params: {},
-      },
-      {
-        location: "/x",
-        isFull: true,
-        params: {},
-      },
-    ];
-
-    matches[0]!.next = matches[1];
-
-    const screen = render(
-      <MatchProvider value={matches[0]!}>
-        {Object.values(matches[0]?.route?.elements.layout ?? {})}
-      </MatchProvider>,
-      { wrapper },
-    );
-
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
-
-    expect(screen.container).toMatchSnapshot();
-  });
-
-  test("using default NotFound", async () => {
-    const matches: Match[] = [
-      {
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            layout: {
-              Root: (
-                <div>
-                  <div>Layout</div>
-                  <Outlet name="Main" />
-                </div>
-              ),
-            },
-          },
-        },
-        location: "/",
-        isFull: false,
-        params: {},
-      },
-      {
-        location: "/x",
-        isFull: true,
-        params: {},
-      },
-    ];
-
-    matches[0]!.next = matches[1];
-
-    const screen = render(
-      <LocationProvider value="/x">
-        <MatchProvider value={matches[0]!}>
-          {Object.values(matches[0]?.route?.elements.layout ?? {})}
-        </MatchProvider>
-      </LocationProvider>,
       { wrapper },
     );
 
