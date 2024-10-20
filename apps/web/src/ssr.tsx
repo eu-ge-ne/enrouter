@@ -2,10 +2,10 @@
 import { renderToReadableStream } from "react-dom/server.edge";
 import * as enrouter from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
+//@ts-ignore
+import { routes } from "virtual:enrouter";
 
 import { log } from "#log.js";
-//@ts-ignore
-import { routes } from "virtual:routes";
 import { Shell } from "./shell.js";
 
 export default createSsrHandler;
