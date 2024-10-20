@@ -7,8 +7,8 @@ import { glob } from "glob";
 import { compileRoutes } from "./compile.js";
 import { buildModuleTree } from "./modules.js";
 
-const virtualModuleId = "virtual:enrouter";
-const resolvedVirtualModuleId = "\0" + virtualModuleId;
+const moduleId = "virtual:enrouter/vite/routes";
+const resolvedModuleId = "\0" + moduleId;
 
 export interface EnrouterPluginOptions {
   path: string;
@@ -23,12 +23,12 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
       rootPath = config.root;
     },
     resolveId(id) {
-      if (id === virtualModuleId) {
-        return resolvedVirtualModuleId;
+      if (id === moduleId) {
+        return resolvedModuleId;
       }
     },
     async load(id) {
-      if (id !== resolvedVirtualModuleId) {
+      if (id !== resolvedModuleId) {
         return null;
       }
 

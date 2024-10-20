@@ -1,7 +1,7 @@
 import { hydrateRoot } from "react-dom/client";
 import * as enrouter from "enrouter";
 //@ts-ignore
-import { routes } from "virtual:enrouter";
+import { routes } from "virtual:enrouter/vite/routes";
 
 import "./index.css";
 import { log } from "#log.js";

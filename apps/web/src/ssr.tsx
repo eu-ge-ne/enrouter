@@ -3,7 +3,7 @@ import { renderToReadableStream } from "react-dom/server.edge";
 import * as enrouter from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
 //@ts-ignore
-import { routes } from "virtual:enrouter";
+import { routes } from "virtual:enrouter/vite/routes";
 
 import { log } from "#log.js";
 import { Shell } from "./shell.js";
