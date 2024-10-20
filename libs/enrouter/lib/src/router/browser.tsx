@@ -4,7 +4,6 @@ import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
 import { match } from "#lib/match/match.js";
-import { load } from "#lib/match/load.js";
 import { NavigateProvider } from "./navigate.js";
 import { LocationProvider } from "./location.js";
 import { MatchProvider } from "#lib/match/context.js";
@@ -22,13 +21,10 @@ export function Browser(props: BrowserProps): ReactNode {
   const [matches, setMatches] = useState(props.matches);
 
   const navigate = useCallback(async (to: string) => {
-    const matches = match({ routes: props.routes, location: to });
-    await load(matches);
-
     window.history.pushState({}, "", to);
-
     setLocation(to);
-    setMatches(matches);
+
+    setMatches(await match({ routes: props.routes, location: to }));
 
     log("Navigated to %s", to);
   }, []);
@@ -37,11 +33,9 @@ export function Browser(props: BrowserProps): ReactNode {
     log("handlePopState %o", e);
 
     const to = window.location.pathname;
-    const matches = match({ routes: props.routes, location: to });
-    await load(matches);
-
     setLocation(to);
-    setMatches(matches);
+
+    setMatches(await match({ routes: props.routes, location: to }));
   }, []);
 
   useEffect(() => {
