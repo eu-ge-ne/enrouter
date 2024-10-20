@@ -20,7 +20,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
   return (
     <MatchProvider value={next}>
-      {next.route?.elements.layout?.[name]}
+      {next.route.elements.layout?.[name]}
     </MatchProvider>
   );
 }
