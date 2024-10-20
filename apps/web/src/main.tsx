@@ -16,12 +16,10 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  const matches = enrouter.match({
+  const matches = await enrouter.match({
     routes,
     location: window.location.pathname,
   });
-
-  await enrouter.load(matches);
 
   hydrateRoot(
     document,
