@@ -5,8 +5,7 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import { globSync } from "glob";
-
-import { routes } from "enrouter/vite/plugin";
+import enrouter from "enrouter/vite/plugin";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -21,7 +20,7 @@ export default defineConfig({
       }),
     },
     react({ include: /\.(jsx|js|tsx|ts|mdx|md)$/ }),
-    routes({ path: resolve(root, "src/app") }),
+    enrouter({ path: resolve(root, "src/app") }),
   ],
   build: {
     outDir: "dist/server",

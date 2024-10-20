@@ -7,14 +7,14 @@ import { glob } from "glob";
 import { compileRoutes } from "./compile.js";
 import { buildModuleTree } from "./modules.js";
 
-const virtualModuleId = "virtual:routes";
+const virtualModuleId = "virtual:enrouter";
 const resolvedVirtualModuleId = "\0" + virtualModuleId;
 
-export interface RoutesParams {
+export interface EnrouterPluginOptions {
   path: string;
 }
 
-export function routes(params: RoutesParams): Plugin {
+export default function plugin(params: EnrouterPluginOptions): Plugin {
   let rootPath: string;
 
   return {
