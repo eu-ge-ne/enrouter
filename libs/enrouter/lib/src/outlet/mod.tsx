@@ -14,13 +14,11 @@ export function Outlet({ name }: OutletProps): ReactNode {
     return route?.elements.index?.[name];
   }
 
-  if (!next.route) {
-    return route?.elements.notFound?.[name] ?? <NotFound />;
+  if (next.route) {
+    return (
+      <MatchProvider value={next}>
+        {next.route.elements.layout?.[name]}
+      </MatchProvider>
+    );
   }
-
-  return (
-    <MatchProvider value={next}>
-      {next.route.elements.layout?.[name]}
-    </MatchProvider>
-  );
 }
