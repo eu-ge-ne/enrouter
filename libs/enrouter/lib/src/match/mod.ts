@@ -4,7 +4,7 @@ import type { Route } from "#lib/route/mod.js";
  * Represents matched `Route`.
  */
 export interface Match {
-  route?: Route; // 404?
+  route: Route;
 
   isFull: boolean;
   location: string;
