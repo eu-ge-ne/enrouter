@@ -1,16 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > match > 0 matches 1`] = `
-[
-  {
-    "first": [Circular],
-    "isFull": true,
-    "location": "/x",
-    "next": undefined,
-    "params": {},
-  },
-]
-`;
+exports[`match > match > 0 matches 1`] = `[]`;
 
 exports[`match > match > 1 match 1`] = `
 [
