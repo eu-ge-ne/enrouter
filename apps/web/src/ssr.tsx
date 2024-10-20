@@ -31,12 +31,10 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const location = new URL(req.url, "http://localhost").pathname;
 
-      const matches = enrouter.match({ routes, location });
-      if (!matches.at(-1)?.route) {
+      const matches = await enrouter.match({ routes, location });
+      if (!matches.at(-1)?.isFull) {
         status = 404;
       }
-
-      await enrouter.load(matches);
 
       let bootstrapStyles: string[] = [];
       let bootstrapModules: string[] = [mapAssetUrl("src/main.tsx")];
