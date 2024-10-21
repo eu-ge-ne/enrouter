@@ -81,11 +81,11 @@ exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _this.tsx module 1`] = `
+exports[`route > loadRoutes > 1 route with _page.tsx module 1`] = `
 [
   {
     "elements": {
-      "this": {
+      "page": {
         "Main": {
           "$$typeof": Symbol(react.transitional.element),
           "_owner": null,
@@ -99,8 +99,8 @@ exports[`route > loadRoutes > 1 route with _this.tsx module 1`] = `
     "loaded": true,
     "modules": [
       {
-        "fileName": "_this.tsx",
-        "id": "src/_this.tsx",
+        "fileName": "_page.tsx",
+        "id": "src/_page.tsx",
         "importFn": [Function],
       },
     ],

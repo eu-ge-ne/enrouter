@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 import { MatchProvider, useMatch } from "#lib/match/context.js";
-import { NotFound } from "#lib/notFound.js";
 
 export interface OutletProps {
   name: string;
@@ -17,11 +16,11 @@ export function Outlet({ name, here }: OutletProps): ReactNode {
   const { route, isFull, next } = match;
 
   if (here) {
-    return route.elements.this?.[name];
+    return route.elements.page?.[name];
   }
 
   if (!isFull && !next) {
-    return route.elements.end?.[name] ?? <NotFound />;
+    return route.elements.end?.[name];
   }
 
   if (!next) {
@@ -30,7 +29,7 @@ export function Outlet({ name, here }: OutletProps): ReactNode {
 
   return (
     <MatchProvider value={next}>
-      {next.route.elements.this?.[name]}
+      {next.route.elements.page?.[name]}
     </MatchProvider>
   );
 }

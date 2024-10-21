@@ -29,7 +29,7 @@ exports[`match > usePath > with 2 matches 1`] = `
     data-testid="test-wrapper"
   >
     <div>
-      Layout /abc
+      Page /abc
     </div>
   </div>
 </div>

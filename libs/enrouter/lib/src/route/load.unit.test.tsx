@@ -31,18 +31,18 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _this.tsx module", async () => {
+    test("1 route with _page.tsx module", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_this.tsx",
-              fileName: "_this.tsx",
+              id: "src/_page.tsx",
+              fileName: "_page.tsx",
               importFn: async () => ({
                 default: {
-                  Main: () => <div>Layout</div>,
+                  Main: () => <div>Page</div>,
                 },
               }),
             },
@@ -94,7 +94,7 @@ describe("route", () => {
               fileName: "_end.tsx",
               importFn: async () => ({
                 default: {
-                  Main: () => <div>NotFound</div>,
+                  Main: () => <div>End</div>,
                 },
               }),
             },

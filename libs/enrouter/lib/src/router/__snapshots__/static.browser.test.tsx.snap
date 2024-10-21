@@ -1,12 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`router > Static > 1 match 1`] = `
+exports[`router > Static > root 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      Layout
+      Root
     </div>
   </div>
 </div>

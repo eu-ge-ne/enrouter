@@ -33,7 +33,7 @@ export interface Route {
 
   elements: {
     root?: ReactElement;
-    this?: Record<string, ReactElement>;
+    page?: Record<string, ReactElement>;
     index?: Record<string, ReactElement>;
     end?: Record<string, ReactElement>;
   };

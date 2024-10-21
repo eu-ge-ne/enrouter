@@ -6,7 +6,7 @@ exports[`match > useMatch > 1 match 1`] = `
     data-testid="test-wrapper"
   >
     <div>
-      Layout /
+      Page /
     </div>
   </div>
 </div>

@@ -22,16 +22,16 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          this: {
-            Root: (
+          page: {
+            Main: (
               <div>
-                <div>Layout</div>
-                <Outlet name="Main" />
+                <div>Page</div>
+                <Outlet name="Next" />
               </div>
             ),
           },
           end: {
-            Main: <div>Root/Main: not found</div>,
+            Next: <div>Next not found</div>,
           },
         },
       },
@@ -42,7 +42,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {match.route.elements.this?.Root}
+        {match.route.elements.page?.Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -60,16 +60,16 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          this: {
-            Root: (
+          page: {
+            Main: (
               <div>
-                <div>Layout</div>
-                <Outlet name="Main" />
+                <div>Page</div>
+                <Outlet name="Next" />
               </div>
             ),
           },
           index: {
-            Main: <div>Index</div>,
+            Next: <div>Index</div>,
           },
         },
       },
@@ -80,7 +80,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {Object.values(match.route.elements.this ?? {})}
+        {match.route.elements.page?.Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -90,7 +90,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "this" elements`, async () => {
+  test(`using "page" elements`, async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -98,11 +98,11 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          this: {
-            Root: (
+          page: {
+            Main: (
               <div>
-                <div>Layout</div>
-                <Outlet name="Main" />
+                <div>Page</div>
+                <Outlet name="Next" />
               </div>
             ),
           },
@@ -119,10 +119,10 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            this: {
-              Main: (
+            page: {
+              Next: (
                 <div>
-                  <div>Next layout</div>
+                  <div>Next</div>
                 </div>
               ),
             },
@@ -136,7 +136,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {Object.values(match.route.elements.this ?? {})}
+        {match.route.elements.page?.Main}
       </MatchProvider>,
       { wrapper },
     );
