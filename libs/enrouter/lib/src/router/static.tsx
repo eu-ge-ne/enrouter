@@ -8,14 +8,14 @@ import { Root } from "./root.js";
 
 export interface StaticProps {
   location: string;
-  matches: Match[];
+  match: Match | undefined;
 }
 
-export function Static({ location, matches }: StaticProps): ReactNode {
+export function Static({ location, match }: StaticProps): ReactNode {
   return (
     <NavigateProvider value={noNavigate}>
       <LocationProvider value={location}>
-        <MatchProvider value={matches[0]!}>
+        <MatchProvider value={match}>
           <Root />
         </MatchProvider>
       </LocationProvider>

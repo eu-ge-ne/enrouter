@@ -2,10 +2,10 @@ import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
-import { match } from "./match.js";
+import { createMatch } from "./create.js";
 
 describe("match", () => {
-  describe("match", () => {
+  describe("create", () => {
     test("0 matches", async () => {
       const routes: Route = {
         path: "/abc",
@@ -15,7 +15,7 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(await match({ routes, location: "/x" })).toMatchSnapshot();
+      expect(await createMatch({ routes, location: "/x" })).toMatchSnapshot();
     });
 
     test("1 match", async () => {
@@ -27,7 +27,7 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(await match({ routes, location: "/" })).toMatchSnapshot();
+      expect(await createMatch({ routes, location: "/" })).toMatchSnapshot();
     });
 
     test("2 matches", async () => {
@@ -48,7 +48,7 @@ describe("match", () => {
         ],
       };
 
-      expect(await match({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
     });
 
     test("1 match with params", async () => {
@@ -60,7 +60,7 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(await match({ routes, location: "/100" })).toMatchSnapshot();
+      expect(await createMatch({ routes, location: "/100" })).toMatchSnapshot();
     });
 
     test("1 match and 1 match with params", async () => {
@@ -88,7 +88,7 @@ describe("match", () => {
         ],
       };
 
-      expect(await match({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
     });
   });
 });

@@ -16,7 +16,7 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  const matches = await enrouter.match({
+  const match = await enrouter.createMatch({
     routes,
     location: window.location.pathname,
   });
@@ -24,7 +24,7 @@ async function main() {
   hydrateRoot(
     document,
     <Shell>
-      <enrouter.Browser routes={routes} matches={matches} />
+      <enrouter.Browser routes={routes} match={match} />
     </Shell>,
   );
 

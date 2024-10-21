@@ -31,8 +31,8 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const location = new URL(req.url, "http://localhost").pathname;
 
-      const matches = await enrouter.match({ routes, location });
-      if (!matches.at(-1)?.isFull) {
+      const match = await enrouter.createMatch({ routes, location });
+      if (!match?.last?.isFull) {
         status = 404;
       }
 
@@ -45,13 +45,18 @@ function createSsrHandler(manifest: ViteManifest) {
           moduleId: "src/main.tsx",
         });
 
-        const matchedAssets = matches.flatMap((x) =>
-          x.route?.modules.map((x) =>
-            getModuleAssets({
-              manifest,
-              moduleId: x.id,
-            }),
-          ),
+        const collectModules: (
+          x?: enrouter.Match,
+        ) => enrouter.Route["modules"] = (x) =>
+          !x ? [] : [...x.route.modules, ...collectModules(x.next)];
+
+        const modules = [...new Set(collectModules(match))];
+
+        const matchedAssets = modules.map((x) =>
+          getModuleAssets({
+            manifest,
+            moduleId: x.id,
+          }),
         );
 
         const assets = [entryAssets, ...matchedAssets].filter(
@@ -75,7 +80,7 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const children = (
         <Shell styles={bootstrapStyles}>
-          <enrouter.Static location={location} matches={matches} />
+          <enrouter.Static location={location} match={match} />
         </Shell>
       );
 

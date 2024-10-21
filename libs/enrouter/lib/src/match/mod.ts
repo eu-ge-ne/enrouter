@@ -12,4 +12,5 @@ export interface Match {
 
   first?: Match;
   next?: Match;
+  last?: Match;
 }

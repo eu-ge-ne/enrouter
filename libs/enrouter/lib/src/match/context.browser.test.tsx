@@ -34,7 +34,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = useMatch();
-        return Object.values(match.route?.elements?.layout ?? {});
+        return match?.route.elements.layout?.Main;
       };
 
       const screen = render(
