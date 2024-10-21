@@ -83,15 +83,15 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _notFound.tsx module", async () => {
+    test("1 route with _end.tsx module", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_notFound.tsx",
-              fileName: "_notFound.tsx",
+              id: "src/_end.tsx",
+              fileName: "_end.tsx",
               importFn: async () => ({
                 default: {
                   Main: () => <div>NotFound</div>,

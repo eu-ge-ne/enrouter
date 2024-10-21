@@ -3,11 +3,11 @@ import { useLocation } from "enrouter";
 import { log } from "#log.js";
 
 export default {
-  Docs() {
-    log("Rendering: /docs/_notFound#Docs");
+  Main() {
+    log("Rendering: /_end#Main");
 
     const location = useLocation();
 
-    return <div>docs: {location} is not found</div>;
+    return <div>{location} is not found</div>;
   },
 };

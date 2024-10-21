@@ -34,7 +34,7 @@ export interface Route {
   elements: {
     layout?: Record<string, ReactElement>;
     index?: Record<string, ReactElement>;
-    notFound?: Record<string, ReactElement>;
+    end?: Record<string, ReactElement>;
   };
 
   /**

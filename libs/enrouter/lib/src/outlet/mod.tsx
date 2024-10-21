@@ -16,7 +16,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
   const { route, isFull, next } = match;
 
   if (!isFull && !next) {
-    return route.elements.notFound?.[name] ?? <NotFound />;
+    return route.elements.end?.[name] ?? <NotFound />;
   }
 
   if (!next) {

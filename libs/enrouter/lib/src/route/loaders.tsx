@@ -14,8 +14,8 @@ export const loaders: Record<string, Loader> = {
   "_index.tsx": async (route, importFn) => {
     route.elements.index = await load(importFn);
   },
-  "_notFound.tsx": async (route, importFn) => {
-    route.elements.notFound = await load(importFn);
+  "_end.tsx": async (route, importFn) => {
+    route.elements.end = await load(importFn);
   },
 };
 

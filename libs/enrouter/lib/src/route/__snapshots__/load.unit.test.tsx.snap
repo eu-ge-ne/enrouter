@@ -17,6 +17,38 @@ exports[`route > loadRoutes > 1 route no modules 1`] = `
 ]
 `;
 
+exports[`route > loadRoutes > 1 route with _end.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "end": {
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_end.tsx",
+        "id": "src/_end.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
 exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
 [
   {
@@ -69,38 +101,6 @@ exports[`route > loadRoutes > 1 route with _layout.tsx module 1`] = `
       {
         "fileName": "_layout.tsx",
         "id": "src/_layout.tsx",
-        "importFn": [Function],
-      },
-    ],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-  },
-]
-`;
-
-exports[`route > loadRoutes > 1 route with _notFound.tsx module 1`] = `
-[
-  {
-    "elements": {
-      "notFound": {
-        "Main": {
-          "$$typeof": Symbol(react.transitional.element),
-          "_owner": null,
-          "_store": {},
-          "key": null,
-          "props": {},
-          "type": [Function],
-        },
-      },
-    },
-    "loaded": true,
-    "modules": [
-      {
-        "fileName": "_notFound.tsx",
-        "id": "src/_notFound.tsx",
         "importFn": [Function],
       },
     ],

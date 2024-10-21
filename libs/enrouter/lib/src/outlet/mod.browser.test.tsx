@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test("using notFound elements", async () => {
+  test('using "end" elements', async () => {
     const matches: Match[] = [
       {
         route: {
@@ -31,7 +31,7 @@ describe("outlet", () => {
                 </div>
               ),
             },
-            notFound: {
+            end: {
               Main: <div>Root/Main: not found</div>,
             },
           },
@@ -54,7 +54,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("using index elements", async () => {
+  test(`using "index" elements`, async () => {
     const matches: Match[] = [
       {
         route: {
@@ -94,7 +94,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("using next layout elements", async () => {
+  test(`using "layout" elements`, async () => {
     const matches: Match[] = [
       {
         route: {
