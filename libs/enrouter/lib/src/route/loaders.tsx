@@ -12,8 +12,8 @@ export const loaders: Record<string, Loader> = {
   "_root.tsx": async (route, fn) => {
     route.elements.root = await loadComponent(fn);
   },
-  "_this.tsx": async (route, fn) => {
-    route.elements.this = await loadComponents(fn);
+  "_page.tsx": async (route, fn) => {
+    route.elements.page = await loadComponents(fn);
   },
   "_index.tsx": async (route, fn) => {
     route.elements.index = await loadComponents(fn);
