@@ -6,5 +6,5 @@ import { NotFound } from "#lib/notFound.js";
 export function Root(): ReactNode {
   const match = useMatch();
 
-  return match?.route?.elements.layout?.["Root"] ?? <NotFound />;
+  return match?.route?.elements.this?.["Root"] ?? <NotFound />;
 }

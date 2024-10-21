@@ -6,7 +6,7 @@ import { PrimaryLinkItem } from "./links.js";
 
 export default {
   Main() {
-    log("Rendering: /docs/_layout#Main");
+    log("Rendering: /docs/_this#Main");
 
     return (
       <div className="flex divide-x divide-paperBorder p-4 pt-8">

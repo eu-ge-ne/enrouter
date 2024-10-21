@@ -22,7 +22,7 @@ export async function createMatch({
 
   if (!matches.at(-1)?.isFull) {
     const i = matches.findLastIndex(
-      (x) => Object.values(x.route.elements.notFound ?? {}).length > 0,
+      (x) => Object.values(x.route.elements.end ?? {}).length > 0,
     );
     matches.splice(Math.max(1, i + 1));
   }

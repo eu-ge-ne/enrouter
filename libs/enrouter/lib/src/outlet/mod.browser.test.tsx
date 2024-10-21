@@ -14,37 +14,35 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test("using notFound elements", async () => {
-    const matches: Match[] = [
-      {
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            layout: {
-              Root: (
-                <div>
-                  <div>Layout</div>
-                  <Outlet name="Main" />
-                </div>
-              ),
-            },
-            notFound: {
-              Main: <div>Root/Main: not found</div>,
-            },
+  test('using "end" elements', async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          this: {
+            Root: (
+              <div>
+                <div>Layout</div>
+                <Outlet name="Main" />
+              </div>
+            ),
+          },
+          end: {
+            Main: <div>Root/Main: not found</div>,
           },
         },
-        location: "/",
-        isFull: false,
-        params: {},
       },
-    ];
+      location: "/",
+      isFull: false,
+      params: {},
+    };
 
     const screen = render(
-      <MatchProvider value={matches[0]!}>
-        {matches[0]?.route.elements.layout?.Root}
+      <MatchProvider value={match}>
+        {match.route.elements.this?.Root}
       </MatchProvider>,
       { wrapper },
     );
@@ -54,37 +52,35 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("using index elements", async () => {
-    const matches: Match[] = [
-      {
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            layout: {
-              Root: (
-                <div>
-                  <div>Layout</div>
-                  <Outlet name="Main" />
-                </div>
-              ),
-            },
-            index: {
-              Main: <div>Index</div>,
-            },
+  test(`using "index" elements`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          this: {
+            Root: (
+              <div>
+                <div>Layout</div>
+                <Outlet name="Main" />
+              </div>
+            ),
+          },
+          index: {
+            Main: <div>Index</div>,
           },
         },
-        location: "/",
-        isFull: true,
-        params: {},
       },
-    ];
+      location: "/",
+      isFull: true,
+      params: {},
+    };
 
     const screen = render(
-      <MatchProvider value={matches[0]!}>
-        {Object.values(matches[0]?.route?.elements.layout ?? {})}
+      <MatchProvider value={match}>
+        {Object.values(match.route.elements.this ?? {})}
       </MatchProvider>,
       { wrapper },
     );
@@ -94,37 +90,36 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("using next layout elements", async () => {
-    const matches: Match[] = [
-      {
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            layout: {
-              Root: (
-                <div>
-                  <div>Layout</div>
-                  <Outlet name="Main" />
-                </div>
-              ),
-            },
+  test(`using "this" elements`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          this: {
+            Root: (
+              <div>
+                <div>Layout</div>
+                <Outlet name="Main" />
+              </div>
+            ),
           },
         },
-        location: "/",
-        isFull: false,
-        params: {},
       },
-      {
+      location: "/",
+      isFull: false,
+      params: {},
+
+      next: {
         route: {
           path: "/a",
           test: regexparam.parse("/a", true),
           modules: [],
           loaded: true,
           elements: {
-            layout: {
+            this: {
               Main: (
                 <div>
                   <div>Next layout</div>
@@ -137,12 +132,11 @@ describe("outlet", () => {
         isFull: true,
         params: {},
       },
-    ];
-    matches[0]!.next = matches[1];
+    };
 
     const screen = render(
-      <MatchProvider value={matches[0]!}>
-        {Object.values(matches[0]?.route?.elements.layout ?? {})}
+      <MatchProvider value={match}>
+        {Object.values(match.route.elements.this ?? {})}
       </MatchProvider>,
       { wrapper },
     );

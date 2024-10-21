@@ -3,7 +3,6 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { Static } from "./static.js";
 
@@ -23,7 +22,7 @@ describe("router", () => {
           modules: [],
           loaded: true,
           elements: {
-            layout: {
+            this: {
               Root: <div>Layout</div>,
             },
           },

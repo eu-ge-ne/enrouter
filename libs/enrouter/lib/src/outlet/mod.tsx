@@ -16,7 +16,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
   const { route, isFull, next } = match;
 
   if (!isFull && !next) {
-    return route.elements.notFound?.[name] ?? <NotFound />;
+    return route.elements.end?.[name] ?? <NotFound />;
   }
 
   if (!next) {
@@ -25,7 +25,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
   return (
     <MatchProvider value={next}>
-      {next.route.elements.layout?.[name]}
+      {next.route.elements.this?.[name]}
     </MatchProvider>
   );
 }

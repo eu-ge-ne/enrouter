@@ -23,7 +23,7 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            layout: {
+            this: {
               Main: <div>Layout /</div>,
             },
           },
@@ -39,7 +39,7 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              layout: {
+              this: {
                 Main: <div>Layout /abc</div>,
               },
             },
@@ -54,16 +54,14 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = usePath("/abc");
-        return Object.values(match?.route?.elements?.layout ?? {});
+        return Object.values(match?.route.elements?.this ?? {});
       };
 
       const screen = render(
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        {
-          wrapper,
-        },
+        { wrapper },
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -81,7 +79,7 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            layout: {
+            this: {
               Main: <div>Layout /</div>,
             },
           },
@@ -97,7 +95,7 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              layout: {
+              this: {
                 Main: <div>Layout /abc</div>,
               },
             },
@@ -143,9 +141,7 @@ describe("match", () => {
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        {
-          wrapper,
-        },
+        { wrapper },
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();

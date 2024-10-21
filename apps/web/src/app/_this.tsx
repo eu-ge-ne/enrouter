@@ -6,7 +6,7 @@ import github_logo from "/github-light.svg";
 
 export default {
   Root() {
-    log("Rendering: /_layout#Root");
+    log("Rendering: /_this#Root");
 
     return (
       <div className="flex flex-col divide-y divide-paperBorder">

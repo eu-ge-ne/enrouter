@@ -8,8 +8,8 @@ exports[`buildRoutes > from 1 module 1`] = `
   "loaded": false,
   "modules": [
     {
-      "fileName": "_layout.tsx",
-      "id": "src/_layout.tsx",
+      "fileName": "_this.tsx",
+      "id": "src/_this.tsx",
       "importFn": [Function],
     },
   ],
@@ -27,8 +27,8 @@ exports[`buildRoutes > from 2 modules 1`] = `
   "loaded": false,
   "modules": [
     {
-      "fileName": "_layout.tsx",
-      "id": "src/_layout.tsx",
+      "fileName": "_this.tsx",
+      "id": "src/_this.tsx",
       "importFn": [Function],
     },
   ],
@@ -43,8 +43,8 @@ exports[`buildRoutes > from 2 modules 1`] = `
       "loaded": false,
       "modules": [
         {
-          "fileName": "_layout.tsx",
-          "id": "src/abc/_layout.tsx",
+          "fileName": "_this.tsx",
+          "id": "src/abc/_this.tsx",
           "importFn": [Function],
         },
       ],
@@ -64,8 +64,8 @@ exports[`buildRoutes > from 3 modules 1`] = `
   "loaded": false,
   "modules": [
     {
-      "fileName": "_layout.tsx",
-      "id": "src/_layout.tsx",
+      "fileName": "_this.tsx",
+      "id": "src/_this.tsx",
       "importFn": [Function],
     },
   ],
@@ -80,8 +80,8 @@ exports[`buildRoutes > from 3 modules 1`] = `
       "loaded": false,
       "modules": [
         {
-          "fileName": "_layout.tsx",
-          "id": "src/xyz/_layout.tsx",
+          "fileName": "_this.tsx",
+          "id": "src/xyz/_this.tsx",
           "importFn": [Function],
         },
         {

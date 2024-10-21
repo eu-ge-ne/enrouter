@@ -1,6 +1,23 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`outlet > using index elements 1`] = `
+exports[`outlet > using "end" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        Layout
+      </div>
+      <div>
+        Root/Main: not found
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using "index" elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -17,7 +34,7 @@ exports[`outlet > using index elements 1`] = `
 </div>
 `;
 
-exports[`outlet > using next layout elements 1`] = `
+exports[`outlet > using "this" elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -30,23 +47,6 @@ exports[`outlet > using next layout elements 1`] = `
         <div>
           Next layout
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using notFound elements 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      <div>
-        Layout
-      </div>
-      <div>
-        Root/Main: not found
       </div>
     </div>
   </div>

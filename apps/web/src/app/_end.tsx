@@ -4,7 +4,7 @@ import { log } from "#log.js";
 
 export default {
   Main() {
-    log("Rendering: /_notFound#Main");
+    log("Rendering: /_end#Main");
 
     const location = useLocation();
 
