@@ -3,34 +3,36 @@ import type { ComponentType } from "react";
 import type { Route } from "./mod.js";
 
 type ImportComponentFn = () => Promise<{ default: ComponentType }>;
-type Loader = (route: Route, importFn: () => Promise<unknown>) => Promise<void>;
+type ImportComponentsFn = () => Promise<{
+  default: Record<string, ComponentType>;
+}>;
+type Loader = (route: Route, fn: () => Promise<unknown>) => Promise<void>;
 
 export const loaders: Record<string, Loader> = {
-  "_root.tsx": async (route, importFn) => {
-    route.elements.root = await loadComponent(importFn);
+  "_root.tsx": async (route, fn) => {
+    route.elements.root = await loadComponent(fn);
   },
-  "_this.tsx": async (route, importFn) => {
-    route.elements.this = await load(importFn);
+  "_this.tsx": async (route, fn) => {
+    route.elements.this = await loadComponents(fn);
   },
-  "_index.tsx": async (route, importFn) => {
-    route.elements.index = await load(importFn);
+  "_index.tsx": async (route, fn) => {
+    route.elements.index = await loadComponents(fn);
   },
-  "_end.tsx": async (route, importFn) => {
-    route.elements.end = await load(importFn);
+  "_end.tsx": async (route, fn) => {
+    route.elements.end = await loadComponents(fn);
   },
 };
 
 async function loadComponent(fn: () => Promise<unknown>) {
   const { default: Component } = await (fn as ImportComponentFn)();
+
   return <Component />;
 }
 
-async function load(importFn: () => Promise<unknown>) {
-  const fn = importFn as () => Promise<{
-    default: Record<string, ComponentType>;
-  }>;
-  const { default: components } = await fn();
+async function loadComponents(fn: () => Promise<unknown>) {
+  const { default: components } = await (fn as ImportComponentsFn)();
+
   return Object.fromEntries(
-    Object.entries(components).map(([key, C]) => [key, <C />]),
+    Object.entries(components).map(([key, Component]) => [key, <Component />]),
   );
 }
