@@ -22,8 +22,8 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            this: {
-              Main: <div>Layout /</div>,
+            page: {
+              Main: <div>Page /</div>,
             },
           },
         },
@@ -34,7 +34,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = useMatch();
-        return match?.route.elements.this?.Main;
+        return match?.route.elements.page?.Main;
       };
 
       const screen = render(
