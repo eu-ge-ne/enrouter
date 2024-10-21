@@ -5,7 +5,6 @@ import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
-import { load } from "#lib/match/load.js";
 import { Static } from "./static.js";
 
 const wrapperId = "test-wrapper";
@@ -16,29 +15,25 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 
 describe("router", () => {
   describe("Static", () => {
-    test("1 route and 1 match", async () => {
-      const routes: Route = {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          layout: {
-            Root: <div>Layout</div>,
-          },
-        },
-      };
-
+    test("1 match", async () => {
       const matches: Match[] = [
         {
-          route: routes,
+          route: {
+            path: "/",
+            test: regexparam.parse("/", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              layout: {
+                Root: <div>Layout</div>,
+              },
+            },
+          },
           location: "/",
           isFull: true,
           params: {},
         },
       ];
-
-      await load(matches);
 
       const screen = render(<Static location="/" matches={matches} />, {
         wrapper,
