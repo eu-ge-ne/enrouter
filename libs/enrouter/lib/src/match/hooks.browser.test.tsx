@@ -23,8 +23,8 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            this: {
-              Main: <div>Layout /</div>,
+            page: {
+              Main: <div>Page /</div>,
             },
           },
         },
@@ -39,8 +39,8 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              this: {
-                Main: <div>Layout /abc</div>,
+              page: {
+                Main: <div>Page /abc</div>,
               },
             },
           },
@@ -54,7 +54,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = usePath("/abc");
-        return Object.values(match?.route.elements?.this ?? {});
+        return match?.route.elements.page?.Main;
       };
 
       const screen = render(
@@ -79,8 +79,8 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            this: {
-              Main: <div>Layout /</div>,
+            page: {
+              Main: <div>Page /</div>,
             },
           },
         },
@@ -95,8 +95,8 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              this: {
-                Main: <div>Layout /abc</div>,
+              page: {
+                Main: <div>Page /abc</div>,
               },
             },
           },
