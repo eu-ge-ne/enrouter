@@ -31,6 +31,30 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
+    test("1 route with _root.tsx module", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "src/_root.tsx",
+              fileName: "_root.tsx",
+              importFn: async () => ({
+                default: () => <div>Root</div>,
+              }),
+            },
+          ],
+          loaded: false,
+          elements: {},
+        },
+      ];
+
+      await loadRoutes(routes);
+
+      expect(routes).toMatchSnapshot();
+    });
+
     test("1 route with _page.tsx module", async () => {
       const routes: Route[] = [
         {

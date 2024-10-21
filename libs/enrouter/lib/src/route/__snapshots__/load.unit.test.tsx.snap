@@ -112,3 +112,33 @@ exports[`route > loadRoutes > 1 route with _page.tsx module 1`] = `
   },
 ]
 `;
+
+exports[`route > loadRoutes > 1 route with _root.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "root": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_root.tsx",
+        "id": "src/_root.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
