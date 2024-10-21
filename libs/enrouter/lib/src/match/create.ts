@@ -3,17 +3,17 @@ import type { Match } from "./mod.js";
 import { logger } from "#lib/debug.js";
 import { loadRoutes } from "#lib/route/load.js";
 
-const log = logger("match");
+const log = logger("match/create");
 
-export interface MatchParams {
+export interface CreateMatchParams {
   routes: Route;
   location: string;
 }
 
-export async function match({
+export async function createMatch({
   routes,
   location,
-}: MatchParams): Promise<Match[]> {
+}: CreateMatchParams): Promise<Match | undefined> {
   const matches: Match[] = [];
 
   recur([routes], location, matches);
@@ -29,12 +29,15 @@ export async function match({
 
   log("matched: %o", matches);
 
+  const first = matches[0];
+  const last = matches.at(-1);
   matches.forEach((x, i) => {
-    x.first = matches[0];
+    x.first = first;
     x.next = matches[i + 1];
+    x.last = last;
   });
 
-  return matches;
+  return matches[0];
 }
 
 function recur(routes: Route[], location: string, matches: Match[]): void {

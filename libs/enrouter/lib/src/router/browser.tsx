@@ -3,7 +3,7 @@ import { type ReactNode, useState, useCallback, useEffect } from "react";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
-import { match } from "#lib/match/match.js";
+import { createMatch } from "#lib/match/create.js";
 import { NavigateProvider } from "./navigate.js";
 import { LocationProvider } from "./location.js";
 import { MatchProvider } from "#lib/match/context.js";
@@ -13,18 +13,18 @@ const log = logger("router/browser");
 
 export interface BrowserProps {
   routes: Route;
-  matches: Match[];
+  match: Match | undefined;
 }
 
 export function Browser(props: BrowserProps): ReactNode {
   const [location, setLocation] = useState(window.location.pathname);
-  const [matches, setMatches] = useState(props.matches);
+  const [match, setMatch] = useState(props.match);
 
   const navigate = useCallback(async (to: string) => {
     window.history.pushState({}, "", to);
     setLocation(to);
 
-    setMatches(await match({ routes: props.routes, location: to }));
+    setMatch(await createMatch({ routes: props.routes, location: to }));
 
     log("Navigated to %s", to);
   }, []);
@@ -35,7 +35,7 @@ export function Browser(props: BrowserProps): ReactNode {
     const to = window.location.pathname;
     setLocation(to);
 
-    setMatches(await match({ routes: props.routes, location: to }));
+    setMatch(await createMatch({ routes: props.routes, location: to }));
   }, []);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export function Browser(props: BrowserProps): ReactNode {
   return (
     <NavigateProvider value={navigate}>
       <LocationProvider value={location}>
-        <MatchProvider value={matches[0]!}>
+        <MatchProvider value={match}>
           <Root />
         </MatchProvider>
       </LocationProvider>

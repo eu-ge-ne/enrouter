@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 import type { Match } from "./mod.js";
 
-const MatchContext = createContext<Match>({
+const MatchContext = createContext<Match | undefined>({
   route: {
     path: "",
     test: { keys: [], pattern: new RegExp("") },
@@ -17,6 +17,6 @@ const MatchContext = createContext<Match>({
 
 export const MatchProvider = MatchContext.Provider;
 
-export function useMatch(): Match {
+export function useMatch(): Match | undefined {
   return useContext(MatchContext);
 }

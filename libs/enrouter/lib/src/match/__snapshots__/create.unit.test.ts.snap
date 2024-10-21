@@ -1,0 +1,195 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`match > create > 0 matches 1`] = `undefined`;
+
+exports[`match > create > 1 match 1`] = `
+{
+  "first": [Circular],
+  "isFull": true,
+  "last": [Circular],
+  "location": "/",
+  "next": undefined,
+  "params": {},
+  "route": {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+}
+`;
+
+exports[`match > create > 1 match and 1 match with params 1`] = `
+{
+  "first": [Circular],
+  "isFull": false,
+  "last": {
+    "first": [Circular],
+    "isFull": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "location": "/",
+  "next": {
+    "first": [Circular],
+    "isFull": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "params": {},
+  "route": {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+    "tree": [
+      {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/abc",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+      {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/[:id]",
+        "test": {
+          "keys": [
+            "id",
+          ],
+          "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`match > create > 1 match with params 1`] = `
+{
+  "first": [Circular],
+  "isFull": true,
+  "last": [Circular],
+  "location": "/100",
+  "next": undefined,
+  "params": {
+    "id": "100",
+  },
+  "route": {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/[:id]",
+    "test": {
+      "keys": [
+        "id",
+      ],
+      "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+}
+`;
+
+exports[`match > create > 2 matches 1`] = `
+{
+  "first": [Circular],
+  "isFull": false,
+  "last": {
+    "first": [Circular],
+    "isFull": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "location": "/",
+  "next": {
+    "first": [Circular],
+    "isFull": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "params": {},
+  "route": {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+    "tree": [
+      {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/abc",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+    ],
+  },
+}
+`;
