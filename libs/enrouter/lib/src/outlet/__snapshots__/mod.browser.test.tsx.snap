@@ -7,10 +7,10 @@ exports[`outlet > using "end" elements 1`] = `
   >
     <div>
       <div>
-        Layout
+        Page
       </div>
       <div>
-        Root/Main: not found
+        Next not found
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@ exports[`outlet > using "index" elements 1`] = `
   >
     <div>
       <div>
-        Layout
+        Page
       </div>
       <div>
         Index
@@ -34,18 +34,18 @@ exports[`outlet > using "index" elements 1`] = `
 </div>
 `;
 
-exports[`outlet > using "this" elements 1`] = `
+exports[`outlet > using "page" elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
       <div>
-        Layout
+        Page
       </div>
       <div>
         <div>
-          Next layout
+          Next
         </div>
       </div>
     </div>
