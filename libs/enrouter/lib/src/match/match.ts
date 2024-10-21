@@ -1,7 +1,7 @@
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "./mod.js";
 import { logger } from "#lib/debug.js";
-import { load } from "./load.js";
+import { loadRoutes } from "#lib/route/load.js";
 
 const log = logger("match");
 
@@ -18,7 +18,7 @@ export async function match({
 
   recur([routes], location, matches);
 
-  await load(matches);
+  await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
   if (!matches.at(-1)?.isFull) {
     const i = matches.findLastIndex(
