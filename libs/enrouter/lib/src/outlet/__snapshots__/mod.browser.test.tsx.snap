@@ -34,7 +34,7 @@ exports[`outlet > using "index" elements 1`] = `
 </div>
 `;
 
-exports[`outlet > using "layout" elements 1`] = `
+exports[`outlet > using "this" elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"

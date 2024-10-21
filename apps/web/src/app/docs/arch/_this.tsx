@@ -1,6 +1,5 @@
 import { Outlet } from "enrouter";
 
-import { log } from "#log.js";
 import { SecondaryLinkItem } from "#app/docs/links.js";
 
 export default {
@@ -9,14 +8,11 @@ export default {
 };
 
 function Menu() {
-  log("Rendering: /docs/vite/_layout#Menu");
-
   return (
     <div className="mt-4 border-t border-paperBorder">
       <ul className="mt-4 flex flex-col gap-y-2">
-        <SecondaryLinkItem href="/docs/vite/plugin">Plugin</SecondaryLinkItem>
-        <SecondaryLinkItem href="/docs/vite/manifest">
-          Manifest
+        <SecondaryLinkItem href="/docs/arch/routes">
+          Building Routes
         </SecondaryLinkItem>
       </ul>
     </div>
@@ -24,7 +20,5 @@ function Menu() {
 }
 
 function Docs() {
-  log("Rendering: /docs/vite/_layout#Docs");
-
-  return <Outlet name="Vite" />;
+  return <Outlet name="Arch" />;
 }

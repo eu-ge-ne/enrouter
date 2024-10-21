@@ -8,8 +8,8 @@ type Loader = (
 ) => Promise<void> | void;
 
 export const loaders: Record<string, Loader> = {
-  "_layout.tsx": async (route, importFn) => {
-    route.elements.layout = await load(importFn);
+  "_this.tsx": async (route, importFn) => {
+    route.elements.this = await load(importFn);
   },
   "_index.tsx": async (route, importFn) => {
     route.elements.index = await load(importFn);

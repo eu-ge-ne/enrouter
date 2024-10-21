@@ -22,7 +22,7 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            layout: {
+            this: {
               Main: <div>Layout /</div>,
             },
           },
@@ -34,16 +34,14 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = useMatch();
-        return match?.route.elements.layout?.Main;
+        return match?.route.elements.this?.Main;
       };
 
       const screen = render(
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        {
-          wrapper,
-        },
+        { wrapper },
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
