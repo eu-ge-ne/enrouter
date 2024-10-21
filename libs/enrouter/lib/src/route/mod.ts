@@ -32,6 +32,7 @@ export interface Route {
   loaded: boolean;
 
   elements: {
+    root?: ReactElement;
     this?: Record<string, ReactElement>;
     index?: Record<string, ReactElement>;
     end?: Record<string, ReactElement>;
