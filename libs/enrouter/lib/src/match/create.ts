@@ -20,14 +20,7 @@ export async function createMatch({
 
   await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
-  if (!matches.at(-1)?.isFull) {
-    const i = matches.findLastIndex(
-      (x) => x.route.elements._void !== undefined,
-    );
-    matches.splice(Math.max(1, i + 1));
-  }
-
-  log("matched: %o", matches);
+  trim(matches);
 
   const first = matches[0];
   const last = matches.at(-1);
@@ -36,6 +29,8 @@ export async function createMatch({
     x.next = matches[i + 1];
     x.last = last;
   });
+
+  log("matched: %o", matches);
 
   return matches[0];
 }
@@ -91,4 +86,26 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
     ),
   };
+}
+
+function trim(matches: Match[]): void {
+  if (!matches.at(-1)?.isFull) {
+    const i = matches.findLastIndex(
+      ({
+        route: {
+          elements: { _void, __void },
+        },
+      }) => _void !== undefined || __void !== undefined,
+    );
+
+    if (i >= 0) {
+      if (matches[i]?.route.elements.__void !== undefined) {
+        const match = matches[i];
+        matches.splice(0, matches.length);
+        matches.push(match);
+      } else {
+        matches.splice(i + 1);
+      }
+    }
+  }
 }
