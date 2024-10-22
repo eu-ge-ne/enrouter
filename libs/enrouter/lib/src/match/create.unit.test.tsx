@@ -18,13 +18,27 @@ describe("match", () => {
       expect(await createMatch({ routes, location: "/x" })).toMatchSnapshot();
     });
 
-    test("1 match", async () => {
+    test("from 1 route", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
         loaded: false,
         elements: {},
+      };
+
+      expect(await createMatch({ routes, location: "/" })).toMatchSnapshot();
+    });
+
+    test('from 1 route with "_root"', async () => {
+      const routes: Route = {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _root: <div>Root</div>,
+        },
       };
 
       expect(await createMatch({ routes, location: "/" })).toMatchSnapshot();
@@ -51,7 +65,7 @@ describe("match", () => {
       expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
     });
 
-    test("1 match with params", async () => {
+    test("from 1 route with params", async () => {
       const routes: Route = {
         path: "/[:id]",
         test: regexparam.parse("/:id", true),
@@ -63,7 +77,7 @@ describe("match", () => {
       expect(await createMatch({ routes, location: "/100" })).toMatchSnapshot();
     });
 
-    test("1 match and 1 match with params", async () => {
+    test("from 1 route and 1 route with params", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -84,6 +98,29 @@ describe("match", () => {
             modules: [],
             loaded: false,
             elements: {},
+          },
+        ],
+      };
+
+      expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
+    });
+
+    test('from 1 route and 1 route with "_root"', async () => {
+      const routes: Route = {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {},
+        tree: [
+          {
+            path: "/abc",
+            test: regexparam.parse("/abc", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              _root: <div>Root</div>,
+            },
           },
         ],
       };

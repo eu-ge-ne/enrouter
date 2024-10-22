@@ -2,7 +2,74 @@
 
 exports[`match > create > 0 matches 1`] = `undefined`;
 
-exports[`match > create > 1 match 1`] = `
+exports[`match > create > 2 matches 1`] = `
+{
+  "first": [Circular],
+  "isFull": false,
+  "last": {
+    "first": [Circular],
+    "isFull": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "location": "/",
+  "next": {
+    "first": [Circular],
+    "isFull": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "params": {},
+  "route": {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+    "tree": [
+      {
+        "elements": {},
+        "loaded": false,
+        "modules": [],
+        "path": "/abc",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`match > create > from 1 route 1`] = `
 {
   "first": [Circular],
   "isFull": true,
@@ -23,7 +90,39 @@ exports[`match > create > 1 match 1`] = `
 }
 `;
 
-exports[`match > create > 1 match and 1 match with params 1`] = `
+exports[`match > create > from 1 route and 1 route with "_root" 1`] = `
+{
+  "first": [Circular],
+  "isFull": true,
+  "last": [Circular],
+  "location": "/abc",
+  "next": undefined,
+  "params": {},
+  "route": {
+    "elements": {
+      "_root": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": "Root",
+        },
+        "type": "div",
+      },
+    },
+    "loaded": true,
+    "modules": [],
+    "path": "/abc",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+}
+`;
+
+exports[`match > create > from 1 route and 1 route with params 1`] = `
 {
   "first": [Circular],
   "isFull": false,
@@ -102,7 +201,39 @@ exports[`match > create > 1 match and 1 match with params 1`] = `
 }
 `;
 
-exports[`match > create > 1 match with params 1`] = `
+exports[`match > create > from 1 route with "_root" 1`] = `
+{
+  "first": [Circular],
+  "isFull": true,
+  "last": [Circular],
+  "location": "/",
+  "next": undefined,
+  "params": {},
+  "route": {
+    "elements": {
+      "_root": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": "Root",
+        },
+        "type": "div",
+      },
+    },
+    "loaded": true,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+}
+`;
+
+exports[`match > create > from 1 route with params 1`] = `
 {
   "first": [Circular],
   "isFull": true,
@@ -123,73 +254,6 @@ exports[`match > create > 1 match with params 1`] = `
       ],
       "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
     },
-  },
-}
-`;
-
-exports[`match > create > 2 matches 1`] = `
-{
-  "first": [Circular],
-  "isFull": false,
-  "last": {
-    "first": [Circular],
-    "isFull": true,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
-    "params": {},
-    "route": {
-      "elements": {},
-      "loaded": false,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-  "location": "/",
-  "next": {
-    "first": [Circular],
-    "isFull": true,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
-    "params": {},
-    "route": {
-      "elements": {},
-      "loaded": false,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-  "params": {},
-  "route": {
-    "elements": {},
-    "loaded": false,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-    "tree": [
-      {
-        "elements": {},
-        "loaded": false,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-    ],
   },
 }
 `;
