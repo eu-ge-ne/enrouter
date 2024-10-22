@@ -4,8 +4,8 @@ import { Outlet, useLink } from "enrouter";
 import { log } from "#log.js";
 import github_logo from "/github-light.svg";
 
-export default function Root() {
-  log("Rendering: /_page#Root");
+export default function Page() {
+  log("Rendering: /_page");
 
   return (
     <div className="flex flex-col divide-y divide-paperBorder">
@@ -35,7 +35,7 @@ export default function Root() {
       </div>
       <div>
         <div className="container mx-auto">
-          <Outlet name="Main" />
+          <Outlet />
         </div>
       </div>
     </div>

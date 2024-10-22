@@ -2,12 +2,10 @@ import { useLocation } from "enrouter";
 
 import { log } from "#log.js";
 
-export default {
-  Main() {
-    log("Rendering: /_end#Main");
+export default function Void() {
+  log("Rendering: /_void");
 
-    const location = useLocation();
+  const location = useLocation();
 
-    return <div>{location} is not found</div>;
-  },
-};
+  return <div>{location} is not found</div>;
+}
