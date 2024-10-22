@@ -3,7 +3,7 @@ import { describe, test, expect, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
 
-import { NavigateProvider, noNavigate } from "#lib/router/navigate.js";
+import { NavigateProvider, noNavigate } from "#lib/navigate/mod.js";
 import { useLink } from "./mod.js";
 
 const wrapperId = "test-wrapper";
