@@ -1,5 +1,5 @@
-import Index from "./index.md";
+import Content from "./content.md";
 
-export default function Api() {
-  return <Index />;
+export default function Page() {
+  return <Content />;
 }
