@@ -3,8 +3,9 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
+import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
-import { Static } from "./static.js";
+import { Browser } from "./browser.js";
 
 const wrapperId = "test-wrapper";
 
@@ -13,24 +14,26 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("router", () => {
-  describe("Static", () => {
+  describe("Browser", () => {
     test("_root", async () => {
-      const match: Match = {
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _root: <div>Root</div>,
-          },
+      const route: Route = {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _root: <div>Root</div>,
         },
+      };
+
+      const match: Match = {
+        route,
         location: "/",
         isFull: true,
         params: {},
       };
 
-      const screen = render(<Static location="/" match={match} />, {
+      const screen = render(<Browser routes={route} match={match} />, {
         wrapper,
       });
 
