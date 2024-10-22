@@ -18,7 +18,7 @@ export async function createMatch({
 
   recur([routes], location, matches);
 
-  await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
+  await loadRoutes(matches.map((x) => x.route));
 
   trim(matches);
   link(matches);
@@ -34,11 +34,11 @@ function recur(routes: Route[], location: string, matches: Match[]): void {
     return;
   }
 
-  log(`path: "%s", location: "%s"`, match.route?.path, match.location);
+  log(`path: "%s", location: "%s"`, match.route.path, match.location);
 
   matches.push(match);
 
-  if (match?.route?.tree) {
+  if (match.route.tree) {
     recur(match.route.tree, location, matches);
   }
 }
@@ -47,10 +47,9 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   let matched = routes
     .map((route) => {
       const execs = route.test.pattern.exec(location);
-      if (!execs) {
-        return;
+      if (execs) {
+        return { route, execs };
       }
-      return { route, execs };
     })
     .filter((x) => x !== undefined);
 
