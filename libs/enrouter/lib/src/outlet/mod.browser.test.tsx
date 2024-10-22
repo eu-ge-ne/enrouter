@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test('using "end" elements', async () => {
+  test('using "_void" elements', async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -25,13 +25,13 @@ describe("outlet", () => {
           _page: {
             Main: (
               <div>
-                <div>Page</div>
+                <div>_page</div>
                 <Outlet name="Next" />
               </div>
             ),
           },
           _void: {
-            Next: <div>Next not found</div>,
+            Next: <div>Next#_void</div>,
           },
         },
       },
@@ -52,7 +52,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "index" elements`, async () => {
+  test('using "_void" element', async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -63,13 +63,49 @@ describe("outlet", () => {
           _page: {
             Main: (
               <div>
-                <div>Page</div>
+                <div>_page</div>
+                <Outlet />
+              </div>
+            ),
+          },
+          _void: <div>_void</div>,
+        },
+      },
+      location: "/",
+      isFull: false,
+      params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test(`using "_index" elements`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _page: {
+            Main: (
+              <div>
+                <div>_page</div>
                 <Outlet name="Next" />
               </div>
             ),
           },
           _index: {
-            Next: <div>Index</div>,
+            Next: <div>Next#_index</div>,
           },
         },
       },
@@ -90,7 +126,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "page" elements`, async () => {
+  test(`using "_index" element`, async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -101,7 +137,43 @@ describe("outlet", () => {
           _page: {
             Main: (
               <div>
-                <div>Page</div>
+                <div>_page</div>
+                <Outlet />
+              </div>
+            ),
+          },
+          _index: <div>_index</div>,
+        },
+      },
+      location: "/",
+      isFull: true,
+      params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test(`using "_page" elements`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _page: {
+            Main: (
+              <div>
+                <div>_page</div>
                 <Outlet name="Next" />
               </div>
             ),
@@ -111,7 +183,6 @@ describe("outlet", () => {
       location: "/",
       isFull: false,
       params: {},
-
       next: {
         route: {
           path: "/a",
@@ -122,7 +193,7 @@ describe("outlet", () => {
             _page: {
               Next: (
                 <div>
-                  <div>Next</div>
+                  <div>Next#_page</div>
                 </div>
               ),
             },
@@ -138,6 +209,125 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         {(match.route.elements._page as Record<string, ReactElement>).Main}
       </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test(`using "_page" element`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _page: {
+            Main: (
+              <div>
+                <div>_page</div>
+                <Outlet />
+              </div>
+            ),
+          },
+        },
+      },
+      location: "/",
+      isFull: false,
+      params: {},
+      next: {
+        route: {
+          path: "/a",
+          test: regexparam.parse("/a", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _page: (
+              <div>
+                <div>_page</div>
+              </div>
+            ),
+          },
+        },
+        location: "/a",
+        isFull: true,
+        params: {},
+      },
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test(`using here "_page" elements`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _root: (
+            <div>
+              <div>_root</div>
+              <Outlet name="Main" here />
+            </div>
+          ),
+          _page: {
+            Main: <div>Main#_page</div>,
+          },
+        },
+      },
+      location: "/",
+      isFull: true,
+      params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>{match.route.elements._root}</MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test(`using here "_page" element`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _root: (
+            <div>
+              <div>_root</div>
+              <Outlet here />
+            </div>
+          ),
+          _page: <div>_page</div>,
+        },
+      },
+      location: "/",
+      isFull: true,
+      params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>{match.route.elements._root}</MatchProvider>,
       { wrapper },
     );
 

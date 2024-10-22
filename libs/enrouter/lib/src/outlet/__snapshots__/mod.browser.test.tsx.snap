@@ -1,52 +1,139 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`outlet > using "end" elements 1`] = `
+exports[`outlet > using "_index" element 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
       <div>
-        Page
+        _page
       </div>
       <div>
-        Next not found
+        _index
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`outlet > using "index" elements 1`] = `
+exports[`outlet > using "_index" elements 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
       <div>
-        Page
+        _page
       </div>
       <div>
-        Index
+        Next#_index
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`outlet > using "page" elements 1`] = `
+exports[`outlet > using "_page" element 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
       <div>
-        Page
+        _page
       </div>
       <div>
         <div>
-          Next
+          _page
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using "_page" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        <div>
+          Next#_page
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using "_void" element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        _void
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using "_void" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        Next#_void
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using here "_page" element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _root
+      </div>
+      <div>
+        _page
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using here "_page" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _root
+      </div>
+      <div>
+        Main#_page
       </div>
     </div>
   </div>
