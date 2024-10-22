@@ -42,11 +42,12 @@ function walkModulesRecur(
   modules: Set<string>,
   item: ViteManifestItem,
 ) {
-  item.css?.forEach((x) => styles.add(x));
   modules.add(item.file);
+
+  item.css?.forEach((x) => styles.add(x));
 
   (item.imports ?? [])
     .map((x) => manifest[x])
-    .filter((x): x is ViteManifestItem => Boolean(x))
+    .filter((x) => x !== undefined)
     .forEach((x) => walkModulesRecur(manifest, styles, modules, x));
 }

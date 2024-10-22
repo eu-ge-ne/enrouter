@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`manifest > getModuleAssets > from empty manifest 1`] = `undefined`;
+
+exports[`manifest > getModuleAssets > from manifest with modules 1`] = `
+{
+  "modules": [
+    "/home/src/main.tsx",
+    "/home/src/module1.tsx",
+    "/home/src/module2.tsx",
+  ],
+  "styles": [],
+}
+`;
+
+exports[`manifest > getModuleAssets > from manifest with styles 1`] = `
+{
+  "modules": [
+    "/home/src/main.tsx",
+    "/home/src/module1.tsx",
+  ],
+  "styles": [
+    "index.css",
+    "index1.css",
+  ],
+}
+`;
