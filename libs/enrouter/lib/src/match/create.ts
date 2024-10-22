@@ -21,14 +21,7 @@ export async function createMatch({
   await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
   trim(matches);
-
-  const first = matches[0];
-  const last = matches.at(-1);
-  matches.forEach((x, i) => {
-    x.first = first;
-    x.next = matches[i + 1];
-    x.last = last;
-  });
+  link(matches);
 
   log("matched: %o", matches);
 
@@ -95,11 +88,11 @@ function trim(matches: Match[]): void {
         route: {
           elements: { _void, __void },
         },
-      }) => _void !== undefined || __void !== undefined,
+      }) => _void || __void,
     );
 
     if (i >= 0) {
-      if (matches[i]?.route.elements.__void !== undefined) {
+      if (matches[i]?.route.elements.__void) {
         const match = matches[i];
         matches.splice(0, matches.length);
         matches.push(match);
@@ -108,4 +101,15 @@ function trim(matches: Match[]): void {
       }
     }
   }
+}
+
+function link(matches: Match[]): void {
+  const first = matches[0];
+  const last = matches.at(-1);
+
+  matches.forEach((x, i) => {
+    x.first = first;
+    x.next = matches[i + 1];
+    x.last = last;
+  });
 }
