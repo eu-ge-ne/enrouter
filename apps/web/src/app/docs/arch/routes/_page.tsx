@@ -1,5 +1,5 @@
 import Index from "./index.md";
 
-export default function Arch() {
+export default function Page() {
   return <Index />;
 }
