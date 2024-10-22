@@ -13,8 +13,8 @@
       "default": "./dist/vite/plugin/mod.js"
     },
     "./vite/manifest": {
-      "types": "./dist/vite/manifest.d.ts",
-      "default": "./dist/vite/manifest.js"
+      "types": "./dist/vite/manifest/mod.d.ts",
+      "default": "./dist/vite/manifest/mod.js"
     }
   },
   "imports": {
