@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren, ReactElement } from "react";
 import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
@@ -34,7 +34,8 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = useMatch();
-        return match?.route.elements.page?.Main;
+        return (match?.route.elements.page as Record<string, ReactElement>)
+          .Main;
       };
 
       const screen = render(
