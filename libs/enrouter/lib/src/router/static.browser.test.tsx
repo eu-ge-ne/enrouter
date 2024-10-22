@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 
 describe("router", () => {
   describe("Static", () => {
-    test("root", async () => {
+    test("_root", async () => {
       const match: Match = {
         route: {
           path: "/",

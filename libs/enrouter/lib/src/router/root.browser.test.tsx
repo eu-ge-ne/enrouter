@@ -3,9 +3,9 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
-import { Browser } from "./browser.js";
+import { MatchProvider } from "#lib/match/context.js";
+import { Root } from "./root.js";
 
 const wrapperId = "test-wrapper";
 
@@ -14,28 +14,29 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("router", () => {
-  describe("Browser", () => {
+  describe("Root", () => {
     test("_root", async () => {
-      const route: Route = {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          _root: <div>Root</div>,
-        },
-      };
-
       const match: Match = {
-        route,
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _root: <div>Root</div>,
+          },
+        },
         location: "/",
         isFull: true,
         params: {},
       };
 
-      const screen = render(<Browser routes={route} match={match} />, {
-        wrapper,
-      });
+      const screen = render(
+        <MatchProvider value={match}>
+          <Root />
+        </MatchProvider>,
+        { wrapper },
+      );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`router > Browser > root 1`] = `
+exports[`router > Browser > _root 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
