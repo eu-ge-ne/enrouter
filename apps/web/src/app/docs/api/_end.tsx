@@ -1,9 +1,7 @@
 import { useLocation } from "enrouter";
 
-export default {
-  Api() {
-    const location = useLocation();
+export default function Api() {
+  const location = useLocation();
 
-    return <div>api: {location} is not found</div>;
-  },
-};
+  return <div>api: {location} is not found</div>;
+}
