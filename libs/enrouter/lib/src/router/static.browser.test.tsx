@@ -22,7 +22,7 @@ describe("router", () => {
           modules: [],
           loaded: true,
           elements: {
-            root: <div>Root</div>,
+            _root: <div>Root</div>,
           },
         },
         location: "/",

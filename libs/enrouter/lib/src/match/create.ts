@@ -20,20 +20,10 @@ export async function createMatch({
 
   await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
-  if (!matches.at(-1)?.isFull) {
-    const i = matches.findLastIndex((x) => x.route.elements.end !== undefined);
-    matches.splice(Math.max(1, i + 1));
-  }
+  trim(matches);
+  link(matches);
 
   log("matched: %o", matches);
-
-  const first = matches[0];
-  const last = matches.at(-1);
-  matches.forEach((x, i) => {
-    x.first = first;
-    x.next = matches[i + 1];
-    x.last = last;
-  });
 
   return matches[0];
 }
@@ -89,4 +79,37 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
     ),
   };
+}
+
+function trim(matches: Match[]): void {
+  if (!matches.at(-1)?.isFull) {
+    const i = matches.findLastIndex(
+      ({
+        route: {
+          elements: { _void, __void },
+        },
+      }) => _void || __void,
+    );
+
+    if (i >= 0) {
+      if (matches[i]?.route.elements.__void) {
+        const match = matches[i];
+        matches.splice(0, matches.length);
+        matches.push(match);
+      } else {
+        matches.splice(i + 1);
+      }
+    }
+  }
+}
+
+function link(matches: Match[]): void {
+  const first = matches[0];
+  const last = matches.at(-1);
+
+  matches.forEach((x, i) => {
+    x.first = first;
+    x.next = matches[i + 1];
+    x.last = last;
+  });
 }

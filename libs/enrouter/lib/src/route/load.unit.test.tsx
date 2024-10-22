@@ -107,15 +107,15 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _end.tsx module", async () => {
+    test("1 route with _void.tsx module", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_end.tsx",
-              fileName: "_end.tsx",
+              id: "src/_void.tsx",
+              fileName: "_void.tsx",
               importFn: async () => ({
                 default: {
                   Main: () => <div>End</div>,

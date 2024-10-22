@@ -20,5 +20,5 @@ function Menu() {
 }
 
 function Docs() {
-  return <Outlet name="Arch" />;
+  return <Outlet />;
 }

@@ -22,7 +22,7 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            page: {
+            _page: {
               Main: <div>Page /</div>,
             },
           },
@@ -34,7 +34,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = useMatch();
-        return (match?.route.elements.page as Record<string, ReactElement>)
+        return (match?.route.elements._page as Record<string, ReactElement>)
           .Main;
       };
 

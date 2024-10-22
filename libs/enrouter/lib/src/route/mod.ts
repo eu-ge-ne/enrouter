@@ -32,10 +32,11 @@ export interface Route {
   loaded: boolean;
 
   elements: {
-    root?: ReactElement;
-    page?: ReactElement | Record<string, ReactElement>;
-    index?: ReactElement | Record<string, ReactElement>;
-    end?: ReactElement | Record<string, ReactElement>;
+    _root?: ReactElement;
+    __void?: ReactElement;
+    _page?: ReactElement | Record<string, ReactElement>;
+    _index?: ReactElement | Record<string, ReactElement>;
+    _void?: ReactElement | Record<string, ReactElement>;
   };
 
   /**

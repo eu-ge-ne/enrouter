@@ -5,5 +5,9 @@ import { useMatch } from "#lib/match/context.js";
 export function Root(): ReactNode {
   const match = useMatch();
 
-  return match?.route.elements.root;
+  if (match?.last == match && !match?.isFull) {
+    return match?.route.elements.__void;
+  }
+
+  return match?.route.elements._root;
 }

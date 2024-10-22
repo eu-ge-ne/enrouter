@@ -22,7 +22,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          page: {
+          _page: {
             Main: (
               <div>
                 <div>Page</div>
@@ -30,7 +30,7 @@ describe("outlet", () => {
               </div>
             ),
           },
-          end: {
+          _void: {
             Next: <div>Next not found</div>,
           },
         },
@@ -42,7 +42,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements.page as Record<string, ReactElement>).Main}
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -60,7 +60,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          page: {
+          _page: {
             Main: (
               <div>
                 <div>Page</div>
@@ -68,7 +68,7 @@ describe("outlet", () => {
               </div>
             ),
           },
-          index: {
+          _index: {
             Next: <div>Index</div>,
           },
         },
@@ -80,7 +80,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements.page as Record<string, ReactElement>).Main}
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -98,7 +98,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          page: {
+          _page: {
             Main: (
               <div>
                 <div>Page</div>
@@ -119,7 +119,7 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            page: {
+            _page: {
               Next: (
                 <div>
                   <div>Next</div>
@@ -136,7 +136,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements.page as Record<string, ReactElement>).Main}
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
