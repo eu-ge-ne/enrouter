@@ -4,8 +4,8 @@ import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
 import { createMatch } from "#lib/match/create.js";
-import { NavigateProvider } from "./navigate.js";
-import { LocationProvider } from "./location.js";
+import { NavigateProvider } from "#lib/navigate/mod.js";
+import { LocationProvider } from "#lib/location/mod.js";
 import { MatchProvider } from "#lib/match/context.js";
 import { Root } from "./root.js";
 

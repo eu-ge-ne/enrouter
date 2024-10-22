@@ -1,6 +1,6 @@
 import { type MouseEvent, type AnchorHTMLAttributes, useCallback } from "react";
 
-import { useNavigate } from "#lib/router/navigate.js";
+import { useNavigate } from "#lib/navigate/mod.js";
 
 export type LinkProps = Pick<
   AnchorHTMLAttributes<HTMLAnchorElement>,
