@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren, ReactElement } from "react";
 import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
@@ -42,7 +42,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {match.route.elements.page?.Main}
+        {(match.route.elements.page as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -80,7 +80,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {match.route.elements.page?.Main}
+        {(match.route.elements.page as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -136,7 +136,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {match.route.elements.page?.Main}
+        {(match.route.elements.page as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );

@@ -27,5 +27,5 @@ function Menu() {
 }
 
 function Docs() {
-  return <Outlet name="Api" />;
+  return <Outlet />;
 }

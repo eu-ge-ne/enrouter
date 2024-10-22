@@ -33,9 +33,9 @@ export interface Route {
 
   elements: {
     root?: ReactElement;
-    page?: Record<string, ReactElement>;
-    index?: Record<string, ReactElement>;
-    end?: Record<string, ReactElement>;
+    page?: ReactElement | Record<string, ReactElement>;
+    index?: ReactElement | Record<string, ReactElement>;
+    end?: ReactElement | Record<string, ReactElement>;
   };
 
   /**

@@ -1,9 +1,13 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 
 import { MatchProvider, useMatch } from "#lib/match/context.js";
 
+type C = ReactElement | undefined;
+
+type CC = Record<string, ReactElement> | undefined;
+
 export interface OutletProps {
-  name: string;
+  name?: string;
   here?: boolean;
 }
 
@@ -13,23 +17,31 @@ export function Outlet({ name, here }: OutletProps): ReactNode {
     return;
   }
 
-  const { route, isFull, next } = match;
+  const {
+    route: {
+      elements: { page, index, end },
+    },
+    isFull,
+    next,
+  } = match;
 
   if (here) {
-    return route.elements.page?.[name];
+    return name ? (page as CC)?.[name] : (page as C);
   }
 
   if (!isFull && !next) {
-    return route.elements.end?.[name];
+    return name ? (end as CC)?.[name] : (end as C);
   }
 
   if (!next) {
-    return route.elements.index?.[name];
+    return name ? (index as CC)?.[name] : (index as C);
   }
+
+  const nextPage = next.route.elements.page;
 
   return (
     <MatchProvider value={next}>
-      {next.route.elements.page?.[name]}
+      {name ? (nextPage as CC)?.[name] : (nextPage as C)}
     </MatchProvider>
   );
 }

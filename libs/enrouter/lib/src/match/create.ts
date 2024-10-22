@@ -21,9 +21,7 @@ export async function createMatch({
   await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
   if (!matches.at(-1)?.isFull) {
-    const i = matches.findLastIndex(
-      (x) => Object.values(x.route.elements.end ?? {}).length > 0,
-    );
+    const i = matches.findLastIndex((x) => x.route.elements.end !== undefined);
     matches.splice(Math.max(1, i + 1));
   }
 

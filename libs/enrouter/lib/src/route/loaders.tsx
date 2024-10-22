@@ -2,37 +2,42 @@ import type { ComponentType } from "react";
 
 import type { Route } from "./mod.js";
 
-type ImportComponentFn = () => Promise<{ default: ComponentType }>;
-type ImportComponentsFn = () => Promise<{
-  default: Record<string, ComponentType>;
+type ImportRootFn = () => Promise<{ default: ComponentType }>;
+
+type ImportFn = () => Promise<{
+  default: ComponentType | Record<string, ComponentType>;
 }>;
+
 type Loader = (route: Route, fn: () => Promise<unknown>) => Promise<void>;
 
 export const loaders: Record<string, Loader> = {
-  "_root.tsx": async (route, fn) => {
-    route.elements.root = await loadComponent(fn);
+  "_root.tsx": async ({ elements }, fn) => {
+    elements.root = await loadRoot(fn);
   },
-  "_page.tsx": async (route, fn) => {
-    route.elements.page = await loadComponents(fn);
+  "_page.tsx": async ({ elements }, fn) => {
+    elements.page = await load(fn);
   },
-  "_index.tsx": async (route, fn) => {
-    route.elements.index = await loadComponents(fn);
+  "_index.tsx": async ({ elements }, fn) => {
+    elements.index = await load(fn);
   },
-  "_end.tsx": async (route, fn) => {
-    route.elements.end = await loadComponents(fn);
+  "_end.tsx": async ({ elements }, fn) => {
+    elements.end = await load(fn);
   },
 };
 
-async function loadComponent(fn: () => Promise<unknown>) {
-  const { default: Component } = await (fn as ImportComponentFn)();
-
-  return <Component />;
+async function loadRoot(fn: () => Promise<unknown>) {
+  const { default: C } = await (fn as ImportRootFn)();
+  return <C />;
 }
 
-async function loadComponents(fn: () => Promise<unknown>) {
-  const { default: components } = await (fn as ImportComponentsFn)();
+async function load(fn: () => Promise<unknown>) {
+  const { default: Comp } = await (fn as ImportFn)();
+
+  if (typeof Comp === "function") {
+    return <Comp />;
+  }
 
   return Object.fromEntries(
-    Object.entries(components).map(([key, Component]) => [key, <Component />]),
+    Object.entries(Comp).map(([key, C]) => [key, <C />]),
   );
 }
