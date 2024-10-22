@@ -258,6 +258,50 @@ exports[`match > create > from 2 routes with params 1`] = `
 }
 `;
 
+exports[`match > create > from 3 routes with "__void" 1`] = `
+{
+  "first": [Circular],
+  "isFull": false,
+  "last": [Circular],
+  "location": "/abc",
+  "next": undefined,
+  "params": {},
+  "route": {
+    "elements": {
+      "__void": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": "Void",
+        },
+        "type": "div",
+      },
+    },
+    "loaded": true,
+    "modules": [],
+    "path": "/abc",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+    "tree": [
+      {
+        "elements": {},
+        "loaded": true,
+        "modules": [],
+        "path": "/abc/xyz",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+    ],
+  },
+}
+`;
+
 exports[`match > create > from 3 routes with "_void" 1`] = `
 {
   "first": [Circular],

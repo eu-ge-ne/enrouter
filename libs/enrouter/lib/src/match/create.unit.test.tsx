@@ -161,5 +161,39 @@ describe("match", () => {
         await createMatch({ routes, location: "/abc/xyz/100" }),
       ).toMatchSnapshot();
     });
+
+    test('from 3 routes with "__void"', async () => {
+      const routes: Route = {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {},
+        tree: [
+          {
+            path: "/abc",
+            test: regexparam.parse("/abc", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              __void: <div>Void</div>,
+            },
+            tree: [
+              {
+                path: "/abc/xyz",
+                test: regexparam.parse("/abc/xyz", true),
+                modules: [],
+                loaded: true,
+                elements: {},
+              },
+            ],
+          },
+        ],
+      };
+
+      expect(
+        await createMatch({ routes, location: "/abc/xyz/100" }),
+      ).toMatchSnapshot();
+    });
   });
 });
