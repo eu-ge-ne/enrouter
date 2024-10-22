@@ -19,29 +19,29 @@ export function Outlet({ name, here }: OutletProps): ReactNode {
 
   const {
     route: {
-      elements: { page, index, end },
+      elements: { _page, _index, _void },
     },
     isFull,
     next,
   } = match;
 
   if (here) {
-    return name ? (page as CC)?.[name] : (page as C);
+    return name ? (_page as CC)?.[name] : (_page as C);
   }
 
   if (!isFull && !next) {
-    return name ? (end as CC)?.[name] : (end as C);
+    return name ? (_void as CC)?.[name] : (_void as C);
   }
 
   if (!next) {
-    return name ? (index as CC)?.[name] : (index as C);
+    return name ? (_index as CC)?.[name] : (_index as C);
   }
 
-  const nextPage = next.route.elements.page;
+  const _nextPage = next.route.elements._page;
 
   return (
     <MatchProvider value={next}>
-      {name ? (nextPage as CC)?.[name] : (nextPage as C)}
+      {name ? (_nextPage as CC)?.[name] : (_nextPage as C)}
     </MatchProvider>
   );
 }

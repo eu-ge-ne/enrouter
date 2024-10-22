@@ -5,5 +5,5 @@ import { useMatch } from "#lib/match/context.js";
 export function Root(): ReactNode {
   const match = useMatch();
 
-  return match?.route.elements.root;
+  return match?.route.elements._root;
 }

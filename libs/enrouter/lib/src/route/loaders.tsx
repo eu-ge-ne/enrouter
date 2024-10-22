@@ -2,9 +2,9 @@ import type { ComponentType } from "react";
 
 import type { Route } from "./mod.js";
 
-type ImportRootFn = () => Promise<{ default: ComponentType }>;
+type ImportSingle = () => Promise<{ default: ComponentType }>;
 
-type ImportFn = () => Promise<{
+type ImportAny = () => Promise<{
   default: ComponentType | Record<string, ComponentType>;
 }>;
 
@@ -12,26 +12,29 @@ type Loader = (route: Route, fn: () => Promise<unknown>) => Promise<void>;
 
 export const loaders: Record<string, Loader> = {
   "_root.tsx": async ({ elements }, fn) => {
-    elements.root = await loadRoot(fn);
+    elements._root = await loadSingle(fn);
+  },
+  "__void.tsx": async ({ elements }, fn) => {
+    elements.__void = await loadSingle(fn);
   },
   "_page.tsx": async ({ elements }, fn) => {
-    elements.page = await load(fn);
+    elements._page = await loadAny(fn);
   },
   "_index.tsx": async ({ elements }, fn) => {
-    elements.index = await load(fn);
+    elements._index = await loadAny(fn);
   },
-  "_end.tsx": async ({ elements }, fn) => {
-    elements.end = await load(fn);
+  "_void.tsx": async ({ elements }, fn) => {
+    elements._void = await loadAny(fn);
   },
 };
 
-async function loadRoot(fn: () => Promise<unknown>) {
-  const { default: C } = await (fn as ImportRootFn)();
+async function loadSingle(fn: () => Promise<unknown>) {
+  const { default: C } = await (fn as ImportSingle)();
   return <C />;
 }
 
-async function load(fn: () => Promise<unknown>) {
-  const { default: Comp } = await (fn as ImportFn)();
+async function loadAny(fn: () => Promise<unknown>) {
+  const { default: Comp } = await (fn as ImportAny)();
 
   if (typeof Comp === "function") {
     return <Comp />;
