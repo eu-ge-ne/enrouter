@@ -1,5 +1,39 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`outlet > using "_index" element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        _index
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using "_index" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        Next#_index
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > using "_void" element 1`] = `
 <div>
   <div
@@ -28,23 +62,6 @@ exports[`outlet > using "_void" elements 1`] = `
       </div>
       <div>
         Next#_void
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using "index" elements 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      <div>
-        Page
-      </div>
-      <div>
-        Index
       </div>
     </div>
   </div>

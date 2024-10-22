@@ -88,9 +88,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  // TODO
-
-  test(`using "index" elements`, async () => {
+  test(`using "_index" elements`, async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -101,13 +99,13 @@ describe("outlet", () => {
           _page: {
             Main: (
               <div>
-                <div>Page</div>
+                <div>_page</div>
                 <Outlet name="Next" />
               </div>
             ),
           },
           _index: {
-            Next: <div>Index</div>,
+            Next: <div>Next#_index</div>,
           },
         },
       },
@@ -127,6 +125,44 @@ describe("outlet", () => {
 
     expect(screen.container).toMatchSnapshot();
   });
+
+  test(`using "_index" element`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _page: {
+            Main: (
+              <div>
+                <div>_page</div>
+                <Outlet />
+              </div>
+            ),
+          },
+          _index: <div>_index</div>,
+        },
+      },
+      location: "/",
+      isFull: true,
+      params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  // TODO
 
   test(`using "page" elements`, async () => {
     const match: Match = {
