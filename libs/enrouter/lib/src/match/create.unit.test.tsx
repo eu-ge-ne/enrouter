@@ -44,7 +44,7 @@ describe("match", () => {
       expect(await createMatch({ routes, location: "/" })).toMatchSnapshot();
     });
 
-    test("2 matches", async () => {
+    test("from 2 routes", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -77,7 +77,7 @@ describe("match", () => {
       expect(await createMatch({ routes, location: "/100" })).toMatchSnapshot();
     });
 
-    test("from 1 route and 1 route with params", async () => {
+    test("from 2 routes with params", async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -105,7 +105,7 @@ describe("match", () => {
       expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
     });
 
-    test('from 1 route and 1 route with "_root"', async () => {
+    test('from 2 routes with "_root"', async () => {
       const routes: Route = {
         path: "/",
         test: regexparam.parse("/", true),
@@ -126,6 +126,40 @@ describe("match", () => {
       };
 
       expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
+    });
+
+    test('from 3 routes with "_void"', async () => {
+      const routes: Route = {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {},
+        tree: [
+          {
+            path: "/abc",
+            test: regexparam.parse("/abc", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              _void: <div>Void</div>,
+            },
+            tree: [
+              {
+                path: "/abc/xyz",
+                test: regexparam.parse("/abc/xyz", true),
+                modules: [],
+                loaded: true,
+                elements: {},
+              },
+            ],
+          },
+        ],
+      };
+
+      expect(
+        await createMatch({ routes, location: "/abc/xyz/100" }),
+      ).toMatchSnapshot();
     });
   });
 });
