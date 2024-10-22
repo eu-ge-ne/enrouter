@@ -82,8 +82,13 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
 }
 
 function trim(matches: Match[]): void {
+  const rootIndex = matches.findLastIndex((x) => x.route.elements._root);
+  if (rootIndex >= 0) {
+    matches.splice(0, rootIndex);
+  }
+
   if (!matches.at(-1)?.isFull) {
-    const i = matches.findLastIndex(
+    const voidIndex = matches.findLastIndex(
       ({
         route: {
           elements: { _void, __void },
@@ -91,13 +96,13 @@ function trim(matches: Match[]): void {
       }) => _void || __void,
     );
 
-    if (i >= 0) {
-      if (matches[i]?.route.elements.__void) {
-        const match = matches[i];
+    if (voidIndex >= 0) {
+      if (matches[voidIndex]?.route.elements.__void) {
+        const match = matches[voidIndex];
         matches.splice(0, matches.length);
         matches.push(match);
       } else {
-        matches.splice(i + 1);
+        matches.splice(voidIndex + 1);
       }
     }
   }
