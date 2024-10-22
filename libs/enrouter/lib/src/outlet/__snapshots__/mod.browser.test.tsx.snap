@@ -105,3 +105,37 @@ exports[`outlet > using "_void" elements 1`] = `
   </div>
 </div>
 `;
+
+exports[`outlet > using here "_page" element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _root
+      </div>
+      <div>
+        _page
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using here "_page" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _root
+      </div>
+      <div>
+        Main#_page
+      </div>
+    </div>
+  </div>
+</div>
+`;
