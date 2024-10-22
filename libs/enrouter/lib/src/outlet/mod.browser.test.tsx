@@ -162,9 +162,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  // TODO
-
-  test(`using "page" elements`, async () => {
+  test(`using "_page" elements`, async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -175,7 +173,7 @@ describe("outlet", () => {
           _page: {
             Main: (
               <div>
-                <div>Page</div>
+                <div>_page</div>
                 <Outlet name="Next" />
               </div>
             ),
@@ -185,7 +183,6 @@ describe("outlet", () => {
       location: "/",
       isFull: false,
       params: {},
-
       next: {
         route: {
           path: "/a",
@@ -196,10 +193,63 @@ describe("outlet", () => {
             _page: {
               Next: (
                 <div>
-                  <div>Next</div>
+                  <div>Next#_page</div>
                 </div>
               ),
             },
+          },
+        },
+        location: "/a",
+        isFull: true,
+        params: {},
+      },
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test(`using "_page" element`, async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _page: {
+            Main: (
+              <div>
+                <div>_page</div>
+                <Outlet />
+              </div>
+            ),
+          },
+        },
+      },
+      location: "/",
+      isFull: false,
+      params: {},
+      next: {
+        route: {
+          path: "/a",
+          test: regexparam.parse("/a", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _page: (
+              <div>
+                <div>_page</div>
+              </div>
+            ),
           },
         },
         location: "/a",

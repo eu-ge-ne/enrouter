@@ -34,6 +34,44 @@ exports[`outlet > using "_index" elements 1`] = `
 </div>
 `;
 
+exports[`outlet > using "_page" element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        <div>
+          _page
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > using "_page" elements 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <div>
+        _page
+      </div>
+      <div>
+        <div>
+          Next#_page
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > using "_void" element 1`] = `
 <div>
   <div
@@ -62,25 +100,6 @@ exports[`outlet > using "_void" elements 1`] = `
       </div>
       <div>
         Next#_void
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using "page" elements 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      <div>
-        Page
-      </div>
-      <div>
-        <div>
-          Next
-        </div>
       </div>
     </div>
   </div>
