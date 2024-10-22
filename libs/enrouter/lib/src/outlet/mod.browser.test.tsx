@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test('using "end" elements', async () => {
+  test('using "_void" elements', async () => {
     const match: Match = {
       route: {
         path: "/",
@@ -25,13 +25,13 @@ describe("outlet", () => {
           _page: {
             Main: (
               <div>
-                <div>Page</div>
+                <div>_page</div>
                 <Outlet name="Next" />
               </div>
             ),
           },
           _void: {
-            Next: <div>Next not found</div>,
+            Next: <div>Next#_void</div>,
           },
         },
       },
@@ -51,6 +51,44 @@ describe("outlet", () => {
 
     expect(screen.container).toMatchSnapshot();
   });
+
+  test('using "_void" element', async () => {
+    const match: Match = {
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _page: {
+            Main: (
+              <div>
+                <div>_page</div>
+                <Outlet />
+              </div>
+            ),
+          },
+          _void: <div>_void</div>,
+        },
+      },
+      location: "/",
+      isFull: false,
+      params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        {(match.route.elements._page as Record<string, ReactElement>).Main}
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  // TODO
 
   test(`using "index" elements`, async () => {
     const match: Match = {
