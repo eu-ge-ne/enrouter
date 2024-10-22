@@ -17,6 +17,36 @@ exports[`route > loadRoutes > 1 route no modules 1`] = `
 ]
 `;
 
+exports[`route > loadRoutes > 1 route with __void.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "__void": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "__void.tsx",
+        "id": "src/__void.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
 exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
 [
   {
@@ -49,7 +79,7 @@ exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _page.tsx module 1`] = `
+exports[`route > loadRoutes > 1 route with _page.tsx module with multiple components 1`] = `
 [
   {
     "elements": {
@@ -62,6 +92,44 @@ exports[`route > loadRoutes > 1 route with _page.tsx module 1`] = `
           "props": {},
           "type": [Function],
         },
+        "Menu": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_page.tsx",
+        "id": "src/_page.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`route > loadRoutes > 1 route with _page.tsx module with single components 1`] = `
+[
+  {
+    "elements": {
+      "_page": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {},
+        "type": [Function],
       },
     },
     "loaded": true,
@@ -134,6 +202,32 @@ exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
         "importFn": [Function],
       },
     ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`route > loadRoutes > 1 route with already loaded _page.tsx 1`] = `
+[
+  {
+    "elements": {
+      "_page": {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": "Page",
+        },
+        "type": "div",
+      },
+    },
+    "loaded": true,
+    "modules": [],
     "path": "/",
     "test": {
       "keys": [],

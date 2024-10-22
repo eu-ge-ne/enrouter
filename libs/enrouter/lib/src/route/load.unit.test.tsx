@@ -55,7 +55,7 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _page.tsx module", async () => {
+    test("1 route with _page.tsx module with multiple components", async () => {
       const routes: Route[] = [
         {
           path: "/",
@@ -67,12 +67,55 @@ describe("route", () => {
               importFn: async () => ({
                 default: {
                   Main: () => <div>Page</div>,
+                  Menu: () => <div>Page</div>,
                 },
               }),
             },
           ],
           loaded: false,
           elements: {},
+        },
+      ];
+
+      await loadRoutes(routes);
+
+      expect(routes).toMatchSnapshot();
+    });
+
+    test("1 route with _page.tsx module with single components", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "src/_page.tsx",
+              fileName: "_page.tsx",
+              importFn: async () => ({
+                default: () => <div>Page</div>,
+              }),
+            },
+          ],
+          loaded: false,
+          elements: {},
+        },
+      ];
+
+      await loadRoutes(routes);
+
+      expect(routes).toMatchSnapshot();
+    });
+
+    test("1 route with already loaded _page.tsx", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _page: <div>Page</div>,
+          },
         },
       ];
 
@@ -118,8 +161,32 @@ describe("route", () => {
               fileName: "_void.tsx",
               importFn: async () => ({
                 default: {
-                  Main: () => <div>End</div>,
+                  Main: () => <div>Void</div>,
                 },
+              }),
+            },
+          ],
+          loaded: false,
+          elements: {},
+        },
+      ];
+
+      await loadRoutes(routes);
+
+      expect(routes).toMatchSnapshot();
+    });
+
+    test("1 route with __void.tsx module", async () => {
+      const routes: Route[] = [
+        {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [
+            {
+              id: "src/__void.tsx",
+              fileName: "__void.tsx",
+              importFn: async () => ({
+                default: () => <div>Void</div>,
               }),
             },
           ],
