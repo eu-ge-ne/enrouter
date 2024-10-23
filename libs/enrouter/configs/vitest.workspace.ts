@@ -1,6 +1,8 @@
-import { resolve } from "node:path";
-
 import { defineWorkspace } from "vitest/config";
+
+const alias = {
+  "virtual:enrouter": "\0virtual:enrouter",
+};
 
 export default defineWorkspace([
   {
@@ -11,9 +13,7 @@ export default defineWorkspace([
       ],
       name: "unit",
       environment: "node",
-      alias: {
-        "virtual:enrouter": resolve("mocks/virtual-enrouter.ts"),
-      },
+      alias,
     },
   },
   {
@@ -26,9 +26,7 @@ export default defineWorkspace([
         name: "chromium",
         headless: true,
       },
-      alias: {
-        "virtual:enrouter": resolve("mocks/virtual-enrouter.ts"),
-      },
+      alias,
     },
   },
 ]);
