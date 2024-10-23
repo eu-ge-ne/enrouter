@@ -5,7 +5,7 @@ import type { RouteModules } from "./modules.js";
 /**
  * Builds `Route`s from `RouteModules`
  */
-export function buildRoutes(routeModules: RouteModules[]): Route {
+export function buildRouteTree(modules: RouteModules[]): Route {
   const routes = new Map<string, Route>();
 
   function findParent(dp: string[]): Route | undefined {
@@ -27,7 +27,7 @@ export function buildRoutes(routeModules: RouteModules[]): Route {
     throw new Error("Parent not found");
   }
 
-  const sorted = routeModules.sort((a, b) => a.dir.length - b.dir.length);
+  const sorted = modules.sort((a, b) => a.dir.length - b.dir.length);
 
   for (const { dir, path, test, modules } of sorted) {
     let route = routes.get(path);

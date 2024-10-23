@@ -1,13 +1,12 @@
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
-import { buildRoutes } from "./build.js";
-
 import type { RouteModules } from "./modules.js";
+import { buildRouteTree } from "./build.js";
 
-describe("buildRoutes", () => {
+describe("buildRouteTree", () => {
   test("from 0 modules", () => {
-    expect(() => buildRoutes([])).toThrowErrorMatchingSnapshot();
+    expect(() => buildRouteTree([])).toThrowErrorMatchingSnapshot();
   });
 
   test("from 1 module", () => {
@@ -18,16 +17,16 @@ describe("buildRoutes", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "src/_this.tsx",
-            fileName: "_this.tsx",
+            id: "src/_page.tsx",
+            fileName: "_page.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/_this.tsx")',
+            importStr: '() => import("/home/src/_page.tsx")',
           },
         ],
       },
     ];
 
-    expect(buildRoutes(modules)).toMatchSnapshot();
+    expect(buildRouteTree(modules)).toMatchSnapshot();
   });
 
   test("from 2 modules", () => {
@@ -38,10 +37,10 @@ describe("buildRoutes", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "src/_this.tsx",
-            fileName: "_this.tsx",
+            id: "src/_page.tsx",
+            fileName: "_page.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/_this.tsx")',
+            importStr: '() => import("/home/src/_page.tsx")',
           },
         ],
       },
@@ -51,16 +50,16 @@ describe("buildRoutes", () => {
         test: regexparam.parse("/abc", true),
         modules: [
           {
-            id: "src/abc/_this.tsx",
-            fileName: "_this.tsx",
+            id: "src/abc/_page.tsx",
+            fileName: "_page.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/abc/_this.tsx")',
+            importStr: '() => import("/home/src/abc/_page.tsx")',
           },
         ],
       },
     ];
 
-    expect(buildRoutes(modules)).toMatchSnapshot();
+    expect(buildRouteTree(modules)).toMatchSnapshot();
   });
 
   test("from 3 modules", () => {
@@ -71,10 +70,10 @@ describe("buildRoutes", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "src/_this.tsx",
-            fileName: "_this.tsx",
+            id: "src/_page.tsx",
+            fileName: "_page.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/_this.tsx")',
+            importStr: '() => import("/home/src/_page.tsx")',
           },
         ],
       },
@@ -84,21 +83,21 @@ describe("buildRoutes", () => {
         test: regexparam.parse("/xyz", true),
         modules: [
           {
-            id: "src/xyz/_this.tsx",
-            fileName: "_this.tsx",
+            id: "src/xyz/_page.tsx",
+            fileName: "_page.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/xyz/_this.tsx")',
+            importStr: '() => import("/home/src/xyz/_page.tsx")',
           },
           {
             id: "src/xyz/_index.tsx",
             fileName: "_index.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/xyz/_this.tsx")',
+            importStr: '() => import("/home/src/xyz/_index.tsx")',
           },
         ],
       },
     ];
 
-    expect(buildRoutes(modules)).toMatchSnapshot();
+    expect(buildRouteTree(modules)).toMatchSnapshot();
   });
 });
