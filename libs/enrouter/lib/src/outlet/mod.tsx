@@ -8,10 +8,10 @@ type CC = Record<string, ReactElement> | undefined;
 
 export interface OutletProps {
   name?: string;
-  here?: boolean;
+  root?: boolean;
 }
 
-export function Outlet({ name, here }: OutletProps): ReactNode {
+export function Outlet({ name, root }: OutletProps): ReactNode {
   const match = useMatch();
   if (!match) {
     return;
@@ -25,7 +25,7 @@ export function Outlet({ name, here }: OutletProps): ReactNode {
     next,
   } = match;
 
-  if (here) {
+  if (root) {
     return name ? (_page as CC)?.[name] : (_page as C);
   }
 
