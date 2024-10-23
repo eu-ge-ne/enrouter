@@ -4,8 +4,8 @@ import { format } from "node:util";
 import { type Plugin } from "vite";
 import { glob } from "glob";
 
-import { compileRoutes } from "./compile.js";
 import { buildModuleTree } from "./modules.js";
+import { compileRouteTree } from "./compile.js";
 
 const moduleId = "virtual:enrouter/vite/routes";
 const resolvedModuleId = "\0" + moduleId;
@@ -64,7 +64,7 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
 
       this.info(format("Module tree: %o", routeModules));
 
-      const compiled = compileRoutes(routeModules);
+      const compiled = compileRouteTree(routeModules);
 
       return compiled;
     },
