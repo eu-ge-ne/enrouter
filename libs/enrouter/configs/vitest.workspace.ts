@@ -2,6 +2,9 @@ import { defineWorkspace } from "vitest/config";
 
 export default defineWorkspace([
   {
+    optimizeDeps: {
+      exclude: ["virtual:enrouter"],
+    },
     test: {
       include: [
         "lib/src/**/*.unit.test.{ts,tsx}",
@@ -12,6 +15,9 @@ export default defineWorkspace([
     },
   },
   {
+    optimizeDeps: {
+      exclude: ["virtual:enrouter"],
+    },
     test: {
       include: ["lib/src/**/*.browser.test.{ts,tsx}"],
       name: "browser",
