@@ -1,7 +1,7 @@
 import { hydrateRoot } from "react-dom/client";
 import * as enrouter from "enrouter";
 //@ts-ignore
-import { routes } from "virtual:enrouter/vite/routes";
+import routeTree from "virtual:enrouter/vite/routes";
 
 import "./index.css";
 import { log } from "#log.js";
@@ -17,14 +17,14 @@ async function main() {
   log("Hydrating DOM");
 
   const match = await enrouter.createMatch({
-    routes,
+    routeTree,
     location: window.location.pathname,
   });
 
   hydrateRoot(
     document,
     <Shell>
-      <enrouter.Browser routes={routes} match={match} />
+      <enrouter.Browser routeTree={routeTree} match={match} />
     </Shell>,
   );
 

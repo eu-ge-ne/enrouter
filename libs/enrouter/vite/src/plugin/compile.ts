@@ -7,7 +7,7 @@ interface RouteProps {
   tree?: RouteProps[];
 }
 
-export function compileRoutes(routeModules: RouteModules[]): string {
+export function compileRouteTree(modules: RouteModules[]): string {
   const routes = new Map<string, RouteProps>();
 
   function findParent(dp: string[]): RouteProps | undefined {
@@ -29,7 +29,7 @@ export function compileRoutes(routeModules: RouteModules[]): string {
     throw new Error("Parent not found");
   }
 
-  const sorted = routeModules.sort((a, b) => a.dir.length - b.dir.length);
+  const sorted = modules.sort((a, b) => a.dir.length - b.dir.length);
 
   for (const { dir, path, test, modules } of sorted) {
     let route = routes.get(path);
@@ -71,7 +71,7 @@ elements: {},`.replace(/^/gm, " ".repeat(2)),
     throw new Error("Routes were not compiled");
   }
 
-  return `export const routes = ${compileProps(root)};`;
+  return `export default ${compileProps(root)};`;
 }
 
 function compileProps(route: RouteProps, tab = 0): string {
