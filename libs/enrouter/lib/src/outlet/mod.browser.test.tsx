@@ -281,7 +281,7 @@ describe("outlet", () => {
           _root: (
             <div>
               <div>_root</div>
-              <Outlet name="Main" here />
+              <Outlet root name="Main" />
             </div>
           ),
           _page: {
@@ -315,7 +315,7 @@ describe("outlet", () => {
           _root: (
             <div>
               <div>_root</div>
-              <Outlet here />
+              <Outlet root />
             </div>
           ),
           _page: <div>_page</div>,
