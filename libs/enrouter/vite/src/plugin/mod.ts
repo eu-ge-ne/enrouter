@@ -34,7 +34,7 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
 
       const routesPath = resolve(params.path);
 
-      this.debug(() => format("Searching modules in %s", routesPath));
+      this.info(() => format("Searching modules in %s", routesPath));
 
       const files = await glob(resolve(routesPath, "**/_*.tsx"));
       const resolves = await Promise.all(
@@ -51,7 +51,7 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
         .map((x, i) => (x ? { file: files[i]!, resolvedId: x.id } : undefined))
         .filter((x) => x !== undefined);
 
-      this.debug(() => format("Found %d modules", resolvedFiles.length));
+      this.info(() => format("Found %d modules", resolvedFiles.length));
 
       this.debug(() => "Building module tree");
 

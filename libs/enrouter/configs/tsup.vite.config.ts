@@ -7,5 +7,4 @@ export default defineConfig({
   target: "es2023",
   dts: true,
   treeshake: true,
-  minify: "terser",
 });
