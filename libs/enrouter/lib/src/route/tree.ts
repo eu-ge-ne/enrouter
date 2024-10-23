@@ -1,5 +1,7 @@
 import type { Route } from "./mod.js";
 //@ts-ignore
-import routes from "virtual:enrouter/vite/routes";
+import routeTree from "virtual:enrouter/vite/routes";
 
-export const routeTree = routes as Route;
+export function getRouteTree(): Route {
+  return routeTree;
+}
