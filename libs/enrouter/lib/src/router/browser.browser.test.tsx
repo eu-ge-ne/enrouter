@@ -16,7 +16,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("router", () => {
   describe("Browser", () => {
     test("_root", async () => {
-      const route: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -27,13 +27,13 @@ describe("router", () => {
       };
 
       const match: Match = {
-        route,
+        route: routeTree,
         location: "/",
         isFull: true,
         params: {},
       };
 
-      const screen = render(<Browser routes={route} match={match} />, {
+      const screen = render(<Browser routeTree={routeTree} match={match} />, {
         wrapper,
       });
 

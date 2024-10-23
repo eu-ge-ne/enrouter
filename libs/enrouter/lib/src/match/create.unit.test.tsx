@@ -7,7 +7,7 @@ import { createMatch } from "./create.js";
 describe("match", () => {
   describe("create", () => {
     test("0 matches", async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/abc",
         test: regexparam.parse("/abc", true),
         modules: [],
@@ -15,11 +15,13 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(await createMatch({ routes, location: "/x" })).toMatchSnapshot();
+      expect(
+        await createMatch({ routeTree, location: "/x" }),
+      ).toMatchSnapshot();
     });
 
     test("from 1 route", async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -27,11 +29,11 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(await createMatch({ routes, location: "/" })).toMatchSnapshot();
+      expect(await createMatch({ routeTree, location: "/" })).toMatchSnapshot();
     });
 
     test('from 1 route with "_root"', async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -41,11 +43,11 @@ describe("match", () => {
         },
       };
 
-      expect(await createMatch({ routes, location: "/" })).toMatchSnapshot();
+      expect(await createMatch({ routeTree, location: "/" })).toMatchSnapshot();
     });
 
     test("from 2 routes", async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -62,11 +64,13 @@ describe("match", () => {
         ],
       };
 
-      expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(
+        await createMatch({ routeTree, location: "/abc" }),
+      ).toMatchSnapshot();
     });
 
     test("from 1 route with params", async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/[:id]",
         test: regexparam.parse("/:id", true),
         modules: [],
@@ -74,11 +78,13 @@ describe("match", () => {
         elements: {},
       };
 
-      expect(await createMatch({ routes, location: "/100" })).toMatchSnapshot();
+      expect(
+        await createMatch({ routeTree, location: "/100" }),
+      ).toMatchSnapshot();
     });
 
     test("from 2 routes with params", async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -102,11 +108,13 @@ describe("match", () => {
         ],
       };
 
-      expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(
+        await createMatch({ routeTree, location: "/abc" }),
+      ).toMatchSnapshot();
     });
 
     test('from 2 routes with "_root"', async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -125,11 +133,13 @@ describe("match", () => {
         ],
       };
 
-      expect(await createMatch({ routes, location: "/abc" })).toMatchSnapshot();
+      expect(
+        await createMatch({ routeTree, location: "/abc" }),
+      ).toMatchSnapshot();
     });
 
     test('from 3 routes with "_void"', async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -158,12 +168,12 @@ describe("match", () => {
       };
 
       expect(
-        await createMatch({ routes, location: "/abc/xyz/100" }),
+        await createMatch({ routeTree, location: "/abc/xyz/100" }),
       ).toMatchSnapshot();
     });
 
     test('from 3 routes with "__void"', async () => {
-      const routes: Route = {
+      const routeTree: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
@@ -192,7 +202,7 @@ describe("match", () => {
       };
 
       expect(
-        await createMatch({ routes, location: "/abc/xyz/100" }),
+        await createMatch({ routeTree, location: "/abc/xyz/100" }),
       ).toMatchSnapshot();
     });
   });

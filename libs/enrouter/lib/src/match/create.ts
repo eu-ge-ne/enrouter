@@ -6,17 +6,17 @@ import { loadRoutes } from "#lib/route/load.js";
 const log = logger("match/create");
 
 export interface CreateMatchParams {
-  routes: Route;
+  routeTree: Route;
   location: string;
 }
 
 export async function createMatch({
-  routes,
+  routeTree,
   location,
 }: CreateMatchParams): Promise<Match | undefined> {
   const matches: Match[] = [];
 
-  recur([routes], location, matches);
+  recur([routeTree], location, matches);
 
   await loadRoutes(matches.map((x) => x.route));
 

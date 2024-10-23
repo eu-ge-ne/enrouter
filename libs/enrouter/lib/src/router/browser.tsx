@@ -12,7 +12,7 @@ import { Root } from "./root.js";
 const log = logger("router/browser");
 
 export interface BrowserProps {
-  routes: Route;
+  routeTree: Route;
   match: Match | undefined;
 }
 
@@ -24,7 +24,7 @@ export function Browser(props: BrowserProps): ReactNode {
     window.history.pushState({}, "", to);
     setLocation(to);
 
-    setMatch(await createMatch({ routes: props.routes, location: to }));
+    setMatch(await createMatch({ routeTree: props.routeTree, location: to }));
 
     log("Navigated to %s", to);
   }, []);
@@ -35,7 +35,7 @@ export function Browser(props: BrowserProps): ReactNode {
     const to = window.location.pathname;
     setLocation(to);
 
-    setMatch(await createMatch({ routes: props.routes, location: to }));
+    setMatch(await createMatch({ routeTree: props.routeTree, location: to }));
   }, []);
 
   useEffect(() => {
