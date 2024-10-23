@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 import { format } from "node:util";
 
-import { type Plugin } from "vite";
+import type { Plugin } from "vite";
 import { glob } from "glob";
 
 import { buildModuleTree } from "./modules.js";
