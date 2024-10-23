@@ -7,12 +7,10 @@
       "dependsOn": ["build:lib", "build:vite"]
     },
     "build:lib": {
-      "inputs": ["$TURBO_DEFAULT$", "lib/**"],
       "outputs": ["dist/lib/**"],
       "dependsOn": ["clean", "^build"]
     },
     "build:vite": {
-      "inputs": ["$TURBO_DEFAULT$", "vite/**"],
       "outputs": ["dist/vite/**"],
       "dependsOn": ["clean", "^build"]
     },
