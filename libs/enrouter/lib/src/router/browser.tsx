@@ -1,6 +1,5 @@
 import { type ReactNode, useState, useCallback, useEffect } from "react";
 
-import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
 import { createMatch } from "#lib/match/create.js";
@@ -12,7 +11,6 @@ import { Root } from "./root.js";
 const log = logger("router/browser");
 
 export interface BrowserProps {
-  routeTree: Route;
   match: Match | undefined;
 }
 
@@ -24,7 +22,7 @@ export function Browser(props: BrowserProps): ReactNode {
     window.history.pushState({}, "", to);
     setLocation(to);
 
-    setMatch(await createMatch({ routeTree: props.routeTree, location: to }));
+    setMatch(await createMatch({ location: to }));
 
     log("Navigated to %s", to);
   }, []);
@@ -35,7 +33,7 @@ export function Browser(props: BrowserProps): ReactNode {
     const to = window.location.pathname;
     setLocation(to);
 
-    setMatch(await createMatch({ routeTree: props.routeTree, location: to }));
+    setMatch(await createMatch({ location: to }));
   }, []);
 
   useEffect(() => {

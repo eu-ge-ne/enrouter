@@ -1,4 +1,4 @@
-import type { UserConfig } from "vitest/config";
+import type { ViteUserConfig } from "vitest/config";
 
 export default {
   test: {
@@ -8,4 +8,4 @@ export default {
       reporter: ["text", "html"],
     },
   },
-} satisfies UserConfig;
+} satisfies ViteUserConfig;

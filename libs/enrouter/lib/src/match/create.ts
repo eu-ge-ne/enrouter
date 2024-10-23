@@ -1,22 +1,21 @@
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "./mod.js";
 import { logger } from "#lib/debug.js";
+import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";
 
 const log = logger("match/create");
 
 export interface CreateMatchParams {
-  routeTree: Route;
   location: string;
 }
 
 export async function createMatch({
-  routeTree,
   location,
 }: CreateMatchParams): Promise<Match | undefined> {
   const matches: Match[] = [];
 
-  recur([routeTree], location, matches);
+  recur([getRouteTree()], location, matches);
 
   await loadRoutes(matches.map((x) => x.route));
 

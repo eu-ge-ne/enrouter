@@ -2,8 +2,6 @@
 import { renderToReadableStream } from "react-dom/server.edge";
 import * as enrouter from "enrouter";
 import { type ViteManifest, getModuleAssets } from "enrouter/vite/manifest";
-//@ts-ignore
-import routeTree from "virtual:enrouter/vite/routes";
 
 import { log } from "#log.js";
 import { Shell } from "./shell.js";
@@ -31,7 +29,7 @@ function createSsrHandler(manifest: ViteManifest) {
 
       const location = new URL(req.url, "http://localhost").pathname;
 
-      const match = await enrouter.createMatch({ routeTree, location });
+      const match = await enrouter.createMatch({ location });
       if (!match?.last?.isFull) {
         status = 404;
       }
