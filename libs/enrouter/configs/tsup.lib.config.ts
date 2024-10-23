@@ -6,6 +6,6 @@ export default defineConfig({
   format: "esm",
   target: "es2023",
   dts: true,
-  external: ["react", "virtual:enrouter/vite/routes"],
+  external: ["react", "virtual:enrouter"],
   treeshake: true,
 });

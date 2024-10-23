@@ -1,5 +1,9 @@
 import { defineWorkspace } from "vitest/config";
 
+const alias = {
+  "virtual:enrouter": "\0virtual:enrouter",
+};
+
 export default defineWorkspace([
   {
     test: {
@@ -9,6 +13,7 @@ export default defineWorkspace([
       ],
       name: "unit",
       environment: "node",
+      alias,
     },
   },
   {
@@ -21,6 +26,7 @@ export default defineWorkspace([
         name: "chromium",
         headless: true,
       },
+      alias,
     },
   },
 ]);

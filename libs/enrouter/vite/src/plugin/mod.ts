@@ -7,7 +7,7 @@ import { glob } from "glob";
 import { buildModuleTree } from "./modules.js";
 import { compileRouteTree } from "./compile.js";
 
-const moduleId = "virtual:enrouter/vite/routes";
+const moduleId = "virtual:enrouter";
 const resolvedModuleId = "\0" + moduleId;
 
 export interface EnrouterPluginOptions {
