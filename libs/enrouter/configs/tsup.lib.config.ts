@@ -8,5 +8,4 @@ export default defineConfig({
   dts: true,
   external: ["react", "virtual:enrouter/vite/routes"],
   treeshake: true,
-  minify: "terser",
 });
