@@ -1,10 +1,9 @@
+import { resolve } from "node:path";
+
 import { defineWorkspace } from "vitest/config";
 
 export default defineWorkspace([
   {
-    optimizeDeps: {
-      exclude: ["virtual:enrouter"],
-    },
     test: {
       include: [
         "lib/src/**/*.unit.test.{ts,tsx}",
@@ -12,12 +11,12 @@ export default defineWorkspace([
       ],
       name: "unit",
       environment: "node",
+      alias: {
+        "virtual:enrouter": resolve("mocks/virtual-enrouter.ts"),
+      },
     },
   },
   {
-    optimizeDeps: {
-      exclude: ["virtual:enrouter"],
-    },
     test: {
       include: ["lib/src/**/*.browser.test.{ts,tsx}"],
       name: "browser",
@@ -26,6 +25,9 @@ export default defineWorkspace([
         enabled: true,
         name: "chromium",
         headless: true,
+      },
+      alias: {
+        "virtual:enrouter": resolve("mocks/virtual-enrouter.ts"),
       },
     },
   },
