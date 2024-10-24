@@ -9,7 +9,8 @@ export default defineWorkspace([
     test: {
       include: [
         "lib/src/**/*.unit.test.{ts,tsx}",
-        "vite/src/**/*.unit.test.{ts,tsx}",
+        "vite/manifest/src/**/*.unit.test.{ts,tsx}",
+        "vite/plugin/src/**/*.unit.test.{ts,tsx}",
       ],
       name: "unit",
       environment: "node",

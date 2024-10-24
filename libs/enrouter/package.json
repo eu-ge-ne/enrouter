@@ -25,9 +25,12 @@
   ],
   "scripts": {
     "clean": "rm -rf ./dist && rm -rf ./coverage",
-    "build:lib": "tsup --config configs/tsup.lib.config.ts",
-    "build:vite": "tsup --config configs/tsup.vite.config.ts",
-    "lint": "tsc -p lib/tsconfig.json && tsc -p vite/tsconfig.json",
+    "build:lib": "tsup --config configs/tsup.config.lib.ts",
+    "build:vite:manifest": "tsup --config configs/tsup.config.vite.manifest.ts",
+    "build:vite:plugin": "tsup --config configs/tsup.config.vite.plugin.ts",
+    "lint:lib": "tsc -p lib/tsconfig.json",
+    "lint:vite:manifest": "tsc -p vite/manifest/tsconfig.json",
+    "lint:vite:plugin": "tsc -p vite/plugin/tsconfig.json",
     "test": "NODE_OPTIONS=--experimental-vm-modules vitest run --config configs/vitest.config.ts"
   },
   "repository": {
