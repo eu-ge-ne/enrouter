@@ -18,6 +18,15 @@
       "outputs": ["dist/vite/plugin/**"],
       "dependsOn": ["clean", "^build"]
     },
+    "lint:lib": {
+      "dependsOn": ["^build"]
+    },
+    "lint:vite:manifest": {
+      "dependsOn": ["^build"]
+    },
+    "lint:vite:plugin": {
+      "dependsOn": ["^build"]
+    },
     "test": {
       "outputs": ["coverage/**"]
     }
