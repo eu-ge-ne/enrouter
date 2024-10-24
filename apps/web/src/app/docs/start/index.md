@@ -97,7 +97,3 @@ async function main() {
 
 main();
 ```
-
-...
-
-Will soon be updated...
