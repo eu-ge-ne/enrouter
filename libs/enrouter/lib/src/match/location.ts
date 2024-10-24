@@ -4,15 +4,11 @@ import { logger } from "#lib/debug.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";
 
-const log = logger("match/create");
+const log = logger("matchLocation");
 
-export interface CreateMatchParams {
-  location: string;
-}
-
-export async function createMatch({
-  location,
-}: CreateMatchParams): Promise<Match | undefined> {
+export async function matchLocation(
+  location: string,
+): Promise<Match | undefined> {
   const matches: Match[] = [];
 
   recur([getRouteTree()], location, matches);

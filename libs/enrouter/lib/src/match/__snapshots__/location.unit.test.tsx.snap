@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > create > 0 matches 1`] = `undefined`;
+exports[`match > matchLocation > 0 matches 1`] = `undefined`;
 
-exports[`match > create > from 1 route 1`] = `
+exports[`match > matchLocation > from 1 route 1`] = `
 {
   "first": [Circular],
   "isFull": true,
@@ -23,7 +23,7 @@ exports[`match > create > from 1 route 1`] = `
 }
 `;
 
-exports[`match > create > from 1 route with "_root" 1`] = `
+exports[`match > matchLocation > from 1 route with "_root" 1`] = `
 {
   "first": [Circular],
   "isFull": true,
@@ -55,7 +55,7 @@ exports[`match > create > from 1 route with "_root" 1`] = `
 }
 `;
 
-exports[`match > create > from 1 route with params 1`] = `
+exports[`match > matchLocation > from 1 route with params 1`] = `
 {
   "first": [Circular],
   "isFull": true,
@@ -80,7 +80,7 @@ exports[`match > create > from 1 route with params 1`] = `
 }
 `;
 
-exports[`match > create > from 2 routes 1`] = `
+exports[`match > matchLocation > from 2 routes 1`] = `
 {
   "first": [Circular],
   "isFull": false,
@@ -147,7 +147,7 @@ exports[`match > create > from 2 routes 1`] = `
 }
 `;
 
-exports[`match > create > from 2 routes with "_root" 1`] = `
+exports[`match > matchLocation > from 2 routes with "_root" 1`] = `
 {
   "first": [Circular],
   "isFull": true,
@@ -179,7 +179,7 @@ exports[`match > create > from 2 routes with "_root" 1`] = `
 }
 `;
 
-exports[`match > create > from 2 routes with params 1`] = `
+exports[`match > matchLocation > from 2 routes with params 1`] = `
 {
   "first": [Circular],
   "isFull": false,
@@ -258,7 +258,7 @@ exports[`match > create > from 2 routes with params 1`] = `
 }
 `;
 
-exports[`match > create > from 3 routes with "__void" 1`] = `
+exports[`match > matchLocation > from 3 routes with "__void" 1`] = `
 {
   "first": [Circular],
   "isFull": false,
@@ -302,7 +302,7 @@ exports[`match > create > from 3 routes with "__void" 1`] = `
 }
 `;
 
-exports[`match > create > from 3 routes with "_void" 1`] = `
+exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
 {
   "first": [Circular],
   "isFull": false,

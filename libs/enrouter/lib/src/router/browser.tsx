@@ -2,7 +2,7 @@ import { type ReactNode, useState, useCallback, useEffect } from "react";
 
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
-import { createMatch } from "#lib/match/create.js";
+import { matchLocation } from "#lib/match/location.js";
 import { NavigateProvider } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
 import { MatchProvider } from "#lib/match/context.js";
@@ -22,7 +22,7 @@ export function Browser(props: BrowserProps): ReactNode {
     window.history.pushState({}, "", to);
     setLocation(to);
 
-    setMatch(await createMatch({ location: to }));
+    setMatch(await matchLocation(to));
 
     log("Navigated to %s", to);
   }, []);
@@ -33,7 +33,7 @@ export function Browser(props: BrowserProps): ReactNode {
     const to = window.location.pathname;
     setLocation(to);
 
-    setMatch(await createMatch({ location: to }));
+    setMatch(await matchLocation(to));
   }, []);
 
   useEffect(() => {
