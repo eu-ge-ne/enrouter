@@ -32,8 +32,6 @@ button should decrement it.
 We are going to put first page at `/increment` and second at `/decrement`.
 And, indeed, we need a home page at `/` location containing links to both pages.
 
-Let's do it.
-
 ## Install enrouter
 
 ```bash
@@ -73,7 +71,32 @@ But during development it uses two budlers: Rollup for compiling user code
 and esbuild for for precompiling your `node_modules` dependencies
 (`optimizeDeps`).
 That's why we need to set `optimizeDeps.exclude`. To tell esbuild that
-`virtual:enrouter` is handled somewhere else (by rollup).
+`virtual:enrouter` is handled somewhere else (by Rollup).
+
+Last step of installing **enrouter** is to render `enrouter.Browser` component
+in `src/main.tsx`:
+
+```ts
+// src/main.tsx
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import * as enrouter from 'enrouter'; // import enrouter
+
+async function main() {
+  // match initial window.location
+  const match = await enrouter.matchLocation(window.location.pathname);
+
+  // render router component
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <enrouter.Browser match={match} />
+    </StrictMode>,
+  )
+}
+
+main();
+```
 
 ...
 
