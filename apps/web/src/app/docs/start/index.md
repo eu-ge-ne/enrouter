@@ -45,20 +45,20 @@ Add **enrouter** plugin to your Vite config:
 ```ts
 // vite.config.ts
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import enrouter from 'enrouter/vite/plugin'; // import plugin
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import enrouter from "enrouter/vite/plugin"; // import plugin
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    enrouter({ path: "src/app" }) // register plugin
+    enrouter({ path: "src/app" }), // register plugin
   ],
   optimizeDeps: {
-    exclude: ["virtual:enrouter"] // do not optimize "virtual:enrouter" module
-  }
-})
+    exclude: ["virtual:enrouter"], // do not optimize "virtual:enrouter" module
+  },
+});
 ```
 
 `src/app` is a folder where you put your route components.
