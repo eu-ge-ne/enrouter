@@ -14,9 +14,7 @@ declare const window: {
 async function main() {
   log("Hydrating DOM");
 
-  const match = await enrouter.createMatch({
-    location: window.location.pathname,
-  });
+  const match = await enrouter.matchLocation(window.location.pathname);
 
   hydrateRoot(
     document,

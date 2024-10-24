@@ -2,14 +2,14 @@ import { describe, test, expect, vi } from "vitest";
 import * as regexparam from "regexparam";
 
 import { getRouteTree } from "#lib/route/tree.js";
-import { createMatch } from "./create.js";
+import { matchLocation } from "./location.js";
 
 vi.mock(import("#lib/route/tree.js"), () => ({
   getRouteTree: vi.fn(),
 }));
 
 describe("match", () => {
-  describe("create", () => {
+  describe("matchLocation", () => {
     test("0 matches", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/abc",
@@ -19,7 +19,7 @@ describe("match", () => {
         elements: {},
       });
 
-      expect(await createMatch({ location: "/x" })).toMatchSnapshot();
+      expect(await matchLocation("/x")).toMatchSnapshot();
     });
 
     test("from 1 route", async () => {
@@ -31,7 +31,7 @@ describe("match", () => {
         elements: {},
       });
 
-      expect(await createMatch({ location: "/" })).toMatchSnapshot();
+      expect(await matchLocation("/")).toMatchSnapshot();
     });
 
     test('from 1 route with "_root"', async () => {
@@ -45,7 +45,7 @@ describe("match", () => {
         },
       });
 
-      expect(await createMatch({ location: "/" })).toMatchSnapshot();
+      expect(await matchLocation("/")).toMatchSnapshot();
     });
 
     test("from 2 routes", async () => {
@@ -66,7 +66,7 @@ describe("match", () => {
         ],
       });
 
-      expect(await createMatch({ location: "/abc" })).toMatchSnapshot();
+      expect(await matchLocation("/abc")).toMatchSnapshot();
     });
 
     test("from 1 route with params", async () => {
@@ -78,7 +78,7 @@ describe("match", () => {
         elements: {},
       });
 
-      expect(await createMatch({ location: "/100" })).toMatchSnapshot();
+      expect(await matchLocation("/100")).toMatchSnapshot();
     });
 
     test("from 2 routes with params", async () => {
@@ -106,7 +106,7 @@ describe("match", () => {
         ],
       });
 
-      expect(await createMatch({ location: "/abc" })).toMatchSnapshot();
+      expect(await matchLocation("/abc")).toMatchSnapshot();
     });
 
     test('from 2 routes with "_root"', async () => {
@@ -129,7 +129,7 @@ describe("match", () => {
         ],
       });
 
-      expect(await createMatch({ location: "/abc" })).toMatchSnapshot();
+      expect(await matchLocation("/abc")).toMatchSnapshot();
     });
 
     test('from 3 routes with "_void"', async () => {
@@ -161,7 +161,7 @@ describe("match", () => {
         ],
       });
 
-      expect(await createMatch({ location: "/abc/xyz/100" })).toMatchSnapshot();
+      expect(await matchLocation("/abc/xyz/100")).toMatchSnapshot();
     });
 
     test('from 3 routes with "__void"', async () => {
@@ -193,7 +193,7 @@ describe("match", () => {
         ],
       });
 
-      expect(await createMatch({ location: "/abc/xyz/100" })).toMatchSnapshot();
+      expect(await matchLocation("/abc/xyz/100")).toMatchSnapshot();
     });
   });
 });
