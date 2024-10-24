@@ -5,3 +5,7 @@
 html {
   scrollbar-gutter: stable;
 }
+
+code.language-none {
+  color: #fff !important;
+}
