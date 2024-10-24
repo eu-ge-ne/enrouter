@@ -1,8 +1,8 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["vite/src/plugin/mod.ts", "vite/src/manifest/mod.ts"],
-  outDir: "dist/vite",
+  entry: ["vite/manifest/src/mod.ts"],
+  outDir: "dist/vite/manifest",
   format: "esm",
   target: "es2023",
   dts: true,

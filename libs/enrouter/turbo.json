@@ -4,14 +4,18 @@
   "tasks": {
     "build": {
       "outputs": ["dist/**"],
-      "dependsOn": ["build:lib", "build:vite"]
+      "dependsOn": ["build:lib", "build:vite:manifest", "build:vite:plugin"]
     },
     "build:lib": {
       "outputs": ["dist/lib/**"],
       "dependsOn": ["clean", "^build"]
     },
-    "build:vite": {
-      "outputs": ["dist/vite/**"],
+    "build:vite:manifest": {
+      "outputs": ["dist/vite/manifest/**"],
+      "dependsOn": ["clean", "^build"]
+    },
+    "build:vite:plugin": {
+      "outputs": ["dist/vite/plugin/**"],
       "dependsOn": ["clean", "^build"]
     },
     "test": {
