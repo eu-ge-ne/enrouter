@@ -7,5 +7,6 @@ html {
 }
 
 code.language-none {
+  background-color: #082f49 !important;
   color: #fff !important;
 }
