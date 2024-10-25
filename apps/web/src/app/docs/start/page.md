@@ -32,7 +32,7 @@ And, indeed, we need a home page containing links to both pages.
 pnpm add -D enrouter
 ```
 
-Add **enrouter** plugin to your `vite.config.ts`:
+Add enrouter plugin to your `vite.config.ts`:
 
 ```ts
 // vite.config.ts
@@ -55,7 +55,9 @@ export default defineConfig({
 [Vite Plugin](/docs/vite/plugin) explains why you need to add `virtual:enrouter`
 to `optimizeDeps.exclude`.
 
-Last step of installing **enrouter** is to add `BrowserRouter` component to
+# TODO
+
+Last step of installing enrouter is to add `BrowserRouter` component to
 the application entry `src/main.tsx`:
 
 ```ts
@@ -79,8 +81,6 @@ async function main() {
 
 main();
 ```
-
-# TODO
 
 ## Define routes
 
