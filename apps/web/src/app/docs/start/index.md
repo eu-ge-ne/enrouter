@@ -68,11 +68,11 @@ the notion of "virtual" module does exist only in Rollup and does not exist in
 esbuild.
 
 Vite is using Rollup for producing final bundle for prod.
-But during development it uses two budlers: Rollup for compiling user code
-and esbuild for for precompiling your `node_modules` dependencies
-(`optimizeDeps`).
-That's why we need to set `optimizeDeps.exclude`. To tell esbuild that
-`virtual:enrouter` is handled somewhere else (by Rollup).
+But during development it is using two budlers: Rollup for compiling your code
+and esbuild for for precompiling dependencies from `node_modules` folder.
+That's why we need to use `optimizeDeps.exclude`. To tell esbuild to
+ignore `virtual:enrouter` and do not try to compile it, because it is handled
+somewhere else (by Rollup).
 
 Last step of installing **enrouter** is to render `enrouter.Browser` component
 in `src/main.tsx`:
