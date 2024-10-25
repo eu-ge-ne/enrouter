@@ -8,7 +8,7 @@ export default function Page() {
   log("Rendering: /_page");
 
   return (
-    <div className="flex flex-col divide-y divide-paperBorder">
+    <div className="flex flex-col divide-y divide-appBorder">
       <div className="container mx-auto flex items-center justify-between p-4">
         <a className="text-2xl font-medium tracking-wider" {...useLink("/")}>
           enrouter

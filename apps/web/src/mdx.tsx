@@ -91,12 +91,13 @@ export function Code({
           //@ts-ignore
           import("prismjs/components/prism-jsx"),
           //@ts-ignore
-          import("prismjs/components/prism-tsx"),
-          //@ts-ignore
           import("prismjs/components/prism-css"),
           //@ts-ignore
           import("prismjs/components/prism-bash"),
         ]);
+
+        //@ts-ignore
+        await import("prismjs/components/prism-tsx");
 
         prism.highlightElement(el, false, () =>
           log("%s rendering completed", className),
