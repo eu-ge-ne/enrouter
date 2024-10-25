@@ -2,7 +2,7 @@
 
 ## Scaffold project
 
-First, create a new Vite project from `react-ts` template:
+First, create new Vite project from `react-ts` template:
 
 ```bash
 pnpm create vite enrouter-demo --template react-ts
@@ -68,8 +68,8 @@ the notion of "virtual" module does exist only in Rollup and does not exist in
 esbuild.
 
 Vite is using Rollup for producing final bundle for prod.
-But during development it is using two budlers: Rollup for compiling your code
-and esbuild for for precompiling dependencies from `node_modules` folder.
+But during development it is using two bundlers: Rollup for compiling your code
+and esbuild for precompiling dependencies in `node_modules` folder.
 That's why we need to use `optimizeDeps.exclude`. To tell esbuild to
 ignore `virtual:enrouter` and do not try to compile it, because it is handled
 somewhere else (by Rollup).
@@ -103,21 +103,111 @@ main();
 
 ## Define routes
 
-First, move `App.tsx` and `App.css` files to `src/app` folder and rename to
-`_root.tsx` and `root.css` accordingly. `src/app` folder (since it is the root
-folder for routes) defines `/` route. By convention, `_root.tsx` is a file with
-component describing the layout for the route. Make sure that you export the
-component as `default`.
+### _root.tsx
+
+First, you need to create at least one `_root.tsx` file.
+Its purpose is to define common style and layout shared by child routes.
+
+In our case `_root.tsx` imports common styles, defines common layout (salvaged
+from `App.tsx`) and renders navigation links. Move and rename `App.tsx` to
+`src/app/_root.tsx` and change it to look like:
 
 ```ts
 // src/app/_root.tsx
 
-import { useState } from 'react'
+import { Outlet, useLink } from "enrouter";
 
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import './root.css'
 
 export default function Root() {
+
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <ul className="menu">
+        <li><a {...useLink("/")}>Home</a></li>
+        <li><a {...useLink("/increment")}>Increment</a></li>
+        <li><a {...useLink("/decrement")}>Decrement</a></li>
+      </ul>
+      <div className="card">
+        <Outlet />
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
+```
+
+Also, move and rename `App.css` to `src/app/root.css` and add style for menu:
+
+```css
+/* src/app/root.css */
+
+...
+
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+```
+
+### _page.tsx
+
+Next, create `_page.tsx` files for `/increment` and `/decrement`
+locations.
+
+The `src/app/increment/_page.tsx` should look like:
+
+```ts
+import { useState } from 'react'
+
+export default function Increment() {
   const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <button onClick={() => setCount((count) => count + 1)}>
+        count is {count}
+      </button>
+      <p>
+        Edit <code>src/app/increment/_page.tsx</code> and save to test HMR
+      </p>
+    </>
+  )
+}
+```
+
+The `src/app/decrement/_page.tsx` is very similar with minor difference:
+
+```ts
+import { useState } from 'react'
+
+export default function Increment() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <button onClick={() => setCount((count) => count - 1)}>
+        count is {count}
+      </button>
+      <p>
+        Edit <code>src/app/decrement/_page.tsx</code> and save to test HMR
+      </p>
+    </>
+  )
+}
 ```
