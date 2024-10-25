@@ -18,19 +18,19 @@ And run it:
 pnpm dev
 ```
 
-You've created a basic single page React application:
+You've created a basic single page React application.
+It contains only one page available at `/` location.
+You can click the button and increment the counter:
 
 ![react SPA](/start-0.png "react SPA")
 
-Your app contains only one page available at `/` location.
-You can click the button and increment the counter.
-Let's add another page.
+Let's add another page with same layout but different behavior.
+Instead of incrementing the counter the button will be decrementing it.
 
-Second page will have same layout but instead of incrementing the counter the
-button will be decrementing it.
+We will put original page at `/increment`. The new page which you are going to
+create will be located at `/decrement`.
 
-We are going to put first page at `/increment` and second at `/decrement`.
-And, indeed, we need a home page at `/` location containing links to both pages.
+And, indeed, we need a home page containing links to both pages.
 
 ## Install enrouter
 
@@ -40,21 +40,21 @@ pnpm add -D enrouter
 
 Add **enrouter** plugin to your Vite config:
 
-```ts
-// vite.config.ts
+`vite.config.ts`:
 
+```ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import enrouter from "enrouter/vite/plugin"; // import plugin
+import enrouter from "enrouter/vite/plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    enrouter({ path: "src/app" }), // register plugin
+    enrouter({ path: "src/app" }),
   ],
   optimizeDeps: {
-    exclude: ["virtual:enrouter"], // do not optimize "virtual:enrouter" module
+    exclude: ["virtual:enrouter"],
   },
 });
 ```
@@ -74,23 +74,20 @@ That's why we need to use `optimizeDeps.exclude`. To tell esbuild to
 ignore `virtual:enrouter` and do not try to compile it, because it is handled
 somewhere else (by Rollup).
 
-Last step of installing **enrouter** is to render `enrouter.Browser` component
-in `src/main.tsx`:
+Last step of installing **enrouter** is to render `enrouter.Browser` component.
+
+`src/main.tsx`:
 
 ```ts
-// src/main.tsx
-
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import * as enrouter from 'enrouter'; // import enrouter
+import * as enrouter from 'enrouter';
 
 import './index.css'
 
 async function main() {
-  // match initial window.location
   const match = await enrouter.matchLocation(window.location.pathname);
 
-  // render router component
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <enrouter.Browser match={match} />
@@ -109,12 +106,11 @@ First, you need to create at least one `_root.tsx` file.
 Its purpose is to define common style and layout shared by child routes.
 
 In our case `_root.tsx` imports common styles, defines common layout (salvaged
-from `App.tsx`) and renders navigation links. Move and rename `App.tsx` to
-`src/app/_root.tsx` and change it to look like:
+from `App.tsx`) and renders navigation links.
+
+Move and change `App.tsx` to `src/app/_root.tsx`:
 
 ```ts
-// src/app/_root.tsx
-
 import { Outlet, useLink } from "enrouter";
 
 import reactLogo from '../assets/react.svg'
@@ -150,12 +146,12 @@ export default function Root() {
 }
 ```
 
-Also, move and rename `App.css` to `src/app/root.css` and add style for menu:
+Also, move `App.css` to `src/app/root.css` and add style for menu:
 
 ```css
-/* src/app/root.css */
+/* ... */
 
-... .menu {
+.menu {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -165,10 +161,11 @@ Also, move and rename `App.css` to `src/app/root.css` and add style for menu:
 
 ### \_page.tsx
 
-Next, create `_page.tsx` files for `/increment` and `/decrement`
+Finally, create `_page.tsx` files for `/increment` and `/decrement`
 locations.
+They are very similar with few minor differences.
 
-The `src/app/increment/_page.tsx` should look like:
+`src/app/increment/_page.tsx`:
 
 ```ts
 import { useState } from 'react'
@@ -189,7 +186,7 @@ export default function Increment() {
 }
 ```
 
-The `src/app/decrement/_page.tsx` is very similar with minor difference:
+`src/app/decrement/_page.tsx`:
 
 ```ts
 import { useState } from 'react'
