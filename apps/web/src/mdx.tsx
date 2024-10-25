@@ -88,6 +88,12 @@ export function Code({
           //@ts-ignore
           import("prismjs/components/prism-typescript"),
           //@ts-ignore
+          import("prismjs/components/prism-jsx"),
+          //@ts-ignore
+          import("prismjs/components/prism-tsx"),
+          //@ts-ignore
+          import("prismjs/components/prism-css"),
+          //@ts-ignore
           import("prismjs/components/prism-bash"),
         ]);
 

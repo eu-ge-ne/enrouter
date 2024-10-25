@@ -58,7 +58,7 @@ to `optimizeDeps.exclude`.
 Last step of installing enrouter is to add `BrowserRouter` component to the
 entry file `src/main.tsx`:
 
-```ts
+```tsx
 // src/main.tsx
 
 import { StrictMode } from "react";
@@ -90,7 +90,7 @@ You can reuse existing `App.tsx` for style and layout and just add navigation
 links.
 Move and change `App.tsx` to `src/app/_root.tsx`:
 
-```ts
+```tsx
 // src/app/_root.tsx
 
 import { Outlet, useLink } from "enrouter";
