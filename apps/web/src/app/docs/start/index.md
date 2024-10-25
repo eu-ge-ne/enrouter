@@ -1,6 +1,6 @@
 # Getting Started
 
-## Scaffold Vite project
+## Scaffold project
 
 First, create a new Vite project from `react-ts` template:
 
@@ -84,6 +84,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import * as enrouter from 'enrouter'; // import enrouter
 
+import './index.css'
+
 async function main() {
   // match initial window.location
   const match = await enrouter.matchLocation(window.location.pathname);
@@ -97,4 +99,25 @@ async function main() {
 }
 
 main();
+```
+
+## Define routes
+
+First, move `App.tsx` and `App.css` files to `src/app` folder and rename to
+`_root.tsx` and `root.css` accordingly. `src/app` folder (since it is the root
+folder for routes) defines `/` route. By convention, `_root.tsx` is a file with
+component describing the layout for the route. Make sure that you export the
+component as `default`.
+
+```ts
+// src/app/_root.tsx
+
+import { useState } from 'react'
+
+import reactLogo from '../assets/react.svg'
+import viteLogo from '/vite.svg'
+import './root.css'
+
+export default function Root() {
+  const [count, setCount] = useState(0)
 ```
