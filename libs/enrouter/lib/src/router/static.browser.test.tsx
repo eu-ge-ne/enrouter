@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
-import { Static } from "./static.js";
+import { StaticRouter } from "./static.js";
 
 const wrapperId = "test-wrapper";
 
@@ -13,7 +13,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("router", () => {
-  describe("Static", () => {
+  describe("StaticRouter", () => {
     test("_root", async () => {
       const match: Match = {
         route: {
@@ -30,7 +30,7 @@ describe("router", () => {
         params: {},
       };
 
-      const screen = render(<Static location="/" match={match} />, {
+      const screen = render(<StaticRouter location="/" match={match} />, {
         wrapper,
       });
 

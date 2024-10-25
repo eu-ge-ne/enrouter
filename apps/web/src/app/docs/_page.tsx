@@ -27,7 +27,7 @@ export default function Page() {
         </ul>
         <Outlet name="Menu" />
       </div>
-      <div className="w-full p-8 pr-0 pt-0">
+      <div className="w-full max-w-[45rem] p-8 pr-0 pt-0">
         <Mdx>
           <Outlet name="Docs" />
         </Mdx>

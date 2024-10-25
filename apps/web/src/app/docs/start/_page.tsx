@@ -1,7 +1,7 @@
-import Index from "./index.md";
+import Page from "./page.md";
 
 export default {
   Docs() {
-    return <Index />;
+    return <Page />;
   },
 };

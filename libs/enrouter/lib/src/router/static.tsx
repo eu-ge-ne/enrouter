@@ -6,12 +6,15 @@ import { LocationProvider } from "#lib/location/mod.js";
 import { MatchProvider } from "#lib/match/context.js";
 import { Root } from "./root.js";
 
-export interface StaticProps {
+export interface StaticRouterProps {
   location: string;
   match: Match | undefined;
 }
 
-export function Static({ location, match }: StaticProps): ReactNode {
+export function StaticRouter({
+  location,
+  match,
+}: StaticRouterProps): ReactNode {
   return (
     <NavigateProvider value={noNavigate}>
       <LocationProvider value={location}>

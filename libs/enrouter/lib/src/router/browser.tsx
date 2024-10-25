@@ -10,11 +10,11 @@ import { Root } from "./root.js";
 
 const log = logger("router/browser");
 
-export interface BrowserProps {
+export interface BrowserRouterProps {
   match: Match | undefined;
 }
 
-export function Browser(props: BrowserProps): ReactNode {
+export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   const [location, setLocation] = useState(window.location.pathname);
   const [match, setMatch] = useState(props.match);
 
