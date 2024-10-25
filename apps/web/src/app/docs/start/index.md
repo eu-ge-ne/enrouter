@@ -27,7 +27,7 @@ You can click the button and increment the counter.
 Let's add another page.
 
 Second page will have same layout but instead of incrementing the counter the
-button should decrement it.
+button will be decrementing it.
 
 We are going to put first page at `/increment` and second at `/decrement`.
 And, indeed, we need a home page at `/` location containing links to both pages.
@@ -61,10 +61,11 @@ export default defineConfig({
 
 `src/app` is a folder where you put your route components.
 
-**enrouter** creates internal "virtual" module called `virtual:enrouter` where
-it generates and stores your route tree.
+**enrouter** creates internal "virtual" module with name `virtual:enrouter`
+where it is generating and storing your route tree.
 You need to add `virtual:enrouter` module to `optimizeDeps.exclude` because
-it is implemented using Rollup-specific features which do not exist in esbuild.
+the notion of "virtual" module does exist only in Rollup and does not exist in
+esbuild.
 
 Vite is using Rollup for producing final bundle for prod.
 But during development it uses two budlers: Rollup for compiling user code
