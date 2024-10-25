@@ -133,11 +133,11 @@ export default function Root() {
 }
 ```
 
-# TODO
-
 Also, move `App.css` to `src/app/root.css` and add style for menu:
 
 ```css
+/* src/app/root.css */
+
 /* ... */
 
 .menu {
@@ -149,6 +149,8 @@ Also, move `App.css` to `src/app/root.css` and add style for menu:
 ```
 
 ### \_page.tsx
+
+# TODO
 
 Finally, create `_page.tsx` files for `/increment` and `/decrement`
 locations.
