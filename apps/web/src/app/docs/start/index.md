@@ -103,7 +103,7 @@ main();
 
 ## Define routes
 
-### _root.tsx
+### \_root.tsx
 
 First, you need to create at least one `_root.tsx` file.
 Its purpose is to define common style and layout shared by child routes.
@@ -155,9 +155,7 @@ Also, move and rename `App.css` to `src/app/root.css` and add style for menu:
 ```css
 /* src/app/root.css */
 
-...
-
-.menu {
+... .menu {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -165,7 +163,7 @@ Also, move and rename `App.css` to `src/app/root.css` and add style for menu:
 }
 ```
 
-### _page.tsx
+### \_page.tsx
 
 Next, create `_page.tsx` files for `/increment` and `/decrement`
 locations.
