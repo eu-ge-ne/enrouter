@@ -19,7 +19,7 @@ async function main() {
   hydrateRoot(
     document,
     <Shell>
-      <enrouter.Browser match={match} />
+      <enrouter.BrowserRouter match={match} />
     </Shell>,
   );
 

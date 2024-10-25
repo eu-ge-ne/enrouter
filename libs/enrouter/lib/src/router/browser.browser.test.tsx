@@ -6,7 +6,7 @@ import * as regexparam from "regexparam";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { getRouteTree } from "#lib/route/tree.js";
-import { Browser } from "./browser.js";
+import { BrowserRouter } from "./browser.js";
 
 const wrapperId = "test-wrapper";
 
@@ -19,7 +19,7 @@ vi.mock(import("#lib/route/tree.js"), () => ({
 }));
 
 describe("router", () => {
-  describe("Browser", () => {
+  describe("BrowserRouter", () => {
     test("_root", async () => {
       const route: Route = {
         path: "/",
@@ -40,7 +40,7 @@ describe("router", () => {
         params: {},
       };
 
-      const screen = render(<Browser match={match} />, {
+      const screen = render(<BrowserRouter match={match} />, {
         wrapper,
       });
 
