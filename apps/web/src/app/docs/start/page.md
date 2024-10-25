@@ -73,7 +73,7 @@ async function main() {
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <BrowserRouter match={match} />
-    </StrictMode>
+    </StrictMode>,
   );
 }
 
