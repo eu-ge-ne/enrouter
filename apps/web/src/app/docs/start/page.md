@@ -80,29 +80,26 @@ async function main() {
 main();
 ```
 
-# TODO
-
 ## Define routes
 
 ### \_root.tsx
 
-First, you need to create at least one `_root.tsx` file.
-Its purpose is to define common style and layout shared by child routes.
-
-In our case `_root.tsx` imports common styles, defines common layout (salvaged
-from `App.tsx`) and renders navigation links.
-
+First, you need to create `_root.tsx` file.
+It defines common style and layout shared by all routes.
+You can reuse existing `App.tsx` for style and layout and just add navigation
+links.
 Move and change `App.tsx` to `src/app/_root.tsx`:
 
 ```ts
+// src/app/_root.tsx
+
 import { Outlet, useLink } from "enrouter";
 
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
-import './root.css'
+import reactLogo from "../assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./root.css";
 
 export default function Root() {
-
   return (
     <>
       <div>
@@ -115,9 +112,15 @@ export default function Root() {
       </div>
       <h1>Vite + React</h1>
       <ul className="menu">
-        <li><a {...useLink("/")}>Home</a></li>
-        <li><a {...useLink("/increment")}>Increment</a></li>
-        <li><a {...useLink("/decrement")}>Decrement</a></li>
+        <li>
+          <a {...useLink("/")}>Home</a>
+        </li>
+        <li>
+          <a {...useLink("/increment")}>Increment</a>
+        </li>
+        <li>
+          <a {...useLink("/decrement")}>Decrement</a>
+        </li>
       </ul>
       <div className="card">
         <Outlet />
@@ -126,9 +129,11 @@ export default function Root() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 ```
+
+# TODO
 
 Also, move `App.css` to `src/app/root.css` and add style for menu:
 
