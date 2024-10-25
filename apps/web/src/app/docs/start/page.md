@@ -150,19 +150,17 @@ Also, move `App.css` to `src/app/root.css` and add style for menu:
 
 ### \_page.tsx
 
-# TODO
-
 Finally, create `_page.tsx` files for `/increment` and `/decrement`
 locations.
-They are very similar with few minor differences.
+They are very similar with a few minor differences:
 
-`src/app/increment/_page.tsx`:
+```tsx
+// src/app/increment/_page.tsx
 
-```ts
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function Increment() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -173,17 +171,17 @@ export default function Increment() {
         Edit <code>src/app/increment/_page.tsx</code> and save to test HMR
       </p>
     </>
-  )
+  );
 }
 ```
 
-`src/app/decrement/_page.tsx`:
+```tsx
+// src/app/decrement/_page.tsx
 
-```ts
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function Increment() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -194,6 +192,6 @@ export default function Increment() {
         Edit <code>src/app/decrement/_page.tsx</code> and save to test HMR
       </p>
     </>
-  )
+  );
 }
 ```
