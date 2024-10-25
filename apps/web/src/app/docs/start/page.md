@@ -55,17 +55,15 @@ export default defineConfig({
 [Vite Plugin](/docs/vite/plugin) explains why you need to add `virtual:enrouter`
 to `optimizeDeps.exclude`.
 
-# TODO
-
-Last step of installing enrouter is to add `BrowserRouter` component to
-the application entry `src/main.tsx`:
+Last step of installing enrouter is to add `BrowserRouter` component to the
+entry file `src/main.tsx`:
 
 ```ts
 // src/main.tsx
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { matchLocation, Browser } from "enrouter";
+import { matchLocation, BrowserRouter } from "enrouter";
 
 import "./index.css";
 
@@ -74,13 +72,15 @@ async function main() {
 
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
-      <Browser match={match} />
-    </StrictMode>,
+      <BrowserRouter match={match} />
+    </StrictMode>
   );
 }
 
 main();
 ```
+
+# TODO
 
 ## Define routes
 
