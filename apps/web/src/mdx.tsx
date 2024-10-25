@@ -84,6 +84,7 @@ export function Code({
         log("Rendering %s", className);
 
         const prism = await import("prismjs");
+
         await Promise.all([
           //@ts-ignore
           import("prismjs/components/prism-typescript"),
