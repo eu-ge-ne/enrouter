@@ -9,7 +9,7 @@ export default {
 
 function Menu() {
   return (
-    <div className="mt-4 border-t border-paperBorder">
+    <div className="mt-4 border-t border-appBorder">
       <ul className="mt-4 flex flex-col gap-y-2">
         <SecondaryLinkItem href="/docs/vite/plugin">Plugin</SecondaryLinkItem>
         <SecondaryLinkItem href="/docs/vite/manifest">

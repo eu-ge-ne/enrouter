@@ -6,6 +6,10 @@ html {
   scrollbar-gutter: stable;
 }
 
+body {
+  @apply bg-appBg text-appFg;
+}
+
 code.language-none {
   background-color: #082f49 !important;
   color: #fff !important;

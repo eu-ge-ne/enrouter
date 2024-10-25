@@ -39,7 +39,7 @@ gtag('config', 'G-N28HCL4GB9');
             <link key={href} rel="stylesheet" href={href}></link>
           ))}
         </head>
-        <body className="bg-paper">{children}</body>
+        <body>{children}</body>
       </html>
     </StrictMode>
   );

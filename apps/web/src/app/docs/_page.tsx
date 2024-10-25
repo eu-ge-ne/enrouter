@@ -5,7 +5,7 @@ import { PrimaryLinkItem } from "./links.js";
 
 export default function Page() {
   return (
-    <div className="flex divide-x divide-paperBorder p-4 pt-8">
+    <div className="flex divide-x divide-appBorder p-4 pt-8">
       <div className="flex w-[15rem] flex-col pr-4">
         <ul className="flex flex-col gap-y-2">
           <PrimaryLinkItem href="/docs">Docs</PrimaryLinkItem>
