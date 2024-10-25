@@ -2,7 +2,7 @@
 
 ## Scaffold project
 
-First, create new Vite project from `react-ts` template:
+Let's create new Vite project from `react-ts` template and run it:
 
 ```bash
 pnpm create vite enrouter-demo --template react-ts
@@ -10,17 +10,11 @@ pnpm create vite enrouter-demo --template react-ts
 cd enrouter-demo
 
 pnpm install
-```
-
-And run it:
-
-```bash
 pnpm dev
 ```
 
-You've created a basic single page React application.
-It contains only one page available at `/` location.
-You can click the button and increment the counter:
+You've got a basic single page React application with only one page
+available at `/` where you can click a button and increment the counter:
 
 ![react SPA](/start-0.png "react SPA")
 
@@ -38,26 +32,25 @@ And, indeed, we need a home page containing links to both pages.
 pnpm add -D enrouter
 ```
 
-Add **enrouter** plugin to your Vite config:
-
-`vite.config.ts`:
+Add **enrouter** plugin to your `vite.config.ts`:
 
 ```ts
+// vite.config.ts
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import enrouter from "enrouter/vite/plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    enrouter({ path: "src/app" }),
-  ],
+  plugins: [react(), enrouter({ path: "src/app" })],
   optimizeDeps: {
     exclude: ["virtual:enrouter"],
   },
 });
 ```
+
+# TODO
 
 `src/app` is a folder where you put your route components.
 
