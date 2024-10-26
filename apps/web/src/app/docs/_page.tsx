@@ -1,6 +1,6 @@
 import { Outlet } from "enrouter";
 
-import { Mdx } from "#mdx.js";
+import { Mdx } from "#mdx/mod.js";
 import { PrimaryLinkItem } from "./links.js";
 
 export default function Page() {

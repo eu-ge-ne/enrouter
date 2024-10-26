@@ -1,8 +1,6 @@
-import { useEffect, useRef } from "react";
-import type { PropsWithChildren } from "react";
+import { type PropsWithChildren, useEffect, useRef } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useLocation, useLink } from "enrouter";
-import "prism-themes/themes/prism-vsc-dark-plus.min.css";
 
 import { log } from "#log.js";
 
@@ -81,27 +79,8 @@ export function Code({
       }
 
       (async () => {
-        log("Rendering %s", className);
-
-        const prism = await import("prismjs");
-
-        await Promise.all([
-          //@ts-ignore
-          import("prismjs/components/prism-typescript"),
-          //@ts-ignore
-          import("prismjs/components/prism-jsx"),
-          //@ts-ignore
-          import("prismjs/components/prism-css"),
-          //@ts-ignore
-          import("prismjs/components/prism-bash"),
-        ]);
-
-        //@ts-ignore
-        await import("prismjs/components/prism-tsx");
-
-        prism.highlightElement(el, false, () =>
-          log("%s rendering completed", className),
-        );
+        const { runPrism } = await import("./prism.js");
+        runPrism(el, className);
       })();
     }, [location, div]);
   }
