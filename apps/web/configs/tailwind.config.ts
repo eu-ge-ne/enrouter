@@ -13,10 +13,16 @@ export default {
   theme: {
     extend: {
       colors: {
+        appFg: colors.slate[300],
+
         appBg: colors.zinc[900],
         appBorder: colors.zinc[800],
-        appFg: colors.slate[300],
-        appMenuHighlight: colors.blue[400],
+
+        appButtonBg: colors.blue[950],
+        appButtonBorder: colors.blue[900],
+
+        appMenuHighlight: colors.blue[900],
+
         appCodeBg: colors.stone[600],
       },
     },
