@@ -1,7 +1,5 @@
-import Index from "./index.md";
+import Page from "./page.md";
 
-export default {
-  Vite() {
-    return <Index />;
-  },
-};
+export default function Vite() {
+  return <Page />;
+}

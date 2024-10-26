@@ -1,7 +1,5 @@
 import Index from "./index.md";
 
-export default {
-  Vite() {
-    return <Index />;
-  },
-};
+export default function Vite() {
+  return <Index />;
+}
