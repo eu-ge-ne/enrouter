@@ -18,8 +18,8 @@ available at `/` where you can click a button and increment the counter:
 
 ![react SPA](/start-0.png "react SPA")
 
-Let's add another page with same layout but different behavior.
-Instead of incrementing the counter the button will be decrementing it.
+Let's add another page with same layout but different behavior: instead of
+incrementing the counter the button will be decrementing it.
 
 We will put original page at `/increment`. The new page which you are going to
 create will be located at `/decrement`.
@@ -52,7 +52,7 @@ export default defineConfig({
 
 `src/app` is a folder where you put your route components.
 
-[Vite Plugin](/docs/vite/plugin) explains why you need to add `virtual:enrouter`
+[Vite Plugin](/docs/vite/plugin) explains why `virtual:enrouter` must be added
 to `optimizeDeps.exclude`.
 
 Last step of installing enrouter is to add `BrowserRouter` component to the

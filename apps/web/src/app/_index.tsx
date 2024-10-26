@@ -1,7 +1,7 @@
 import { useLink } from "enrouter";
 
 import { log } from "#log.js";
-import github_logo from "/github-light.svg";
+import { GitHub } from "#svg/github.js";
 
 export default function Index() {
   log("Rendering: /_index");
@@ -18,23 +18,17 @@ export default function Index() {
       <p className="max-w-[30rem] text-center">Stay tuned for updates.</p>
       <div className="flex justify-center gap-8">
         <a
-          className="rounded-md border border-appBorder px-4 py-2 text-sm"
+          className="rounded-md border border-appButtonBorder bg-appButtonBg px-4 py-2 text-sm"
           {...useLink("/docs/start")}
         >
           Get started
         </a>
         <a
-          className="flex items-center gap-2 rounded-md border border-appBorder px-4 py-2 text-sm"
+          className="flex items-center gap-2 rounded-md border border-appButtonBorder px-4 py-2 text-sm"
           href="https://github.com/eu-ge-ne/enrouter"
           target="_blank"
         >
-          <img
-            src={github_logo}
-            className="size-4"
-            alt="https://github.com/eu-ge-ne/enrouter"
-            width="16"
-            height="16"
-          />
+          <GitHub size="1rem" />
           GitHub
         </a>
       </div>
