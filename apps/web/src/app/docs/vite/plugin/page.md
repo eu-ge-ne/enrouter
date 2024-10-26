@@ -1,6 +1,8 @@
 # Plugin
 
-**enrouter** creates internal "virtual" module with name `virtual:enrouter`
+## virtual:enrouter
+
+enrouter creates internal "virtual" module with name `virtual:enrouter`
 where it is generating and storing your route tree.
 You need to add `virtual:enrouter` module to `optimizeDeps.exclude` because
 the notion of "virtual" module does exist only in Rollup and does not exist in

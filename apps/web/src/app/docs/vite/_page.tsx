@@ -21,5 +21,5 @@ function Menu() {
 }
 
 function Docs() {
-  return <Outlet name="Vite" />;
+  return <Outlet />;
 }

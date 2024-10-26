@@ -9,7 +9,7 @@ export function PrimaryLinkItem({
   const liClassName = useActive({
     path: href,
     loose,
-    value: ["border-r-4 border-appMenuPrimary", ""],
+    value: ["border-r-4 border-appMenuHighlight", ""],
   });
 
   const aClassName = useActive({
@@ -33,7 +33,7 @@ export function SecondaryLinkItem({
 }: PropsWithChildren<{ href: string }>) {
   const liClassName = useActive({
     path: href,
-    value: ["border-r-2 border-appMenuSecondary", ""],
+    value: ["border-r-2 border-appMenuHighlight", ""],
   });
 
   const aClassName = useActive({
