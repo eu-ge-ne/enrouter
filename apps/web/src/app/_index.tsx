@@ -18,13 +18,13 @@ export default function Index() {
       <p className="max-w-[30rem] text-center">Stay tuned for updates.</p>
       <div className="flex justify-center gap-8">
         <a
-          className="border-appButtonBorder bg-appButtonBg rounded-md border px-4 py-2 text-sm"
+          className="rounded-md border border-appButtonBorder bg-appButtonBg px-4 py-2 text-sm"
           {...useLink("/docs/start")}
         >
           Get started
         </a>
         <a
-          className="border-appButtonBorder flex items-center gap-2 rounded-md border px-4 py-2 text-sm"
+          className="flex items-center gap-2 rounded-md border border-appButtonBorder px-4 py-2 text-sm"
           href="https://github.com/eu-ge-ne/enrouter"
           target="_blank"
         >
