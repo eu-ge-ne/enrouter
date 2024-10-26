@@ -13,6 +13,10 @@ export function Shell({ styles, children }: PropsWithChildren<ShellProps>) {
     <StrictMode>
       <html lang="en">
         <head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-N28HCL4GB9"
@@ -29,10 +33,6 @@ gtag('config', 'G-N28HCL4GB9');
           ></script>
           <meta charSet="utf-8" />
           <meta name="description" content="Put your description here" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
           <title>enrouter</title>
           <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
           {styles?.map((href) => (

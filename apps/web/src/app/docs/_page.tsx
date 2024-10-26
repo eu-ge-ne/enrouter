@@ -5,8 +5,8 @@ import { PrimaryLinkItem } from "./links.js";
 
 export default function Page() {
   return (
-    <div className="flex divide-x divide-appBorder p-4 pt-8">
-      <div className="flex w-[15rem] flex-col pr-4">
+    <div className="flex flex-col divide-appBorder p-4 max-sm:divide-y md:flex-row md:divide-x">
+      <div className="flex flex-col max-sm:pb-4 md:w-[15rem] md:pr-4">
         <ul className="flex flex-col gap-y-2">
           <PrimaryLinkItem href="/docs">Docs</PrimaryLinkItem>
           <PrimaryLinkItem loose href="/docs/start">
@@ -27,7 +27,7 @@ export default function Page() {
         </ul>
         <Outlet name="Menu" />
       </div>
-      <div className="w-full max-w-[45rem] p-8 pr-0 pt-0">
+      <div className="max-sm:pt-4 md:w-[45rem] md:pl-4">
         <Mdx>
           <Outlet name="Docs" />
         </Mdx>
