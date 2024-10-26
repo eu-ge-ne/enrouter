@@ -11,6 +11,6 @@ body {
 }
 
 code.language-none {
-  background-color: #082f49 !important;
-  color: #fff !important;
+  @apply bg-appCodeBg !important;
+  @apply text-appFg !important;
 }
