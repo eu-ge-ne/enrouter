@@ -16,7 +16,7 @@ pnpm dev
 You've got a basic single page React application with only one page
 available at `/` where you can click a button and increment the counter:
 
-![react SPA](/start-0.png "react SPA")
+![Start 0](/start-0.png "Start 0")
 
 Let's add another page with same layout but different behavior: instead of
 incrementing the counter the button will be decrementing it.
@@ -195,3 +195,13 @@ export default function Increment() {
   );
 }
 ```
+
+The result is looking like:
+
+![Start 1](/start-1.png "Start 1")
+
+## GitHub repository
+
+Also, you can clone
+[enrouter examples](https://github.com/eu-ge-ne/enrouter-examples) GitHub repo
+to your machine and play with it locally.
