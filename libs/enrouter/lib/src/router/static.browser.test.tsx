@@ -16,7 +16,7 @@ describe("router", () => {
   describe("StaticRouter", () => {
     test("_root", async () => {
       const match: Match = {
-        isRoot: false,
+        isRoot: true,
         isVoid: false,
         route: {
           path: "/",
@@ -32,6 +32,7 @@ describe("router", () => {
         params: {},
       };
 
+      match.first = match;
       match.last = match;
 
       const screen = render(<StaticRouter location="/" match={match} />, {
