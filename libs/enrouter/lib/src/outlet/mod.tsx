@@ -14,26 +14,29 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
+  const { _page, _void, _index } = match.route.elements;
+
   if (root) {
-    return pickElement(match.route.elements._page, name);
+    return pick(match.isVoid ? _void : _page, name);
+  }
+
+  if (match.isFull) {
+    return pick(_index, name);
   }
 
   if (match.next) {
+    const next = match.next;
+    const { _page, _void } = next.route.elements;
+
     return (
-      <MatchProvider value={match.next}>
-        {pickElement(match.next.route.elements._page, name)}
+      <MatchProvider value={next}>
+        {pick(next.isVoid ? _void : _page, name)}
       </MatchProvider>
     );
   }
-
-  if (match.full) {
-    return pickElement(match.route.elements._index, name);
-  }
-
-  return pickElement(match.route.elements._void, name);
 }
 
-function pickElement(
+function pick(
   els: ReactElement | Record<string, ReactElement> | undefined,
   name?: string,
 ): ReactElement | undefined {

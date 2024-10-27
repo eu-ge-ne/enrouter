@@ -27,7 +27,7 @@ describe("match", () => {
             },
           },
         },
-        full: true,
+        isFull: true,
         location: "/",
         params: {},
       };

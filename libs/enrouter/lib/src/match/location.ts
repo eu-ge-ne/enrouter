@@ -15,7 +15,6 @@ export async function matchLocation(
 
   await loadRoutes(matches.map((x) => x.route));
 
-  trim(matches);
   link(matches);
 
   log("matched: %o", matches);
@@ -66,8 +65,10 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   const loc = execs[0] || "/";
 
   return {
+    isRoot: false,
+    isVoid: false,
     route,
-    full: loc === location,
+    isFull: loc === location,
     location: loc,
     params: Object.fromEntries(
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
@@ -75,21 +76,19 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   };
 }
 
-function trim(matches: Match[]): void {
-  // TODO: move to outlet
-  if (!matches.at(-1)?.full) {
-    const voidIndex = matches.findLastIndex((x) => x.route.elements._void);
-    if (voidIndex >= 0) {
-      matches.splice(voidIndex + 1);
-    }
-  }
-}
-
 function link(matches: Match[]): void {
   const first = matches[0];
   const last = matches.at(-1);
 
+  const isRootIndex = matches.findLastIndex((x) => x.route.elements._root);
+  const isVoidIndex = last?.isFull
+    ? -1
+    : matches.findLastIndex((x) => x.route.elements._void);
+
   matches.forEach((x, i) => {
+    x.isRoot = i === isRootIndex;
+    x.isVoid = i === isVoidIndex;
+
     x.first = first;
     x.prev = matches[i - 1];
     x.next = matches[i + 1];

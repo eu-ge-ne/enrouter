@@ -1,17 +1,6 @@
 import type { Match } from "./mod.js";
 import { useMatch } from "./context.js";
 
-export function useRoot(): Match | undefined {
-  let match = useMatch()?.last;
-
-  do {
-    if (match?.route.elements._root) {
-      return match;
-    }
-    match = match?.prev;
-  } while (match);
-}
-
 export function usePath(path: string): Match | undefined {
   let match = useMatch()?.first;
 
@@ -33,7 +22,7 @@ export interface UseActiveParams<T> {
 export function useActive<T>({ path, loose, value }: UseActiveParams<T>): T {
   const match = usePath(path);
 
-  const isActive = loose ? match !== undefined : Boolean(match?.full);
+  const isActive = loose ? match !== undefined : Boolean(match?.isFull);
 
   return isActive ? value[0] : value[1];
 }
