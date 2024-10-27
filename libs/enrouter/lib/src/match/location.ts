@@ -16,16 +16,7 @@ export async function matchLocation(
   await loadRoutes(matches.map((x) => x.route));
 
   trim(matches);
-
-  const first = matches[0];
-  const last = matches.at(-1);
-
-  matches.forEach((x, i) => {
-    x.first = first;
-    x.prev = matches[i - 1];
-    x.next = matches[i + 1];
-    x.last = last;
-  });
+  link(matches);
 
   log("matched: %o", matches);
 
@@ -84,10 +75,40 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   };
 }
 
-// TODO:
 function trim(matches: Match[]): void {
   const rootIndex = matches.findLastIndex((x) => x.route.elements._root);
   if (rootIndex >= 0) {
     matches.splice(0, rootIndex);
   }
+
+  if (!matches.at(-1)?.isFull) {
+    const voidIndex = matches.findLastIndex(
+      ({
+        route: {
+          elements: { _void, __void },
+        },
+      }) => _void || __void,
+    );
+
+    if (voidIndex >= 0) {
+      if (matches[voidIndex]?.route.elements.__void) {
+        const match = matches[voidIndex];
+        matches.splice(0, matches.length);
+        matches.push(match);
+      } else {
+        matches.splice(voidIndex + 1);
+      }
+    }
+  }
+}
+
+function link(matches: Match[]): void {
+  const first = matches[0];
+  const last = matches.at(-1);
+
+  matches.forEach((x, i) => {
+    x.first = first;
+    x.next = matches[i + 1];
+    x.last = last;
+  });
 }
