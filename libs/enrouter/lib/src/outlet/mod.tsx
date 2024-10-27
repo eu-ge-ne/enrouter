@@ -1,8 +1,10 @@
 import type { ReactNode, ReactElement } from "react";
-import { isValidElement } from "react";
 
-import type { Match } from "#lib/match/mod.js";
 import { MatchProvider, useMatch } from "#lib/match/context.js";
+
+type C = ReactElement | undefined;
+
+type CC = Record<string, ReactElement> | undefined;
 
 export interface OutletProps {
   name?: string;
@@ -15,53 +17,31 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
+  const {
+    route: {
+      elements: { _page, _index, _void },
+    },
+    isFull,
+    next,
+  } = match;
+
   if (root) {
-    const el = chooseElement(match.route.elements._page, name);
-    return el ?? chooseOutlet(match, name);
+    return name ? (_page as CC)?.[name] : (_page as C);
   }
 
-  if (match.next) {
-    const el = chooseElement(match.next.route.elements._page, name);
-    return el ? (
-      <MatchProvider value={match.next}>{el}</MatchProvider>
-    ) : (
-      chooseOutlet(match, name)
-    );
+  if (!isFull && !next) {
+    return name ? (_void as CC)?.[name] : (_void as C);
   }
 
-  if (match.isFull) {
-    const el = chooseElement(match.route.elements._index, name);
-    return el ?? chooseOutlet(match, name);
+  if (!next) {
+    return name ? (_index as CC)?.[name] : (_index as C);
   }
 
-  return chooseOutlet(match, name);
-}
+  const _nextPage = next.route.elements._page;
 
-function chooseElement(
-  els: ReactElement | Record<string, ReactElement> | undefined,
-  name?: string,
-): ReactElement | undefined {
-  if (!name && isValidElement(els)) {
-    return els;
-  }
-
-  if (name && els) {
-    return (els as Record<string, ReactElement>)[name];
-  }
-}
-
-function chooseOutlet(
-  match: Match | undefined,
-  name?: string,
-): ReactElement | undefined {
-  if (!match) {
-    return;
-  }
-
-  const { _outlets } = match.route.elements;
-  if (_outlets) {
-    return chooseElement(_outlets, name);
-  }
-
-  return chooseOutlet(match.prev, name);
+  return (
+    <MatchProvider value={next}>
+      {name ? (_nextPage as CC)?.[name] : (_nextPage as C)}
+    </MatchProvider>
+  );
 }
