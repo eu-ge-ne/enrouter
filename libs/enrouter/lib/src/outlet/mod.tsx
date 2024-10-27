@@ -1,12 +1,7 @@
 import type { ReactNode, ReactElement } from "react";
 import { isValidElement } from "react";
 
-import type { Match } from "#lib/match/mod.js";
 import { MatchProvider, useMatch } from "#lib/match/context.js";
-
-type C = ReactElement | undefined;
-
-type CC = Record<string, ReactElement> | undefined;
 
 export interface OutletProps {
   name?: string;
@@ -20,25 +15,25 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
   }
 
   if (root) {
-    return chooseElement(match.route.elements._page, name);
+    return pickElement(match.route.elements._page, name);
   }
 
   if (match.next) {
     return (
       <MatchProvider value={match.next}>
-        {chooseElement(match.next.route.elements._page)}
+        {pickElement(match.next.route.elements._page, name)}
       </MatchProvider>
     );
   }
 
   if (match.full) {
-    return chooseElement(match.route.elements._index, name);
+    return pickElement(match.route.elements._index, name);
   }
 
-  return chooseElement(match.route.elements._void, name);
+  return pickElement(match.route.elements._void, name);
 }
 
-function chooseElement(
+function pickElement(
   els: ReactElement | Record<string, ReactElement> | undefined,
   name?: string,
 ): ReactElement | undefined {

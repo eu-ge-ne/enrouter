@@ -175,29 +175,5 @@ describe("route", () => {
 
       expect(routes).toMatchSnapshot();
     });
-
-    test("1 route with __void.tsx module", async () => {
-      const routes: Route[] = [
-        {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [
-            {
-              id: "src/__void.tsx",
-              fileName: "__void.tsx",
-              importFn: async () => ({
-                default: () => <div>Void</div>,
-              }),
-            },
-          ],
-          loaded: false,
-          elements: {},
-        },
-      ];
-
-      await loadRoutes(routes);
-
-      expect(routes).toMatchSnapshot();
-    });
   });
 });
