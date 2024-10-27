@@ -5,11 +5,11 @@ import { useMatch } from "#lib/match/context.js";
 export function Root(): ReactNode {
   let match = useMatch()?.first;
 
-  do {
-    if (match?.isRoot) {
-      return match?.route.elements._root;
+  while (match) {
+    if (match.isRoot) {
+      return match.route.elements._root;
     }
 
-    match = match?.next;
-  } while (match);
+    match = match.next;
+  }
 }

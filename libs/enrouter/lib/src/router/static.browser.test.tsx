@@ -16,6 +16,8 @@ describe("router", () => {
   describe("StaticRouter", () => {
     test("_root", async () => {
       const match: Match = {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -26,7 +28,7 @@ describe("router", () => {
           },
         },
         location: "/",
-        full: true,
+        isFull: true,
         params: {},
       };
 

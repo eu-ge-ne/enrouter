@@ -34,9 +34,11 @@ describe("router", () => {
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
 
       const match: Match = {
+        isRoot: false,
+        isVoid: false,
         route,
         location: "/",
-        full: true,
+        isFull: true,
         params: {},
       };
 

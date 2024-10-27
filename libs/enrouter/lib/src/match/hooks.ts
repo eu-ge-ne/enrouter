@@ -5,7 +5,7 @@ export function usePath(path: string): Match | undefined {
   let match = useMatch()?.first;
 
   while (match) {
-    if (match.route?.path === path) {
+    if (match.route.path === path) {
       return match;
     }
 

@@ -17,6 +17,8 @@ describe("match", () => {
   describe("usePath", () => {
     test("with 2 matches", async () => {
       const context: Match = {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -28,11 +30,13 @@ describe("match", () => {
             },
           },
         },
-        full: false,
+        isFull: false,
         location: "/",
         params: {},
 
         next: {
+          isRoot: false,
+          isVoid: false,
           route: {
             path: "/abc",
             test: regexparam.parse("/abc", true),
@@ -44,7 +48,7 @@ describe("match", () => {
               },
             },
           },
-          full: true,
+          isFull: true,
           location: "/abc",
           params: {},
         },
@@ -74,6 +78,8 @@ describe("match", () => {
   describe("useActive", () => {
     test("with 2 matches", async () => {
       const context: Match = {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -85,11 +91,13 @@ describe("match", () => {
             },
           },
         },
-        full: false,
+        isFull: false,
         location: "/",
         params: {},
 
         next: {
+          isRoot: false,
+          isVoid: false,
           route: {
             path: "/abc",
             test: regexparam.parse("/abc", true),
@@ -101,7 +109,7 @@ describe("match", () => {
               },
             },
           },
-          full: true,
+          isFull: true,
           location: "/abc",
           params: {},
         },

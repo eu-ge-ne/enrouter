@@ -16,6 +16,8 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("outlet", () => {
   test('using "_void" elements', async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -36,7 +38,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: false,
+      isFull: false,
       params: {},
     };
 
@@ -54,6 +56,8 @@ describe("outlet", () => {
 
   test('using "_void" element', async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -72,7 +76,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: false,
+      isFull: false,
       params: {},
     };
 
@@ -90,6 +94,8 @@ describe("outlet", () => {
 
   test(`using "_index" elements`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -110,7 +116,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: true,
+      isFull: true,
       params: {},
     };
 
@@ -128,6 +134,8 @@ describe("outlet", () => {
 
   test(`using "_index" element`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -146,7 +154,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: true,
+      isFull: true,
       params: {},
     };
 
@@ -164,6 +172,8 @@ describe("outlet", () => {
 
   test(`using "_page" elements`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -181,9 +191,12 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: false,
+      isFull: false,
       params: {},
+
       next: {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/a",
           test: regexparam.parse("/a", true),
@@ -200,7 +213,7 @@ describe("outlet", () => {
           },
         },
         location: "/a",
-        full: true,
+        isFull: true,
         params: {},
       },
     };
@@ -219,6 +232,8 @@ describe("outlet", () => {
 
   test(`using "_page" element`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -236,9 +251,12 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: false,
+      isFull: false,
       params: {},
+
       next: {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/a",
           test: regexparam.parse("/a", true),
@@ -253,7 +271,7 @@ describe("outlet", () => {
           },
         },
         location: "/a",
-        full: true,
+        isFull: true,
         params: {},
       },
     };
@@ -272,6 +290,8 @@ describe("outlet", () => {
 
   test(`using here "_page" elements`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -290,7 +310,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: true,
+      isFull: true,
       params: {},
     };
 
@@ -306,6 +326,8 @@ describe("outlet", () => {
 
   test(`using here "_page" element`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -322,7 +344,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      full: true,
+      isFull: true,
       params: {},
     };
 
