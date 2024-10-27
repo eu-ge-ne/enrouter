@@ -17,7 +17,7 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
 
   if (root) {
     const el = chooseElement(match.route.elements._page, name);
-    return el ?? chooseVoid(match, name);
+    return el ?? chooseOutlet(match, name);
   }
 
   if (match.next) {
@@ -25,12 +25,16 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return el ? (
       <MatchProvider value={match.next}>{el}</MatchProvider>
     ) : (
-      chooseVoid(match.next, name)
+      chooseOutlet(match, name)
     );
   }
 
-  const el = chooseElement(match.route.elements._index, name);
-  return el ?? chooseVoid(match, name);
+  if (match.isFull) {
+    const el = chooseElement(match.route.elements._index, name);
+    return el ?? chooseOutlet(match, name);
+  }
+
+  return chooseOutlet(match, name);
 }
 
 function chooseElement(
@@ -46,7 +50,7 @@ function chooseElement(
   }
 }
 
-function chooseVoid(
+function chooseOutlet(
   match: Match | undefined,
   name?: string,
 ): ReactElement | undefined {
@@ -54,10 +58,10 @@ function chooseVoid(
     return;
   }
 
-  const el = chooseElement(match.route.elements._void, name);
-  if (el) {
-    return el;
+  const { _outlets } = match.route.elements;
+  if (_outlets) {
+    return chooseElement(_outlets, name);
   }
 
-  return chooseVoid(match.prev);
+  return chooseOutlet(match.prev, name);
 }
