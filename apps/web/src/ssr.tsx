@@ -30,7 +30,7 @@ function createSsrHandler(manifest: ViteManifest) {
       const location = new URL(req.url, "http://localhost").pathname;
 
       const match = await enrouter.matchLocation(location);
-      if (!match?.last?.full) {
+      if (!match?.last?.isFull) {
         status = 404;
       }
 
