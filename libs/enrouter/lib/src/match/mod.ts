@@ -1,7 +1,7 @@
 import type { Route } from "#lib/route/mod.js";
 
 /**
- * Represents matched `Route`.
+ * Represents matched segment of `URL`.
  */
 export interface Match {
   route: Route;
@@ -11,6 +11,7 @@ export interface Match {
   params: Record<string, string>;
 
   first?: Match;
+  prev?: Match;
   next?: Match;
   last?: Match;
 }
