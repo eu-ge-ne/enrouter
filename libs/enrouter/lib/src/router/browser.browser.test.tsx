@@ -34,7 +34,7 @@ describe("router", () => {
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
 
       const match: Match = {
-        isRoot: false,
+        isRoot: true,
         isVoid: false,
         route,
         location: "/",
@@ -42,6 +42,7 @@ describe("router", () => {
         params: {},
       };
 
+      match.first = match;
       match.last = match;
 
       const screen = render(<BrowserRouter match={match} />, { wrapper });
