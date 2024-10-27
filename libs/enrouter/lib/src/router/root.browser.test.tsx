@@ -31,6 +31,8 @@ describe("router", () => {
         params: {},
       };
 
+      match.last = match;
+
       const screen = render(
         <MatchProvider value={match}>
           <Root />

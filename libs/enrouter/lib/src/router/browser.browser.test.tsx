@@ -40,9 +40,9 @@ describe("router", () => {
         params: {},
       };
 
-      const screen = render(<BrowserRouter match={match} />, {
-        wrapper,
-      });
+      match.last = match;
+
+      const screen = render(<BrowserRouter match={match} />, { wrapper });
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 

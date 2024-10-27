@@ -30,6 +30,8 @@ describe("router", () => {
         params: {},
       };
 
+      match.last = match;
+
       const screen = render(<StaticRouter location="/" match={match} />, {
         wrapper,
       });

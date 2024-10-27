@@ -156,32 +156,102 @@ exports[`match > matchLocation > from 2 routes 1`] = `
 exports[`match > matchLocation > from 2 routes with "_root" 1`] = `
 {
   "first": [Circular],
-  "full": true,
-  "last": [Circular],
-  "location": "/abc",
-  "next": undefined,
+  "full": false,
+  "last": {
+    "first": [Circular],
+    "full": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "prev": [Circular],
+    "route": {
+      "elements": {
+        "_root": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {
+            "children": "Root",
+          },
+          "type": "div",
+        },
+      },
+      "loaded": true,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+  "location": "/",
+  "next": {
+    "first": [Circular],
+    "full": true,
+    "last": [Circular],
+    "location": "/abc",
+    "next": undefined,
+    "params": {},
+    "prev": [Circular],
+    "route": {
+      "elements": {
+        "_root": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {
+            "children": "Root",
+          },
+          "type": "div",
+        },
+      },
+      "loaded": true,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
   "params": {},
   "prev": undefined,
   "route": {
-    "elements": {
-      "_root": {
-        "$$typeof": Symbol(react.transitional.element),
-        "_owner": null,
-        "_store": {},
-        "key": null,
-        "props": {
-          "children": "Root",
-        },
-        "type": "div",
-      },
-    },
+    "elements": {},
     "loaded": true,
     "modules": [],
-    "path": "/abc",
+    "path": "/",
     "test": {
       "keys": [],
-      "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
     },
+    "tree": [
+      {
+        "elements": {
+          "_root": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {
+              "children": "Root",
+            },
+            "type": "div",
+          },
+        },
+        "loaded": true,
+        "modules": [],
+        "path": "/abc",
+        "test": {
+          "keys": [],
+          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        },
+      },
+    ],
   },
 }
 `;
