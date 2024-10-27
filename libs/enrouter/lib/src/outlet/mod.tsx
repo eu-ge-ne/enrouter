@@ -1,10 +1,8 @@
 import type { ReactNode, ReactElement } from "react";
+import { isValidElement } from "react";
 
+import type { Match } from "#lib/match/mod.js";
 import { MatchProvider, useMatch } from "#lib/match/context.js";
-
-type C = ReactElement | undefined;
-
-type CC = Record<string, ReactElement> | undefined;
 
 export interface OutletProps {
   name?: string;
@@ -17,31 +15,49 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
-  const {
-    route: {
-      elements: { _page, _index, _void },
-    },
-    isFull,
-    next,
-  } = match;
-
   if (root) {
-    return name ? (_page as CC)?.[name] : (_page as C);
+    const el = chooseElement(match.route.elements._page, name);
+    return el ?? chooseVoid(match, name);
   }
 
-  if (!isFull && !next) {
-    return name ? (_void as CC)?.[name] : (_void as C);
+  if (match.next) {
+    const el = chooseElement(match.next.route.elements._page, name);
+    return el ? (
+      <MatchProvider value={match.next}>{el}</MatchProvider>
+    ) : (
+      chooseVoid(match.next, name)
+    );
   }
 
-  if (!next) {
-    return name ? (_index as CC)?.[name] : (_index as C);
+  const el = chooseElement(match.route.elements._index, name);
+  return el ?? chooseVoid(match, name);
+}
+
+function chooseElement(
+  els: ReactElement | Record<string, ReactElement> | undefined,
+  name?: string,
+): ReactElement | undefined {
+  if (!name && isValidElement(els)) {
+    return els;
   }
 
-  const _nextPage = next.route.elements._page;
+  if (name && els) {
+    return (els as Record<string, ReactElement>)[name];
+  }
+}
 
-  return (
-    <MatchProvider value={next}>
-      {name ? (_nextPage as CC)?.[name] : (_nextPage as C)}
-    </MatchProvider>
-  );
+function chooseVoid(
+  match: Match | undefined,
+  name?: string,
+): ReactElement | undefined {
+  if (!match) {
+    return;
+  }
+
+  const el = chooseElement(match.route.elements._void, name);
+  if (el) {
+    return el;
+  }
+
+  return chooseVoid(match.prev);
 }
