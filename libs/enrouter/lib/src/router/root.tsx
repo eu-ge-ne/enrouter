@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 
-import { useMatch } from "#lib/match/context.js";
+import { useRoot } from "#lib/match/hooks.js";
 
 export function Root(): ReactNode {
-  const match = useMatch();
+  const match = useRoot();
 
   return match?.route.elements._root;
 }

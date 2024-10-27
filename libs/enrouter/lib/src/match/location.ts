@@ -76,11 +76,6 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
 }
 
 function trim(matches: Match[]): void {
-  const rootIndex = matches.findLastIndex((x) => x.route.elements._root);
-  if (rootIndex >= 0) {
-    matches.splice(0, rootIndex);
-  }
-
   // TODO: move to outlet
   if (!matches.at(-1)?.full) {
     const voidIndex = matches.findLastIndex((x) => x.route.elements._void);
