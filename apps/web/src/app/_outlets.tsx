@@ -2,8 +2,8 @@ import { useLocation } from "enrouter";
 
 import { log } from "#log.js";
 
-export default function Void() {
-  log("Rendering: /_void");
+export default function Outlets() {
+  log("Rendering: /_outlets");
 
   const location = useLocation();
 
