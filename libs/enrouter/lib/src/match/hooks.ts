@@ -22,7 +22,7 @@ export interface UseActiveParams<T> {
 export function useActive<T>({ path, loose, value }: UseActiveParams<T>): T {
   const match = usePath(path);
 
-  const isActive = loose ? match !== undefined : Boolean(match?.isFull);
+  const isActive = loose ? match !== undefined : Boolean(match?.full);
 
   return isActive ? value[0] : value[1];
 }

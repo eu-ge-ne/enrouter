@@ -1,16 +1,17 @@
 import type { Route } from "#lib/route/mod.js";
 
 /**
- * Represents matched `Route`.
+ * Represents matched segment of location.
  */
 export interface Match {
   route: Route;
 
-  isFull: boolean;
+  full: boolean;
   location: string;
   params: Record<string, string>;
 
   first?: Match;
+  prev?: Match;
   next?: Match;
   last?: Match;
 }

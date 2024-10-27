@@ -10,7 +10,7 @@ const MatchContext = createContext<Match | undefined>({
     loaded: false,
     elements: {},
   },
-  isFull: false,
+  full: false,
   location: "",
   params: {},
 });

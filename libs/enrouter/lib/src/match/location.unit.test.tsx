@@ -178,7 +178,7 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              __void: <div>Void</div>,
+              //__void: <div>Void</div>,
             },
             tree: [
               {

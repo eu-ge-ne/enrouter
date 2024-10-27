@@ -36,7 +36,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      full: false,
       params: {},
     };
 
@@ -72,7 +72,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      full: false,
       params: {},
     };
 
@@ -110,7 +110,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: true,
+      full: true,
       params: {},
     };
 
@@ -146,7 +146,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: true,
+      full: true,
       params: {},
     };
 
@@ -181,7 +181,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      full: false,
       params: {},
       next: {
         route: {
@@ -200,7 +200,7 @@ describe("outlet", () => {
           },
         },
         location: "/a",
-        isFull: true,
+        full: true,
         params: {},
       },
     };
@@ -236,7 +236,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      full: false,
       params: {},
       next: {
         route: {
@@ -253,7 +253,7 @@ describe("outlet", () => {
           },
         },
         location: "/a",
-        isFull: true,
+        full: true,
         params: {},
       },
     };
@@ -290,7 +290,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: true,
+      full: true,
       params: {},
     };
 
@@ -322,7 +322,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: true,
+      full: true,
       params: {},
     };
 

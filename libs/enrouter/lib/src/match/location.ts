@@ -67,7 +67,7 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
 
   return {
     route,
-    isFull: loc === location,
+    full: loc === location,
     location: loc,
     params: Object.fromEntries(
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
@@ -81,23 +81,11 @@ function trim(matches: Match[]): void {
     matches.splice(0, rootIndex);
   }
 
-  if (!matches.at(-1)?.isFull) {
-    const voidIndex = matches.findLastIndex(
-      ({
-        route: {
-          elements: { _void, __void },
-        },
-      }) => _void || __void,
-    );
-
+  // TODO: move to outlet
+  if (!matches.at(-1)?.full) {
+    const voidIndex = matches.findLastIndex((x) => x.route.elements._void);
     if (voidIndex >= 0) {
-      if (matches[voidIndex]?.route.elements.__void) {
-        const match = matches[voidIndex];
-        matches.splice(0, matches.length);
-        matches.push(match);
-      } else {
-        matches.splice(voidIndex + 1);
-      }
+      matches.splice(voidIndex + 1);
     }
   }
 }
@@ -108,6 +96,7 @@ function link(matches: Match[]): void {
 
   matches.forEach((x, i) => {
     x.first = first;
+    x.prev = matches[i - 1];
     x.next = matches[i + 1];
     x.last = last;
   });

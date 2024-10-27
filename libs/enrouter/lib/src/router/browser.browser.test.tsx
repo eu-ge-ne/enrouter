@@ -36,7 +36,7 @@ describe("router", () => {
       const match: Match = {
         route,
         location: "/",
-        isFull: true,
+        full: true,
         params: {},
       };
 

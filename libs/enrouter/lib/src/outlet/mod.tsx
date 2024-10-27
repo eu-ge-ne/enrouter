@@ -1,5 +1,7 @@
 import type { ReactNode, ReactElement } from "react";
+import { isValidElement } from "react";
 
+import type { Match } from "#lib/match/mod.js";
 import { MatchProvider, useMatch } from "#lib/match/context.js";
 
 type C = ReactElement | undefined;
@@ -17,31 +19,34 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
-  const {
-    route: {
-      elements: { _page, _index, _void },
-    },
-    isFull,
-    next,
-  } = match;
-
   if (root) {
-    return name ? (_page as CC)?.[name] : (_page as C);
+    return chooseElement(match.route.elements._page, name);
   }
 
-  if (!isFull && !next) {
-    return name ? (_void as CC)?.[name] : (_void as C);
+  if (match.next) {
+    return (
+      <MatchProvider value={match.next}>
+        {chooseElement(match.next.route.elements._page)}
+      </MatchProvider>
+    );
   }
 
-  if (!next) {
-    return name ? (_index as CC)?.[name] : (_index as C);
+  if (match.full) {
+    return chooseElement(match.route.elements._index, name);
   }
 
-  const _nextPage = next.route.elements._page;
+  return chooseElement(match.route.elements._void, name);
+}
 
-  return (
-    <MatchProvider value={next}>
-      {name ? (_nextPage as CC)?.[name] : (_nextPage as C)}
-    </MatchProvider>
-  );
+function chooseElement(
+  els: ReactElement | Record<string, ReactElement> | undefined,
+  name?: string,
+): ReactElement | undefined {
+  if (!name && isValidElement(els)) {
+    return els;
+  }
+
+  if (name && els) {
+    return (els as Record<string, ReactElement>)[name];
+  }
 }
