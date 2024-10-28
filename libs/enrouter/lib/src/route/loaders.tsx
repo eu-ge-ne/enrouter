@@ -17,11 +17,11 @@ export const loaders: Record<string, Loader> = {
   "_layout.tsx": async ({ elements }, fn) => {
     elements._layout = await loadAny(fn);
   },
+  "_content.tsx": async ({ elements }, fn) => {
+    elements._content = await loadAny(fn);
+  },
   "_void.tsx": async ({ elements }, fn) => {
     elements._void = await loadAny(fn);
-  },
-  "_index.tsx": async ({ elements }, fn) => {
-    elements._index = await loadAny(fn);
   },
 };
 

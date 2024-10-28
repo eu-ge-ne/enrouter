@@ -14,14 +14,14 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
-  const { _layout, _void, _index } = match.route.elements;
+  const { _layout, _content, _void } = match.route.elements;
 
   if (root) {
-    return pick(_layout, name);
+    return pick(_layout ?? _content, name);
   }
 
   if (match.isFull) {
-    return pick(_index, name);
+    return pick(_content, name);
   }
 
   if (match.isVoid) {
@@ -31,7 +31,11 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
   if (match.next) {
     return (
       <MatchProvider value={match.next}>
-        {pick(match.next.route.elements._layout, name)}
+        {pick(
+          match.next.route.elements._layout ??
+            match.next.route.elements._content,
+          name,
+        )}
       </MatchProvider>
     );
   }

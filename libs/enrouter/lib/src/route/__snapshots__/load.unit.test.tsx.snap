@@ -17,11 +17,11 @@ exports[`route > loadRoutes > 1 route no modules 1`] = `
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
+exports[`route > loadRoutes > 1 route with _content.tsx module 1`] = `
 [
   {
     "elements": {
-      "_index": {
+      "_content": {
         "Main": {
           "$$typeof": Symbol(react.transitional.element),
           "_owner": null,
@@ -35,8 +35,8 @@ exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
     "loaded": true,
     "modules": [
       {
-        "fileName": "_index.tsx",
-        "id": "src/_index.tsx",
+        "fileName": "_content.tsx",
+        "id": "src/_content.tsx",
         "importFn": [Function],
       },
     ],

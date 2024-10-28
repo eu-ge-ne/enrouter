@@ -94,7 +94,7 @@ describe("outlet", () => {
               </div>
             ),
           },
-          _index: {
+          _content: {
             Next: <div>Next#_index</div>,
           },
         },
@@ -134,7 +134,7 @@ describe("outlet", () => {
               </div>
             ),
           },
-          _index: <div>_index</div>,
+          _content: <div>_index</div>,
         },
       },
       location: "/",
