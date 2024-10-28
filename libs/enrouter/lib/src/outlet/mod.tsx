@@ -24,17 +24,13 @@ export function Outlet({ name }: OutletProps): ReactNode {
     }
   }
 
-  // 2. render next match
   if (match.next) {
     return (
       <MatchProvider value={match.next}>
         {pickLayoutOrContent(match.next, name)}
       </MatchProvider>
     );
-  }
-
-  // 3. render content from this match
-  if (match.isFull) {
+  } else {
     return pick(match.route.elements._content, name);
   }
 }

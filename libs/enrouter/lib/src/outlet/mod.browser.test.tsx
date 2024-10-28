@@ -14,7 +14,20 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test("next using _layout default element", async () => {
+  test("no match", async () => {
+    const screen = render(
+      <MatchProvider value={undefined}>
+        <Outlet />
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("default _layout element from next match", async () => {
     const match: Match = {
       isVoid: false,
       route: {
@@ -22,7 +35,10 @@ describe("outlet", () => {
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
-        elements: {},
+        elements: {
+          _layout: <div>layout</div>,
+          _content: <div>content</div>,
+        },
       },
       location: "/",
       isFull: false,
@@ -36,8 +52,8 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _layout: <div>_layout</div>,
-            _content: <div>_content</div>,
+            _layout: <div>next layout</div>,
+            _content: <div>next content</div>,
           },
         },
         location: "/abc",
@@ -58,7 +74,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("next using _layout named element", async () => {
+  test("named _layout element from next match", async () => {
     const match: Match = {
       isVoid: false,
       route: {
@@ -66,7 +82,14 @@ describe("outlet", () => {
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
-        elements: {},
+        elements: {
+          _layout: {
+            Main: <div>layout#Main</div>,
+          },
+          _content: {
+            Main: <div>content#Main</div>,
+          },
+        },
       },
       location: "/",
       isFull: false,
@@ -81,10 +104,10 @@ describe("outlet", () => {
           loaded: true,
           elements: {
             _layout: {
-              Main: <div>_layout#Main</div>,
+              Main: <div>next layout#Main</div>,
             },
             _content: {
-              Main: <div>_content#Main</div>,
+              Main: <div>next content#Main</div>,
             },
           },
         },
@@ -106,7 +129,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("next using _content default element", async () => {
+  test("default _content element from current match", async () => {
     const match: Match = {
       isVoid: false,
       route: {
@@ -114,27 +137,14 @@ describe("outlet", () => {
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
-        elements: {},
+        elements: {
+          _layout: <div>layout</div>,
+          _content: <div>content</div>,
+        },
       },
       location: "/",
       isFull: false,
       params: {},
-
-      next: {
-        isVoid: false,
-        route: {
-          path: "/abc",
-          test: regexparam.parse("/abc", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _content: <div>_content</div>,
-          },
-        },
-        location: "/abc",
-        isFull: false,
-        params: {},
-      },
     };
 
     const screen = render(
@@ -149,7 +159,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("next using _content named element", async () => {
+  test("named _content element from current match", async () => {
     const match: Match = {
       isVoid: false,
       route: {
@@ -157,29 +167,18 @@ describe("outlet", () => {
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
-        elements: {},
+        elements: {
+          _layout: {
+            Main: <div>layout#Main</div>,
+          },
+          _content: {
+            Main: <div>content#Main</div>,
+          },
+        },
       },
       location: "/",
       isFull: false,
       params: {},
-
-      next: {
-        isVoid: false,
-        route: {
-          path: "/abc",
-          test: regexparam.parse("/abc", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _content: {
-              Main: <div>_content#Main</div>,
-            },
-          },
-        },
-        location: "/abc",
-        isFull: false,
-        params: {},
-      },
     };
 
     const screen = render(
