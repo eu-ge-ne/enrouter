@@ -55,7 +55,7 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _page.tsx module with multiple components", async () => {
+    test("1 route with _layout.tsx module with multiple components", async () => {
       const routes: Route[] = [
         {
           path: "/",
@@ -82,7 +82,7 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _page.tsx module with single components", async () => {
+    test("1 route with _layout.tsx module with single component", async () => {
       const routes: Route[] = [
         {
           path: "/",

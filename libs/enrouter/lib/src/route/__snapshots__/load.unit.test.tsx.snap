@@ -49,7 +49,7 @@ exports[`route > loadRoutes > 1 route with _index.tsx module 1`] = `
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _page.tsx module with multiple components 1`] = `
+exports[`route > loadRoutes > 1 route with _layout.tsx module with multiple components 1`] = `
 [
   {
     "elements": {
@@ -89,7 +89,7 @@ exports[`route > loadRoutes > 1 route with _page.tsx module with multiple compon
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _page.tsx module with single components 1`] = `
+exports[`route > loadRoutes > 1 route with _layout.tsx module with single component 1`] = `
 [
   {
     "elements": {
