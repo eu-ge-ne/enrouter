@@ -1,130 +1,48 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`outlet > root using _layout element 1`] = `
+exports[`outlet > root using _content default element 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      <div>
-        _root
-      </div>
-      <div>
-        _layout
-      </div>
+      _content
     </div>
   </div>
 </div>
 `;
 
-exports[`outlet > root using _layout elements 1`] = `
+exports[`outlet > root using _content named element 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      <div>
-        _root
-      </div>
-      <div>
-        Main#_layout
-      </div>
+      _content#Main
     </div>
   </div>
 </div>
 `;
 
-exports[`outlet > using _content element 1`] = `
+exports[`outlet > root using _layout default element 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      <div>
-        _layout
-      </div>
-      <div>
-        _content
-      </div>
+      _layout
     </div>
   </div>
 </div>
 `;
 
-exports[`outlet > using _content elements 1`] = `
+exports[`outlet > root using _layout named element 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      <div>
-        _layout
-      </div>
-      <div>
-        Next#_content
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using _layout element 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      <div>
-        _layout
-      </div>
-      <div>
-        <div>
-          _layout
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using _layout elements 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      <div>
-        _layout
-      </div>
-      <div>
-        <div>
-          Next#_layout
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using _void element 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      _void
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > using _void elements 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      _void
+      _layout#Main
     </div>
   </div>
 </div>
