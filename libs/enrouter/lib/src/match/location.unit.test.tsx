@@ -34,20 +34,6 @@ describe("match", () => {
       expect(await matchLocation("/")).toMatchSnapshot();
     });
 
-    test('from 1 route with "_root"', async () => {
-      vi.mocked(getRouteTree).mockReturnValueOnce({
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          _root: <div>Root</div>,
-        },
-      });
-
-      expect(await matchLocation("/")).toMatchSnapshot();
-    });
-
     test("from 2 routes", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/",
@@ -102,29 +88,6 @@ describe("match", () => {
             modules: [],
             loaded: false,
             elements: {},
-          },
-        ],
-      });
-
-      expect(await matchLocation("/abc")).toMatchSnapshot();
-    });
-
-    test('from 2 routes with "_root"', async () => {
-      vi.mocked(getRouteTree).mockReturnValueOnce({
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {},
-        tree: [
-          {
-            path: "/abc",
-            test: regexparam.parse("/abc", true),
-            modules: [],
-            loaded: true,
-            elements: {
-              _root: <div>Root</div>,
-            },
           },
         ],
       });

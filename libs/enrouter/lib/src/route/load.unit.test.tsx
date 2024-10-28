@@ -31,39 +31,15 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _root.tsx module", async () => {
+    test("1 route with _layout.tsx module with multiple components", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_root.tsx",
-              fileName: "_root.tsx",
-              importFn: async () => ({
-                default: () => <div>Root</div>,
-              }),
-            },
-          ],
-          loaded: false,
-          elements: {},
-        },
-      ];
-
-      await loadRoutes(routes);
-
-      expect(routes).toMatchSnapshot();
-    });
-
-    test("1 route with _page.tsx module with multiple components", async () => {
-      const routes: Route[] = [
-        {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [
-            {
-              id: "src/_page.tsx",
-              fileName: "_page.tsx",
+              id: "src/_layout.tsx",
+              fileName: "_layout.tsx",
               importFn: async () => ({
                 default: {
                   Main: () => <div>Page</div>,
@@ -82,15 +58,15 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _page.tsx module with single components", async () => {
+    test("1 route with _layout.tsx module with single component", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_page.tsx",
-              fileName: "_page.tsx",
+              id: "src/_layout.tsx",
+              fileName: "_layout.tsx",
               importFn: async () => ({
                 default: () => <div>Page</div>,
               }),
@@ -106,7 +82,7 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with already loaded _page.tsx", async () => {
+    test("1 route with already loaded _layout.tsx", async () => {
       const routes: Route[] = [
         {
           path: "/",
@@ -114,7 +90,7 @@ describe("route", () => {
           modules: [],
           loaded: true,
           elements: {
-            _page: <div>Page</div>,
+            _layout: <div>Page</div>,
           },
         },
       ];
@@ -124,15 +100,15 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _index.tsx module", async () => {
+    test("1 route with _content.tsx module", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_index.tsx",
-              fileName: "_index.tsx",
+              id: "src/_content.tsx",
+              fileName: "_content.tsx",
               importFn: async () => ({
                 default: {
                   Main: () => <div>Index</div>,

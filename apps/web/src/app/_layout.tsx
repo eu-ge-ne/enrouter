@@ -4,8 +4,8 @@ import { Outlet, useLink } from "enrouter";
 import { log } from "#log.js";
 import { GitHub } from "#svg/github.js";
 
-export default function Page() {
-  log("Rendering: /_page");
+export default function Layout() {
+  log("Rendering: /_layout");
 
   return (
     <div className="flex flex-col divide-y divide-appBorder">

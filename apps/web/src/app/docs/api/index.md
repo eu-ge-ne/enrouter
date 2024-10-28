@@ -1,18 +1,10 @@
 # API
 
-## Entities
-
-- [Route](/docs/api/route)
+- [\_layout](/docs/api/_layout)
 - [Match](/docs/api/match)
-
-## Components
-
 - [StaticRouter](/docs/api/router/static)
 - [BrowserRouter](/docs/api/router/browser)
 - [Outlet](/docs/api/outlet)
-
-## Hooks
-
 - [useLocation](/docs/api/useLocation)
 - [useMatch](/docs/api/useMatch)
 - [usePath](/docs/api/usePath)
