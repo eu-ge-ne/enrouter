@@ -1,17 +1,3 @@
 # API
 
-- [\_layout](/docs/api/_layout)
-- [\_content](/docs/api/_content)
-- [\_void](/docs/api/_void)
-- [matchLocation](/docs/api/matchLocation)
-- [Match](/docs/api/match)
-- [StaticRouter](/docs/api/router/static)
-- [BrowserRouter](/docs/api/router/browser)
-- [Outlet](/docs/api/outlet)
-- [useLocation](/docs/api/useLocation)
-- [useMatch](/docs/api/useMatch)
-- [usePath](/docs/api/usePath)
-- [useActive](/docs/api/useActive)
-- [useLink](/docs/api/link)
 - [Vite Plugin](/docs/api/vite-plugin)
-- [Vite Manifest](/docs/api/vite-manifest)
