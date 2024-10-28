@@ -12,6 +12,18 @@ exports[`outlet > default _content element from current match 1`] = `
 </div>
 `;
 
+exports[`outlet > default _content element from next match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      next content
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > default _layout element from next match 1`] = `
 <div>
   <div
@@ -31,6 +43,18 @@ exports[`outlet > named _content element from current match 1`] = `
   >
     <div>
       content#Main
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > named _content element from next match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      next content#Main
     </div>
   </div>
 </div>
