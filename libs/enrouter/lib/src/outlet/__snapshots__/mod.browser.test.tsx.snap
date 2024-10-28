@@ -1,5 +1,53 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`outlet > next using _content default element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      _content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > next using _content named element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      _content#Main
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > next using _layout default element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      _layout
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > next using _layout named element 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      _layout#Main
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > root using _content default element 1`] = `
 <div>
   <div
