@@ -1,6 +1,6 @@
 # API
 
-- [_layout](/docs/api/_layout)
+- [\_layout](/docs/api/_layout)
 
 - [Match](/docs/api/match)
 - [StaticRouter](/docs/api/router/static)
