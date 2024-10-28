@@ -1,4 +1,10 @@
-import { type ReactElement, type ReactNode, useState, useCallback, useEffect } from "react";
+import {
+  type ReactElement,
+  type ReactNode,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
