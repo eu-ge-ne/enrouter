@@ -13,3 +13,5 @@
 - [usePath](/docs/api/usePath)
 - [useActive](/docs/api/useActive)
 - [useLink](/docs/api/link)
+- [Vite Plugin](/docs/api/vite-plugin)
+- [Vite Manifest](/docs/api/vite-manifest)
