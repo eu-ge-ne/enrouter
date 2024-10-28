@@ -2,7 +2,7 @@
 
 ## Scaffold project
 
-Let's create new Vite project from `react-ts` template and run it:
+Create new Vite project from `react-ts` template and run it:
 
 ```bash
 pnpm create vite enrouter-demo --template react-ts
@@ -21,8 +21,8 @@ available at `/` where you can click a button and increment the counter:
 Let's add another page with same layout but different behavior: instead of
 incrementing the counter the button will be decrementing it.
 
-We will put original page at `/increment`. The new page which you are going to
-create will be located at `/decrement`.
+We will put original page at `/incr`.
+The new page which you are going to create will be located at `/decr`.
 
 And, indeed, we need a home page containing links to both pages.
 
@@ -52,8 +52,8 @@ export default defineConfig({
 
 `src/app` is a folder where you put your route components.
 
-[Vite Plugin](/docs/vite/plugin) explains why `virtual:enrouter` must be added
-to `optimizeDeps.exclude`.
+[Vite Plugin](/docs/api/vite-plugin) explains why `virtual:enrouter` must be
+added to `optimizeDeps.exclude`.
 
 Last step of installing enrouter is to add `BrowserRouter` component to the
 entry file `src/main.tsx`:
@@ -82,24 +82,26 @@ main();
 
 ## Define routes
 
-### \_root.tsx
+Visit [Routes](/docs/api/routes) for more details about how routing works.
 
-First, you need to create `_root.tsx` file.
-It defines common style and layout shared by all routes.
+### \_layout.tsx
+
+First, you need to create `_layout.tsx` file.
+It defines common style and layout shared by child routes.
 You can reuse existing `App.tsx` for style and layout and just add navigation
 links.
-Move and change `App.tsx` to `src/app/_root.tsx`:
+Move `App.tsx` to `src/app/_layout.tsx` and modify it:
 
 ```tsx
-// src/app/_root.tsx
+// src/app/_layout.tsx
 
 import { Outlet, useLink } from "enrouter";
 
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./root.css";
+import "./styles.css";
 
-export default function Root() {
+export default function Layout() {
   return (
     <>
       <div>
@@ -116,10 +118,10 @@ export default function Root() {
           <a {...useLink("/")}>Home</a>
         </li>
         <li>
-          <a {...useLink("/increment")}>Increment</a>
+          <a {...useLink("/incr")}>Increment</a>
         </li>
         <li>
-          <a {...useLink("/decrement")}>Decrement</a>
+          <a {...useLink("/decr")}>Decrement</a>
         </li>
       </ul>
       <div className="card">
@@ -133,10 +135,10 @@ export default function Root() {
 }
 ```
 
-Also, move `App.css` to `src/app/root.css` and add style for menu:
+Also, move `App.css` to `src/app/styles.css` and add style for menu:
 
 ```css
-/* src/app/root.css */
+/* src/app/styles.css */
 
 /* ... */
 
@@ -148,18 +150,17 @@ Also, move `App.css` to `src/app/root.css` and add style for menu:
 }
 ```
 
-### \_page.tsx
+### \_content.tsx
 
-Finally, create `_page.tsx` files for `/increment` and `/decrement`
-locations.
+Finally, create `_content.tsx` files for `/incr` and `/decr` locations.
 They are very similar with a few minor differences:
 
 ```tsx
-// src/app/increment/_page.tsx
+// src/app/incr/_content.tsx
 
 import { useState } from "react";
 
-export default function Increment() {
+export default function Incr() {
   const [count, setCount] = useState(0);
 
   return (
@@ -168,7 +169,7 @@ export default function Increment() {
         count is {count}
       </button>
       <p>
-        Edit <code>src/app/increment/_page.tsx</code> and save to test HMR
+        Edit <code>src/app/incr/_content.tsx</code> and save to test HMR
       </p>
     </>
   );
@@ -176,11 +177,11 @@ export default function Increment() {
 ```
 
 ```tsx
-// src/app/decrement/_page.tsx
+// src/app/decr/_content.tsx
 
 import { useState } from "react";
 
-export default function Increment() {
+export default function Decr() {
   const [count, setCount] = useState(0);
 
   return (
@@ -189,19 +190,18 @@ export default function Increment() {
         count is {count}
       </button>
       <p>
-        Edit <code>src/app/decrement/_page.tsx</code> and save to test HMR
+        Edit <code>src/app/decr/_content.tsx</code> and save to test HMR
       </p>
     </>
   );
 }
 ```
 
-The result is looking like:
+Final result looks like this:
 
 ![Start 1](/start-1.png "Start 1")
 
 ## GitHub repository
 
-Also, you can clone
-[enrouter examples](https://github.com/eu-ge-ne/enrouter-examples) GitHub repo
-to your machine and play with it locally.
+Also, you can clone [examples](https://github.com/eu-ge-ne/enrouter-examples)
+GitHub repo to your machine and play with it locally.
