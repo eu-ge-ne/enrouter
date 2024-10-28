@@ -1,6 +1,6 @@
 {
   "name": "enrouter",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "type": "module",
   "description": "",
   "exports": {
@@ -56,7 +56,7 @@
     "glob": "^11.0.0",
     "lodash.groupby": "^4.6.0",
     "playwright": "^1.48.2",
-    "react": "19.0.0-rc-1460d67c-20241003",
+    "react": "19.0.0-rc-02c0e824-20241028",
     "regexparam": "^3.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
