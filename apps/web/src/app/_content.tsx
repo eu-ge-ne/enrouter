@@ -3,7 +3,7 @@ import { useLink } from "enrouter";
 import { log } from "#log.js";
 import { GitHub } from "#svg/github.js";
 
-export default function Index() {
+export default function Content() {
   log("Rendering: /_content");
 
   return (
