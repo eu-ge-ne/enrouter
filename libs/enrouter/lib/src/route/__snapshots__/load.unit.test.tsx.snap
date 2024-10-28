@@ -53,7 +53,7 @@ exports[`route > loadRoutes > 1 route with _page.tsx module with multiple compon
 [
   {
     "elements": {
-      "_page": {
+      "_layout": {
         "Main": {
           "$$typeof": Symbol(react.transitional.element),
           "_owner": null,
@@ -75,8 +75,8 @@ exports[`route > loadRoutes > 1 route with _page.tsx module with multiple compon
     "loaded": true,
     "modules": [
       {
-        "fileName": "_page.tsx",
-        "id": "src/_page.tsx",
+        "fileName": "_layout.tsx",
+        "id": "src/_layout.tsx",
         "importFn": [Function],
       },
     ],
@@ -93,7 +93,7 @@ exports[`route > loadRoutes > 1 route with _page.tsx module with single componen
 [
   {
     "elements": {
-      "_page": {
+      "_layout": {
         "$$typeof": Symbol(react.transitional.element),
         "_owner": null,
         "_store": {},
@@ -105,8 +105,8 @@ exports[`route > loadRoutes > 1 route with _page.tsx module with single componen
     "loaded": true,
     "modules": [
       {
-        "fileName": "_page.tsx",
-        "id": "src/_page.tsx",
+        "fileName": "_layout.tsx",
+        "id": "src/_layout.tsx",
         "importFn": [Function],
       },
     ],
@@ -181,11 +181,11 @@ exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with already loaded _page.tsx 1`] = `
+exports[`route > loadRoutes > 1 route with already loaded _layout.tsx 1`] = `
 [
   {
     "elements": {
-      "_page": {
+      "_layout": {
         "$$typeof": Symbol(react.transitional.element),
         "_owner": null,
         "_store": {},

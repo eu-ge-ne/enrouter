@@ -25,7 +25,7 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            _page: {
+            _layout: {
               Main: <div>Page /</div>,
             },
           },
@@ -43,7 +43,7 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              _page: {
+              _layout: {
                 Main: <div>Page /abc</div>,
               },
             },
@@ -58,7 +58,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         const match = usePath("/abc");
-        return (match?.route.elements._page as Record<string, ReactElement>)
+        return (match?.route.elements._layout as Record<string, ReactElement>)
           .Main;
       };
 
@@ -86,7 +86,7 @@ describe("match", () => {
           modules: [],
           loaded: true,
           elements: {
-            _page: {
+            _layout: {
               Main: <div>Page /</div>,
             },
           },
@@ -104,7 +104,7 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              _page: {
+              _layout: {
                 Main: <div>Page /abc</div>,
               },
             },

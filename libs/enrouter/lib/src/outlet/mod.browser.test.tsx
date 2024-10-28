@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("outlet", () => {
-  test('using "_void" elements', async () => {
+  test("using _void elements", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: true,
@@ -46,7 +46,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test('using "_void" element', async () => {
+  test("using _void element", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: true,
@@ -76,7 +76,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "_index" elements`, async () => {
+  test("using _index elements", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -86,7 +86,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          _page: {
+          _layout: {
             Main: (
               <div>
                 <div>_page</div>
@@ -106,7 +106,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        {(match.route.elements._layout as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -116,7 +116,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "_index" element`, async () => {
+  test("using _index element", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -126,7 +126,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          _page: {
+          _layout: {
             Main: (
               <div>
                 <div>_page</div>
@@ -144,7 +144,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        {(match.route.elements._layout as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -154,7 +154,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "_page" elements`, async () => {
+  test("using _layout elements", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -164,7 +164,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          _page: {
+          _layout: {
             Main: (
               <div>
                 <div>_page</div>
@@ -187,7 +187,7 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _page: {
+            _layout: {
               Next: (
                 <div>
                   <div>Next#_page</div>
@@ -204,7 +204,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        {(match.route.elements._layout as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -214,7 +214,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using "_page" element`, async () => {
+  test("using _layout element", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -224,7 +224,7 @@ describe("outlet", () => {
         modules: [],
         loaded: true,
         elements: {
-          _page: {
+          _layout: {
             Main: (
               <div>
                 <div>_page</div>
@@ -247,7 +247,7 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _page: (
+            _layout: (
               <div>
                 <div>_page</div>
               </div>
@@ -262,7 +262,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        {(match.route.elements._layout as Record<string, ReactElement>).Main}
       </MatchProvider>,
       { wrapper },
     );
@@ -272,7 +272,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using here "_page" elements`, async () => {
+  test("root using _layout elements", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -288,7 +288,7 @@ describe("outlet", () => {
               <Outlet root name="Main" />
             </div>
           ),
-          _page: {
+          _layout: {
             Main: <div>Main#_page</div>,
           },
         },
@@ -308,7 +308,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test(`using here "_page" element`, async () => {
+  test("root using _layout element", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -324,7 +324,7 @@ describe("outlet", () => {
               <Outlet root />
             </div>
           ),
-          _page: <div>_page</div>,
+          _layout: <div>_page</div>,
         },
       },
       location: "/",
