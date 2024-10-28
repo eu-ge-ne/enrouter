@@ -80,14 +80,14 @@ function link(matches: Match[]): void {
   const first = matches[0];
   const last = matches.at(-1);
 
-  const isRootIndex = matches.findLastIndex((x) => x.route.elements._root);
-  const isVoidIndex = last?.isFull
+  const lastRootIndex = matches.findLastIndex((x) => x.route.elements._root);
+  const lastVoidIndex = last?.isFull
     ? -1
     : matches.findLastIndex((x) => x.route.elements._void);
 
   matches.forEach((x, i) => {
-    x.isRoot = i === isRootIndex;
-    x.isVoid = i === isVoidIndex;
+    x.isRoot = i === lastRootIndex;
+    x.isVoid = i === lastVoidIndex;
 
     x.first = first;
     x.prev = matches[i - 1];
