@@ -89,10 +89,10 @@ describe("buildRouteTree", () => {
             importStr: '() => import("/home/src/xyz/_layout.tsx")',
           },
           {
-            id: "src/xyz/_index.tsx",
-            fileName: "_index.tsx",
+            id: "src/xyz/_content.tsx",
+            fileName: "_content.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/xyz/_index.tsx")',
+            importStr: '() => import("/home/src/xyz/_content.tsx")',
           },
         ],
       },

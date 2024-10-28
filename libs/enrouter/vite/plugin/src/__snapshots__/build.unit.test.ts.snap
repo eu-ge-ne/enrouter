@@ -85,8 +85,8 @@ exports[`buildRouteTree > from 3 modules 1`] = `
           "importFn": [Function],
         },
         {
-          "fileName": "_index.tsx",
-          "id": "src/xyz/_index.tsx",
+          "fileName": "_content.tsx",
+          "id": "src/xyz/_content.tsx",
           "importFn": [Function],
         },
       ],

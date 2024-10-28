@@ -76,7 +76,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("using _index elements", async () => {
+  test("using _content elements", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -95,7 +95,7 @@ describe("outlet", () => {
             ),
           },
           _content: {
-            Next: <div>Next#_index</div>,
+            Next: <div>Next#_content</div>,
           },
         },
       },
@@ -116,7 +116,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("using _index element", async () => {
+  test("using _content element", async () => {
     const match: Match = {
       isRoot: false,
       isVoid: false,
@@ -134,7 +134,7 @@ describe("outlet", () => {
               </div>
             ),
           },
-          _content: <div>_index</div>,
+          _content: <div>_content</div>,
         },
       },
       location: "/",
