@@ -65,7 +65,6 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   const loc = execs[0] || "/";
 
   return {
-    isRoot: false,
     isVoid: false,
     route,
     isFull: loc === location,
@@ -77,16 +76,12 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
 }
 
 function link(matches: Match[]): void {
+  const lastVoidIndex = matches.findLastIndex((x) => x.route.elements._void);
+
   const first = matches[0];
   const last = matches.at(-1);
 
-  const lastRootIndex = matches.findLastIndex((x) => x.route.elements._root);
-  const lastVoidIndex = last?.isFull
-    ? -1
-    : matches.findLastIndex((x) => x.route.elements._void);
-
   matches.forEach((x, i) => {
-    x.isRoot = i === lastRootIndex;
     x.isVoid = i === lastVoidIndex;
 
     x.first = first;

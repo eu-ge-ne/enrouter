@@ -3,7 +3,6 @@ import { createContext, useContext } from "react";
 import type { Match } from "./mod.js";
 
 const MatchContext = createContext<Match | undefined>({
-  isRoot: false,
   isVoid: false,
   route: {
     path: "",

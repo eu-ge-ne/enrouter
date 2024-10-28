@@ -20,21 +20,20 @@ vi.mock(import("#lib/route/tree.js"), () => ({
 
 describe("router", () => {
   describe("BrowserRouter", () => {
-    test("_root", async () => {
+    test("root", async () => {
       const route: Route = {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
         elements: {
-          _root: <div>Root</div>,
+          _layout: <div>Root</div>,
         },
       };
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
 
       const match: Match = {
-        isRoot: true,
         isVoid: false,
         route,
         location: "/",

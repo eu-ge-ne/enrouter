@@ -23,7 +23,6 @@ export interface Route {
   loaded: boolean;
 
   elements: {
-    _root?: ReactElement;
     _layout?: ReactElement | Record<string, ReactElement>;
     _content?: ReactElement | Record<string, ReactElement>;
     _void?: ReactElement | Record<string, ReactElement>;

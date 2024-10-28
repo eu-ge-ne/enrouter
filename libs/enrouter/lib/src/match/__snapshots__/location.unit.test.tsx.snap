@@ -6,7 +6,6 @@ exports[`match > matchLocation > from 1 route 1`] = `
 {
   "first": [Circular],
   "isFull": true,
-  "isRoot": false,
   "isVoid": false,
   "last": [Circular],
   "location": "/",
@@ -26,46 +25,10 @@ exports[`match > matchLocation > from 1 route 1`] = `
 }
 `;
 
-exports[`match > matchLocation > from 1 route with "_root" 1`] = `
-{
-  "first": [Circular],
-  "isFull": true,
-  "isRoot": true,
-  "isVoid": false,
-  "last": [Circular],
-  "location": "/",
-  "next": undefined,
-  "params": {},
-  "prev": undefined,
-  "route": {
-    "elements": {
-      "_root": {
-        "$$typeof": Symbol(react.transitional.element),
-        "_owner": null,
-        "_store": {},
-        "key": null,
-        "props": {
-          "children": "Root",
-        },
-        "type": "div",
-      },
-    },
-    "loaded": true,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-  },
-}
-`;
-
 exports[`match > matchLocation > from 1 route with params 1`] = `
 {
   "first": [Circular],
   "isFull": true,
-  "isRoot": false,
   "isVoid": false,
   "last": [Circular],
   "location": "/100",
@@ -93,12 +56,10 @@ exports[`match > matchLocation > from 2 routes 1`] = `
 {
   "first": [Circular],
   "isFull": false,
-  "isRoot": false,
   "isVoid": false,
   "last": {
     "first": [Circular],
     "isFull": true,
-    "isRoot": false,
     "isVoid": false,
     "last": [Circular],
     "location": "/abc",
@@ -120,7 +81,6 @@ exports[`match > matchLocation > from 2 routes 1`] = `
   "next": {
     "first": [Circular],
     "isFull": true,
-    "isRoot": false,
     "isVoid": false,
     "last": [Circular],
     "location": "/abc",
@@ -165,125 +125,14 @@ exports[`match > matchLocation > from 2 routes 1`] = `
 }
 `;
 
-exports[`match > matchLocation > from 2 routes with "_root" 1`] = `
-{
-  "first": [Circular],
-  "isFull": false,
-  "isRoot": false,
-  "isVoid": false,
-  "last": {
-    "first": [Circular],
-    "isFull": true,
-    "isRoot": true,
-    "isVoid": false,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
-    "params": {},
-    "prev": [Circular],
-    "route": {
-      "elements": {
-        "_root": {
-          "$$typeof": Symbol(react.transitional.element),
-          "_owner": null,
-          "_store": {},
-          "key": null,
-          "props": {
-            "children": "Root",
-          },
-          "type": "div",
-        },
-      },
-      "loaded": true,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-  "location": "/",
-  "next": {
-    "first": [Circular],
-    "isFull": true,
-    "isRoot": true,
-    "isVoid": false,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
-    "params": {},
-    "prev": [Circular],
-    "route": {
-      "elements": {
-        "_root": {
-          "$$typeof": Symbol(react.transitional.element),
-          "_owner": null,
-          "_store": {},
-          "key": null,
-          "props": {
-            "children": "Root",
-          },
-          "type": "div",
-        },
-      },
-      "loaded": true,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-  "params": {},
-  "prev": undefined,
-  "route": {
-    "elements": {},
-    "loaded": true,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-    "tree": [
-      {
-        "elements": {
-          "_root": {
-            "$$typeof": Symbol(react.transitional.element),
-            "_owner": null,
-            "_store": {},
-            "key": null,
-            "props": {
-              "children": "Root",
-            },
-            "type": "div",
-          },
-        },
-        "loaded": true,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-    ],
-  },
-}
-`;
-
 exports[`match > matchLocation > from 2 routes with params 1`] = `
 {
   "first": [Circular],
   "isFull": false,
-  "isRoot": false,
   "isVoid": false,
   "last": {
     "first": [Circular],
     "isFull": true,
-    "isRoot": false,
     "isVoid": false,
     "last": [Circular],
     "location": "/abc",
@@ -305,7 +154,6 @@ exports[`match > matchLocation > from 2 routes with params 1`] = `
   "next": {
     "first": [Circular],
     "isFull": true,
-    "isRoot": false,
     "isVoid": false,
     "last": [Circular],
     "location": "/abc",
@@ -366,12 +214,10 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
 {
   "first": [Circular],
   "isFull": false,
-  "isRoot": false,
   "isVoid": false,
   "last": {
     "first": [Circular],
     "isFull": false,
-    "isRoot": false,
     "isVoid": false,
     "last": [Circular],
     "location": "/abc/xyz",
@@ -380,7 +226,6 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
     "prev": {
       "first": [Circular],
       "isFull": false,
-      "isRoot": false,
       "isVoid": true,
       "last": [Circular],
       "location": "/abc",
@@ -436,12 +281,10 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
   "next": {
     "first": [Circular],
     "isFull": false,
-    "isRoot": false,
     "isVoid": true,
     "last": {
       "first": [Circular],
       "isFull": false,
-      "isRoot": false,
       "isVoid": false,
       "last": [Circular],
       "location": "/abc/xyz",
@@ -463,7 +306,6 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
     "next": {
       "first": [Circular],
       "isFull": false,
-      "isRoot": false,
       "isVoid": false,
       "last": [Circular],
       "location": "/abc/xyz",

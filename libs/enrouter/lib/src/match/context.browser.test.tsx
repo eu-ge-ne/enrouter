@@ -16,7 +16,6 @@ describe("match", () => {
   describe("useMatch", () => {
     test("1 match", async () => {
       const context: Match = {
-        isRoot: false,
         isVoid: false,
         route: {
           path: "/",

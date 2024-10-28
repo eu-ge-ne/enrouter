@@ -4,7 +4,6 @@ import type { Route } from "#lib/route/mod.js";
  * Represents matched segment of location.
  */
 export interface Match {
-  isRoot: boolean;
   isVoid: boolean;
   route: Route;
 

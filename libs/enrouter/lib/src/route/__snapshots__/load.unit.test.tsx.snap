@@ -119,36 +119,6 @@ exports[`route > loadRoutes > 1 route with _layout.tsx module with single compon
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _root.tsx module 1`] = `
-[
-  {
-    "elements": {
-      "_root": {
-        "$$typeof": Symbol(react.transitional.element),
-        "_owner": null,
-        "_store": {},
-        "key": null,
-        "props": {},
-        "type": [Function],
-      },
-    },
-    "loaded": true,
-    "modules": [
-      {
-        "fileName": "_root.tsx",
-        "id": "src/_root.tsx",
-        "importFn": [Function],
-      },
-    ],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-  },
-]
-`;
-
 exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
 [
   {

@@ -17,7 +17,6 @@ describe("match", () => {
   describe("usePath", () => {
     test("with 2 matches", async () => {
       const context: Match = {
-        isRoot: false,
         isVoid: false,
         route: {
           path: "/",
@@ -35,7 +34,6 @@ describe("match", () => {
         params: {},
 
         next: {
-          isRoot: false,
           isVoid: false,
           route: {
             path: "/abc",
@@ -78,7 +76,6 @@ describe("match", () => {
   describe("useActive", () => {
     test("with 2 matches", async () => {
       const context: Match = {
-        isRoot: false,
         isVoid: false,
         route: {
           path: "/",
@@ -96,7 +93,6 @@ describe("match", () => {
         params: {},
 
         next: {
-          isRoot: false,
           isVoid: false,
           route: {
             path: "/abc",

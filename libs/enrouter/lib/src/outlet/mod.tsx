@@ -6,23 +6,25 @@ import { MatchProvider, useMatch } from "#lib/match/context.js";
 
 export interface OutletProps {
   name?: string;
-  root?: boolean;
 }
 
-export function Outlet({ name, root }: OutletProps): ReactNode {
+export function Outlet({ name }: OutletProps): ReactNode {
   const match = useMatch();
   if (!match) {
     return;
   }
 
-  if (root) {
-    return pickLayoutOrContent(match, name);
+  // Outlet is rendered on _layout
+  // Possible outcomes:
+
+  // 1. render void from this match if last match is not full
+  if (!match.last?.isFull) {
+    if (match.isVoid) {
+      return pick(match.route.elements._void, name);
+    }
   }
 
-  if (match.isVoid) {
-    return pick(match.route.elements._void, name);
-  }
-
+  // 2. render next match
   if (match.next) {
     return (
       <MatchProvider value={match.next}>
@@ -31,8 +33,7 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     );
   }
 
-  // TODO:
-
+  // 3. render content from this match
   if (match.isFull) {
     return pick(match.route.elements._content, name);
   }
