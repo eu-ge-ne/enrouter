@@ -16,22 +16,16 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("outlet", () => {
   test('using "_void" elements', async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: true,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
         elements: {
-          _page: {
-            Main: (
-              <div>
-                <div>_page</div>
-                <Outlet name="Next" />
-              </div>
-            ),
-          },
           _void: {
-            Next: <div>Next#_void</div>,
+            Main: <div>_void</div>,
           },
         },
       },
@@ -42,7 +36,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        <Outlet name="Main" />
       </MatchProvider>,
       { wrapper },
     );
@@ -54,20 +48,14 @@ describe("outlet", () => {
 
   test('using "_void" element', async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: true,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
         elements: {
-          _page: {
-            Main: (
-              <div>
-                <div>_page</div>
-                <Outlet />
-              </div>
-            ),
-          },
           _void: <div>_void</div>,
         },
       },
@@ -78,7 +66,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        <Outlet />
       </MatchProvider>,
       { wrapper },
     );
@@ -90,6 +78,8 @@ describe("outlet", () => {
 
   test(`using "_index" elements`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -128,6 +118,8 @@ describe("outlet", () => {
 
   test(`using "_index" element`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -164,6 +156,8 @@ describe("outlet", () => {
 
   test(`using "_page" elements`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -183,7 +177,10 @@ describe("outlet", () => {
       location: "/",
       isFull: false,
       params: {},
+
       next: {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/a",
           test: regexparam.parse("/a", true),
@@ -219,6 +216,8 @@ describe("outlet", () => {
 
   test(`using "_page" element`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -238,7 +237,10 @@ describe("outlet", () => {
       location: "/",
       isFull: false,
       params: {},
+
       next: {
+        isRoot: false,
+        isVoid: false,
         route: {
           path: "/a",
           test: regexparam.parse("/a", true),
@@ -272,6 +274,8 @@ describe("outlet", () => {
 
   test(`using here "_page" elements`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
@@ -306,6 +310,8 @@ describe("outlet", () => {
 
   test(`using here "_page" element`, async () => {
     const match: Match = {
+      isRoot: false,
+      isVoid: false,
       route: {
         path: "/",
         test: regexparam.parse("/", true),

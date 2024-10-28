@@ -3,11 +3,13 @@ import type { ReactNode } from "react";
 import { useMatch } from "#lib/match/context.js";
 
 export function Root(): ReactNode {
-  const match = useMatch();
+  let match = useMatch()?.first;
 
-  if (match?.last == match && !match?.isFull) {
-    return match?.route.elements.__void;
+  while (match) {
+    if (match.isRoot) {
+      return match.route.elements._root;
+    }
+
+    match = match.next;
   }
-
-  return match?.route.elements._root;
 }

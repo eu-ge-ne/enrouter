@@ -34,15 +34,18 @@ describe("router", () => {
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
 
       const match: Match = {
+        isRoot: true,
+        isVoid: false,
         route,
         location: "/",
         isFull: true,
         params: {},
       };
 
-      const screen = render(<BrowserRouter match={match} />, {
-        wrapper,
-      });
+      match.first = match;
+      match.last = match;
+
+      const screen = render(<BrowserRouter match={match} />, { wrapper });
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 

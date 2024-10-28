@@ -78,12 +78,7 @@ exports[`outlet > using "_void" element 1`] = `
     data-testid="test-wrapper"
   >
     <div>
-      <div>
-        _page
-      </div>
-      <div>
-        _void
-      </div>
+      _void
     </div>
   </div>
 </div>
@@ -95,12 +90,7 @@ exports[`outlet > using "_void" elements 1`] = `
     data-testid="test-wrapper"
   >
     <div>
-      <div>
-        _page
-      </div>
-      <div>
-        Next#_void
-      </div>
+      _void
     </div>
   </div>
 </div>

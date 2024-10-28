@@ -20,9 +20,6 @@ export interface Route {
     pattern: RegExp;
   };
 
-  /**
-   * Modules belonging to the route
-   */
   modules: {
     id: string;
     fileName: string;
@@ -33,10 +30,9 @@ export interface Route {
 
   elements: {
     _root?: ReactElement;
-    __void?: ReactElement;
     _page?: ReactElement | Record<string, ReactElement>;
-    _index?: ReactElement | Record<string, ReactElement>;
     _void?: ReactElement | Record<string, ReactElement>;
+    _index?: ReactElement | Record<string, ReactElement>;
   };
 
   /**

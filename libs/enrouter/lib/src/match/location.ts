@@ -15,7 +15,6 @@ export async function matchLocation(
 
   await loadRoutes(matches.map((x) => x.route));
 
-  trim(matches);
   link(matches);
 
   log("matched: %o", matches);
@@ -66,6 +65,8 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   const loc = execs[0] || "/";
 
   return {
+    isRoot: false,
+    isVoid: false,
     route,
     isFull: loc === location,
     location: loc,
@@ -75,39 +76,21 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   };
 }
 
-function trim(matches: Match[]): void {
-  const rootIndex = matches.findLastIndex((x) => x.route.elements._root);
-  if (rootIndex >= 0) {
-    matches.splice(0, rootIndex);
-  }
-
-  if (!matches.at(-1)?.isFull) {
-    const voidIndex = matches.findLastIndex(
-      ({
-        route: {
-          elements: { _void, __void },
-        },
-      }) => _void || __void,
-    );
-
-    if (voidIndex >= 0) {
-      if (matches[voidIndex]?.route.elements.__void) {
-        const match = matches[voidIndex];
-        matches.splice(0, matches.length);
-        matches.push(match);
-      } else {
-        matches.splice(voidIndex + 1);
-      }
-    }
-  }
-}
-
 function link(matches: Match[]): void {
   const first = matches[0];
   const last = matches.at(-1);
 
+  const lastRootIndex = matches.findLastIndex((x) => x.route.elements._root);
+  const lastVoidIndex = last?.isFull
+    ? -1
+    : matches.findLastIndex((x) => x.route.elements._void);
+
   matches.forEach((x, i) => {
+    x.isRoot = i === lastRootIndex;
+    x.isVoid = i === lastVoidIndex;
+
     x.first = first;
+    x.prev = matches[i - 1];
     x.next = matches[i + 1];
     x.last = last;
   });

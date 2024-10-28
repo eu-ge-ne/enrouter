@@ -14,17 +14,14 @@ export const loaders: Record<string, Loader> = {
   "_root.tsx": async ({ elements }, fn) => {
     elements._root = await loadSingle(fn);
   },
-  "__void.tsx": async ({ elements }, fn) => {
-    elements.__void = await loadSingle(fn);
-  },
   "_page.tsx": async ({ elements }, fn) => {
     elements._page = await loadAny(fn);
   },
-  "_index.tsx": async ({ elements }, fn) => {
-    elements._index = await loadAny(fn);
-  },
   "_void.tsx": async ({ elements }, fn) => {
     elements._void = await loadAny(fn);
+  },
+  "_index.tsx": async ({ elements }, fn) => {
+    elements._index = await loadAny(fn);
   },
 };
 

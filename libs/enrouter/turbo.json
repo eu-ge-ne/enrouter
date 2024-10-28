@@ -18,6 +18,9 @@
       "outputs": ["dist/vite/plugin/**"],
       "dependsOn": ["clean", "^build"]
     },
+    "lint": {
+      "dependsOn": ["lint:lib", "lint:vite:manifest", "lint:vite:plugin"]
+    },
     "lint:lib": {
       "dependsOn": ["^build"]
     },

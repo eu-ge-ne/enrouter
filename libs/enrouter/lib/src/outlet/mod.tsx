@@ -1,10 +1,7 @@
 import type { ReactNode, ReactElement } from "react";
+import { isValidElement } from "react";
 
 import { MatchProvider, useMatch } from "#lib/match/context.js";
-
-type C = ReactElement | undefined;
-
-type CC = Record<string, ReactElement> | undefined;
 
 export interface OutletProps {
   name?: string;
@@ -17,31 +14,38 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
-  const {
-    route: {
-      elements: { _page, _index, _void },
-    },
-    isFull,
-    next,
-  } = match;
+  const { _page, _void, _index } = match.route.elements;
 
   if (root) {
-    return name ? (_page as CC)?.[name] : (_page as C);
+    return pick(_page, name);
   }
 
-  if (!isFull && !next) {
-    return name ? (_void as CC)?.[name] : (_void as C);
+  if (match.isFull) {
+    return pick(_index, name);
   }
 
-  if (!next) {
-    return name ? (_index as CC)?.[name] : (_index as C);
+  if (match.isVoid) {
+    return pick(_void, name);
   }
 
-  const _nextPage = next.route.elements._page;
+  if (match.next) {
+    return (
+      <MatchProvider value={match.next}>
+        {pick(match.next.route.elements._page, name)}
+      </MatchProvider>
+    );
+  }
+}
 
-  return (
-    <MatchProvider value={next}>
-      {name ? (_nextPage as CC)?.[name] : (_nextPage as C)}
-    </MatchProvider>
-  );
+function pick(
+  els: ReactElement | Record<string, ReactElement> | undefined,
+  name?: string,
+): ReactElement | undefined {
+  if (!name && isValidElement(els)) {
+    return els;
+  }
+
+  if (name && els) {
+    return (els as Record<string, ReactElement>)[name];
+  }
 }

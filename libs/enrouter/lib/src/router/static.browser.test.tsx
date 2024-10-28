@@ -16,6 +16,8 @@ describe("router", () => {
   describe("StaticRouter", () => {
     test("_root", async () => {
       const match: Match = {
+        isRoot: true,
+        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -29,6 +31,9 @@ describe("router", () => {
         isFull: true,
         params: {},
       };
+
+      match.first = match;
+      match.last = match;
 
       const screen = render(<StaticRouter location="/" match={match} />, {
         wrapper,
