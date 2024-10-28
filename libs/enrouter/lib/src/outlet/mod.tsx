@@ -1,6 +1,7 @@
 import type { ReactNode, ReactElement } from "react";
 import { isValidElement } from "react";
 
+import type { Match } from "#lib/match/mod.js";
 import { MatchProvider, useMatch } from "#lib/match/context.js";
 
 export interface OutletProps {
@@ -14,30 +15,26 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
     return;
   }
 
-  const { _layout, _content, _void } = match.route.elements;
-
   if (root) {
-    return pick(_layout ?? _content, name);
-  }
-
-  if (match.isFull) {
-    return pick(_content, name);
+    return pickLayoutOrContent(match, name);
   }
 
   if (match.isVoid) {
-    return pick(_void, name);
+    return pick(match.route.elements._void, name);
   }
 
   if (match.next) {
     return (
       <MatchProvider value={match.next}>
-        {pick(
-          match.next.route.elements._layout ??
-            match.next.route.elements._content,
-          name,
-        )}
+        {pickLayoutOrContent(match.next, name)}
       </MatchProvider>
     );
+  }
+
+  // TODO:
+
+  if (match.isFull) {
+    return pick(match.route.elements._content, name);
   }
 }
 
@@ -52,4 +49,13 @@ function pick(
   if (name && els) {
     return (els as Record<string, ReactElement>)[name];
   }
+}
+
+function pickLayoutOrContent(
+  match: Match,
+  name?: string,
+): ReactElement | undefined {
+  const { _layout, _content } = match.route.elements;
+
+  return pick(_layout ?? _content, name);
 }
