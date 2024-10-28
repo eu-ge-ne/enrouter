@@ -1,6 +1,9 @@
 # API
 
 - [\_layout](/docs/api/_layout)
+- [\_content](/docs/api/_content)
+- [\_void](/docs/api/_void)
+- [matchLocation](/docs/api/matchLocation)
 - [Match](/docs/api/match)
 - [StaticRouter](/docs/api/router/static)
 - [BrowserRouter](/docs/api/router/browser)
