@@ -17,20 +17,21 @@ export function Outlet({ name, root }: OutletProps): ReactNode {
   const { _page, _void, _index } = match.route.elements;
 
   if (root) {
-    return pick(match.isVoid ? _void : _page, name);
+    return pick(_page, name);
   }
 
   if (match.isFull) {
     return pick(_index, name);
   }
 
-  if (match.next) {
-    const next = match.next;
-    const { _page, _void } = next.route.elements;
+  if (match.isVoid) {
+    return pick(_void, name);
+  }
 
+  if (match.next) {
     return (
-      <MatchProvider value={next}>
-        {pick(next.isVoid ? _void : _page, name)}
+      <MatchProvider value={match.next}>
+        {pick(match.next.route.elements._page, name)}
       </MatchProvider>
     );
   }

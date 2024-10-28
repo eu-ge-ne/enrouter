@@ -20,9 +20,6 @@ export interface Route {
     pattern: RegExp;
   };
 
-  /**
-   * Modules belonging to the route
-   */
   modules: {
     id: string;
     fileName: string;

@@ -17,23 +17,15 @@ describe("outlet", () => {
   test('using "_void" elements', async () => {
     const match: Match = {
       isRoot: false,
-      isVoid: false,
+      isVoid: true,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
         elements: {
-          _page: {
-            Main: (
-              <div>
-                <div>_page</div>
-                <Outlet name="Next" />
-              </div>
-            ),
-          },
           _void: {
-            Next: <div>Next#_void</div>,
+            Main: <div>_void</div>,
           },
         },
       },
@@ -44,7 +36,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        <Outlet name="Main" />
       </MatchProvider>,
       { wrapper },
     );
@@ -57,21 +49,13 @@ describe("outlet", () => {
   test('using "_void" element', async () => {
     const match: Match = {
       isRoot: false,
-      isVoid: false,
+      isVoid: true,
       route: {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
         loaded: true,
         elements: {
-          _page: {
-            Main: (
-              <div>
-                <div>_page</div>
-                <Outlet />
-              </div>
-            ),
-          },
           _void: <div>_void</div>,
         },
       },
@@ -82,7 +66,7 @@ describe("outlet", () => {
 
     const screen = render(
       <MatchProvider value={match}>
-        {(match.route.elements._page as Record<string, ReactElement>).Main}
+        <Outlet />
       </MatchProvider>,
       { wrapper },
     );
