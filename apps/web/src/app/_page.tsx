@@ -5,7 +5,7 @@ import { log } from "#log.js";
 import { GitHub } from "#svg/github.js";
 
 export default function Page() {
-  log("Rendering: /_page");
+  log("Rendering: /_layout");
 
   return (
     <div className="flex flex-col divide-y divide-appBorder">

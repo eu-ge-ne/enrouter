@@ -21,10 +21,10 @@ describe("compileRouteTree", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "src/_page.tsx",
-            fileName: "_page.tsx",
+            id: "src/_layout.tsx",
+            fileName: "_layout.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/_page.tsx")',
+            importStr: '() => import("/home/src/_layout.tsx")',
           },
         ],
       },
@@ -49,10 +49,10 @@ describe("compileRouteTree", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "src/_page.tsx",
-            fileName: "_page.tsx",
+            id: "src/_layout.tsx",
+            fileName: "_layout.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/_page.tsx")',
+            importStr: '() => import("/home/src/_layout.tsx")',
           },
         ],
       },
@@ -62,10 +62,10 @@ describe("compileRouteTree", () => {
         test: regexparam.parse("/abc", true),
         modules: [
           {
-            id: "src/abc/_page.tsx",
-            fileName: "_page.tsx",
+            id: "src/abc/_layout.tsx",
+            fileName: "_layout.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/abc/_page.tsx")',
+            importStr: '() => import("/home/src/abc/_layout.tsx")',
           },
         ],
       },
@@ -90,10 +90,10 @@ describe("compileRouteTree", () => {
         test: regexparam.parse("/", true),
         modules: [
           {
-            id: "src/_page.tsx",
-            fileName: "_page.tsx",
+            id: "src/_layout.tsx",
+            fileName: "_layout.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/_page.tsx")',
+            importStr: '() => import("/home/src/_layout.tsx")',
           },
         ],
       },
@@ -103,10 +103,10 @@ describe("compileRouteTree", () => {
         test: regexparam.parse("/xyz", true),
         modules: [
           {
-            id: "src/xyz/_page.tsx",
-            fileName: "_page.tsx",
+            id: "src/xyz/_layout.tsx",
+            fileName: "_layout.tsx",
             importFn: async () => {},
-            importStr: '() => import("/home/src/xyz/_page.tsx")',
+            importStr: '() => import("/home/src/xyz/_layout.tsx")',
           },
           {
             id: "src/xyz/_index.tsx",

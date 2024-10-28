@@ -89,7 +89,7 @@ describe("outlet", () => {
           _layout: {
             Main: (
               <div>
-                <div>_page</div>
+                <div>_layout</div>
                 <Outlet name="Next" />
               </div>
             ),
@@ -129,7 +129,7 @@ describe("outlet", () => {
           _layout: {
             Main: (
               <div>
-                <div>_page</div>
+                <div>_layout</div>
                 <Outlet />
               </div>
             ),
@@ -167,7 +167,7 @@ describe("outlet", () => {
           _layout: {
             Main: (
               <div>
-                <div>_page</div>
+                <div>_layout</div>
                 <Outlet name="Next" />
               </div>
             ),
@@ -190,7 +190,7 @@ describe("outlet", () => {
             _layout: {
               Next: (
                 <div>
-                  <div>Next#_page</div>
+                  <div>Next#_layout</div>
                 </div>
               ),
             },
@@ -227,7 +227,7 @@ describe("outlet", () => {
           _layout: {
             Main: (
               <div>
-                <div>_page</div>
+                <div>_layout</div>
                 <Outlet />
               </div>
             ),
@@ -249,7 +249,7 @@ describe("outlet", () => {
           elements: {
             _layout: (
               <div>
-                <div>_page</div>
+                <div>_layout</div>
               </div>
             ),
           },
@@ -289,7 +289,7 @@ describe("outlet", () => {
             </div>
           ),
           _layout: {
-            Main: <div>Main#_page</div>,
+            Main: <div>Main#_layout</div>,
           },
         },
       },
@@ -324,7 +324,7 @@ describe("outlet", () => {
               <Outlet root />
             </div>
           ),
-          _layout: <div>_page</div>,
+          _layout: <div>_layout</div>,
         },
       },
       location: "/",
