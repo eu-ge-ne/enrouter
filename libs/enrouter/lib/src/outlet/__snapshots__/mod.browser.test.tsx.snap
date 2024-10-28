@@ -36,6 +36,18 @@ exports[`outlet > default _layout element from next match 1`] = `
 </div>
 `;
 
+exports[`outlet > default _void element from current match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      void
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > named _content element from current match 1`] = `
 <div>
   <div
@@ -67,6 +79,18 @@ exports[`outlet > named _layout element from next match 1`] = `
   >
     <div>
       next layout#Main
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > named _void element from current match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      void#Main
     </div>
   </div>
 </div>

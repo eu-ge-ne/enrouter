@@ -14,10 +14,6 @@ export function Outlet({ name }: OutletProps): ReactNode {
     return;
   }
 
-  // Outlet is rendered on _layout
-  // Possible outcomes:
-
-  // 1. render void from this match if last match is not full
   if (!match.last?.isFull) {
     if (match.isVoid) {
       return pick(match.route.elements._void, name);

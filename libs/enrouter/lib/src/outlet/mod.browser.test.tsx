@@ -38,6 +38,7 @@ describe("outlet", () => {
         elements: {
           _layout: <div>layout</div>,
           _content: <div>content</div>,
+          _void: <div>void</div>,
         },
       },
       location: "/",
@@ -54,6 +55,7 @@ describe("outlet", () => {
           elements: {
             _layout: <div>next layout</div>,
             _content: <div>next content</div>,
+            _void: <div>next void</div>,
           },
         },
         location: "/abc",
@@ -89,6 +91,9 @@ describe("outlet", () => {
           _content: {
             Main: <div>content#Main</div>,
           },
+          _void: {
+            Main: <div>void#Main</div>,
+          },
         },
       },
       location: "/",
@@ -108,6 +113,9 @@ describe("outlet", () => {
             },
             _content: {
               Main: <div>next content#Main</div>,
+            },
+            _void: {
+              Main: <div>next void#Main</div>,
             },
           },
         },
@@ -277,6 +285,116 @@ describe("outlet", () => {
       location: "/",
       isFull: false,
       params: {},
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        <Outlet name="Main" />
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("default _void element from current match", async () => {
+    const match: Match = {
+      isVoid: true,
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _layout: <div>layout</div>,
+          _content: <div>content</div>,
+          _void: <div>void</div>,
+        },
+      },
+      location: "/",
+      isFull: false,
+      params: {},
+
+      next: {
+        isVoid: false,
+        route: {
+          path: "/abc",
+          test: regexparam.parse("/abc", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: <div>next layout</div>,
+            _content: <div>next content</div>,
+            _void: <div>next void</div>,
+          },
+        },
+        location: "/abc",
+        isFull: false,
+        params: {},
+      },
+    };
+
+    const screen = render(
+      <MatchProvider value={match}>
+        <Outlet />
+      </MatchProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("named _void element from current match", async () => {
+    const match: Match = {
+      isVoid: true,
+      route: {
+        path: "/",
+        test: regexparam.parse("/", true),
+        modules: [],
+        loaded: true,
+        elements: {
+          _layout: {
+            Main: <div>layout#Main</div>,
+          },
+          _content: {
+            Main: <div>content#Main</div>,
+          },
+          _void: {
+            Main: <div>void#Main</div>,
+          },
+        },
+      },
+      location: "/",
+      isFull: false,
+      params: {},
+
+      next: {
+        isVoid: false,
+        route: {
+          path: "/abc",
+          test: regexparam.parse("/abc", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>next layout#Main</div>,
+            },
+            _content: {
+              Main: <div>next content#Main</div>,
+            },
+            _void: {
+              Main: <div>next void#Main</div>,
+            },
+          },
+        },
+        location: "/abc",
+        isFull: false,
+        params: {},
+      },
     };
 
     const screen = render(
