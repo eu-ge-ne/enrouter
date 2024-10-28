@@ -1,4 +1,4 @@
-# Plugin
+# Vite Plugin
 
 ## virtual:enrouter
 
