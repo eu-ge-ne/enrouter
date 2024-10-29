@@ -74,14 +74,12 @@ export function Code({
   if (!import.meta.env.SSR) {
     useEffect(() => {
       const el = div.current;
-      if (!el) {
-        return;
+      if (el) {
+        (async () => {
+          const { runPrism } = await import("./prism.js");
+          runPrism(el, className);
+        })();
       }
-
-      (async () => {
-        const { runPrism } = await import("./prism.js");
-        runPrism(el, className);
-      })();
     }, [location, div]);
   }
 
@@ -100,20 +98,12 @@ export function Mermaid({ children }: PropsWithChildren) {
   if (!import.meta.env.SSR) {
     useEffect(() => {
       const el = div.current;
-      if (!el) {
-        return;
+      if (el) {
+        (async () => {
+          const { runMermaid } = await import("./mermaid.js");
+          runMermaid(el);
+        })();
       }
-
-      (async () => {
-        log("Rendering mermaid");
-
-        const { default: mermaid } = await import("mermaid");
-
-        mermaid.initialize({ startOnLoad: false });
-        mermaid.run({ nodes: [el] });
-
-        log("Mermaid rendering completed");
-      })();
     }, [location, div]);
   }
 
