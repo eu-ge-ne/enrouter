@@ -11,6 +11,9 @@ export default function Layout() {
           <Link loose href="/docs/start">
             Getting Started
           </Link>
+          <Link loose href="/docs/routing">
+            Routing
+          </Link>
           <Link loose href="/docs/api">
             API
           </Link>
