@@ -1,27 +1,13 @@
 # Routes
 
 enrouter is a file based router:
-in an application routes are defined by a tree of folders and files.
+in application routes are defined by a tree of folders and files.
 For each route, name of the folder declares route's url pattern
 and files inside the folder define content,
 which will be displayed when the route is matched.
 Route content is nested and wrapped recursively in parent route's content.
 
-For example, these routes:
-
-```mermaid
-graph TB
-  root["/"]
-  about["/about"]
-  docs["/docs"]
-  api["/docs/api"]
-
-  root --> about
-  root --> docs
-  docs --> api
-```
-
-Are defined by following folder layout:
+For example, this folder layout:
 
 ```mermaid
 graph TB
@@ -59,6 +45,20 @@ graph TB
 
   api --> api-layout
   api-layout --> api-content
+```
+
+Defines these routes:
+
+```mermaid
+graph TB
+  root["/"]
+  about["/about"]
+  docs["/docs"]
+  api["/docs/api"]
+
+  root --> about
+  root --> docs
+  docs --> api
 ```
 
 ## \_layout.tsx
