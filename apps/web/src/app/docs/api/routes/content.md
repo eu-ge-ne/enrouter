@@ -3,7 +3,7 @@
 enrouter is a file based router.
 You define routes by creating a tree of folders and files.
 
-Folders in the tree declare routes.
+Folders in the tree correspond to routes.
 Files define content for the routes.
 Content is nested.
 Parent route's content wraps childrens' content recursively.
