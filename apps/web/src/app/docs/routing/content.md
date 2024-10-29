@@ -1,4 +1,4 @@
-# Routes
+# Routing
 
 enrouter is a file based router:
 in application routes are defined by a tree of folders and files.
@@ -60,15 +60,3 @@ graph TB
   root --> docs
   docs --> api
 ```
-
-## \_layout.tsx
-
-todo
-
-## \_content.tsx
-
-todo
-
-## \_void.tsx
-
-todo
