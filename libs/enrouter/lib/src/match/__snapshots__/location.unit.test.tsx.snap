@@ -235,14 +235,16 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
       "route": {
         "elements": {
           "_void": {
-            "$$typeof": Symbol(react.transitional.element),
-            "_owner": null,
-            "_store": {},
-            "key": null,
-            "props": {
-              "children": "Void",
+            "Main": {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "Void",
+              },
+              "type": "div",
             },
-            "type": "div",
           },
         },
         "loaded": true,
@@ -328,14 +330,16 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
     "route": {
       "elements": {
         "_void": {
-          "$$typeof": Symbol(react.transitional.element),
-          "_owner": null,
-          "_store": {},
-          "key": null,
-          "props": {
-            "children": "Void",
+          "Main": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {
+              "children": "Void",
+            },
+            "type": "div",
           },
-          "type": "div",
         },
       },
       "loaded": true,
@@ -374,14 +378,16 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
       {
         "elements": {
           "_void": {
-            "$$typeof": Symbol(react.transitional.element),
-            "_owner": null,
-            "_store": {},
-            "key": null,
-            "props": {
-              "children": "Void",
+            "Main": {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "Void",
+              },
+              "type": "div",
             },
-            "type": "div",
           },
         },
         "loaded": true,

@@ -1,9 +1,8 @@
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
-import { loadRoutes } from "./load.js";
-
 import type { Route } from "./mod.js";
+import { loadRoutes } from "./load.js";
 
 describe("route", () => {
   describe("loadRoutes", () => {
@@ -58,30 +57,6 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _layout.tsx module with single component", async () => {
-      const routes: Route[] = [
-        {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [
-            {
-              id: "src/_layout.tsx",
-              fileName: "_layout.tsx",
-              importFn: async () => ({
-                default: () => <div>Page</div>,
-              }),
-            },
-          ],
-          loaded: false,
-          elements: {},
-        },
-      ];
-
-      await loadRoutes(routes);
-
-      expect(routes).toMatchSnapshot();
-    });
-
     test("1 route with already loaded _layout.tsx", async () => {
       const routes: Route[] = [
         {
@@ -90,7 +65,9 @@ describe("route", () => {
           modules: [],
           loaded: true,
           elements: {
-            _layout: <div>Page</div>,
+            _layout: {
+              Main: <div>Page</div>,
+            },
           },
         },
       ];

@@ -30,7 +30,7 @@
     "enrouter": "workspace:*",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
-    "mermaid": "^11.3.0",
+    "mermaid": "^11.4.0",
     "postcss": "^8.4.47",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",

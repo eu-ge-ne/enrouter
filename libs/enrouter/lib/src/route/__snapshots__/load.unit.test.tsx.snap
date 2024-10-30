@@ -89,36 +89,6 @@ exports[`route > loadRoutes > 1 route with _layout.tsx module with multiple comp
 ]
 `;
 
-exports[`route > loadRoutes > 1 route with _layout.tsx module with single component 1`] = `
-[
-  {
-    "elements": {
-      "_layout": {
-        "$$typeof": Symbol(react.transitional.element),
-        "_owner": null,
-        "_store": {},
-        "key": null,
-        "props": {},
-        "type": [Function],
-      },
-    },
-    "loaded": true,
-    "modules": [
-      {
-        "fileName": "_layout.tsx",
-        "id": "src/_layout.tsx",
-        "importFn": [Function],
-      },
-    ],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-  },
-]
-`;
-
 exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
 [
   {
@@ -156,14 +126,16 @@ exports[`route > loadRoutes > 1 route with already loaded _layout.tsx 1`] = `
   {
     "elements": {
       "_layout": {
-        "$$typeof": Symbol(react.transitional.element),
-        "_owner": null,
-        "_store": {},
-        "key": null,
-        "props": {
-          "children": "Page",
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {
+            "children": "Page",
+          },
+          "type": "div",
         },
-        "type": "div",
       },
     },
     "loaded": true,

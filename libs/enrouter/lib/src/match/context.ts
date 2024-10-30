@@ -2,19 +2,7 @@ import { createContext, useContext } from "react";
 
 import type { Match } from "./mod.js";
 
-const MatchContext = createContext<Match | undefined>({
-  isVoid: false,
-  route: {
-    path: "",
-    test: { keys: [], pattern: new RegExp("") },
-    modules: [],
-    loaded: false,
-    elements: {},
-  },
-  isFull: false,
-  location: "",
-  params: {},
-});
+const MatchContext = createContext<Match | undefined>(undefined);
 
 export const MatchProvider = MatchContext.Provider;
 
