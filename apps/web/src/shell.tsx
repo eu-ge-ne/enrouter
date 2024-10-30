@@ -32,8 +32,11 @@ gtag('config', 'G-N28HCL4GB9');
             }}
           ></script>
           <meta charSet="utf-8" />
-          <meta name="description" content="Put your description here" />
           <title>enrouter</title>
+          <meta
+            name="description"
+            content="File based router library for React"
+          />
           <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
           {styles?.map((href) => (
             <link key={href} rel="stylesheet" href={href}></link>

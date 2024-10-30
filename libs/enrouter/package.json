@@ -1,8 +1,8 @@
 {
   "name": "enrouter",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "type": "module",
-  "description": "",
+  "description": "File based router library for React",
   "exports": {
     ".": {
       "types": "./dist/lib/mod.d.ts",
@@ -46,7 +46,7 @@
   "bugs": {
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
-  "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
+  "homepage": "https://enrouter.eu-ge-ne.workers.dev",
   "devDependencies": {
     "@enrouter/tsconfig": "workspace:*",
     "@types/lodash.groupby": "^4.6.9",
