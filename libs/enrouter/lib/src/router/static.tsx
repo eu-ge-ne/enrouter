@@ -1,9 +1,10 @@
-import type { ReactElement, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import type { Match } from "#lib/match/mod.js";
 import { NavigateProvider, noNavigate } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
 import { MatchProvider } from "#lib/match/context.js";
+import { Root } from "./root.js";
 
 export interface StaticRouterProps {
   location: string;
@@ -18,7 +19,7 @@ export function StaticRouter({
     <NavigateProvider value={noNavigate}>
       <LocationProvider value={location}>
         <MatchProvider value={match}>
-          {match?.route.elements._layout as ReactElement}
+          <Root />
         </MatchProvider>
       </LocationProvider>
     </NavigateProvider>

@@ -27,7 +27,9 @@ describe("router", () => {
         modules: [],
         loaded: true,
         elements: {
-          _layout: <div>Root</div>,
+          _layout: {
+            Root: <div>Root</div>,
+          },
         },
       };
 
