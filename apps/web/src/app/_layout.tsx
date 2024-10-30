@@ -4,7 +4,11 @@ import { Outlet, useLink } from "enrouter";
 import { log } from "#log.js";
 import { GitHub } from "#svg/github.js";
 
-export default function Layout() {
+export default {
+  Root,
+};
+
+function Root() {
   log("Rendering: /_layout");
 
   return (

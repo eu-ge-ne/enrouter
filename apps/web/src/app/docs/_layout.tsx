@@ -3,7 +3,11 @@ import { Outlet } from "enrouter";
 import { Mdx } from "#mdx/mod.js";
 import { PrimaryLinkItem as Link } from "./links.js";
 
-export default function Layout() {
+export default {
+  Layout,
+};
+
+function Layout() {
   return (
     <div className="flex flex-col divide-appBorder p-4 max-sm:divide-y md:flex-row md:divide-x">
       <div className="flex flex-col max-sm:pb-4 md:w-[15rem] md:pr-4">
