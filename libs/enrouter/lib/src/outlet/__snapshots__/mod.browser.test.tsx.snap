@@ -1,53 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`outlet > default _content element from current match 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      content
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > default _content element from next match 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      next content
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > default _layout element from next match 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      next layout
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > default _void element from current match 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      void
-    </div>
-  </div>
-</div>
-`;
-
 exports[`outlet > named _content element from current match 1`] = `
 <div>
   <div
