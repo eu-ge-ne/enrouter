@@ -1,9 +1,6 @@
 import type { ReactElement } from "react";
 
 export interface Route {
-  /**
-   * Full path to url segment
-   */
   path: string;
 
   /**
@@ -23,13 +20,10 @@ export interface Route {
   loaded: boolean;
 
   elements: {
-    _layout?: ReactElement | Record<string, ReactElement>;
-    _content?: ReactElement | Record<string, ReactElement>;
-    _void?: ReactElement | Record<string, ReactElement>;
+    _layout?: Record<string, ReactElement>;
+    _content?: Record<string, ReactElement>;
+    _void?: Record<string, ReactElement>;
   };
 
-  /**
-   * Route tree
-   */
   tree?: Route[];
 }
