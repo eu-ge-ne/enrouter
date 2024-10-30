@@ -109,7 +109,9 @@ describe("match", () => {
             modules: [],
             loaded: true,
             elements: {
-              _void: <div>Void</div>,
+              _void: {
+                Main: <div>Void</div>,
+              },
             },
             tree: [
               {
