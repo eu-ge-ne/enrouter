@@ -1,6 +1,6 @@
 {
   "name": "enrouter",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "description": "File based router library for React",
   "exports": {
