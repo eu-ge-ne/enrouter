@@ -5,7 +5,10 @@ import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
 const content = [
-  resolve(fileURLToPath(new URL(".", import.meta.url)), "../src/**/*.{ts,tsx,mdx}"),
+  resolve(
+    fileURLToPath(new URL(".", import.meta.url)),
+    "../src/**/*.{ts,tsx,mdx}",
+  ),
 ];
 
 export default {
