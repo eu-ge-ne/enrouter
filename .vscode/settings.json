@@ -1,10 +1,4 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.tabSize": 2,
-  "editor.quickSuggestions": {
-    "strings": "on"
-  },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  }
+  "editor.tabSize": 2
 }
