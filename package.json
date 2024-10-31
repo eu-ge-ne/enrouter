@@ -1,37 +1,75 @@
 {
-  "name": "@enrouter/monorepo",
-  "version": "0.0.0",
+  "name": "enrouter",
+  "version": "0.0.14",
   "type": "module",
-  "private": true,
-  "scripts": {
-    "format": "prettier . --check",
-    "format:fix": "prettier . --write",
-    "clean": "turbo run clean",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "dev": "turbo run dev --filter=@enrouter/dev",
-    "preview": "turbo run preview --filter=@enrouter/edge",
-    "deploy": "turbo run deploy --filter=@enrouter/edge"
-  },
+  "description": "File based router library for React",
+  "license": "MIT",
+  "author": "Eugene Pobochny",
+  "homepage": "https://enrouter.eu-ge-ne.workers.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eu-ge-ne/enrouter.git"
   },
-  "keywords": [
-    "React",
-    "Router"
-  ],
-  "author": "Eugene Pobochny",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
-  "homepage": "https://github.com/eu-ge-ne/enrouter#readme",
-  "packageManager": "pnpm@9.12.3",
+  "keywords": [
+    "React",
+    "Router",
+    "TypeScript",
+    "SSR"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/lib/mod.d.ts",
+      "default": "./dist/lib/mod.js"
+    },
+    "./vite/plugin": {
+      "types": "./dist/vite/plugin/mod.d.ts",
+      "default": "./dist/vite/plugin/mod.js"
+    },
+    "./vite/manifest": {
+      "types": "./dist/vite/manifest/mod.d.ts",
+      "default": "./dist/vite/manifest/mod.js"
+    }
+  },
+  "imports": {
+    "#lib/*": "./lib/src/*"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write",
+    "clean": "rm -rf ./dist && rm -rf ./coverage",
+    "build": "pnpm run clean && pnpm run build:lib && pnpm run build:vite:manifest && pnpm run build:vite:plugin",
+    "build:lib": "tsup --config configs/tsup.config.lib.ts",
+    "build:vite:manifest": "tsup --config configs/tsup.config.vite.manifest.ts",
+    "build:vite:plugin": "tsup --config configs/tsup.config.vite.plugin.ts",
+    "lint": "pnpm run lint:lib && pnpm run lint:vite:manifest && pnpm run lint:vite:plugin",
+    "lint:lib": "tsc -p lib/tsconfig.json",
+    "lint:vite:manifest": "tsc -p vite/manifest/tsconfig.json",
+    "lint:vite:plugin": "tsc -p vite/plugin/tsconfig.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules vitest run --config configs/vitest.config.ts",
+    "prepublishOnly": "pnpm run lint && pnpm run test && pnpm run build"
+  },
   "devDependencies": {
+    "@types/lodash.groupby": "^4.6.9",
+    "@types/react": "^18.3.12",
+    "@vitest/browser": "^2.1.4",
+    "@vitest/coverage-v8": "^2.1.4",
+    "glob": "^11.0.0",
+    "lodash.groupby": "^4.6.0",
+    "playwright": "^1.48.2",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "turbo": "^2.2.3"
-  }
+    "react": "^18.3.1",
+    "regexparam": "^3.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4",
+    "vitest-browser-react": "^0.0.3"
+  },
+  "packageManager": "pnpm@9.12.3"
 }

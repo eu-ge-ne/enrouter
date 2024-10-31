@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`route > loadRoutes > 0 routes 1`] = `[]`;
+
+exports[`route > loadRoutes > 1 route no modules 1`] = `
+[
+  {
+    "elements": {},
+    "loaded": false,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`route > loadRoutes > 1 route with _content.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "_content": {
+        "Main": <Main />,
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_content.tsx",
+        "id": "src/_content.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`route > loadRoutes > 1 route with _layout.tsx module with multiple components 1`] = `
+[
+  {
+    "elements": {
+      "_layout": {
+        "Main": <Main />,
+        "Menu": <Menu />,
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_layout.tsx",
+        "id": "src/_layout.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "_void": {
+        "Main": <Main />,
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_void.tsx",
+        "id": "src/_void.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
+exports[`route > loadRoutes > 1 route with already loaded _layout.tsx 1`] = `
+[
+  {
+    "elements": {
+      "_layout": {
+        "Main": <div>
+          Page
+        </div>,
+      },
+    },
+    "loaded": true,
+    "modules": [],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
