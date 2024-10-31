@@ -16,15 +16,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        appFg: colors.slate[300],
+        appFg: colors.neutral[300],
 
         appBg: colors.zinc[900],
         appBorder: colors.zinc[800],
 
-        appButtonBg: colors.blue[950],
-        appButtonBorder: colors.blue[900],
+        appButtonBg: colors.sky[800],
+        appButtonBorder: colors.sky[700],
 
-        appMenuHighlight: colors.blue[900],
+        appMenuHighlight: colors.sky[600],
 
         appCodeBg: colors.stone[600],
       },
