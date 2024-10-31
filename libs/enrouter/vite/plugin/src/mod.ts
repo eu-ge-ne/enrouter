@@ -9,6 +9,7 @@ import { compileRouteTree } from "./compile.js";
 
 const moduleId = "virtual:enrouter";
 const resolvedModuleId = "\0" + moduleId;
+const globPattern = "**/{_layout.tsx,_content.tsx,_void.tsx}";
 
 export interface EnrouterPluginOptions {
   path: string;
@@ -36,7 +37,7 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
 
       this.info(() => format("Searching modules in %s", routesPath));
 
-      const files = await glob(resolve(routesPath, "**/_*.tsx"));
+      const files = await glob(resolve(routesPath, globPattern));
       const resolves = await Promise.all(
         files.map(async (x) => {
           const y = await this.resolve(x);
