@@ -43,16 +43,67 @@
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "clean": "rm -rf ./dist && rm -rf ./coverage",
-    "build": "pnpm run clean && pnpm run build:lib && pnpm run build:vite:manifest && pnpm run build:vite:plugin",
-    "build:lib": "tsup --config configs/tsup.config.lib.ts",
-    "build:vite:manifest": "tsup --config configs/tsup.config.vite.manifest.ts",
-    "build:vite:plugin": "tsup --config configs/tsup.config.vite.plugin.ts",
-    "lint": "pnpm run lint:lib && pnpm run lint:vite:manifest && pnpm run lint:vite:plugin",
-    "lint:lib": "tsc -p src/lib/tsconfig.json",
-    "lint:vite:manifest": "tsc -p src/vite/manifest/tsconfig.json",
-    "lint:vite:plugin": "tsc -p src/vite/plugin/tsconfig.json",
+    "build": "wireit",
+    "build:lib": "wireit",
+    "build:vite:manifest": "wireit",
+    "build:vite:plugin": "wireit",
+    "lint": "wireit",
+    "lint:lib": "wireit",
+    "lint:vite:manifest": "wireit",
+    "lint:vite:plugin": "wireit",
     "test": "NODE_OPTIONS=--experimental-vm-modules vitest run --config configs/vitest.config.ts",
-    "prepublishOnly": "pnpm run lint && pnpm run test && pnpm run build"
+    "prepublishOnly": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:lib",
+        "build:vite:manifest",
+        "build:vite:plugin"
+      ]
+    },
+    "build:lib": {
+      "command": "tsup --config configs/tsup.config.lib.ts",
+      "output": [
+        "dist/lib"
+      ]
+    },
+    "build:vite:manifest": {
+      "command": "tsup --config configs/tsup.config.vite.manifest.ts",
+      "output": [
+        "dist/vite/manifest"
+      ]
+    },
+    "build:vite:plugin": {
+      "command": "tsup --config configs/tsup.config.vite.plugin.ts",
+      "output": [
+        "dist/vite/plugin"
+      ]
+    },
+    "lint": {
+      "dependencies": [
+        "lint:lib",
+        "lint:vite:manifest",
+        "lint:vite:plugin"
+      ]
+    },
+    "lint:lib": {
+      "command": "tsc -p src/lib/tsconfig.json"
+    },
+    "lint:vite:manifest": {
+      "command": "tsc -p src/vite/manifest/tsconfig.json"
+    },
+    "lint:vite:plugin": {
+      "command": "tsc -p src/vite/plugin/tsconfig.json"
+    },
+    "prepublishOnly": {
+      "dependencies": [
+        "clean",
+        "lint",
+        "test",
+        "build"
+      ]
+    }
   },
   "devDependencies": {
     "@types/lodash.groupby": "^4.6.9",
@@ -71,7 +122,8 @@
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
     "vitest": "^2.1.4",
-    "vitest-browser-react": "^0.0.3"
+    "vitest-browser-react": "^0.0.3",
+    "wireit": "^0.14.9"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",
