@@ -7,11 +7,7 @@ const alias = {
 export default defineWorkspace([
   {
     test: {
-      include: [
-        "lib/src/**/*.unit.test.{ts,tsx}",
-        "vite/manifest/src/**/*.unit.test.{ts,tsx}",
-        "vite/plugin/src/**/*.unit.test.{ts,tsx}",
-      ],
+      include: ["src/**/*.unit.test.{ts,tsx}"],
       name: "unit",
       environment: "node",
       alias,
@@ -19,7 +15,7 @@ export default defineWorkspace([
   },
   {
     test: {
-      include: ["lib/src/**/*.browser.test.{ts,tsx}"],
+      include: ["src/**/*.browser.test.{ts,tsx}"],
       name: "browser",
       browser: {
         provider: "playwright",
