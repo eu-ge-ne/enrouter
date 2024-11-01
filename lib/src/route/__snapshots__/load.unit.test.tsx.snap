@@ -22,7 +22,14 @@ exports[`route > loadRoutes > 1 route with _content.tsx module 1`] = `
   {
     "elements": {
       "_content": {
-        "Main": <Main />,
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
       },
     },
     "loaded": true,
@@ -47,8 +54,22 @@ exports[`route > loadRoutes > 1 route with _layout.tsx module with multiple comp
   {
     "elements": {
       "_layout": {
-        "Main": <Main />,
-        "Menu": <Menu />,
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
+        "Menu": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
       },
     },
     "loaded": true,
@@ -73,7 +94,14 @@ exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
   {
     "elements": {
       "_void": {
-        "Main": <Main />,
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {},
+          "type": [Function],
+        },
       },
     },
     "loaded": true,
@@ -98,9 +126,16 @@ exports[`route > loadRoutes > 1 route with already loaded _layout.tsx 1`] = `
   {
     "elements": {
       "_layout": {
-        "Main": <div>
-          Page
-        </div>,
+        "Main": {
+          "$$typeof": Symbol(react.transitional.element),
+          "_owner": null,
+          "_store": {},
+          "key": null,
+          "props": {
+            "children": "Page",
+          },
+          "type": "div",
+        },
       },
     },
     "loaded": true,
