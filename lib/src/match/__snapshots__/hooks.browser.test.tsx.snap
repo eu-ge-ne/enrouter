@@ -34,3 +34,15 @@ exports[`match > usePath > with 2 matches 1`] = `
   </div>
 </div>
 `;
+
+exports[`match > useRoot > with 2 matches 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      Root
+    </div>
+  </div>
+</div>
+`;

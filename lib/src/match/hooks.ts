@@ -1,6 +1,17 @@
 import type { Match } from "./mod.js";
 import { useMatch } from "./context.js";
 
+export function useRoot(): Match | undefined {
+  let match = useMatch()?.last;
+
+  while (match) {
+    if (match.route.elements._layout?.Root) {
+      return match;
+    }
+    match = match.prev;
+  }
+}
+
 export function usePath(path: string): Match | undefined {
   let match = useMatch()?.first;
 
@@ -8,7 +19,6 @@ export function usePath(path: string): Match | undefined {
     if (match.route.path === path) {
       return match;
     }
-
     match = match.next;
   }
 }
