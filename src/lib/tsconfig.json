@@ -1,8 +1,6 @@
 {
-  "extends": ["../configs/tsconfig.base.json"],
-  "include": ["src"],
+  "extends": ["../../configs/tsconfig.base.json"],
   "compilerOptions": {
-    "rootDir": "src",
     "module": "preserve",
     "jsx": "react-jsx",
     "lib": ["es2023", "dom", "dom.iterable"],
