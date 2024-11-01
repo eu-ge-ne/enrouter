@@ -56,20 +56,26 @@
   },
   "devDependencies": {
     "@types/lodash.groupby": "^4.6.9",
-    "@types/react": "^18.3.12",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@vitest/browser": "^2.1.4",
     "@vitest/coverage-v8": "^2.1.4",
     "glob": "^11.0.0",
     "lodash.groupby": "^4.6.0",
     "playwright": "^1.48.2",
     "prettier": "^3.3.3",
-    "react": "^18.3.1",
+    "react": "19.0.0-rc-b7e21579-20241031",
+    "react-dom": "19.0.0-rc-b7e21579-20241031",
     "regexparam": "^3.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vite": "^5.4.10",
     "vitest": "^2.1.4",
     "vitest-browser-react": "^0.0.3"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   },
   "packageManager": "pnpm@9.12.3"
 }
