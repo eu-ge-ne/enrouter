@@ -34,7 +34,7 @@
     }
   },
   "imports": {
-    "#lib/*": "./lib/src/*"
+    "#lib/*": "./src/lib/*"
   },
   "files": [
     "dist"
@@ -48,9 +48,9 @@
     "build:vite:manifest": "tsup --config configs/tsup.config.vite.manifest.ts",
     "build:vite:plugin": "tsup --config configs/tsup.config.vite.plugin.ts",
     "lint": "pnpm run lint:lib && pnpm run lint:vite:manifest && pnpm run lint:vite:plugin",
-    "lint:lib": "tsc -p lib/tsconfig.json",
-    "lint:vite:manifest": "tsc -p vite/manifest/tsconfig.json",
-    "lint:vite:plugin": "tsc -p vite/plugin/tsconfig.json",
+    "lint:lib": "tsc -p src/lib/tsconfig.json",
+    "lint:vite:manifest": "tsc -p src/vite/manifest/tsconfig.json",
+    "lint:vite:plugin": "tsc -p src/vite/plugin/tsconfig.json",
     "test": "NODE_OPTIONS=--experimental-vm-modules vitest run --config configs/vitest.config.ts",
     "prepublishOnly": "pnpm run lint && pnpm run test && pnpm run build"
   },
