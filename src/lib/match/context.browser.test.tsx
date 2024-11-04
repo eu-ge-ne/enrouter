@@ -43,7 +43,7 @@ describe("match", () => {
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        { wrapper }
+        { wrapper },
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -99,7 +99,7 @@ describe("match", () => {
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        { wrapper }
+        { wrapper },
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
