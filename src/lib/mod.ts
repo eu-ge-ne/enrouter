@@ -5,7 +5,7 @@ export type { Route } from "./route/mod.js";
 export type { Match } from "./match/mod.js";
 export { matchLocation } from "./match/location.js";
 export { useMatch } from "./match/context.js";
-export { type UseActiveParams, usePath, useActive } from "./match/hooks.js";
+export { type UseActiveParams, useActive } from "./match/hooks.js";
 
 export { type StaticRouterProps, StaticRouter } from "./router/static.js";
 export { type BrowserRouterProps, BrowserRouter } from "./router/browser.js";

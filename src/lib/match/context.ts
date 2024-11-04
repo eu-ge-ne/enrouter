@@ -2,10 +2,23 @@ import { createContext, useContext } from "react";
 
 import type { Match } from "./mod.js";
 
-const MatchContext = createContext<Match | undefined>(undefined);
+const Context = createContext<Match | undefined>(undefined);
 
-export const MatchProvider = MatchContext.Provider;
+export const MatchProvider = Context.Provider;
 
-export function useMatch(): Match | undefined {
-  return useContext(MatchContext);
+export function useMatch(path?: string): Match | undefined {
+  let match = useContext(Context);
+
+  if (path) {
+    match = match?.first;
+
+    while (match) {
+      if (match.route.path === path) {
+        return match;
+      }
+      match = match.next;
+    }
+  }
+
+  return match;
 }

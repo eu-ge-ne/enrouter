@@ -5,7 +5,7 @@ import * as regexparam from "regexparam";
 
 import type { Match } from "./mod.js";
 import { MatchProvider } from "./context.js";
-import { useRoot, usePath, useActive } from "./hooks.js";
+import { useRoot, useActive } from "./hooks.js";
 
 const wrapperId = "test-wrapper";
 
@@ -58,64 +58,6 @@ describe("match", () => {
       const Test: FC = () => {
         const match = useRoot();
         return match?.route.elements._layout?.Root;
-      };
-
-      const screen = render(
-        <MatchProvider value={context}>
-          <Test />
-        </MatchProvider>,
-        { wrapper },
-      );
-
-      await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
-
-      expect(screen.container).toMatchSnapshot();
-    });
-  });
-
-  describe("usePath", () => {
-    test("with 2 matches", async () => {
-      const context: Match = {
-        isVoid: false,
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>Page /</div>,
-            },
-          },
-        },
-        isFull: false,
-        location: "/",
-        params: {},
-
-        next: {
-          isVoid: false,
-          route: {
-            path: "/abc",
-            test: regexparam.parse("/abc", true),
-            modules: [],
-            loaded: true,
-            elements: {
-              _layout: {
-                Main: <div>Page /abc</div>,
-              },
-            },
-          },
-          isFull: true,
-          location: "/abc",
-          params: {},
-        },
-      };
-
-      context.first = context;
-
-      const Test: FC = () => {
-        const match = usePath("/abc");
-        return match?.route.elements._layout?.Main;
       };
 
       const screen = render(
