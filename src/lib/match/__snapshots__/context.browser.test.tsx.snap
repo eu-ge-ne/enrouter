@@ -11,3 +11,15 @@ exports[`match > useMatch > 1 match 1`] = `
   </div>
 </div>
 `;
+
+exports[`match > useMatch > 2 matches 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      Page /abc
+    </div>
+  </div>
+</div>
+`;

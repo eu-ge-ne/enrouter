@@ -12,17 +12,6 @@ export function useRoot(): Match | undefined {
   }
 }
 
-export function usePath(path: string): Match | undefined {
-  let match = useMatch()?.first;
-
-  while (match) {
-    if (match.route.path === path) {
-      return match;
-    }
-    match = match.next;
-  }
-}
-
 export interface UseActiveParams<T> {
   path: string;
   loose?: boolean;
@@ -30,7 +19,7 @@ export interface UseActiveParams<T> {
 }
 
 export function useActive<T>({ path, loose, value }: UseActiveParams<T>): T {
-  const match = usePath(path);
+  const match = useMatch(path);
 
   const isActive = loose ? match !== undefined : Boolean(match?.isFull);
 
