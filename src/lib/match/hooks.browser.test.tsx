@@ -29,7 +29,7 @@ describe("match", () => {
             },
           },
         },
-        isFull: false,
+        isExact: false,
         location: "/",
         params: {},
 
@@ -46,7 +46,7 @@ describe("match", () => {
               },
             },
           },
-          isFull: true,
+          isExact: true,
           location: "/abc",
           params: {},
         },
@@ -64,7 +64,7 @@ describe("match", () => {
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        { wrapper },
+        { wrapper }
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -88,7 +88,7 @@ describe("match", () => {
             },
           },
         },
-        isFull: false,
+        isExact: false,
         location: "/",
         params: {},
 
@@ -105,7 +105,7 @@ describe("match", () => {
               },
             },
           },
-          isFull: true,
+          isExact: true,
           location: "/abc",
           params: {},
         },
@@ -146,7 +146,7 @@ describe("match", () => {
         <MatchProvider value={context}>
           <Test />
         </MatchProvider>,
-        { wrapper },
+        { wrapper }
       );
 
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();

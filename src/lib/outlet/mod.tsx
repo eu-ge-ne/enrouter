@@ -12,7 +12,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
     return;
   }
 
-  if (!match.last?.isFull) {
+  if (!match.last?.isExact) {
     if (match.isVoid) {
       return pick(match.route.elements._void, name);
     }
@@ -33,7 +33,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
 function pick(
   els: Record<string, ReactElement> | undefined,
-  name?: string,
+  name?: string
 ): ReactElement | undefined {
   if (els) {
     return name ? els[name] : Object.values(els)[0];

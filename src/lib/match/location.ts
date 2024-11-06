@@ -7,7 +7,7 @@ import { loadRoutes } from "#lib/route/load.js";
 const log = logger("matchLocation");
 
 export async function matchLocation(
-  location: string,
+  location: string
 ): Promise<Match | undefined> {
   const matches: Match[] = [];
 
@@ -67,10 +67,10 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   return {
     isVoid: false,
     route,
-    isFull: loc === location,
+    isExact: loc === location,
     location: loc,
     params: Object.fromEntries(
-      route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
+      route.test.keys.map((key, i) => [key, execs![i + 1]!] as const)
     ),
   };
 }

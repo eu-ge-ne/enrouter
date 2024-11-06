@@ -19,7 +19,7 @@ describe("outlet", () => {
       <MatchProvider value={undefined}>
         <Outlet />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -48,7 +48,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      isExact: false,
       params: {},
 
       next: {
@@ -71,7 +71,7 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isFull: false,
+        isExact: false,
         params: {},
       },
     };
@@ -80,7 +80,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -106,7 +106,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      isExact: false,
       params: {},
 
       next: {
@@ -123,7 +123,7 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isFull: false,
+        isExact: false,
         params: {},
       },
     };
@@ -132,7 +132,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -158,7 +158,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      isExact: false,
       params: {},
     };
 
@@ -166,7 +166,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -195,7 +195,7 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isFull: false,
+      isExact: false,
       params: {},
 
       next: {
@@ -218,7 +218,7 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isFull: false,
+        isExact: false,
         params: {},
       },
     };
@@ -227,7 +227,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
