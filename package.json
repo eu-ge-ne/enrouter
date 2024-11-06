@@ -2,10 +2,10 @@
   "name": "enrouter",
   "version": "0.0.17",
   "type": "module",
-  "description": "File based router library for React",
+  "description": "File-based router library for React",
   "license": "MIT",
   "author": "Eugene Pobochny",
-  "homepage": "https://enrouter.eu-ge-ne.workers.dev",
+  "homepage": "https://enrouter.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eu-ge-ne/enrouter.git"
@@ -14,10 +14,10 @@
     "url": "https://github.com/eu-ge-ne/enrouter/issues"
   },
   "keywords": [
-    "React",
-    "Router",
-    "TypeScript",
-    "SSR"
+    "react",
+    "router",
+    "typescript",
+    "ssr"
   ],
   "exports": {
     ".": {
