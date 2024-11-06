@@ -28,7 +28,7 @@ describe("match", () => {
             },
           },
         },
-        isFull: true,
+        isExact: true,
         location: "/",
         params: {},
       };
@@ -65,7 +65,7 @@ describe("match", () => {
             },
           },
         },
-        isFull: false,
+        isExact: false,
         location: "/",
         params: {},
 
@@ -82,7 +82,7 @@ describe("match", () => {
               },
             },
           },
-          isFull: true,
+          isExact: true,
           location: "/abc",
           params: {},
         },

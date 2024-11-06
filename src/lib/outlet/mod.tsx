@@ -12,7 +12,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
     return;
   }
 
-  if (!match.last?.isFull) {
+  if (!match.last?.isExact) {
     if (match.isVoid) {
       return pick(match.route.elements._void, name);
     }

@@ -39,7 +39,7 @@ describe("router", () => {
         isVoid: false,
         route,
         location: "/",
-        isFull: true,
+        isExact: true,
         params: {},
       };
 

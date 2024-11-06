@@ -67,7 +67,7 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   return {
     isVoid: false,
     route,
-    isFull: loc === location,
+    isExact: loc === location,
     location: loc,
     params: Object.fromEntries(
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),

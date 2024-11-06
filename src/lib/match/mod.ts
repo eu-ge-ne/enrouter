@@ -7,7 +7,7 @@ export interface Match {
   isVoid: boolean;
   route: Route;
 
-  isFull: boolean;
+  isExact: boolean;
   location: string;
   params: Record<string, string>;
 
