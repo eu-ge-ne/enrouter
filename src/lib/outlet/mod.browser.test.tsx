@@ -19,7 +19,7 @@ describe("outlet", () => {
       <MatchProvider value={undefined}>
         <Outlet />
       </MatchProvider>,
-      { wrapper }
+      { wrapper },
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -80,7 +80,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper }
+      { wrapper },
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -132,7 +132,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper }
+      { wrapper },
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -166,7 +166,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper }
+      { wrapper },
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
@@ -227,7 +227,7 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper }
+      { wrapper },
     );
 
     await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
