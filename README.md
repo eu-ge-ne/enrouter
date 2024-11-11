@@ -22,8 +22,7 @@ pnpm add -D enrouter
 
 ## Requirements
 
-- React. `enrouter@0.x.x` depends on `react@rc`.
-  `v1.0.0` will depend on `react@18`.
+- `react@^18`.
 - Vite. enrouter relies on Vite/Rollup "virtual module" feature for route
   generation.
 
