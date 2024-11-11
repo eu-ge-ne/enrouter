@@ -1,13 +1,11 @@
 # enrouter
 
-<div style="margin: 1rem 0">
-  <a href="https://github.com/eu-ge-ne/enrouter">
-    <img src="https://img.shields.io/github/package-json/v/eu-ge-ne/enrouter?label=github" />
-  </a>
-  <a href="https://www.npmjs.com/package/enrouter">
-    <img src="https://img.shields.io/npm/v/enrouter" />
-  </a>
-</div>
+<a href="https://github.com/eu-ge-ne/enrouter">
+  <img src="https://img.shields.io/github/package-json/v/eu-ge-ne/enrouter?label=github" />
+</a>
+<a href="https://www.npmjs.com/package/enrouter">
+  <img src="https://img.shields.io/npm/v/enrouter" />
+</a>
 
 enrouter is a file-based router library for React. It is written in TypeScript
 and compiled to ES2023.
