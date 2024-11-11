@@ -5,7 +5,6 @@
     src="https://img.shields.io/github/package-json/v/eu-ge-ne/enrouter?label=github"
   />
 </a>
-&nbsp;
 <a href="https://www.npmjs.com/package/enrouter">
   <img src="https://img.shields.io/npm/v/enrouter" />
 </a>
