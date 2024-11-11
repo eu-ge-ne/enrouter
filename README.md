@@ -2,7 +2,8 @@
 
 <a href="https://github.com/eu-ge-ne/enrouter">
   <img src="https://img.shields.io/github/package-json/v/eu-ge-ne/enrouter?label=github" />
-</a> <a href="https://www.npmjs.com/package/enrouter">
+</a>
+<a href="https://www.npmjs.com/package/enrouter">
   <img src="https://img.shields.io/npm/v/enrouter" />
 </a>
 <br/>
