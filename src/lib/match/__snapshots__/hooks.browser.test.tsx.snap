@@ -23,18 +23,6 @@ exports[`match > useActive > with 2 matches 1`] = `
 </div>
 `;
 
-exports[`match > usePath > with 2 matches 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      Page /abc
-    </div>
-  </div>
-</div>
-`;
-
 exports[`match > useRoot > with 2 matches 1`] = `
 <div>
   <div
