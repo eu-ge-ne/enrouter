@@ -235,16 +235,9 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
       "route": {
         "elements": {
           "_void": {
-            "Main": {
-              "$$typeof": Symbol(react.transitional.element),
-              "_owner": null,
-              "_store": {},
-              "key": null,
-              "props": {
-                "children": "Void",
-              },
-              "type": "div",
-            },
+            "Main": <div>
+              Void
+            </div>,
           },
         },
         "loaded": true,
@@ -330,16 +323,9 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
     "route": {
       "elements": {
         "_void": {
-          "Main": {
-            "$$typeof": Symbol(react.transitional.element),
-            "_owner": null,
-            "_store": {},
-            "key": null,
-            "props": {
-              "children": "Void",
-            },
-            "type": "div",
-          },
+          "Main": <div>
+            Void
+          </div>,
         },
       },
       "loaded": true,
@@ -378,16 +364,9 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
       {
         "elements": {
           "_void": {
-            "Main": {
-              "$$typeof": Symbol(react.transitional.element),
-              "_owner": null,
-              "_store": {},
-              "key": null,
-              "props": {
-                "children": "Void",
-              },
-              "type": "div",
-            },
+            "Main": <div>
+              Void
+            </div>,
           },
         },
         "loaded": true,
