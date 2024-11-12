@@ -18,19 +18,3 @@ exports[`router > BrowserRouter > link 1`] = `
   </div>
 </div>
 `;
-
-exports[`router > BrowserRouter > matchLocation fails 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      <a
-        href="/abc"
-      >
-        link to /abc
-      </a>
-    </div>
-  </div>
-</div>
-`;

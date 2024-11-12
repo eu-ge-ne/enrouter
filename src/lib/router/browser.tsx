@@ -20,20 +20,24 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   const [match, setMatch] = useState(props.match);
 
   const navigate = useCallback(async (to: string) => {
+    let nextMatch: Match | undefined;
+
     try {
-      const nextMacth = await matchLocation(to);
-
-      browser.pushHistory(to);
-      setLocation(to);
-
-      setMatch(nextMacth);
-
-      log("Navigated to %s", to);
+      nextMatch = await matchLocation(to);
     } catch (err) {
-      log("Navigation error %o", err);
+      log("matchLocation error %o", err);
+    }
 
+    setLocation(to);
+    setMatch(nextMatch);
+
+    if (nextMatch) {
+      browser.pushHistory(to);
+    } else {
       browser.assignLocation(to);
     }
+
+    log("Navigated to %s", to);
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {
