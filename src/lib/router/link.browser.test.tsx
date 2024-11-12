@@ -35,7 +35,7 @@ beforeEach(() => {
 });
 
 describe("router", () => {
-  describe("BrowserRouter", () => {
+  describe.sequential("BrowserRouter", () => {
     test("link", async () => {
       function TestLink() {
         const props = useLink("/abc");

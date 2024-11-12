@@ -12,6 +12,9 @@ export default defineWorkspace([
       environment: "node",
       alias,
     },
+    optimizeDeps: {
+      include: ["react/jsx-dev-runtime"],
+    },
   },
   {
     test: {
@@ -24,6 +27,9 @@ export default defineWorkspace([
         headless: true,
       },
       alias,
+    },
+    optimizeDeps: {
+      include: ["@vitest/coverage-v8/browser"],
     },
   },
 ]);
