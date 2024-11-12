@@ -12,6 +12,9 @@ export default defineWorkspace([
       environment: "node",
       alias,
     },
+    optimizeDeps: {
+      include: ["react/jsx-dev-runtime"],
+    },
   },
   {
     test: {
