@@ -35,7 +35,7 @@ beforeEach(() => {
 });
 
 describe("router", () => {
-  describe("BrowserRouter", () => {
+  describe.sequential("BrowserRouter", () => {
     test("link", async () => {
       function TestLink() {
         const props = useLink("/abc");
@@ -136,7 +136,7 @@ describe("router", () => {
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
       vi.mocked(matchLocation).mockRejectedValueOnce(
-        new Error("matchLocation error"),
+        new Error("matchLocation error")
       );
 
       const match: Match = {
