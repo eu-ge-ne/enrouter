@@ -25,5 +25,8 @@ export default defineWorkspace([
       },
       alias,
     },
+    optimizeDeps: {
+      include: ["@vitest/coverage-v8/browser"],
+    },
   },
 ]);

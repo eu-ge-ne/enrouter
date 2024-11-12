@@ -136,7 +136,7 @@ describe("router", () => {
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
       vi.mocked(matchLocation).mockRejectedValueOnce(
-        new Error("matchLocation error"),
+        new Error("matchLocation error")
       );
 
       const match: Match = {
@@ -155,7 +155,7 @@ describe("router", () => {
       await userEvent.click(screen.getByRole("link"));
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 
-      expect(pushHistory).toBeCalledTimes(0);
+      expect(pushHistory).not.toBeCalled();
 
       expect(assignLocation).toBeCalledTimes(1);
       expect(assignLocation).toBeCalledWith("/abc");
