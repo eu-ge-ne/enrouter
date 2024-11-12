@@ -17,11 +17,33 @@ export interface EnrouterPluginOptions {
 
 export default function plugin(params: EnrouterPluginOptions): Plugin {
   let rootPath: string;
+  let routesPath: string;
+  let routeFiles: string[];
 
   return {
     name: "vite-plugin-enrouter",
-    configResolved(config) {
-      rootPath = config.root;
+    async config(config) {
+      rootPath = config.root || process.cwd();
+      routesPath = resolve(params.path);
+      routeFiles = await glob(resolve(routesPath, globPattern));
+
+      if (config.build?.lib) {
+        return {
+          build: {
+            lib: {
+              entry: routeFiles,
+            },
+          },
+        };
+      }
+
+      return {
+        build: {
+          rollupOptions: {
+            input: routeFiles,
+          },
+        },
+      };
     },
     resolveId(id) {
       if (id === moduleId) {
@@ -33,26 +55,23 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
         return null;
       }
 
-      const routesPath = resolve(params.path);
-
-      this.info(() => format("Searching modules in %s", routesPath));
-
-      const files = await glob(resolve(routesPath, globPattern));
       const resolves = await Promise.all(
-        files.map(async (x) => {
+        routeFiles.map(async (x) => {
           const y = await this.resolve(x);
           if (y) {
             this.debug(() => format("Found module: %s", y.id));
           }
           return y;
-        }),
+        })
       );
 
       const resolvedFiles = resolves
-        .map((x, i) => (x ? { file: files[i]!, resolvedId: x.id } : undefined))
+        .map((x, i) =>
+          x ? { file: routeFiles[i]!, resolvedId: x.id } : undefined
+        )
         .filter((x) => x !== undefined);
 
-      this.info(() => format("Found %d modules", resolvedFiles.length));
+      this.info(() => format("Found %d route files", resolvedFiles.length));
 
       this.debug(() => "Building module tree");
 
