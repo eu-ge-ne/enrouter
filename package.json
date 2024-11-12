@@ -1,6 +1,6 @@
 {
   "name": "enrouter",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "type": "module",
   "description": "File-based router library for React",
   "license": "MIT",
