@@ -7,6 +7,7 @@ import * as regexparam from "regexparam";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/mod.js";
 import { getRouteTree } from "#lib/route/tree.js";
+import { matchLocation } from "#lib/match/location.js";
 import { useLink } from "#lib/link/mod.js";
 import { Outlet } from "#lib/outlet/mod.js";
 import { BrowserRouter } from "./browser.js";
@@ -27,13 +28,15 @@ vi.mock(import("#lib/browser/mod.js"), () => ({
   assignLocation: vi.fn(),
 }));
 
+vi.mock(import("#lib/match/location.js"), { spy: true });
+
 beforeEach(() => {
   vi.clearAllMocks();
 });
 
 describe("router", () => {
   describe("BrowserRouter", () => {
-    test("link", async () => {
+    test("matchLocation fails", async () => {
       function TestLink() {
         const props = useLink("/abc");
         return <a {...props}>link to /abc</a>;
@@ -70,6 +73,9 @@ describe("router", () => {
       };
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
+      vi.mocked(matchLocation).mockRejectedValueOnce(
+        new Error("matchLocation error")
+      );
 
       const match: Match = {
         isVoid: false,
@@ -87,12 +93,12 @@ describe("router", () => {
       await userEvent.click(screen.getByRole("link"));
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 
-      expect(screen.container).toMatchSnapshot();
+      expect(pushHistory).not.toBeCalled();
 
-      expect(pushHistory).toBeCalledTimes(1);
-      expect(pushHistory).toBeCalledWith("/abc");
+      expect(matchLocation).toBeCalledTimes(1);
 
-      expect(assignLocation).not.toBeCalled();
+      expect(assignLocation).toBeCalledTimes(1);
+      expect(assignLocation).toBeCalledWith("/abc");
     });
   });
 });
