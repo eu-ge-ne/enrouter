@@ -62,12 +62,12 @@ export default function plugin(params: EnrouterPluginOptions): Plugin {
             this.debug(() => format("Found module: %s", y.id));
           }
           return y;
-        })
+        }),
       );
 
       const resolvedFiles = resolves
         .map((x, i) =>
-          x ? { file: routeFiles[i]!, resolvedId: x.id } : undefined
+          x ? { file: routeFiles[i]!, resolvedId: x.id } : undefined,
         )
         .filter((x) => x !== undefined);
 
