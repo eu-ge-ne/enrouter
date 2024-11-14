@@ -158,9 +158,11 @@ describe("outlet", () => {
         },
       },
       location: "/",
-      isExact: false,
+      isExact: true,
       params: {},
     };
+
+    match.last = match;
 
     const screen = render(
       <MatchProvider value={match}>

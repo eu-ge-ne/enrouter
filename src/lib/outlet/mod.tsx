@@ -12,6 +12,10 @@ export function Outlet({ name }: OutletProps): ReactNode {
     return;
   }
 
+  if (match === match.last && match.isExact) {
+    return pick(match.route.elements._content, name);
+  }
+
   if (!match.last?.isExact) {
     if (match.isVoid) {
       return pick(match.route.elements._void, name);
@@ -27,8 +31,6 @@ export function Outlet({ name }: OutletProps): ReactNode {
       </MatchProvider>
     );
   }
-
-  return pick(match.route.elements._content, name);
 }
 
 function pick(
