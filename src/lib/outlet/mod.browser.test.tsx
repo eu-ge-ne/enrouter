@@ -7,10 +7,10 @@ import type { Match } from "#lib/match/mod.js";
 import { MatchProvider } from "#lib/match/context.js";
 import { Outlet } from "./mod.js";
 
-const wrapperId = "test-wrapper";
+const TEST_ID = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={TEST_ID}>{children}</div>
 );
 
 describe("outlet", () => {
@@ -19,10 +19,10 @@ describe("outlet", () => {
       <MatchProvider value={undefined}>
         <Outlet />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(TEST_ID)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -71,19 +71,22 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isExact: false,
+        isExact: true,
         params: {},
       },
     };
+
+    match.last = match.next;
+    match.next!.last = match.next;
 
     const screen = render(
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(TEST_ID)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -123,19 +126,22 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isExact: false,
+        isExact: true,
         params: {},
       },
     };
+
+    match.last = match.next;
+    match.next!.last = match.next;
 
     const screen = render(
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(TEST_ID)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -168,10 +174,10 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(TEST_ID)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -229,10 +235,10 @@ describe("outlet", () => {
       <MatchProvider value={match}>
         <Outlet name="Main" />
       </MatchProvider>,
-      { wrapper },
+      { wrapper }
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(TEST_ID)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });

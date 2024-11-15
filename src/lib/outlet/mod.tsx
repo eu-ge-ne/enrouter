@@ -16,13 +16,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
     return pick(match.route.elements._content, name);
   }
 
-  if (!match.last?.isExact) {
-    if (match.isVoid) {
-      return pick(match.route.elements._void, name);
-    }
-  }
-
-  if (match.next) {
+  if (match.next && match.last?.isExact) {
     const { _layout, _content } = match.next.route.elements;
 
     return (
@@ -31,11 +25,15 @@ export function Outlet({ name }: OutletProps): ReactNode {
       </MatchProvider>
     );
   }
+
+  if (!match.last?.isExact && match.isVoid) {
+    return pick(match.route.elements._void, name);
+  }
 }
 
 function pick(
   els: Record<string, ReactElement> | undefined,
-  name?: string,
+  name?: string
 ): ReactElement | undefined {
   if (els) {
     return name ? els[name] : Object.values(els)[0];
