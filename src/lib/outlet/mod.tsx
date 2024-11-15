@@ -18,12 +18,9 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
   if (match.next && match.last?.isExact) {
     const { _layout, _content } = match.next.route.elements;
+    const els = _layout ?? _content;
 
-    return (
-      <MatchProvider value={match.next}>
-        {pick(_layout ?? _content, name)}
-      </MatchProvider>
-    );
+    return <MatchProvider value={match.next}>{pick(els, name)}</MatchProvider>;
   }
 
   // TODO
