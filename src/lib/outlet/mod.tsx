@@ -33,7 +33,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
 function pick(
   els: Record<string, ReactElement> | undefined,
-  name?: string
+  name?: string,
 ): ReactElement | undefined {
   if (els) {
     return name ? els[name] : Object.values(els)[0];
