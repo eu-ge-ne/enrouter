@@ -62,7 +62,7 @@ describe("router", () => {
             loaded: true,
             elements: {
               _layout: {
-                Abc: <div>abc</div>,
+                Abc: <div>abc layout</div>,
               },
             },
           },
@@ -84,9 +84,7 @@ describe("router", () => {
       const screen = render(<BrowserRouter matches={matches} />, { wrapper });
 
       await userEvent.click(screen.getByRole("link"));
-      await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
-
-      expect(screen.container).toMatchSnapshot();
+      await expect.element(screen.getByText("abc layout")).toBeVisible();
 
       expect(pushHistory).toBeCalledTimes(1);
       expect(pushHistory).toBeCalledWith("/abc");
