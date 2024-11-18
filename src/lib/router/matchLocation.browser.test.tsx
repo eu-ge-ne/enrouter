@@ -74,7 +74,7 @@ describe("router", () => {
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
       vi.mocked(matchLocation).mockRejectedValueOnce(
-        new Error("matchLocation error")
+        new Error("matchLocation error"),
       );
 
       const matches: Match[] = [
