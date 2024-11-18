@@ -1,6 +1,6 @@
 {
   "name": "enrouter",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "type": "module",
   "description": "Router library for React and Vite plugin providing seamless file-based routing with \"named outlets\"",
   "license": "MIT",
