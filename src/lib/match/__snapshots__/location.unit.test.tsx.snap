@@ -1,144 +1,149 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > matchLocation > 0 matches 1`] = `undefined`;
+exports[`match > matchLocation > 0 matches 1`] = `[]`;
 
 exports[`match > matchLocation > from 1 route 1`] = `
-{
-  "first": [Circular],
-  "isExact": true,
-  "isVoid": false,
-  "last": [Circular],
-  "location": "/",
-  "next": undefined,
-  "params": {},
-  "prev": undefined,
-  "route": {
-    "elements": {},
-    "loaded": false,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+[
+  {
+    "isExact": true,
+    "isVoid": false,
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
     },
   },
-}
+]
 `;
 
 exports[`match > matchLocation > from 1 route with params 1`] = `
-{
-  "first": [Circular],
-  "isExact": true,
-  "isVoid": false,
-  "last": [Circular],
-  "location": "/100",
-  "next": undefined,
-  "params": {
-    "id": "100",
-  },
-  "prev": undefined,
-  "route": {
-    "elements": {},
-    "loaded": false,
-    "modules": [],
-    "path": "/[:id]",
-    "test": {
-      "keys": [
-        "id",
-      ],
-      "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+[
+  {
+    "isExact": true,
+    "isVoid": false,
+    "location": "/100",
+    "params": {
+      "id": "100",
+    },
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/[:id]",
+      "test": {
+        "keys": [
+          "id",
+        ],
+        "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+      },
     },
   },
-}
+]
 `;
 
 exports[`match > matchLocation > from 2 routes 1`] = `
-{
-  "first": [Circular],
-  "isExact": false,
-  "isVoid": false,
-  "last": {
-    "first": [Circular],
-    "isExact": true,
+[
+  {
+    "isExact": false,
     "isVoid": false,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
+    "location": "/",
     "params": {},
-    "prev": [Circular],
     "route": {
       "elements": {},
       "loaded": false,
       "modules": [],
-      "path": "/abc",
+      "path": "/",
       "test": {
         "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
-    },
-  },
-  "location": "/",
-  "next": {
-    "first": [Circular],
-    "isExact": true,
-    "isVoid": false,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
-    "params": {},
-    "prev": [Circular],
-    "route": {
-      "elements": {},
-      "loaded": false,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-  "params": {},
-  "prev": undefined,
-  "route": {
-    "elements": {},
-    "loaded": false,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-    "tree": [
-      {
-        "elements": {},
-        "loaded": false,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      "tree": [
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
         },
-      },
-    ],
+      ],
+    },
   },
-}
+  {
+    "isExact": true,
+    "isVoid": false,
+    "location": "/abc",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
 `;
 
 exports[`match > matchLocation > from 2 routes with params 1`] = `
-{
-  "first": [Circular],
-  "isExact": false,
-  "isVoid": false,
-  "last": {
-    "first": [Circular],
+[
+  {
+    "isExact": false,
+    "isVoid": false,
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/[:id]",
+          "test": {
+            "keys": [
+              "id",
+            ],
+            "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+    },
+  },
+  {
     "isExact": true,
     "isVoid": false,
-    "last": [Circular],
     "location": "/abc",
-    "next": undefined,
     "params": {},
-    "prev": [Circular],
     "route": {
       "elements": {},
       "loaded": false,
@@ -150,176 +155,62 @@ exports[`match > matchLocation > from 2 routes with params 1`] = `
       },
     },
   },
-  "location": "/",
-  "next": {
-    "first": [Circular],
-    "isExact": true,
-    "isVoid": false,
-    "last": [Circular],
-    "location": "/abc",
-    "next": undefined,
-    "params": {},
-    "prev": [Circular],
-    "route": {
-      "elements": {},
-      "loaded": false,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-  "params": {},
-  "prev": undefined,
-  "route": {
-    "elements": {},
-    "loaded": false,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-    "tree": [
-      {
-        "elements": {},
-        "loaded": false,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-      {
-        "elements": {},
-        "loaded": false,
-        "modules": [],
-        "path": "/[:id]",
-        "test": {
-          "keys": [
-            "id",
-          ],
-          "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-    ],
-  },
-}
+]
 `;
 
 exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
-{
-  "first": [Circular],
-  "isExact": false,
-  "isVoid": false,
-  "last": {
-    "first": [Circular],
+[
+  {
     "isExact": false,
     "isVoid": false,
-    "last": [Circular],
-    "location": "/abc/xyz",
-    "next": undefined,
+    "location": "/",
     "params": {},
-    "prev": {
-      "first": [Circular],
-      "isExact": false,
-      "isVoid": true,
-      "last": [Circular],
-      "location": "/abc",
-      "next": [Circular],
-      "params": {},
-      "prev": [Circular],
-      "route": {
-        "elements": {
-          "_void": {
-            "Main": <div>
-              Void
-            </div>,
-          },
-        },
-        "loaded": true,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-        "tree": [
-          {
-            "elements": {},
-            "loaded": true,
-            "modules": [],
-            "path": "/abc/xyz",
-            "test": {
-              "keys": [],
-              "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
-            },
-          },
-        ],
-      },
-    },
     "route": {
       "elements": {},
       "loaded": true,
       "modules": [],
-      "path": "/abc/xyz",
+      "path": "/",
       "test": {
         "keys": [],
-        "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
       },
+      "tree": [
+        {
+          "elements": {
+            "_void": {
+              "Main": <div>
+                Void
+              </div>,
+            },
+          },
+          "loaded": true,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+          "tree": [
+            {
+              "elements": {},
+              "loaded": true,
+              "modules": [],
+              "path": "/abc/xyz",
+              "test": {
+                "keys": [],
+                "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
+              },
+            },
+          ],
+        },
+      ],
     },
   },
-  "location": "/",
-  "next": {
-    "first": [Circular],
+  {
     "isExact": false,
     "isVoid": true,
-    "last": {
-      "first": [Circular],
-      "isExact": false,
-      "isVoid": false,
-      "last": [Circular],
-      "location": "/abc/xyz",
-      "next": undefined,
-      "params": {},
-      "prev": [Circular],
-      "route": {
-        "elements": {},
-        "loaded": true,
-        "modules": [],
-        "path": "/abc/xyz",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-    },
     "location": "/abc",
-    "next": {
-      "first": [Circular],
-      "isExact": false,
-      "isVoid": false,
-      "last": [Circular],
-      "location": "/abc/xyz",
-      "next": undefined,
-      "params": {},
-      "prev": [Circular],
-      "route": {
-        "elements": {},
-        "loaded": true,
-        "modules": [],
-        "path": "/abc/xyz",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-      },
-    },
     "params": {},
-    "prev": [Circular],
     "route": {
       "elements": {
         "_void": {
@@ -349,47 +240,21 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
       ],
     },
   },
-  "params": {},
-  "prev": undefined,
-  "route": {
-    "elements": {},
-    "loaded": true,
-    "modules": [],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-    "tree": [
-      {
-        "elements": {
-          "_void": {
-            "Main": <div>
-              Void
-            </div>,
-          },
-        },
-        "loaded": true,
-        "modules": [],
-        "path": "/abc",
-        "test": {
-          "keys": [],
-          "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-        },
-        "tree": [
-          {
-            "elements": {},
-            "loaded": true,
-            "modules": [],
-            "path": "/abc/xyz",
-            "test": {
-              "keys": [],
-              "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
-            },
-          },
-        ],
+  {
+    "isExact": false,
+    "isVoid": false,
+    "location": "/abc/xyz",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": true,
+      "modules": [],
+      "path": "/abc/xyz",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
       },
-    ],
+    },
   },
-}
+]
 `;

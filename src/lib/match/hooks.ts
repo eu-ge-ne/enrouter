@@ -1,14 +1,13 @@
 import type { Match } from "./mod.js";
-import { useMatch } from "./context.js";
+import { useMatches, useMatch } from "./context.js";
 
 export function useRoot(): Match | undefined {
-  let match = useMatch()?.last;
+  const matches = useMatches();
 
-  while (match) {
-    if (match.route.elements._layout?.Root) {
-      return match;
+  for (let i = matches.length - 1; i >= 0; i -= 1) {
+    if (matches[i]?.route.elements._layout?.Root) {
+      return matches[i];
     }
-    match = match.prev;
   }
 }
 
