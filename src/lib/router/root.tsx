@@ -31,5 +31,3 @@ export function Root({
     </NavigateProvider>
   );
 }
-
-//matches[0]?.route.elements._layout?.Root
