@@ -71,18 +71,17 @@ describe("router", () => {
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
 
-      const match: Match = {
-        isVoid: false,
-        route,
-        location: "/",
-        isExact: true,
-        params: {},
-      };
+      const matches: Match[] = [
+        {
+          isVoid: false,
+          route,
+          location: "/",
+          isExact: true,
+          params: {},
+        },
+      ];
 
-      match.first = match;
-      match.last = match;
-
-      const screen = render(<BrowserRouter match={match} />, { wrapper });
+      const screen = render(<BrowserRouter matches={matches} />, { wrapper });
 
       await userEvent.click(screen.getByRole("link"));
       await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
