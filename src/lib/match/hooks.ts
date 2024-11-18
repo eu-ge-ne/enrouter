@@ -1,6 +1,7 @@
-import type { Match } from "./mod.js";
-import { useMatches, useMatch } from "./context.js";
+//import type { Match } from "./mod.js";
+import { /*useMatches,*/ useMatch } from "./context.js";
 
+/*
 export function useRoot(): Match | undefined {
   const matches = useMatches();
 
@@ -10,6 +11,7 @@ export function useRoot(): Match | undefined {
     }
   }
 }
+*/
 
 export interface UseActiveParams<T> {
   path: string;
