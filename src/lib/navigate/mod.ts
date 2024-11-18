@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-type Navigate = (to: string) => void;
+export type Navigate = (to: string) => void;
 
 export const noNavigate: Navigate = () => {};
 
