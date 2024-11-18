@@ -4,7 +4,6 @@ import {
   MatchIndexProvider,
   useMatches,
   useMatchIndex,
-  //useMatch,
 } from "#lib/match/context.js";
 
 export interface OutletProps {
@@ -41,7 +40,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
 function pick(
   els: Record<string, ReactElement> | undefined,
-  name?: string
+  name?: string,
 ): ReactElement | undefined {
   if (els) {
     return name ? els[name] : Object.values(els)[0];
