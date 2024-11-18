@@ -19,24 +19,20 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   const [matches, setMatches] = useState(props.matches);
 
   const navigate = useCallback(async (to: string) => {
-    let newMatches: Match[] = [];
-
     try {
-      newMatches = await matchLocation(to);
+      const newMatches = await matchLocation(to);
+
+      setLocation(to);
+      setMatches(newMatches);
+
+      browser.pushHistory(to);
+
+      log("Navigated to %s", to);
     } catch (err) {
       log("matchLocation error %o", err);
-    }
 
-    setLocation(to);
-    setMatches(newMatches);
-
-    if (newMatches.length > 0) {
-      browser.pushHistory(to);
-    } else {
       browser.assignLocation(to);
     }
-
-    log("Navigated to %s", to);
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {

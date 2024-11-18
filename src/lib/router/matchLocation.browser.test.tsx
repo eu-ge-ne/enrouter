@@ -13,10 +13,10 @@ import { Outlet } from "#lib/outlet/mod.js";
 import { BrowserRouter } from "./browser.js";
 import { assignLocation, pushHistory } from "#lib/browser/mod.js";
 
-const wrapperId = "test-wrapper";
+const TEST_ID = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={TEST_ID}>{children}</div>
 );
 
 vi.mock(import("#lib/route/tree.js"), () => ({
@@ -65,7 +65,7 @@ describe("router", () => {
             loaded: true,
             elements: {
               _layout: {
-                Abc: <div>abc</div>,
+                Abc: <div>abc layout</div>,
               },
             },
           },
@@ -90,14 +90,13 @@ describe("router", () => {
       const screen = render(<BrowserRouter matches={matches} />, { wrapper });
 
       await userEvent.click(screen.getByRole("link"));
-      await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
 
-      //expect(pushHistory).not.toBeCalled();
+      await expect.poll(() => assignLocation).toBeCalledTimes(1);
+      expect(assignLocation).toBeCalledWith("/abc");
+
+      expect(pushHistory).not.toBeCalled();
 
       expect(matchLocation).toBeCalledTimes(1);
-
-      expect(assignLocation).toBeCalledTimes(1);
-      expect(assignLocation).toBeCalledWith("/abc");
     });
   });
 });
