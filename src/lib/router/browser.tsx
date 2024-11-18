@@ -5,39 +5,34 @@ import { logger } from "#lib/debug.js";
 import { matchLocation } from "#lib/match/location.js";
 import { NavigateProvider } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
-import { MatchProvider } from "#lib/match/context.js";
 import * as browser from "#lib/browser/mod.js";
 import { Root } from "./root.js";
 
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
-  match: Match | undefined;
+  matches: Match[];
 }
 
 export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   const [location, setLocation] = useState(window.location.pathname);
-  const [match, setMatch] = useState(props.match);
+  const [matches, setMatches] = useState(props.matches);
 
   const navigate = useCallback(async (to: string) => {
-    let nextMatch: Match | undefined;
-
     try {
-      nextMatch = await matchLocation(to);
+      const newMatches = await matchLocation(to);
+
+      setLocation(to);
+      setMatches(newMatches);
+
+      browser.pushHistory(to);
+
+      log("Navigated to %s", to);
     } catch (err) {
       log("matchLocation error %o", err);
-    }
 
-    setLocation(to);
-    setMatch(nextMatch);
-
-    if (nextMatch) {
-      browser.pushHistory(to);
-    } else {
       browser.assignLocation(to);
     }
-
-    log("Navigated to %s", to);
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {
@@ -46,7 +41,7 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
     const to = window.location.pathname;
     setLocation(to);
 
-    setMatch(await matchLocation(to));
+    setMatches(await matchLocation(to));
   }, []);
 
   useEffect(() => {
@@ -57,9 +52,7 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   return (
     <NavigateProvider value={navigate}>
       <LocationProvider value={location}>
-        <MatchProvider value={match}>
-          <Root />
-        </MatchProvider>
+        <Root matches={matches} />
       </LocationProvider>
     </NavigateProvider>
   );

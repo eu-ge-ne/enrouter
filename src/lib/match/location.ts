@@ -6,9 +6,7 @@ import { loadRoutes } from "#lib/route/load.js";
 
 const log = logger("matchLocation");
 
-export async function matchLocation(
-  location: string,
-): Promise<Match | undefined> {
+export async function matchLocation(location: string): Promise<Match[]> {
   const matches: Match[] = [];
 
   recur([getRouteTree()], location, matches);
@@ -19,7 +17,7 @@ export async function matchLocation(
 
   log("matched: %o", matches);
 
-  return matches[0];
+  return matches;
 }
 
 function recur(routes: Route[], location: string, matches: Match[]): void {
@@ -78,15 +76,7 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
 function link(matches: Match[]): void {
   const lastVoidIndex = matches.findLastIndex((x) => x.route.elements._void);
 
-  const first = matches[0];
-  const last = matches.at(-1);
-
   matches.forEach((x, i) => {
     x.isVoid = i === lastVoidIndex;
-
-    x.first = first;
-    x.prev = matches[i - 1];
-    x.next = matches[i + 1];
-    x.last = last;
   });
 }

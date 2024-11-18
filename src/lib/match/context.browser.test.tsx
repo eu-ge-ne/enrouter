@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "./mod.js";
-import { MatchProvider, useMatch } from "./context.js";
+import { MatchesProvider, MatchIndexProvider, useMatch } from "./context.js";
 
 const wrapperId = "test-wrapper";
 
@@ -15,34 +15,38 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("match", () => {
   describe("useMatch", () => {
     test("1 match", async () => {
-      const context: Match = {
-        isVoid: false,
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>Page /</div>,
+      const matches: Match[] = [
+        {
+          isVoid: false,
+          route: {
+            path: "/",
+            test: regexparam.parse("/", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              _layout: {
+                Main: <div>Page /</div>,
+              },
             },
           },
+          isExact: true,
+          location: "/",
+          params: {},
         },
-        isExact: true,
-        location: "/",
-        params: {},
-      };
+      ];
 
       const Test: FC = () => {
-        const match = useMatch();
-        return (match?.route.elements._layout as Record<string, ReactElement>)
-          .Main;
+        return (
+          useMatch()?.route.elements._layout as Record<string, ReactElement>
+        ).Main;
       };
 
       const screen = render(
-        <MatchProvider value={context}>
-          <Test />
-        </MatchProvider>,
+        <MatchesProvider value={matches}>
+          <MatchIndexProvider value={0}>
+            <Test />
+          </MatchIndexProvider>
+        </MatchesProvider>,
         { wrapper },
       );
 
@@ -52,24 +56,25 @@ describe("match", () => {
     });
 
     test("2 matches", async () => {
-      const context: Match = {
-        isVoid: false,
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>Page /</div>,
+      const matches: Match[] = [
+        {
+          isVoid: false,
+          route: {
+            path: "/",
+            test: regexparam.parse("/", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              _layout: {
+                Main: <div>Page /</div>,
+              },
             },
           },
+          isExact: false,
+          location: "/",
+          params: {},
         },
-        isExact: false,
-        location: "/",
-        params: {},
-
-        next: {
+        {
           isVoid: false,
           route: {
             path: "/abc",
@@ -86,19 +91,16 @@ describe("match", () => {
           location: "/abc",
           params: {},
         },
-      };
-
-      context.first = context;
+      ];
 
       const Test: FC = () => {
-        const match = useMatch("/abc");
-        return match?.route.elements._layout?.Main;
+        return useMatch("/abc")?.route.elements._layout?.Main;
       };
 
       const screen = render(
-        <MatchProvider value={context}>
+        <MatchesProvider value={matches}>
           <Test />
-        </MatchProvider>,
+        </MatchesProvider>,
         { wrapper },
       );
 

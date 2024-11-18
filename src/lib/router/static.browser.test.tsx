@@ -15,28 +15,27 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("router", () => {
   describe("StaticRouter", () => {
     test("root", async () => {
-      const match: Match = {
-        isVoid: false,
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Root: <div>Root</div>,
+      const matches: Match[] = [
+        {
+          isVoid: false,
+          route: {
+            path: "/",
+            test: regexparam.parse("/", true),
+            modules: [],
+            loaded: true,
+            elements: {
+              _layout: {
+                Root: <div>Root</div>,
+              },
             },
           },
+          location: "/",
+          isExact: true,
+          params: {},
         },
-        location: "/",
-        isExact: true,
-        params: {},
-      };
+      ];
 
-      match.first = match;
-      match.last = match;
-
-      const screen = render(<StaticRouter location="/" match={match} />, {
+      const screen = render(<StaticRouter location="/" matches={matches} />, {
         wrapper,
       });
 

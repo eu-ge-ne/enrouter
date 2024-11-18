@@ -2,23 +2,27 @@ import { createContext, useContext } from "react";
 
 import type { Match } from "./mod.js";
 
-const Context = createContext<Match | undefined>(undefined);
+const MatchesContext = createContext<Match[]>([]);
+const MatchIndexContext = createContext<number>(-1);
 
-export const MatchProvider = Context.Provider;
+export const MatchesProvider = MatchesContext.Provider;
+export const MatchIndexProvider = MatchIndexContext.Provider;
+
+export function useMatches(): Match[] {
+  return useContext(MatchesContext);
+}
+
+export function useMatchIndex(): number {
+  return useContext(MatchIndexContext);
+}
 
 export function useMatch(path?: string): Match | undefined {
-  let match = useContext(Context);
+  const matches = useContext(MatchesContext);
+  const matchIndex = useContext(MatchIndexContext);
 
-  if (path) {
-    match = match?.first;
-
-    while (match) {
-      if (match.route.path === path) {
-        return match;
-      }
-      match = match.next;
-    }
+  if (!path) {
+    return matches[matchIndex];
   }
 
-  return match;
+  return matches.find((x) => x.route.path === path);
 }

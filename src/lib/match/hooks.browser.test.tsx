@@ -4,8 +4,8 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "./mod.js";
-import { MatchProvider } from "./context.js";
-import { useRoot, useActive } from "./hooks.js";
+import { MatchesProvider } from "./context.js";
+import { useActive } from "./hooks.js";
 
 const wrapperId = "test-wrapper";
 
@@ -14,85 +14,27 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("match", () => {
-  describe("useRoot", () => {
+  describe("useActive", () => {
     test("with 2 matches", async () => {
-      const context: Match = {
-        isVoid: false,
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Root: <div>Root</div>,
-            },
-          },
-        },
-        isExact: false,
-        location: "/",
-        params: {},
-
-        next: {
+      const matches: Match[] = [
+        {
           isVoid: false,
           route: {
-            path: "/abc",
-            test: regexparam.parse("/abc", true),
+            path: "/",
+            test: regexparam.parse("/", true),
             modules: [],
             loaded: true,
             elements: {
               _layout: {
-                Main: <div>Main</div>,
+                Main: <div>Page /</div>,
               },
             },
           },
-          isExact: true,
-          location: "/abc",
+          isExact: false,
+          location: "/",
           params: {},
         },
-      };
-
-      context.last = context.next;
-      context.last!.prev = context;
-
-      const Test: FC = () => {
-        const match = useRoot();
-        return match?.route.elements._layout?.Root;
-      };
-
-      const screen = render(
-        <MatchProvider value={context}>
-          <Test />
-        </MatchProvider>,
-        { wrapper },
-      );
-
-      await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
-
-      expect(screen.container).toMatchSnapshot();
-    });
-  });
-
-  describe("useActive", () => {
-    test("with 2 matches", async () => {
-      const context: Match = {
-        isVoid: false,
-        route: {
-          path: "/",
-          test: regexparam.parse("/", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>Page /</div>,
-            },
-          },
-        },
-        isExact: false,
-        location: "/",
-        params: {},
-
-        next: {
+        {
           isVoid: false,
           route: {
             path: "/abc",
@@ -109,9 +51,7 @@ describe("match", () => {
           location: "/abc",
           params: {},
         },
-      };
-
-      context.first = context;
+      ];
 
       const Test: FC = () => {
         const match1 = useActive({
@@ -143,9 +83,9 @@ describe("match", () => {
       };
 
       const screen = render(
-        <MatchProvider value={context}>
+        <MatchesProvider value={matches}>
           <Test />
-        </MatchProvider>,
+        </MatchesProvider>,
         { wrapper },
       );
 
