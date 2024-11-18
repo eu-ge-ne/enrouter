@@ -1,17 +1,4 @@
-//import type { Match } from "./mod.js";
-import { /*useMatches,*/ useMatch } from "./context.js";
-
-/*
-export function useRoot(): Match | undefined {
-  const matches = useMatches();
-
-  for (let i = matches.length - 1; i >= 0; i -= 1) {
-    if (matches[i]?.route.elements._layout?.Root) {
-      return matches[i];
-    }
-  }
-}
-*/
+import { useMatch } from "./context.js";
 
 export interface UseActiveParams<T> {
   path: string;
