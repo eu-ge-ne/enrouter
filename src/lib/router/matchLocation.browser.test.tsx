@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { render } from "vitest-browser-react";
-import { userEvent } from "@vitest/browser/context";
+import { userEvent, page } from "@vitest/browser/context";
 import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
@@ -74,7 +74,7 @@ describe("router", () => {
 
       vi.mocked(getRouteTree).mockReturnValueOnce(route);
       vi.mocked(matchLocation).mockRejectedValueOnce(
-        new Error("matchLocation error"),
+        new Error("matchLocation error")
       );
 
       const matches: Match[] = [
@@ -91,7 +91,7 @@ describe("router", () => {
 
       await userEvent.click(screen.getByRole("link"));
 
-      await expect.poll(() => assignLocation).toBeCalledTimes(1);
+      await expect.poll(() => expect(assignLocation).toBeCalledTimes(1));
       expect(assignLocation).toBeCalledWith("/abc");
 
       expect(pushHistory).not.toBeCalled();
