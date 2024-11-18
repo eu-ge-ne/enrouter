@@ -4,7 +4,7 @@ import {
   MatchIndexProvider,
   useMatches,
   useMatchIndex,
-  useMatch,
+  //useMatch,
 } from "#lib/match/context.js";
 
 export interface OutletProps {
@@ -14,26 +14,22 @@ export interface OutletProps {
 export function Outlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const matchIndex = useMatchIndex();
-  const match = useMatch();
-  if (!match) {
-    return;
-  }
+  const curr = matches[matchIndex];
+  const next = matches[matchIndex + 1];
+  const last = matches.at(-1);
 
-  const nextMatch = matches[matchIndex + 1];
-  const lastMatch = matches.at(-1);
+  if (curr) {
+    if (curr === last && curr.isExact) {
+      return pick(curr.route.elements._content, name);
+    }
 
-  if (match === lastMatch && match.isExact) {
-    return pick(match.route.elements._content, name);
-  }
-
-  if (!lastMatch?.isExact) {
-    if (match.isVoid) {
-      return pick(match.route.elements._void, name);
+    if (!last?.isExact && curr.isVoid) {
+      return pick(curr.route.elements._void, name);
     }
   }
 
-  if (nextMatch) {
-    const { _layout, _content } = nextMatch.route.elements;
+  if (next) {
+    const { _layout, _content } = next.route.elements;
 
     return (
       <MatchIndexProvider value={matchIndex + 1}>
@@ -45,7 +41,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
 function pick(
   els: Record<string, ReactElement> | undefined,
-  name?: string,
+  name?: string
 ): ReactElement | undefined {
   if (els) {
     return name ? els[name] : Object.values(els)[0];

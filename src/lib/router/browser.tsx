@@ -1,4 +1,10 @@
-import { type ReactNode, useState, useCallback, useEffect } from "react";
+import {
+  type ReactNode,
+  type ReactElement,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 
 import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
@@ -9,6 +15,7 @@ import { Root } from "./root.js";
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
+  root?: ReactElement;
   matches: Match[];
 }
 
@@ -47,5 +54,12 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handlePopState]);
 
-  return <Root navigate={navigate} location={location} matches={matches} />;
+  return (
+    <Root
+      root={props.root}
+      navigate={navigate}
+      location={location}
+      matches={matches}
+    />
+  );
 }
