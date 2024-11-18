@@ -1,34 +1,44 @@
 import type { ReactNode, ReactElement } from "react";
 
-import { MatchProvider, useMatch } from "#lib/match/context.js";
+import {
+  MatchIndexProvider,
+  useMatches,
+  useMatchIndex,
+  useMatch,
+} from "#lib/match/context.js";
 
 export interface OutletProps {
   name?: string;
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
+  const matches = useMatches();
+  const matchIndex = useMatchIndex();
   const match = useMatch();
   if (!match) {
     return;
   }
 
-  if (match === match.last && match.isExact) {
+  const nextMatch = matches[matchIndex + 1];
+  const lastMatch = matches.at(-1);
+
+  if (match === lastMatch && match.isExact) {
     return pick(match.route.elements._content, name);
   }
 
-  if (!match.last?.isExact) {
+  if (!lastMatch?.isExact) {
     if (match.isVoid) {
       return pick(match.route.elements._void, name);
     }
   }
 
-  if (match.next) {
-    const { _layout, _content } = match.next.route.elements;
+  if (nextMatch) {
+    const { _layout, _content } = nextMatch.route.elements;
 
     return (
-      <MatchProvider value={match.next}>
+      <MatchIndexProvider value={matchIndex + 1}>
         {pick(_layout ?? _content, name)}
-      </MatchProvider>
+      </MatchIndexProvider>
     );
   }
 }

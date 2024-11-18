@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/mod.js";
-import { MatchProvider } from "#lib/match/context.js";
+import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
 import { Outlet } from "./mod.js";
 
 const wrapperId = "test-wrapper";
@@ -16,9 +16,9 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 describe("outlet", () => {
   test("no match", async () => {
     const screen = render(
-      <MatchProvider value={undefined}>
+      <MatchesProvider value={[]}>
         <Outlet />
-      </MatchProvider>,
+      </MatchesProvider>,
       { wrapper },
     );
 
@@ -28,30 +28,31 @@ describe("outlet", () => {
   });
 
   test("named _layout element from next match", async () => {
-    const match: Match = {
-      isVoid: false,
-      route: {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          _layout: {
-            Main: <div>layout#Main</div>,
-          },
-          _content: {
-            Main: <div>content#Main</div>,
-          },
-          _void: {
-            Main: <div>void#Main</div>,
+    const matches: Match[] = [
+      {
+        isVoid: false,
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>layout#Main</div>,
+            },
+            _content: {
+              Main: <div>content#Main</div>,
+            },
+            _void: {
+              Main: <div>void#Main</div>,
+            },
           },
         },
+        location: "/",
+        isExact: false,
+        params: {},
       },
-      location: "/",
-      isExact: false,
-      params: {},
-
-      next: {
+      {
         isVoid: false,
         route: {
           path: "/abc",
@@ -74,12 +75,14 @@ describe("outlet", () => {
         isExact: false,
         params: {},
       },
-    };
+    ];
 
     const screen = render(
-      <MatchProvider value={match}>
-        <Outlet name="Main" />
-      </MatchProvider>,
+      <MatchesProvider value={matches}>
+        <MatchIndexProvider value={0}>
+          <Outlet name="Main" />
+        </MatchIndexProvider>
+      </MatchesProvider>,
       { wrapper },
     );
 
@@ -89,27 +92,28 @@ describe("outlet", () => {
   });
 
   test("named _content element from next match", async () => {
-    const match: Match = {
-      isVoid: false,
-      route: {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          _layout: {
-            Main: <div>layout#Main</div>,
-          },
-          _content: {
-            Main: <div>content#Main</div>,
+    const matches: Match[] = [
+      {
+        isVoid: false,
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>layout#Main</div>,
+            },
+            _content: {
+              Main: <div>content#Main</div>,
+            },
           },
         },
+        location: "/",
+        isExact: false,
+        params: {},
       },
-      location: "/",
-      isExact: false,
-      params: {},
-
-      next: {
+      {
         isVoid: false,
         route: {
           path: "/abc",
@@ -126,12 +130,14 @@ describe("outlet", () => {
         isExact: false,
         params: {},
       },
-    };
+    ];
 
     const screen = render(
-      <MatchProvider value={match}>
-        <Outlet name="Main" />
-      </MatchProvider>,
+      <MatchesProvider value={matches}>
+        <MatchIndexProvider value={0}>
+          <Outlet name="Main" />
+        </MatchIndexProvider>
+      </MatchesProvider>,
       { wrapper },
     );
 
@@ -141,33 +147,35 @@ describe("outlet", () => {
   });
 
   test("named _content element from current match", async () => {
-    const match: Match = {
-      isVoid: false,
-      route: {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          _layout: {
-            Main: <div>layout#Main</div>,
-          },
-          _content: {
-            Main: <div>content#Main</div>,
+    const matches: Match[] = [
+      {
+        isVoid: false,
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>layout#Main</div>,
+            },
+            _content: {
+              Main: <div>content#Main</div>,
+            },
           },
         },
+        location: "/",
+        isExact: true,
+        params: {},
       },
-      location: "/",
-      isExact: true,
-      params: {},
-    };
-
-    match.last = match;
+    ];
 
     const screen = render(
-      <MatchProvider value={match}>
-        <Outlet name="Main" />
-      </MatchProvider>,
+      <MatchesProvider value={matches}>
+        <MatchIndexProvider value={0}>
+          <Outlet name="Main" />
+        </MatchIndexProvider>
+      </MatchesProvider>,
       { wrapper },
     );
 
@@ -177,30 +185,31 @@ describe("outlet", () => {
   });
 
   test("named _void element from current match", async () => {
-    const match: Match = {
-      isVoid: true,
-      route: {
-        path: "/",
-        test: regexparam.parse("/", true),
-        modules: [],
-        loaded: true,
-        elements: {
-          _layout: {
-            Main: <div>layout#Main</div>,
-          },
-          _content: {
-            Main: <div>content#Main</div>,
-          },
-          _void: {
-            Main: <div>void#Main</div>,
+    const matches: Match[] = [
+      {
+        isVoid: true,
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>layout#Main</div>,
+            },
+            _content: {
+              Main: <div>content#Main</div>,
+            },
+            _void: {
+              Main: <div>void#Main</div>,
+            },
           },
         },
+        location: "/",
+        isExact: false,
+        params: {},
       },
-      location: "/",
-      isExact: false,
-      params: {},
-
-      next: {
+      {
         isVoid: false,
         route: {
           path: "/abc",
@@ -223,12 +232,14 @@ describe("outlet", () => {
         isExact: false,
         params: {},
       },
-    };
+    ];
 
     const screen = render(
-      <MatchProvider value={match}>
-        <Outlet name="Main" />
-      </MatchProvider>,
+      <MatchesProvider value={matches}>
+        <MatchIndexProvider value={0}>
+          <Outlet name="Main" />
+        </MatchIndexProvider>
+      </MatchesProvider>,
       { wrapper },
     );
 
