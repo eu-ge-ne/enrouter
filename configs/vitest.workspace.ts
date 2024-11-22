@@ -1,7 +1,18 @@
-import { defineWorkspace } from "vitest/config";
+import { defineWorkspace, type Plugin } from "vitest/config";
 
-const alias = {
-  "virtual:enrouter": "\0virtual:enrouter",
+const plugin: Plugin = {
+  name: "virtual-modules",
+  resolveId(id) {
+    if (id === "virtual:enrouter") {
+      return "\0virtual:enrouter";
+    }
+  },
+  async load(id) {
+    if (id !== "\0virtual:enrouter") {
+      return null;
+    }
+    return "";
+  },
 };
 
 export default defineWorkspace([
@@ -10,11 +21,9 @@ export default defineWorkspace([
       include: ["src/**/*.unit.test.{ts,tsx}"],
       name: "unit",
       environment: "node",
-      alias,
     },
-    optimizeDeps: {
-      include: ["react/jsx-dev-runtime"],
-    },
+    plugins: [plugin],
+    //optimizeDeps: { include: ["react/jsx-dev-runtime"], },
   },
   {
     test: {
@@ -26,10 +35,13 @@ export default defineWorkspace([
         name: "chromium",
         headless: true,
       },
-      alias,
     },
+    plugins: [plugin],
     optimizeDeps: {
-      include: ["@vitest/coverage-v8/browser", "react/jsx-dev-runtime"],
+      include: [
+        //"@vitest/coverage-v8/browser",
+        "react/jsx-dev-runtime",
+      ],
     },
   },
 ]);
