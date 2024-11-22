@@ -1,19 +1,6 @@
-import { defineWorkspace, type Plugin } from "vitest/config";
+import { defineWorkspace } from "vitest/config";
 
-const plugin: Plugin = {
-  name: "virtual-modules",
-  resolveId(id) {
-    if (id === "virtual:enrouter") {
-      return "\0virtual:enrouter";
-    }
-  },
-  async load(id) {
-    if (id !== "\0virtual:enrouter") {
-      return null;
-    }
-    return "";
-  },
-};
+import { virtualModulePlugin } from "./vitest.plugin.js";
 
 export default defineWorkspace([
   {
@@ -22,8 +9,7 @@ export default defineWorkspace([
       name: "unit",
       environment: "node",
     },
-    plugins: [plugin],
-    //optimizeDeps: { include: ["react/jsx-dev-runtime"], },
+    plugins: [virtualModulePlugin],
   },
   {
     test: {
@@ -36,12 +22,9 @@ export default defineWorkspace([
         headless: true,
       },
     },
-    plugins: [plugin],
+    plugins: [virtualModulePlugin],
     optimizeDeps: {
-      include: [
-        //"@vitest/coverage-v8/browser",
-        "react/jsx-dev-runtime",
-      ],
+      include: ["react/jsx-dev-runtime"],
     },
   },
 ]);
