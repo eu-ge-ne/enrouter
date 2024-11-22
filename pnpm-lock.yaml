@@ -23,7 +23,7 @@ importers:
         version: 18.3.12
       '@vitest/browser':
         specifier: ^2.1.5
-        version: 2.1.5(@types/node@22.9.0)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
+        version: 2.1.5(@types/node@22.9.0)(playwright@1.49.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
       '@vitest/coverage-v8':
         specifier: ^2.1.5
         version: 2.1.5(@vitest/browser@2.1.5)(vitest@2.1.5)
@@ -34,8 +34,8 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0
       playwright:
-        specifier: ^1.48.2
-        version: 1.48.2
+        specifier: ^1.49.0
+        version: 1.49.0
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1092,13 +1092,13 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  playwright-core@1.48.2:
-    resolution: {integrity: sha512-sjjw+qrLFlriJo64du+EK0kJgZzoQPsabGF4lBvsid+3CNIZIYLgnMj9V6JY5VhM2Peh20DJWIVpVljLLnlawA==}
+  playwright-core@1.49.0:
+    resolution: {integrity: sha512-R+3KKTQF3npy5GTiKH/T+kdhoJfJojjHESR1YEWhYuEKRVfVaxH3+4+GvXE5xyCngCxhxnykk0Vlah9v8fs3jA==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.48.2:
-    resolution: {integrity: sha512-NjYvYgp4BPmiwfe31j4gHLa3J7bD2WiBz8Lk2RoSsmX38SVIARZ18VYjxLjAcDsAhA+F4iSEXTSGgjua0rrlgQ==}
+  playwright@1.49.0:
+    resolution: {integrity: sha512-eKpmys0UFDnfNb3vfsf8Vx2LEOtflgRebl0Im2eQQnYMA4Aqd+Zw8bEOB+7ZKvN76901mRnqdsiOGKxzVTbi7A==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1885,7 +1885,7 @@ snapshots:
 
   '@types/tough-cookie@4.0.5': {}
 
-  '@vitest/browser@2.1.5(@types/node@22.9.0)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)':
+  '@vitest/browser@2.1.5(@types/node@22.9.0)(playwright@1.49.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)':
     dependencies:
       '@testing-library/dom': 10.4.0
       '@testing-library/user-event': 14.5.2(@testing-library/dom@10.4.0)
@@ -1898,7 +1898,7 @@ snapshots:
       vitest: 2.1.5(@types/node@22.9.0)(@vitest/browser@2.1.5)(msw@2.6.4(@types/node@22.9.0)(typescript@5.6.3))
       ws: 8.18.0
     optionalDependencies:
-      playwright: 1.48.2
+      playwright: 1.49.0
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -1922,7 +1922,7 @@ snapshots:
       tinyrainbow: 1.2.0
       vitest: 2.1.5(@types/node@22.9.0)(@vitest/browser@2.1.5)(msw@2.6.4(@types/node@22.9.0)(typescript@5.6.3))
     optionalDependencies:
-      '@vitest/browser': 2.1.5(@types/node@22.9.0)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
+      '@vitest/browser': 2.1.5(@types/node@22.9.0)(playwright@1.49.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
     transitivePeerDependencies:
       - supports-color
 
@@ -2405,11 +2405,11 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  playwright-core@1.48.2: {}
+  playwright-core@1.49.0: {}
 
-  playwright@1.48.2:
+  playwright@1.49.0:
     dependencies:
-      playwright-core: 1.48.2
+      playwright-core: 1.49.0
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -2702,7 +2702,7 @@ snapshots:
 
   vitest-browser-react@0.0.3(@types/react@18.3.12)(@vitest/browser@2.1.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vitest@2.1.5):
     dependencies:
-      '@vitest/browser': 2.1.5(@types/node@22.9.0)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
+      '@vitest/browser': 2.1.5(@types/node@22.9.0)(playwright@1.49.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       vitest: 2.1.5(@types/node@22.9.0)(@vitest/browser@2.1.5)(msw@2.6.4(@types/node@22.9.0)(typescript@5.6.3))
@@ -2733,7 +2733,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.9.0
-      '@vitest/browser': 2.1.5(@types/node@22.9.0)(playwright@1.48.2)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
+      '@vitest/browser': 2.1.5(@types/node@22.9.0)(playwright@1.49.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.9.0))(vitest@2.1.5)
     transitivePeerDependencies:
       - less
       - lightningcss

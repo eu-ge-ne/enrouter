@@ -39,7 +39,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@9.14.2",
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
@@ -113,7 +113,7 @@
     "@vitest/coverage-v8": "^2.1.5",
     "glob": "^11.0.0",
     "lodash.groupby": "^4.6.0",
-    "playwright": "^1.48.2",
+    "playwright": "^1.49.0",
     "prettier": "^3.3.3",
     "regexparam": "^3.0.0",
     "tsup": "^8.3.5",
