@@ -9,15 +9,20 @@
 <br/>
 <br/>
 
-enrouter is a router library for React and Vite plugin providing seamless
-file-based routing DX with "named outlets" feature.
-It is written in TypeScript and compiled to ES2023.
+**enrouter** is a routing library for React and a Vite plugin designed to
+deliver a seamless file-based routing developer experience,
+featuring "named outlets".
+Written in TypeScript and compiled to ES2023, it provides modern, efficient
+routing solutions.
 
-**Please, be aware that the API is not stable yet and can be changed before
-reaching `v1.0.0`.
-The goal is to find the simplest and most elegant API & DX.**
+> **Note**: The API is currently unstable and may change before `v1.0.0`.
+> The objective is to refine the API for the simplest and most intuitive DX.
+
+---
 
 ## Installation
+
+To install **enrouter**, use the following command:
 
 ```bash
 pnpm add -D enrouter
@@ -28,10 +33,11 @@ pnpm add -D enrouter
 - `react@^18`
 - `vite@^5`
 
-## Environments
+## Supported Environments
 
-enrouter runs in all modern browsers, on the edge and Node.js.
+**enrouter** is compatible with all modern browsers, edge environments,
+and Node.js.
 
-## Next
+## Next Steps
 
 [Get Started](https://enrouter.dev/docs/start)
