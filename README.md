@@ -25,7 +25,11 @@ routing solutions.
 To install **enrouter**, use the following command:
 
 ```bash
-pnpm add -D enrouter
+npm install enrouter
+
+# or
+
+pnpm add enrouter
 ```
 
 ## Requirements
