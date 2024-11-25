@@ -2,9 +2,9 @@
   "name": "enrouter",
   "version": "0.0.27",
   "type": "module",
-  "description": "Router library for React and Vite plugin providing seamless file-based routing with \"named outlets\"",
+  "description": "Router library for React and a Vite plugin, enabling seamless file-based routing with support for \"named outlets\"",
   "license": "MIT",
-  "author": "Eugene Pobochny",
+  "author": "Eugene Pobochny <eugene.pobochny@gmail.com>",
   "homepage": "https://enrouter.dev",
   "repository": {
     "type": "git",
