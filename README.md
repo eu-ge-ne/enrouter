@@ -35,7 +35,7 @@ pnpm add enrouter
 ## Requirements
 
 - `react@^18`
-- `vite@^5`
+- `vite@^6`
 
 ## Supported Environments
 

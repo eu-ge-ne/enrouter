@@ -109,21 +109,21 @@
   "devDependencies": {
     "@types/lodash.groupby": "^4.6.9",
     "@types/react": "^18.3.12",
-    "@vitest/browser": "^2.1.5",
-    "@vitest/coverage-v8": "^2.1.5",
+    "@vitest/browser": "^2.1.6",
+    "@vitest/coverage-v8": "^2.1.6",
     "glob": "^11.0.0",
     "lodash.groupby": "^4.6.0",
     "playwright": "^1.49.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.1",
     "regexparam": "^3.0.0",
     "tsup": "^8.3.5",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.5",
-    "vitest-browser-react": "^0.0.3",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.6",
+    "vitest-browser-react": "^0.0.4",
     "wireit": "^0.14.9"
   },
   "peerDependencies": {
-    "react": "^18.3.1",
-    "vite": "^5.4.11"
+    "react": "^18",
+    "vite": "^6"
   }
 }
