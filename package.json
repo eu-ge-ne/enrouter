@@ -106,6 +106,10 @@
       ]
     }
   },
+  "peerDependencies": {
+    "react": ">=18",
+    "vite": "^6"
+  },
   "devDependencies": {
     "@types/lodash.groupby": "^4.6.9",
     "@types/react": "^18.3.12",
@@ -121,9 +125,5 @@
     "vitest": "^2.1.6",
     "vitest-browser-react": "^0.0.4",
     "wireit": "^0.14.9"
-  },
-  "peerDependencies": {
-    "react": "^18",
-    "vite": "^6"
   }
 }
