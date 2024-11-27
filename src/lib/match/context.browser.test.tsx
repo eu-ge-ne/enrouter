@@ -3,7 +3,7 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import type { Match } from "./mod.js";
+import type { Match } from "./match.js";
 import { MatchesProvider, MatchIndexProvider, useMatch } from "./context.js";
 
 const wrapperId = "test-wrapper";

@@ -2,7 +2,7 @@ import { describe, test, expect, vi } from "vitest";
 import * as regexparam from "regexparam";
 
 import { getRouteTree } from "#lib/route/tree.js";
-import { matchLocation } from "./location.js";
+import { matchLocation } from "./create.js";
 
 vi.mock(import("#lib/route/tree.js"), () => ({
   getRouteTree: vi.fn(),

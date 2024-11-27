@@ -1,6 +1,6 @@
 import type { ReactNode, ReactElement } from "react";
 
-import type { Match } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/match.js";
 import { noNavigate } from "#lib/navigate/mod.js";
 import { Root } from "./root.js";
 

@@ -1,5 +1,5 @@
 import type { Route } from "#lib/route/mod.js";
-import type { Match } from "./mod.js";
+import type { Match } from "./match.js";
 import { logger } from "#lib/debug.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";

@@ -5,7 +5,7 @@ import { userEvent } from "@vitest/browser/context";
 import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
-import type { Match } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/match.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { useLink } from "#lib/link/mod.js";
 import { Outlet } from "#lib/outlet/mod.js";

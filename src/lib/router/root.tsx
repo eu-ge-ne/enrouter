@@ -1,6 +1,6 @@
 import type { ReactNode, ReactElement } from "react";
 
-import type { Match } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/match.js";
 import { type Navigate, NavigateProvider } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";

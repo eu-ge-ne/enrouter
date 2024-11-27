@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import type { Match } from "./mod.js";
+import type { Match } from "./match.js";
 
 const MatchesContext = createContext<Match[]>([]);
 const MatchIndexContext = createContext<number>(-1);
