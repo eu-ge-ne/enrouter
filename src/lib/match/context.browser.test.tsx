@@ -17,7 +17,6 @@ describe("match", () => {
     test("1 match", async () => {
       const matches: Match[] = [
         {
-          isVoid: false,
           route: {
             path: "/",
             test: regexparam.parse("/", true),
@@ -58,7 +57,6 @@ describe("match", () => {
     test("2 matches", async () => {
       const matches: Match[] = [
         {
-          isVoid: false,
           route: {
             path: "/",
             test: regexparam.parse("/", true),
@@ -75,7 +73,6 @@ describe("match", () => {
           params: {},
         },
         {
-          isVoid: false,
           route: {
             path: "/abc",
             test: regexparam.parse("/abc", true),

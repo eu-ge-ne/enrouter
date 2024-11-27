@@ -73,7 +73,6 @@ describe("router", () => {
 
       const matches: Match[] = [
         {
-          isVoid: false,
           route,
           location: "/",
           isExact: true,

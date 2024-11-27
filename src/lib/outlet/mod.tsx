@@ -13,22 +13,23 @@ export interface OutletProps {
 export function Outlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const matchIndex = useMatchIndex();
-  const curr = matches[matchIndex];
-  const next = matches[matchIndex + 1];
-  const last = matches.at(-1);
+  const match = matches[matchIndex];
+  const nextMatch = matches[matchIndex + 1];
+  const lastMatch = matches.at(-1);
+  const matchWithVoid = matches.findLast((x) => x.route.elements._void);
 
-  if (curr) {
-    if (curr === last && curr.isExact) {
-      return pick(curr.route.elements._content, name);
+  if (match) {
+    if (match === lastMatch && match.isExact) {
+      return pick(match.route.elements._content, name);
     }
 
-    if (!last?.isExact && curr.isVoid) {
-      return pick(curr.route.elements._void, name);
+    if (!lastMatch?.isExact && match === matchWithVoid) {
+      return pick(match.route.elements._void, name);
     }
   }
 
-  if (next) {
-    const { _layout, _content } = next.route.elements;
+  if (nextMatch) {
+    const { _layout, _content } = nextMatch.route.elements;
 
     return (
       <MatchIndexProvider value={matchIndex + 1}>

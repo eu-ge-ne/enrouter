@@ -30,7 +30,6 @@ describe("outlet", () => {
   test("named _layout element from next match", async () => {
     const matches: Match[] = [
       {
-        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -53,7 +52,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        isVoid: false,
         route: {
           path: "/abc",
           test: regexparam.parse("/abc", true),
@@ -94,7 +92,6 @@ describe("outlet", () => {
   test("named _content element from next match", async () => {
     const matches: Match[] = [
       {
-        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -114,7 +111,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        isVoid: false,
         route: {
           path: "/abc",
           test: regexparam.parse("/abc", true),
@@ -149,7 +145,6 @@ describe("outlet", () => {
   test("named _content element from current match", async () => {
     const matches: Match[] = [
       {
-        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -187,7 +182,6 @@ describe("outlet", () => {
   test("named _void element from current match", async () => {
     const matches: Match[] = [
       {
-        isVoid: true,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -210,7 +204,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        isVoid: false,
         route: {
           path: "/abc",
           test: regexparam.parse("/abc", true),
@@ -222,9 +215,6 @@ describe("outlet", () => {
             },
             _content: {
               Main: <div>next content#Main</div>,
-            },
-            _void: {
-              Main: <div>next void#Main</div>,
             },
           },
         },

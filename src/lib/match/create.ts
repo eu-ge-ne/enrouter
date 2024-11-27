@@ -13,8 +13,6 @@ export async function matchLocation(location: string): Promise<Match[]> {
 
   await loadRoutes(matches.map((x) => x.route));
 
-  link(matches);
-
   log("matched: %o", matches);
 
   return matches;
@@ -63,7 +61,6 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   const loc = execs[0] || "/";
 
   return {
-    isVoid: false,
     route,
     isExact: loc === location,
     location: loc,
@@ -71,12 +68,4 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
     ),
   };
-}
-
-function link(matches: Match[]): void {
-  const lastVoidIndex = matches.findLastIndex((x) => x.route.elements._void);
-
-  matches.forEach((x, i) => {
-    x.isVoid = i === lastVoidIndex;
-  });
 }

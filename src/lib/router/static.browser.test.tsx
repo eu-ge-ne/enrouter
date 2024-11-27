@@ -17,7 +17,6 @@ describe("router", () => {
     test("root", async () => {
       const matches: Match[] = [
         {
-          isVoid: false,
           route: {
             path: "/",
             test: regexparam.parse("/", true),
