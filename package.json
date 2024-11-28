@@ -39,7 +39,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.14.3",
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
