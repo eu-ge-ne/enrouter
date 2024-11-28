@@ -6,9 +6,8 @@ import {
   useEffect,
 } from "react";
 
-import type { Match } from "#lib/match/match.js";
 import { logger } from "#lib/debug.js";
-import { matchLocation } from "#lib/match/create.js";
+import { type Match, matchLocation } from "#lib/match/match.js";
 import * as browser from "#lib/browser/mod.js";
 import { Root } from "./root.js";
 

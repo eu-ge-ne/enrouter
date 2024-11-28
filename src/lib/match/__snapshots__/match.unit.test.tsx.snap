@@ -1,0 +1,251 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`match > matchLocation > 0 matches 1`] = `[]`;
+
+exports[`match > matchLocation > from 1 route 1`] = `
+[
+  {
+    "isExact": true,
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
+
+exports[`match > matchLocation > from 1 route with params 1`] = `
+[
+  {
+    "isExact": true,
+    "location": "/100",
+    "params": {
+      "id": "100",
+    },
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/[:id]",
+      "test": {
+        "keys": [
+          "id",
+        ],
+        "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
+
+exports[`match > matchLocation > from 2 routes 1`] = `
+[
+  {
+    "isExact": false,
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+    },
+  },
+  {
+    "isExact": true,
+    "location": "/abc",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
+
+exports[`match > matchLocation > from 2 routes with params 1`] = `
+[
+  {
+    "isExact": false,
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+        {
+          "elements": {},
+          "loaded": false,
+          "modules": [],
+          "path": "/[:id]",
+          "test": {
+            "keys": [
+              "id",
+            ],
+            "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+    },
+  },
+  {
+    "isExact": true,
+    "location": "/abc",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": false,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
+
+exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
+[
+  {
+    "isExact": false,
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": true,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {
+            "_void": {
+              "Main": <div>
+                Void
+              </div>,
+            },
+          },
+          "loaded": true,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+          "tree": [
+            {
+              "elements": {},
+              "loaded": true,
+              "modules": [],
+              "path": "/abc/xyz",
+              "test": {
+                "keys": [],
+                "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    "isExact": false,
+    "location": "/abc",
+    "params": {},
+    "route": {
+      "elements": {
+        "_void": {
+          "Main": <div>
+            Void
+          </div>,
+        },
+      },
+      "loaded": true,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {},
+          "loaded": true,
+          "modules": [],
+          "path": "/abc/xyz",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+    },
+  },
+  {
+    "isExact": false,
+    "location": "/abc/xyz",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": true,
+      "modules": [],
+      "path": "/abc/xyz",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
