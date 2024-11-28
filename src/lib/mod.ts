@@ -12,5 +12,5 @@ export { type BrowserRouterProps, BrowserRouter } from "./router/browser.js";
 
 export { useLocation } from "./location/mod.js";
 export { useNavigate } from "./navigate/mod.js";
-export { type OutletProps, Outlet } from "./outlet/mod.js";
+export { type OutletProps, Outlet } from "./outlet/outlet.js";
 export { type LinkProps, useLink } from "./link/mod.js";

@@ -8,7 +8,7 @@ import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/match.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { useLink } from "#lib/link/mod.js";
-import { Outlet } from "#lib/outlet/mod.js";
+import { Outlet } from "#lib/outlet/outlet.js";
 import { BrowserRouter } from "./browser.js";
 import { assignLocation, pushHistory } from "#lib/browser/mod.js";
 

@@ -5,12 +5,12 @@ import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/match.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
-import { Outlet } from "./mod.js";
+import { Outlet } from "./outlet.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 describe("outlet", () => {
@@ -22,7 +22,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -84,7 +84,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -137,7 +137,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -174,7 +174,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -233,7 +233,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });

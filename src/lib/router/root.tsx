@@ -4,7 +4,7 @@ import type { Match } from "#lib/match/match.js";
 import { type Navigate, NavigateProvider } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
-import { Outlet } from "#lib/outlet/mod.js";
+import { Outlet } from "#lib/outlet/outlet.js";
 
 interface RootProps {
   root?: ReactElement;
