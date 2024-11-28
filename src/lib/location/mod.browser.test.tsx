@@ -4,10 +4,10 @@ import { render } from "vitest-browser-react";
 
 import { LocationProvider, useLocation } from "./mod.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 describe("location", () => {
@@ -26,7 +26,7 @@ describe("location", () => {
       },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });

@@ -6,10 +6,10 @@ import * as regexparam from "regexparam";
 import type { Match } from "./match.js";
 import { MatchesProvider, MatchIndexProvider, useMatch } from "./context.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 describe("match", () => {
@@ -49,7 +49,7 @@ describe("match", () => {
         { wrapper },
       );
 
-      await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+      await expect.element(screen.getByTestId(testId)).toBeVisible();
 
       expect(screen.container).toMatchSnapshot();
     });
@@ -101,7 +101,7 @@ describe("match", () => {
         { wrapper },
       );
 
-      await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+      await expect.element(screen.getByTestId(testId)).toBeVisible();
 
       expect(screen.container).toMatchSnapshot();
     });

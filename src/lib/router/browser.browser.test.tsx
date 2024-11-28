@@ -12,10 +12,10 @@ import { Outlet } from "#lib/outlet/outlet.js";
 import { BrowserRouter } from "./browser.js";
 import { assignLocation, pushHistory } from "#lib/browser/mod.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 vi.mock(import("#lib/route/tree.js"), () => ({
