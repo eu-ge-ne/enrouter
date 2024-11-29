@@ -16,14 +16,16 @@ export function Outlet({ name }: OutletProps): ReactNode {
   const match = matches[matchIndex];
   const nextMatch = matches[matchIndex + 1];
   const lastMatch = matches.at(-1);
-  const voidIndex = matches.findLastIndex((x) => x.route.elements._void);
+  const lastVoid = matches.findLast((x) => x.route.elements._void);
 
-  if (match && !lastMatch?.isExact && matchIndex === voidIndex) {
-    return pick(match.route.elements._void, name);
-  }
+  if (match) {
+    if (!lastMatch?.isExact && match === lastVoid) {
+      return pick(match.route.elements._void, name);
+    }
 
-  if (match && match.isExact && match === lastMatch) {
-    return pick(match.route.elements._content, name);
+    if (match.isExact && match === lastMatch) {
+      return pick(match.route.elements._content, name);
+    }
   }
 
   if (nextMatch) {
