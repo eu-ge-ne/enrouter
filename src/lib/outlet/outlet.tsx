@@ -16,18 +16,23 @@ export function Outlet({ name }: OutletProps): ReactNode {
   const match = matches[matchIndex];
   const nextMatch = matches[matchIndex + 1];
   const lastMatch = matches.at(-1);
-  const lastVoid = matches.findLast((x) => x.route.elements._void);
 
   if (match) {
-    if (!lastMatch?.isExact && match === lastVoid) {
-      return pick(match.route.elements._void, name);
+    // void?
+    if (!lastMatch?.isExact) {
+      const lastVoid = matches.findLast((x) => x.route.elements._void);
+      if (match === lastVoid) {
+        return pick(match.route.elements._void, name);
+      }
     }
 
+    // content?
     if (match.isExact && match === lastMatch) {
       return pick(match.route.elements._content, name);
     }
   }
 
+  // next?
   if (nextMatch) {
     const { _layout, _content } = nextMatch.route.elements;
 
