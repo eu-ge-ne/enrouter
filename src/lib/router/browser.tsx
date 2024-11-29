@@ -15,6 +15,7 @@ const log = logger("router/browser");
 
 export interface BrowserRouterProps {
   root?: ReactElement;
+  void?: ReactElement;
   matches: Match[];
 }
 
@@ -56,6 +57,7 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   return (
     <Root
       root={props.root}
+      void={props.void}
       navigate={navigate}
       location={location}
       matches={matches}

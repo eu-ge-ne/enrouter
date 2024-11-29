@@ -6,6 +6,7 @@ import { Root } from "./root.js";
 
 export interface StaticRouterProps {
   root?: ReactElement;
+  void?: ReactElement;
   location: string;
   matches: Match[];
 }

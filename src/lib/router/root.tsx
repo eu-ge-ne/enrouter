@@ -8,6 +8,7 @@ import { Outlet } from "#lib/outlet/outlet.js";
 
 interface RootProps {
   root?: ReactElement;
+  void?: ReactElement;
   navigate: Navigate;
   location: string;
   matches: Match[];
