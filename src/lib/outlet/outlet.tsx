@@ -15,10 +15,12 @@ export function Outlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const matchIndex = useMatchIndex();
 
+  const match = matches[matchIndex]!;
+  const nextMatch = matches[matchIndex + 1];
+  const lastMatch = matches.at(-1)!;
+
   // root?
   if (matchIndex < 0) {
-    // void
-
     // next?
     if (matches[0]) {
       return <Next index={0} match={matches[0]} name={name} />;
@@ -26,10 +28,6 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
     return;
   }
-
-  const match = matches[matchIndex]!;
-  const nextMatch = matches[matchIndex + 1];
-  const lastMatch = matches.at(-1)!;
 
   // void?
   if (!lastMatch.isExact) {
