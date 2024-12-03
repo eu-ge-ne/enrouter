@@ -6,7 +6,7 @@ import * as regexparam from "regexparam";
 import type { Route } from "#lib/route/mod.js";
 import type { Match } from "#lib/match/match.js";
 import { getRouteTree } from "#lib/route/tree.js";
-import { BrowserRouter } from "./browser.js";
+import { BrowserRouter } from "#lib/router/browser.js";
 
 const testId = "test-wrapper";
 

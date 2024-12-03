@@ -2,11 +2,11 @@ import type { ReactNode, ReactElement } from "react";
 
 import type { Match } from "#lib/match/match.js";
 import { noNavigate } from "#lib/navigate/mod.js";
-import { Root } from "./root.js";
+import { Root } from "#lib/root/root.js";
 
 export interface StaticRouterProps {
   root?: ReactElement;
-  void?: ReactElement;
+  void?: Record<string, ReactElement>;
   location: string;
   matches: Match[];
 }

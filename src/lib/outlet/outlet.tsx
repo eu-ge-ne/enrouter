@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 
 import type { Match } from "#lib/match/match.js";
 import { useMatches, useMatchIndex } from "#lib/match/context.js";
+import { useRootVoid } from "#lib/root/context.js";
 import { Next } from "./next.js";
 import { pick } from "./pick.js";
 
@@ -12,17 +13,26 @@ export interface OutletProps {
 export function Outlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const index = useMatchIndex();
+  const rootVoid = useRootVoid();
 
   return index < 0
-    ? rootOutlet(name, matches)
+    ? rootOutlet(name, matches, rootVoid)
     : layoutOutlet(name, matches, index);
 }
 
-function rootOutlet(name: string | undefined, matches: Match[]): ReactNode {
+function rootOutlet(
+  name: string | undefined,
+  matches: Match[],
+  rootVoid: Record<string, ReactElement> | undefined,
+): ReactNode {
   if (!matches.at(-1)?.isExact) {
     const lastVoid = matches.findLast((x) => x.route.elements._void);
     if (!lastVoid) {
-      // TODO: render root void
+      if (rootVoid) {
+        // TODO: render root void
+        return pick(rootVoid, name);
+      }
+
       return;
     }
   }

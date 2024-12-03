@@ -5,10 +5,11 @@ import { type Navigate, NavigateProvider } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
 import { Outlet } from "#lib/outlet/outlet.js";
+import { RootVoidProvider } from "./context.js";
 
 interface RootProps {
   root?: ReactElement;
-  void?: ReactElement;
+  void?: Record<string, ReactElement>;
   navigate: Navigate;
   location: string;
   matches: Match[];
@@ -16,19 +17,22 @@ interface RootProps {
 
 export function Root({
   root,
+  void: rootVoid,
   navigate,
   location,
   matches,
 }: RootProps): ReactNode {
   return (
-    <NavigateProvider value={navigate}>
-      <LocationProvider value={location}>
-        <MatchesProvider value={matches}>
-          <MatchIndexProvider value={-1}>
-            {root ?? <Outlet />}
-          </MatchIndexProvider>
-        </MatchesProvider>
-      </LocationProvider>
-    </NavigateProvider>
+    <RootVoidProvider value={rootVoid}>
+      <NavigateProvider value={navigate}>
+        <LocationProvider value={location}>
+          <MatchesProvider value={matches}>
+            <MatchIndexProvider value={-1}>
+              {root ?? <Outlet />}
+            </MatchIndexProvider>
+          </MatchesProvider>
+        </LocationProvider>
+      </NavigateProvider>
+    </RootVoidProvider>
   );
 }

@@ -9,13 +9,13 @@ import {
 import { logger } from "#lib/debug.js";
 import { type Match, matchLocation } from "#lib/match/match.js";
 import * as browser from "#lib/browser/mod.js";
-import { Root } from "./root.js";
+import { Root } from "#lib/root/root.js";
 
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
   root?: ReactElement;
-  void?: ReactElement;
+  void?: Record<string, ReactElement>;
   matches: Match[];
 }
 
