@@ -19,13 +19,15 @@ function RootOutlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const rootVoid = useRootVoid();
 
-  if (matches.at(-1)?.isExact) {
-    return <Next index={0} match={matches[0]!} name={name} />;
+  const isExact = matches.at(-1)?.isExact;
+  const lastVoid = matches.findLast((x) => x.route.elements._void);
+
+  if (!isExact && !lastVoid && rootVoid) {
+    return pick(rootVoid, name);
   }
 
-  const lastVoid = matches.findLast((x) => x.route.elements._void);
-  if (!lastVoid && rootVoid) {
-    return pick(rootVoid, name);
+  if (matches[0]) {
+    return <Next index={0} match={matches[0]} name={name} />;
   }
 }
 
