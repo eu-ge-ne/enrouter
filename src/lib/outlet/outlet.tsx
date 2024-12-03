@@ -13,21 +13,36 @@ export interface OutletProps {
 
 export function Outlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
-  const matchIndex = useMatchIndex();
+  const index = useMatchIndex();
 
-  const match = matches[matchIndex]!;
-  const nextMatch = matches[matchIndex + 1];
-  const lastMatch = matches.at(-1)!;
+  return index < 0
+    ? rootOutlet(name, matches)
+    : layoutOutlet(name, matches, index);
+}
 
-  // root?
-  if (matchIndex < 0) {
-    // next?
-    if (matches[0]) {
-      return <Next index={0} match={matches[0]} name={name} />;
+function rootOutlet(name: string | undefined, matches: Match[]): ReactNode {
+  // void?
+  if (!matches.at(-1)?.isExact) {
+    const lastVoid = matches.findLast((x) => x.route.elements._void);
+    if (!lastVoid) {
+      return;
     }
-
-    return;
   }
+
+  // next?
+  if (matches[0]) {
+    return <Next index={0} match={matches[0]} name={name} />;
+  }
+}
+
+function layoutOutlet(
+  name: string | undefined,
+  matches: Match[],
+  index: number,
+): ReactNode {
+  const match = matches[index]!;
+  const nextMatch = matches[index + 1];
+  const lastMatch = matches.at(-1)!;
 
   // void?
   if (!lastMatch.isExact) {
@@ -44,7 +59,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
   // next?
   if (nextMatch) {
-    return <Next index={matchIndex + 1} match={nextMatch} name={name} />;
+    return <Next index={index + 1} match={nextMatch} name={name} />;
   }
 }
 
