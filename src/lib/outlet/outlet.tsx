@@ -3,7 +3,7 @@ import type { ReactNode, ReactElement } from "react";
 import type { Match } from "#lib/match/match.js";
 import { MatchIndexProvider } from "#lib/match/context.js";
 import { useMatches, useMatchIndex } from "#lib/match/context.js";
-import { useRootVoid } from "#lib/root/context.js";
+import { useVoid } from "#lib/root/context.js";
 
 export interface OutletProps {
   name?: string;
@@ -17,13 +17,17 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
 function RootOutlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
-  const rootVoid = useRootVoid();
+  const voidComponents = useVoid();
 
   const isExact = matches.at(-1)?.isExact;
   const lastVoid = matches.findLast((x) => x.route.elements._void);
 
-  if (!isExact && !lastVoid && rootVoid) {
-    return pick(rootVoid, name);
+  if (!isExact && !lastVoid && voidComponents) {
+    const Void = name
+      ? voidComponents[name]!
+      : Object.values(voidComponents)[0]!;
+
+    return <Void />;
   }
 
   if (matches[0]) {

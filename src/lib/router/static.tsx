@@ -1,12 +1,12 @@
-import type { ReactNode, ReactElement } from "react";
+import type { ReactNode, ComponentType } from "react";
 
 import type { Match } from "#lib/match/match.js";
 import { noNavigate } from "#lib/navigate/mod.js";
 import { Root } from "#lib/root/root.js";
 
 export interface StaticRouterProps {
-  root?: ReactElement;
-  void?: Record<string, ReactElement>;
+  root?: ComponentType;
+  void?: Record<string, ComponentType>;
   location: string;
   matches: Match[];
 }

@@ -1,11 +1,11 @@
-import { type ReactElement, createContext, useContext } from "react";
+import { type ComponentType, createContext, useContext } from "react";
 
-type RootVoid = Record<string, ReactElement> | undefined;
+type Void = Record<string, ComponentType> | undefined;
 
-const RootVoidContext = createContext<RootVoid>(undefined);
+const VoidContext = createContext<Void>(undefined);
 
-export const RootVoidProvider = RootVoidContext.Provider;
+export const VoidProvider = VoidContext.Provider;
 
-export function useRootVoid(): RootVoid {
-  return useContext(RootVoidContext);
+export function useVoid(): Void {
+  return useContext(VoidContext);
 }

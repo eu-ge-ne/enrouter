@@ -1,6 +1,6 @@
 import {
   type ReactNode,
-  type ReactElement,
+  type ComponentType,
   useState,
   useCallback,
   useEffect,
@@ -14,8 +14,8 @@ import { Root } from "#lib/root/root.js";
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
-  root?: ReactElement;
-  void?: Record<string, ReactElement>;
+  root?: ComponentType;
+  void?: Record<string, ComponentType>;
   matches: Match[];
 }
 

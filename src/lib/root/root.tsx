@@ -1,38 +1,32 @@
-import type { ReactNode, ReactElement } from "react";
+import type { ReactNode, ComponentType } from "react";
 
 import type { Match } from "#lib/match/match.js";
 import { type Navigate, NavigateProvider } from "#lib/navigate/mod.js";
 import { LocationProvider } from "#lib/location/mod.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
 import { Outlet } from "#lib/outlet/outlet.js";
-import { RootVoidProvider } from "./context.js";
+import { VoidProvider } from "./context.js";
 
 interface RootProps {
-  root?: ReactElement;
-  void?: Record<string, ReactElement>;
+  root?: ComponentType;
+  void?: Record<string, ComponentType>;
   navigate: Navigate;
   location: string;
   matches: Match[];
 }
 
-export function Root({
-  root,
-  void: rootVoid,
-  navigate,
-  location,
-  matches,
-}: RootProps): ReactNode {
+export function Root(props: RootProps): ReactNode {
   return (
-    <RootVoidProvider value={rootVoid}>
-      <NavigateProvider value={navigate}>
-        <LocationProvider value={location}>
-          <MatchesProvider value={matches}>
+    <VoidProvider value={props.void}>
+      <NavigateProvider value={props.navigate}>
+        <LocationProvider value={props.location}>
+          <MatchesProvider value={props.matches}>
             <MatchIndexProvider value={-1}>
-              {root ?? <Outlet />}
+              {props.root ? <props.root /> : <Outlet />}
             </MatchIndexProvider>
           </MatchesProvider>
         </LocationProvider>
       </NavigateProvider>
-    </RootVoidProvider>
+    </VoidProvider>
   );
 }
