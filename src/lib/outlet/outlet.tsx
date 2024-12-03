@@ -21,7 +21,6 @@ export function Outlet({ name }: OutletProps): ReactNode {
 }
 
 function rootOutlet(name: string | undefined, matches: Match[]): ReactNode {
-  // void?
   if (!matches.at(-1)?.isExact) {
     const lastVoid = matches.findLast((x) => x.route.elements._void);
     if (!lastVoid) {
@@ -29,10 +28,7 @@ function rootOutlet(name: string | undefined, matches: Match[]): ReactNode {
     }
   }
 
-  // next?
-  if (matches[0]) {
-    return <Next index={0} match={matches[0]} name={name} />;
-  }
+  return <Next index={0} match={matches[0]!} name={name} />;
 }
 
 function layoutOutlet(
