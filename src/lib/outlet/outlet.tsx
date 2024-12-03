@@ -19,19 +19,14 @@ function RootOutlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const rootVoid = useRootVoid();
 
-  if (!matches.at(-1)?.isExact) {
-    const lastVoid = matches.findLast((x) => x.route.elements._void);
-    if (!lastVoid) {
-      if (rootVoid) {
-        // TODO: render root void
-        return pick(rootVoid, name);
-      }
-
-      return;
-    }
+  if (matches.at(-1)?.isExact) {
+    return <Next index={0} match={matches[0]!} name={name} />;
   }
 
-  return <Next index={0} match={matches[0]!} name={name} />;
+  const lastVoid = matches.findLast((x) => x.route.elements._void);
+  if (!lastVoid && rootVoid) {
+    return pick(rootVoid, name);
+  }
 }
 
 function LayoutOutlet({ name }: OutletProps): ReactNode {
