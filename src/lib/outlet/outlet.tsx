@@ -36,11 +36,11 @@ function layoutOutlet(
   index: number,
 ): ReactNode {
   const match = matches[index]!;
-  const nextMatch = matches[index + 1];
-  const lastMatch = matches.at(-1)!;
+  const next = matches[index + 1];
+  const last = matches.at(-1)!;
 
   // void?
-  if (!lastMatch.isExact) {
+  if (!last.isExact) {
     const lastVoid = matches.findLast((x) => x.route.elements._void);
     if (match === lastVoid) {
       return pick(match.route.elements._void, name);
@@ -48,12 +48,12 @@ function layoutOutlet(
   }
 
   // content?
-  if (match.isExact && match === lastMatch) {
+  if (match.isExact && match === last) {
     return pick(match.route.elements._content, name);
   }
 
   // next?
-  if (nextMatch) {
-    return <Next index={index + 1} match={nextMatch} name={name} />;
+  if (next) {
+    return <Next index={index + 1} match={next} name={name} />;
   }
 }
