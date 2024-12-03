@@ -1,30 +1,24 @@
-import type { ReactNode, ReactElement } from "react";
+import type { ReactNode } from "react";
 
-import type { Match } from "#lib/match/match.js";
 import { useMatches, useMatchIndex } from "#lib/match/context.js";
 import { useRootVoid } from "#lib/root/context.js";
-import { Next } from "./next.js";
 import { pick } from "./pick.js";
+import { Next } from "./next.js";
 
 export interface OutletProps {
   name?: string;
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
-  const matches = useMatches();
   const index = useMatchIndex();
-  const rootVoid = useRootVoid();
 
-  return index < 0
-    ? rootOutlet(name, matches, rootVoid)
-    : layoutOutlet(name, matches, index);
+  return index < 0 ? <RootOutlet name={name} /> : <LayoutOutlet name={name} />;
 }
 
-function rootOutlet(
-  name: string | undefined,
-  matches: Match[],
-  rootVoid: Record<string, ReactElement> | undefined,
-): ReactNode {
+function RootOutlet({ name }: OutletProps): ReactNode {
+  const matches = useMatches();
+  const rootVoid = useRootVoid();
+
   if (!matches.at(-1)?.isExact) {
     const lastVoid = matches.findLast((x) => x.route.elements._void);
     if (!lastVoid) {
@@ -40,11 +34,10 @@ function rootOutlet(
   return <Next index={0} match={matches[0]!} name={name} />;
 }
 
-function layoutOutlet(
-  name: string | undefined,
-  matches: Match[],
-  index: number,
-): ReactNode {
+function LayoutOutlet({ name }: OutletProps): ReactNode {
+  const matches = useMatches();
+  const index = useMatchIndex();
+
   const match = matches[index]!;
   const next = matches[index + 1];
   const last = matches.at(-1)!;
