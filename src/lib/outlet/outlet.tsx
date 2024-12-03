@@ -1,11 +1,9 @@
-import type { ReactNode, ReactElement } from "react";
+import type { ReactNode } from "react";
 
 import type { Match } from "#lib/match/match.js";
-import {
-  MatchIndexProvider,
-  useMatches,
-  useMatchIndex,
-} from "#lib/match/context.js";
+import { useMatches, useMatchIndex } from "#lib/match/context.js";
+import { Next } from "./next.js";
+import { pick } from "./pick.js";
 
 export interface OutletProps {
   name?: string;
@@ -24,6 +22,7 @@ function rootOutlet(name: string | undefined, matches: Match[]): ReactNode {
   if (!matches.at(-1)?.isExact) {
     const lastVoid = matches.findLast((x) => x.route.elements._void);
     if (!lastVoid) {
+      // TODO: render root void
       return;
     }
   }
@@ -56,30 +55,5 @@ function layoutOutlet(
   // next?
   if (nextMatch) {
     return <Next index={index + 1} match={nextMatch} name={name} />;
-  }
-}
-
-interface NextProps {
-  index: number;
-  match: Match;
-  name: string | undefined;
-}
-
-function Next({ index, match, name }: NextProps): ReactElement {
-  const { _layout, _content } = match.route.elements;
-
-  return (
-    <MatchIndexProvider value={index}>
-      {pick(_layout ?? _content, name)}
-    </MatchIndexProvider>
-  );
-}
-
-function pick(
-  els: Record<string, ReactElement> | undefined,
-  name?: string,
-): ReactNode {
-  if (els) {
-    return name ? els[name] : Object.values(els)[0];
   }
 }
