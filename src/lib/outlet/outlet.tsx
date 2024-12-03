@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 
+import type { Match } from "#lib/match/match.js";
+import { MatchIndexProvider } from "#lib/match/context.js";
 import { useMatches, useMatchIndex } from "#lib/match/context.js";
 import { useRootVoid } from "#lib/root/context.js";
-import { pick } from "./pick.js";
-import { Next } from "./next.js";
 
 export interface OutletProps {
   name?: string;
@@ -58,5 +58,30 @@ function LayoutOutlet({ name }: OutletProps): ReactNode {
   // next?
   if (next) {
     return <Next index={index + 1} match={next} name={name} />;
+  }
+}
+
+interface NextProps {
+  index: number;
+  match: Match;
+  name: string | undefined;
+}
+
+function Next({ index, match, name }: NextProps): ReactNode {
+  const { _layout, _content } = match.route.elements;
+
+  return (
+    <MatchIndexProvider value={index}>
+      {pick(_layout ?? _content, name)}
+    </MatchIndexProvider>
+  );
+}
+
+function pick(
+  els: Record<string, ReactElement> | undefined,
+  name?: string,
+): ReactElement | undefined {
+  if (els) {
+    return name ? els[name] : Object.values(els)[0];
   }
 }
