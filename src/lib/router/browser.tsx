@@ -1,21 +1,21 @@
 import {
   type ReactNode,
-  type ReactElement,
+  type ComponentType,
   useState,
   useCallback,
   useEffect,
 } from "react";
 
-import type { Match } from "#lib/match/mod.js";
 import { logger } from "#lib/debug.js";
-import { matchLocation } from "#lib/match/location.js";
+import { type Match, matchLocation } from "#lib/match/match.js";
 import * as browser from "#lib/browser/mod.js";
-import { Root } from "./root.js";
+import { Root } from "#lib/root/root.js";
 
 const log = logger("router/browser");
 
 export interface BrowserRouterProps {
-  root?: ReactElement;
+  root?: ComponentType;
+  void?: Record<string, ComponentType>;
   matches: Match[];
 }
 
@@ -57,6 +57,7 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   return (
     <Root
       root={props.root}
+      void={props.void}
       navigate={navigate}
       location={location}
       matches={matches}

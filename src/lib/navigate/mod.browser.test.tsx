@@ -4,10 +4,10 @@ import { render } from "vitest-browser-react";
 
 import { NavigateProvider, noNavigate } from "#lib/navigate/mod.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 describe("navigate", () => {

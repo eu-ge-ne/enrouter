@@ -5,17 +5,17 @@ import { userEvent } from "@vitest/browser/context";
 import * as regexparam from "regexparam";
 
 import type { Route } from "#lib/route/mod.js";
-import type { Match } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/match.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { useLink } from "#lib/link/mod.js";
-import { Outlet } from "#lib/outlet/mod.js";
+import { Outlet } from "#lib/outlet/outlet.js";
 import { BrowserRouter } from "./browser.js";
 import { assignLocation, pushHistory } from "#lib/browser/mod.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 vi.mock(import("#lib/route/tree.js"), () => ({
@@ -73,7 +73,6 @@ describe("router", () => {
 
       const matches: Match[] = [
         {
-          isVoid: false,
           route,
           location: "/",
           isExact: true,

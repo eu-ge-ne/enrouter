@@ -6,7 +6,6 @@ exports[`match > matchLocation > from 1 route 1`] = `
 [
   {
     "isExact": true,
-    "isVoid": false,
     "location": "/",
     "params": {},
     "route": {
@@ -27,7 +26,6 @@ exports[`match > matchLocation > from 1 route with params 1`] = `
 [
   {
     "isExact": true,
-    "isVoid": false,
     "location": "/100",
     "params": {
       "id": "100",
@@ -52,7 +50,6 @@ exports[`match > matchLocation > from 2 routes 1`] = `
 [
   {
     "isExact": false,
-    "isVoid": false,
     "location": "/",
     "params": {},
     "route": {
@@ -80,7 +77,6 @@ exports[`match > matchLocation > from 2 routes 1`] = `
   },
   {
     "isExact": true,
-    "isVoid": false,
     "location": "/abc",
     "params": {},
     "route": {
@@ -101,7 +97,6 @@ exports[`match > matchLocation > from 2 routes with params 1`] = `
 [
   {
     "isExact": false,
-    "isVoid": false,
     "location": "/",
     "params": {},
     "route": {
@@ -141,7 +136,6 @@ exports[`match > matchLocation > from 2 routes with params 1`] = `
   },
   {
     "isExact": true,
-    "isVoid": false,
     "location": "/abc",
     "params": {},
     "route": {
@@ -162,7 +156,6 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
 [
   {
     "isExact": false,
-    "isVoid": false,
     "location": "/",
     "params": {},
     "route": {
@@ -208,7 +201,6 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
   },
   {
     "isExact": false,
-    "isVoid": true,
     "location": "/abc",
     "params": {},
     "route": {
@@ -242,7 +234,6 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
   },
   {
     "isExact": false,
-    "isVoid": false,
     "location": "/abc/xyz",
     "params": {},
     "route": {

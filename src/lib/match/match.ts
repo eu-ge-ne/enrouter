@@ -1,10 +1,16 @@
 import type { Route } from "#lib/route/mod.js";
-import type { Match } from "./mod.js";
 import { logger } from "#lib/debug.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";
 
-const log = logger("matchLocation");
+const log = logger("match");
+
+export interface Match {
+  route: Route;
+  isExact: boolean;
+  location: string;
+  params: Record<string, string>;
+}
 
 export async function matchLocation(location: string): Promise<Match[]> {
   const matches: Match[] = [];
@@ -12,8 +18,6 @@ export async function matchLocation(location: string): Promise<Match[]> {
   recur([getRouteTree()], location, matches);
 
   await loadRoutes(matches.map((x) => x.route));
-
-  link(matches);
 
   log("matched: %o", matches);
 
@@ -63,7 +67,6 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
   const loc = execs[0] || "/";
 
   return {
-    isVoid: false,
     route,
     isExact: loc === location,
     location: loc,
@@ -71,12 +74,4 @@ function matchOneOf(routes: Route[], location: string): Match | undefined {
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
     ),
   };
-}
-
-function link(matches: Match[]): void {
-  const lastVoidIndex = matches.findLastIndex((x) => x.route.elements._void);
-
-  matches.forEach((x, i) => {
-    x.isVoid = i === lastVoidIndex;
-  });
 }

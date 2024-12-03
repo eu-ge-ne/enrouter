@@ -39,7 +39,7 @@
   "files": [
     "dist"
   ],
-  "packageManager": "pnpm@9.14.2",
+  "packageManager": "pnpm@9.14.4",
   "scripts": {
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
@@ -113,8 +113,8 @@
   "devDependencies": {
     "@types/lodash.groupby": "^4.6.9",
     "@types/react": "^18.3.12",
-    "@vitest/browser": "^2.1.6",
-    "@vitest/coverage-v8": "^2.1.6",
+    "@vitest/browser": "^2.1.8",
+    "@vitest/coverage-v8": "^2.1.8",
     "glob": "^11.0.0",
     "lodash.groupby": "^4.6.0",
     "playwright": "^1.49.0",
@@ -122,7 +122,7 @@
     "regexparam": "^3.0.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.6",
+    "vitest": "^2.1.8",
     "vitest-browser-react": "^0.0.4",
     "wireit": "^0.14.9"
   }

@@ -3,14 +3,14 @@ import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import type { Match } from "#lib/match/mod.js";
+import type { Match } from "#lib/match/match.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
-import { Outlet } from "./mod.js";
+import { Outlet } from "./outlet.js";
 
-const wrapperId = "test-wrapper";
+const testId = "test-wrapper";
 
 const wrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div data-testid={wrapperId}>{children}</div>
+  <div data-testid={testId}>{children}</div>
 );
 
 describe("outlet", () => {
@@ -22,7 +22,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -30,7 +30,6 @@ describe("outlet", () => {
   test("named _layout element from next match", async () => {
     const matches: Match[] = [
       {
-        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -53,7 +52,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        isVoid: false,
         route: {
           path: "/abc",
           test: regexparam.parse("/abc", true),
@@ -86,7 +84,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -94,7 +92,6 @@ describe("outlet", () => {
   test("named _content element from next match", async () => {
     const matches: Match[] = [
       {
-        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -114,7 +111,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        isVoid: false,
         route: {
           path: "/abc",
           test: regexparam.parse("/abc", true),
@@ -141,7 +137,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -149,7 +145,6 @@ describe("outlet", () => {
   test("named _content element from current match", async () => {
     const matches: Match[] = [
       {
-        isVoid: false,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -179,7 +174,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
@@ -187,7 +182,6 @@ describe("outlet", () => {
   test("named _void element from current match", async () => {
     const matches: Match[] = [
       {
-        isVoid: true,
         route: {
           path: "/",
           test: regexparam.parse("/", true),
@@ -210,7 +204,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        isVoid: false,
         route: {
           path: "/abc",
           test: regexparam.parse("/abc", true),
@@ -222,9 +215,6 @@ describe("outlet", () => {
             },
             _content: {
               Main: <div>next content#Main</div>,
-            },
-            _void: {
-              Main: <div>next void#Main</div>,
             },
           },
         },
@@ -243,7 +233,7 @@ describe("outlet", () => {
       { wrapper },
     );
 
-    await expect.element(screen.getByTestId(wrapperId)).toBeVisible();
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
 
     expect(screen.container).toMatchSnapshot();
   });
