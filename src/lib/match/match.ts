@@ -1,9 +1,6 @@
 import type { Route } from "#lib/route/mod.js";
-import { logger } from "#lib/debug.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";
-
-const log = logger("match");
 
 export interface Match {
   route: Route;
@@ -15,31 +12,24 @@ export interface Match {
 export async function matchLocation(location: string): Promise<Match[]> {
   const matches: Match[] = [];
 
-  recur([getRouteTree()], location, matches);
+  let routes: Route[] | undefined = [getRouteTree()];
+
+  while (routes) {
+    const match = matchRoute(routes, location);
+
+    routes = match?.route.tree;
+
+    if (match) {
+      matches.push(match);
+    }
+  }
 
   await loadRoutes(matches.map((x) => x.route));
-
-  log("matched: %o", matches);
 
   return matches;
 }
 
-function recur(routes: Route[], location: string, matches: Match[]): void {
-  const match = matchOneOf(routes, location);
-  if (!match) {
-    return;
-  }
-
-  log(`path: "%s", location: "%s"`, match.route.path, match.location);
-
-  matches.push(match);
-
-  if (match.route.tree) {
-    recur(match.route.tree, location, matches);
-  }
-}
-
-function matchOneOf(routes: Route[], location: string): Match | undefined {
+function matchRoute(routes: Route[], location: string): Match | undefined {
   let matched = routes
     .map((route) => {
       const execs = route.test.pattern.exec(location);
