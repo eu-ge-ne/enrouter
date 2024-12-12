@@ -23,12 +23,16 @@ export async function matchLocation(location: string): Promise<Match[]> {
     }
   }
 
-  await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
+  await loadRoutes(matches.map((x) => x.route!));
+
+  if (matches.at(-1)?.location !== location) {
+    matches.push({ location, params: {} });
+  }
 
   return matches;
 }
 
-function matchRoute(routes: Route[], location: string): Match {
+function matchRoute(routes: Route[], location: string): Match | undefined {
   let matched = routes
     .map((route) => {
       const execs = route.test.pattern.exec(location);
@@ -39,7 +43,7 @@ function matchRoute(routes: Route[], location: string): Match {
     .filter((x) => x !== undefined);
 
   if (matched.length === 0) {
-    return { location, params: {} };
+    return;
   }
 
   // TODO: improve

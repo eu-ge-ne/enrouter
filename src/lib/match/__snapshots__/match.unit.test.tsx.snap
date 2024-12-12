@@ -1,11 +1,17 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > matchLocation > 0 matches 1`] = `[]`;
-
-exports[`match > matchLocation > from 1 route 1`] = `
+exports[`match > matchLocation > 0 matches 1`] = `
 [
   {
-    "isExact": true,
+    "location": "/x",
+    "params": {},
+  },
+]
+`;
+
+exports[`match > matchLocation > 1 match 1`] = `
+[
+  {
     "location": "/",
     "params": {},
     "route": {
@@ -22,10 +28,9 @@ exports[`match > matchLocation > from 1 route 1`] = `
 ]
 `;
 
-exports[`match > matchLocation > from 1 route with params 1`] = `
+exports[`match > matchLocation > 1 match with params 1`] = `
 [
   {
-    "isExact": true,
     "location": "/100",
     "params": {
       "id": "100",
@@ -46,10 +51,9 @@ exports[`match > matchLocation > from 1 route with params 1`] = `
 ]
 `;
 
-exports[`match > matchLocation > from 2 routes 1`] = `
+exports[`match > matchLocation > 2 matches 1`] = `
 [
   {
-    "isExact": false,
     "location": "/",
     "params": {},
     "route": {
@@ -76,7 +80,6 @@ exports[`match > matchLocation > from 2 routes 1`] = `
     },
   },
   {
-    "isExact": true,
     "location": "/abc",
     "params": {},
     "route": {
@@ -93,10 +96,9 @@ exports[`match > matchLocation > from 2 routes 1`] = `
 ]
 `;
 
-exports[`match > matchLocation > from 2 routes with params 1`] = `
+exports[`match > matchLocation > 2 matches with params 1`] = `
 [
   {
-    "isExact": false,
     "location": "/",
     "params": {},
     "route": {
@@ -135,7 +137,6 @@ exports[`match > matchLocation > from 2 routes with params 1`] = `
     },
   },
   {
-    "isExact": true,
     "location": "/abc",
     "params": {},
     "route": {
@@ -152,10 +153,9 @@ exports[`match > matchLocation > from 2 routes with params 1`] = `
 ]
 `;
 
-exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
+exports[`match > matchLocation > 3 matches and 1 not found 1`] = `
 [
   {
-    "isExact": false,
     "location": "/",
     "params": {},
     "route": {
@@ -169,13 +169,7 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
       },
       "tree": [
         {
-          "elements": {
-            "_void": {
-              "Main": <div>
-                Void
-              </div>,
-            },
-          },
+          "elements": {},
           "loaded": true,
           "modules": [],
           "path": "/abc",
@@ -200,17 +194,10 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
     },
   },
   {
-    "isExact": false,
     "location": "/abc",
     "params": {},
     "route": {
-      "elements": {
-        "_void": {
-          "Main": <div>
-            Void
-          </div>,
-        },
-      },
+      "elements": {},
       "loaded": true,
       "modules": [],
       "path": "/abc",
@@ -233,7 +220,6 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
     },
   },
   {
-    "isExact": false,
     "location": "/abc/xyz",
     "params": {},
     "route": {
@@ -246,6 +232,10 @@ exports[`match > matchLocation > from 3 routes with "_void" 1`] = `
         "pattern": /\\^\\\\/abc\\\\/xyz\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
+  },
+  {
+    "location": "/abc/xyz/100",
+    "params": {},
   },
 ]
 `;
