@@ -3,8 +3,7 @@ import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";
 
 export interface Match {
-  route: Route;
-  isExact: boolean;
+  route?: Route;
   location: string;
   params: Record<string, string>;
 }
@@ -17,19 +16,19 @@ export async function matchLocation(location: string): Promise<Match[]> {
   while (routes) {
     const match = matchRoute(routes, location);
 
-    routes = match?.route.tree;
+    routes = match?.route?.tree;
 
     if (match) {
       matches.push(match);
     }
   }
 
-  await loadRoutes(matches.map((x) => x.route));
+  await loadRoutes(matches.map((x) => x.route).filter((x) => x !== undefined));
 
   return matches;
 }
 
-function matchRoute(routes: Route[], location: string): Match | undefined {
+function matchRoute(routes: Route[], location: string): Match {
   let matched = routes
     .map((route) => {
       const execs = route.test.pattern.exec(location);
@@ -40,7 +39,7 @@ function matchRoute(routes: Route[], location: string): Match | undefined {
     .filter((x) => x !== undefined);
 
   if (matched.length === 0) {
-    return;
+    return { location, params: {} };
   }
 
   // TODO: improve
@@ -54,12 +53,10 @@ function matchRoute(routes: Route[], location: string): Match | undefined {
   }
 
   const { route, execs } = matched[0]!;
-  const loc = execs[0] || "/";
 
   return {
     route,
-    isExact: loc === location,
-    location: loc,
+    location: execs[0] || "/",
     params: Object.fromEntries(
       route.test.keys.map((key, i) => [key, execs![i + 1]!] as const),
     ),
