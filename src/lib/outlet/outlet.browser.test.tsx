@@ -157,12 +157,6 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _layout: {
-              Main: <div>layout#Main</div>,
-            },
-            _content: {
-              Main: <div>content#Main</div>,
-            },
             _void: {
               Main: <div>void#Main</div>,
             },
@@ -172,20 +166,6 @@ describe("outlet", () => {
         params: {},
       },
       {
-        route: {
-          path: "/abc",
-          test: regexparam.parse("/abc", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>next layout#Main</div>,
-            },
-            _content: {
-              Main: <div>next content#Main</div>,
-            },
-          },
-        },
         location: "/abc",
         params: {},
       },
