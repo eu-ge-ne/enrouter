@@ -1,4 +1,4 @@
-import { useMatch } from "./context.js";
+import { useMatches } from "./context.js";
 
 export interface UseActiveParams<T> {
   path: string;
@@ -6,10 +6,26 @@ export interface UseActiveParams<T> {
   value: [T, T];
 }
 
-export function useActive<T>({ path, loose, value }: UseActiveParams<T>): T {
-  const match = useMatch(path);
+export function useActive<T>({
+  path,
+  loose,
+  value: [yes, no],
+}: UseActiveParams<T>): T {
+  const matches = useMatches();
 
-  const isActive = loose ? match !== undefined : Boolean(match?.isExact);
+  const match = matches.find((x) => x.route?.path === path);
 
-  return isActive ? value[0] : value[1];
+  if (!match?.route) {
+    return no;
+  }
+
+  if (loose) {
+    return yes;
+  }
+
+  if (match !== matches.at(-1)) {
+    return no;
+  }
+
+  return match?.route ? yes : no;
 }

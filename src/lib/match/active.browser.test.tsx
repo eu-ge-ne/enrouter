@@ -15,7 +15,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 
 describe("match", () => {
   describe("useActive", () => {
-    test("with 2 matches", async () => {
+    test("2 matches strict", async () => {
       const matches: Match[] = [
         {
           route: {
@@ -23,13 +23,8 @@ describe("match", () => {
             test: regexparam.parse("/", true),
             modules: [],
             loaded: true,
-            elements: {
-              _layout: {
-                Main: <div>Page /</div>,
-              },
-            },
+            elements: {},
           },
-          isExact: false,
           location: "/",
           params: {},
         },
@@ -39,13 +34,8 @@ describe("match", () => {
             test: regexparam.parse("/abc", true),
             modules: [],
             loaded: true,
-            elements: {
-              _layout: {
-                Main: <div>Page /abc</div>,
-              },
-            },
+            elements: {},
           },
-          isExact: true,
           location: "/abc",
           params: {},
         },
@@ -61,11 +51,6 @@ describe("match", () => {
           value: ["/abc is active", "/abc is not active"],
         });
         const match3 = useActive({
-          path: "/",
-          loose: true,
-          value: ["/ is active (loose)", "/ is not active (loose)"],
-        });
-        const match4 = useActive({
           path: "/xyz",
           value: ["/xyz is active", "/xyz is not active"],
         });
@@ -75,7 +60,70 @@ describe("match", () => {
             <p>{match1}</p>
             <p>{match2}</p>
             <p>{match3}</p>
-            <p>{match4}</p>
+          </div>
+        );
+      };
+
+      const screen = render(
+        <MatchesProvider value={matches}>
+          <Test />
+        </MatchesProvider>,
+        { wrapper },
+      );
+
+      await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+      expect(screen.container).toMatchSnapshot();
+    });
+
+    test("2 matches loose", async () => {
+      const matches: Match[] = [
+        {
+          route: {
+            path: "/",
+            test: regexparam.parse("/", true),
+            modules: [],
+            loaded: true,
+            elements: {},
+          },
+          location: "/",
+          params: {},
+        },
+        {
+          route: {
+            path: "/abc",
+            test: regexparam.parse("/abc", true),
+            modules: [],
+            loaded: true,
+            elements: {},
+          },
+          location: "/abc",
+          params: {},
+        },
+      ];
+
+      const Test: FC = () => {
+        const match1 = useActive({
+          path: "/",
+          loose: true,
+          value: ["/ is active", "/ is not active"],
+        });
+        const match2 = useActive({
+          path: "/abc",
+          loose: true,
+          value: ["/abc is active", "/abc is not active"],
+        });
+        const match3 = useActive({
+          path: "/xyz",
+          loose: true,
+          value: ["/xyz is active", "/xyz is not active"],
+        });
+
+        return (
+          <div>
+            <p>{match1}</p>
+            <p>{match2}</p>
+            <p>{match3}</p>
           </div>
         );
       };

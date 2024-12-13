@@ -1,6 +1,26 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > useActive > with 2 matches 1`] = `
+exports[`match > useActive > 2 matches loose 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      <p>
+        / is active
+      </p>
+      <p>
+        /abc is active
+      </p>
+      <p>
+        /xyz is not active
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`match > useActive > 2 matches strict 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -11,9 +31,6 @@ exports[`match > useActive > with 2 matches 1`] = `
       </p>
       <p>
         /abc is active
-      </p>
-      <p>
-        / is active (loose)
       </p>
       <p>
         /xyz is not active
