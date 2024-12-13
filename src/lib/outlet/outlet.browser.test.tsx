@@ -48,7 +48,6 @@ describe("outlet", () => {
           },
         },
         location: "/",
-        isExact: false,
         params: {},
       },
       {
@@ -70,7 +69,6 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isExact: false,
         params: {},
       },
     ];
@@ -107,7 +105,6 @@ describe("outlet", () => {
           },
         },
         location: "/",
-        isExact: false,
         params: {},
       },
       {
@@ -123,7 +120,6 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isExact: false,
         params: {},
       },
     ];
@@ -160,7 +156,6 @@ describe("outlet", () => {
           },
         },
         location: "/",
-        isExact: true,
         params: {},
       },
     ];
@@ -200,7 +195,6 @@ describe("outlet", () => {
           },
         },
         location: "/",
-        isExact: false,
         params: {},
       },
       {
@@ -219,7 +213,6 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isExact: false,
         params: {},
       },
     ];
