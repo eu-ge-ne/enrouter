@@ -28,7 +28,6 @@ describe("match", () => {
               },
             },
           },
-          isExact: true,
           location: "/",
           params: {},
         },
@@ -36,7 +35,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         return (
-          useMatch()?.route.elements._layout as Record<string, ReactElement>
+          useMatch()?.route?.elements._layout as Record<string, ReactElement>
         ).Main;
       };
 
@@ -68,7 +67,6 @@ describe("match", () => {
               },
             },
           },
-          isExact: false,
           location: "/",
           params: {},
         },
@@ -84,14 +82,13 @@ describe("match", () => {
               },
             },
           },
-          isExact: true,
           location: "/abc",
           params: {},
         },
       ];
 
       const Test: FC = () => {
-        return useMatch("/abc")?.route.elements._layout?.Main;
+        return useMatch("/abc")?.route?.elements._layout?.Main;
       };
 
       const screen = render(

@@ -35,20 +35,9 @@ describe("outlet", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>layout#Main</div>,
-            },
-            _content: {
-              Main: <div>content#Main</div>,
-            },
-            _void: {
-              Main: <div>void#Main</div>,
-            },
-          },
+          elements: {},
         },
         location: "/",
-        isExact: false,
         params: {},
       },
       {
@@ -61,16 +50,9 @@ describe("outlet", () => {
             _layout: {
               Main: <div>next layout#Main</div>,
             },
-            _content: {
-              Main: <div>next content#Main</div>,
-            },
-            _void: {
-              Main: <div>next void#Main</div>,
-            },
           },
         },
         location: "/abc",
-        isExact: false,
         params: {},
       },
     ];
@@ -97,17 +79,9 @@ describe("outlet", () => {
           test: regexparam.parse("/", true),
           modules: [],
           loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>layout#Main</div>,
-            },
-            _content: {
-              Main: <div>content#Main</div>,
-            },
-          },
+          elements: {},
         },
         location: "/",
-        isExact: false,
         params: {},
       },
       {
@@ -123,7 +97,6 @@ describe("outlet", () => {
           },
         },
         location: "/abc",
-        isExact: false,
         params: {},
       },
     ];
@@ -151,16 +124,12 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _layout: {
-              Main: <div>layout#Main</div>,
-            },
             _content: {
               Main: <div>content#Main</div>,
             },
           },
         },
         location: "/",
-        isExact: true,
         params: {},
       },
     ];
@@ -188,38 +157,16 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _layout: {
-              Main: <div>layout#Main</div>,
-            },
-            _content: {
-              Main: <div>content#Main</div>,
-            },
             _void: {
               Main: <div>void#Main</div>,
             },
           },
         },
         location: "/",
-        isExact: false,
         params: {},
       },
       {
-        route: {
-          path: "/abc",
-          test: regexparam.parse("/abc", true),
-          modules: [],
-          loaded: true,
-          elements: {
-            _layout: {
-              Main: <div>next layout#Main</div>,
-            },
-            _content: {
-              Main: <div>next content#Main</div>,
-            },
-          },
-        },
         location: "/abc",
-        isExact: false,
         params: {},
       },
     ];

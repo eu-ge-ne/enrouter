@@ -10,17 +10,19 @@ export interface OutletProps {
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
-  const index = useMatchIndex();
-
-  return index < 0 ? <RootOutlet name={name} /> : <LayoutOutlet name={name} />;
+  return useMatchIndex() < 0 ? (
+    <RootOutlet name={name} />
+  ) : (
+    <LayoutOutlet name={name} />
+  );
 }
 
 function RootOutlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const voidComponents = useVoid();
 
-  const isExact = matches.at(-1)?.isExact;
-  const lastVoid = matches.findLast((x) => x.route.elements._void);
+  const isExact = matches.at(-1)?.route;
+  const lastVoid = matches.findLast((x) => x.route?.elements._void);
 
   if (!isExact && !lastVoid && voidComponents) {
     const Void = name
@@ -44,16 +46,16 @@ function LayoutOutlet({ name }: OutletProps): ReactNode {
   const last = matches.at(-1)!;
 
   // void?
-  if (!last.isExact) {
-    const lastVoid = matches.findLast((x) => x.route.elements._void);
+  if (!last.route) {
+    const lastVoid = matches.findLast((x) => x.route?.elements._void);
     if (match === lastVoid) {
-      return pick(match.route.elements._void, name);
+      return pick(match.route?.elements._void, name);
     }
   }
 
   // content?
-  if (match.isExact && match === last) {
-    return pick(match.route.elements._content, name);
+  if (match === last && last.route) {
+    return pick(match.route?.elements._content, name);
   }
 
   // next?
@@ -69,7 +71,7 @@ interface NextProps {
 }
 
 function Next({ index, match, name }: NextProps): ReactNode {
-  const { _layout, _content } = match.route.elements;
+  const { _layout, _content } = match.route!.elements;
 
   return (
     <MatchIndexProvider value={index}>

@@ -29,7 +29,6 @@ describe("router", () => {
             },
           },
           location: "/",
-          isExact: true,
           params: {},
         },
       ];

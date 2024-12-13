@@ -24,5 +24,5 @@ export function useMatch(path?: string): Match | undefined {
     return matches[matchIndex];
   }
 
-  return matches.find((x) => x.route.path === path);
+  return matches.find((x) => x.route?.path === path);
 }

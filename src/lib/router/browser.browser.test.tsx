@@ -75,7 +75,6 @@ describe("router", () => {
         {
           route,
           location: "/",
-          isExact: true,
           params: {},
         },
       ];

@@ -22,7 +22,7 @@ describe("match", () => {
       expect(await matchLocation("/x")).toMatchSnapshot();
     });
 
-    test("from 1 route", async () => {
+    test("1 match", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/",
         test: regexparam.parse("/", true),
@@ -34,7 +34,7 @@ describe("match", () => {
       expect(await matchLocation("/")).toMatchSnapshot();
     });
 
-    test("from 2 routes", async () => {
+    test("2 matches", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/",
         test: regexparam.parse("/", true),
@@ -55,7 +55,7 @@ describe("match", () => {
       expect(await matchLocation("/abc")).toMatchSnapshot();
     });
 
-    test("from 1 route with params", async () => {
+    test("1 match with params", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/[:id]",
         test: regexparam.parse("/:id", true),
@@ -67,7 +67,7 @@ describe("match", () => {
       expect(await matchLocation("/100")).toMatchSnapshot();
     });
 
-    test("from 2 routes with params", async () => {
+    test("2 matches with params", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/",
         test: regexparam.parse("/", true),
@@ -95,7 +95,7 @@ describe("match", () => {
       expect(await matchLocation("/abc")).toMatchSnapshot();
     });
 
-    test('from 3 routes with "_void"', async () => {
+    test("3 matches and 1 not found", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/",
         test: regexparam.parse("/", true),
@@ -108,11 +108,7 @@ describe("match", () => {
             test: regexparam.parse("/abc", true),
             modules: [],
             loaded: true,
-            elements: {
-              _void: {
-                Main: <div>Void</div>,
-              },
-            },
+            elements: {},
             tree: [
               {
                 path: "/abc/xyz",
