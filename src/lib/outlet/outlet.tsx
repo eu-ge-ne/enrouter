@@ -2,7 +2,7 @@ import type { ReactNode, ReactElement } from "react";
 
 import type { Match } from "#lib/match/match.js";
 import { MatchIndexProvider } from "#lib/match/context.js";
-import { useMatches, useMatchIndex } from "#lib/match/context.js";
+import { useMatches, useMatchIndex, useVoidMatch } from "#lib/match/context.js";
 import { useVoid } from "#lib/root/context.js";
 
 export interface OutletProps {
@@ -19,12 +19,12 @@ export function Outlet({ name }: OutletProps): ReactNode {
 
 function RootOutlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
+  const voidMatch = useVoidMatch();
   const voidComponents = useVoid();
 
   const isExact = matches.at(-1)?.route;
-  const lastVoid = matches.findLast((x) => x.route?.elements._void);
 
-  if (!isExact && !lastVoid && voidComponents) {
+  if (!isExact && !voidMatch && voidComponents) {
     const Void = name
       ? voidComponents[name]!
       : Object.values(voidComponents)[0]!;
@@ -40,6 +40,7 @@ function RootOutlet({ name }: OutletProps): ReactNode {
 function LayoutOutlet({ name }: OutletProps): ReactNode {
   const matches = useMatches();
   const index = useMatchIndex();
+  const voidMatch = useVoidMatch();
 
   const match = matches[index]!;
   const next = matches[index + 1];
@@ -47,8 +48,7 @@ function LayoutOutlet({ name }: OutletProps): ReactNode {
 
   // void?
   if (!last.route) {
-    const lastVoid = matches.findLast((x) => x.route?.elements._void);
-    if (match === lastVoid) {
+    if (match === voidMatch) {
       return pick(match.route?.elements._void, name);
     }
   }
