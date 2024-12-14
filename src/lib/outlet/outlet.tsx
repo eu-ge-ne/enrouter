@@ -24,7 +24,7 @@ interface OutletImplProps {
 }
 
 function RootOutlet({
-  matchContext: { matches, voidMatch, isExactMatch },
+  matchContext: { firstMatch, voidMatch, isExactMatch },
   name,
 }: OutletImplProps): ReactNode {
   const voidComponents = useVoid();
@@ -37,8 +37,8 @@ function RootOutlet({
     return <Void />;
   }
 
-  if (matches[0]) {
-    const { _layout, _content } = matches[0].route!.elements;
+  if (firstMatch?.route) {
+    const { _layout, _content } = firstMatch.route.elements;
 
     return (
       <MatchIndexProvider value={0}>
@@ -70,8 +70,8 @@ function LayoutOutlet({
   }
 
   // next?
-  if (nextMatch) {
-    const { _layout, _content } = nextMatch.route!.elements;
+  if (nextMatch?.route) {
+    const { _layout, _content } = nextMatch.route.elements;
 
     return (
       <MatchIndexProvider value={matchIndex + 1}>
