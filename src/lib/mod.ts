@@ -3,7 +3,7 @@ export { debug } from "./debug.js";
 export type { Route } from "./route/mod.js";
 
 export { type Match, matchLocation } from "./match/match.js";
-export { useMatch } from "./match/context.js";
+export { type Matches, useMatches, useMatch } from "./match/context.js";
 export { type UseActiveParams, useActive } from "./match/active.js";
 
 export { type StaticRouterProps, StaticRouter } from "./router/static.js";
