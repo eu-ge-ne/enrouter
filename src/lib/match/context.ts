@@ -12,6 +12,7 @@ export interface MatchContext {
   matches: Match[];
   matchIndex: number;
   match: Match | undefined;
+  firstMatch: Match | undefined;
   nextMatch: Match | undefined;
   lastMatch: Match | undefined;
   voidMatch: Match | undefined;
@@ -23,6 +24,7 @@ export function useMatchContext(): MatchContext {
   const matchIndex = useContext(MatchIndexContext);
 
   const match = matches[matchIndex];
+  const firstMatch = matches[0];
   const nextMatch = matches[matchIndex + 1];
   const lastMatch = matches.at(-1);
   const voidMatch = matches.findLast((x) => x.route?.elements._void);
@@ -33,6 +35,7 @@ export function useMatchContext(): MatchContext {
     matches,
     matchIndex,
     match,
+    firstMatch,
     nextMatch,
     lastMatch,
     voidMatch,
