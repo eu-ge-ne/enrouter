@@ -7,7 +7,7 @@ import type { Match } from "./match.js";
 import {
   MatchesProvider,
   MatchIndexProvider,
-  useMatchContext,
+  useMatches,
   useMatch,
 } from "./context.js";
 
@@ -18,7 +18,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("match", () => {
-  describe("useMatchContext", () => {
+  describe("useMatches", () => {
     test("1 match", async () => {
       const matches: Match[] = [
         {
@@ -40,7 +40,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         return (
-          useMatchContext().match?.route?.elements._layout as Record<
+          useMatches().match?.route?.elements._layout as Record<
             string,
             ReactElement
           >
