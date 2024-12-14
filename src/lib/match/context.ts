@@ -8,7 +8,7 @@ const MatchIndexContext = createContext<number>(-1);
 export const MatchesProvider = MatchesContext.Provider;
 export const MatchIndexProvider = MatchIndexContext.Provider;
 
-export interface MatchContext {
+export interface Matches {
   matches: Match[];
   matchIndex: number;
   match: Match | undefined;
@@ -19,7 +19,7 @@ export interface MatchContext {
   isExactMatch: boolean;
 }
 
-export function useMatchContext(): MatchContext {
+export function useMatches(): Matches {
   const matches = useContext(MatchesContext);
   const matchIndex = useContext(MatchIndexContext);
 

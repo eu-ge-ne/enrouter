@@ -1,7 +1,7 @@
 import type { ReactNode, ReactElement } from "react";
 
 import { MatchIndexProvider } from "#lib/match/context.js";
-import { type MatchContext, useMatchContext } from "#lib/match/context.js";
+import { type Matches, useMatches } from "#lib/match/context.js";
 import { useVoid } from "#lib/root/context.js";
 
 export interface OutletProps {
@@ -9,22 +9,22 @@ export interface OutletProps {
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
-  const matchContext = useMatchContext();
+  const matches = useMatches();
 
-  return matchContext.matchIndex < 0 ? (
-    <RootOutlet matchContext={matchContext} name={name} />
+  return matches.matchIndex < 0 ? (
+    <RootOutlet matches={matches} name={name} />
   ) : (
-    <LayoutOutlet matchContext={matchContext} name={name} />
+    <LayoutOutlet matches={matches} name={name} />
   );
 }
 
 interface OutletImplProps {
-  matchContext: MatchContext;
+  matches: Matches;
   name?: string;
 }
 
 function RootOutlet({
-  matchContext: { firstMatch, voidMatch, isExactMatch },
+  matches: { firstMatch, voidMatch, isExactMatch },
   name,
 }: OutletImplProps): ReactNode {
   const voidComponents = useVoid();
@@ -49,14 +49,7 @@ function RootOutlet({
 }
 
 function LayoutOutlet({
-  matchContext: {
-    matchIndex,
-    match,
-    nextMatch,
-    lastMatch,
-    voidMatch,
-    isExactMatch,
-  },
+  matches: { matchIndex, match, nextMatch, lastMatch, voidMatch, isExactMatch },
   name,
 }: OutletImplProps): ReactNode {
   // void?

@@ -1,4 +1,4 @@
-import { useMatchContext, useMatch } from "./context.js";
+import { useMatches, useMatch } from "./context.js";
 
 export interface UseActiveParams<T> {
   path: string;
@@ -12,7 +12,7 @@ export function useActive<T>({
   value: [yes, no],
 }: UseActiveParams<T>): T {
   const match = useMatch(path);
-  const { lastMatch } = useMatchContext();
+  const { lastMatch } = useMatches();
 
   if (!match?.route) {
     return no;

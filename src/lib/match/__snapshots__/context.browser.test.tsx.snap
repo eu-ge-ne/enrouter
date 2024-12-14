@@ -12,7 +12,7 @@ exports[`match > useMatch > 2 matches 1`] = `
 </div>
 `;
 
-exports[`match > useMatchContext > 1 match 1`] = `
+exports[`match > useMatches > 1 match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
