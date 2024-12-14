@@ -4,7 +4,12 @@ import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
 import type { Match } from "./match.js";
-import { MatchesProvider, MatchIndexProvider, useMatch } from "./context.js";
+import {
+  MatchesProvider,
+  MatchIndexProvider,
+  useMatchContext,
+  useMatch,
+} from "./context.js";
 
 const testId = "test-wrapper";
 
@@ -13,7 +18,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("match", () => {
-  describe("useMatch", () => {
+  describe("useMatchContext", () => {
     test("1 match", async () => {
       const matches: Match[] = [
         {
@@ -35,7 +40,10 @@ describe("match", () => {
 
       const Test: FC = () => {
         return (
-          useMatch()?.route?.elements._layout as Record<string, ReactElement>
+          useMatchContext().match?.route?.elements._layout as Record<
+            string,
+            ReactElement
+          >
         ).Main;
       };
 
@@ -52,7 +60,9 @@ describe("match", () => {
 
       expect(screen.container).toMatchSnapshot();
     });
+  });
 
+  describe("useMatch", () => {
     test("2 matches", async () => {
       const matches: Match[] = [
         {

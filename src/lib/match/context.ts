@@ -8,21 +8,41 @@ const MatchIndexContext = createContext<number>(-1);
 export const MatchesProvider = MatchesContext.Provider;
 export const MatchIndexProvider = MatchIndexContext.Provider;
 
-export function useMatches(): Match[] {
-  return useContext(MatchesContext);
+export interface MatchContext {
+  matches: Match[];
+  matchIndex: number;
+  match: Match | undefined;
+  firstMatch: Match | undefined;
+  nextMatch: Match | undefined;
+  lastMatch: Match | undefined;
+  voidMatch: Match | undefined;
+  isExactMatch: boolean;
 }
 
-export function useMatchIndex(): number {
-  return useContext(MatchIndexContext);
-}
-
-export function useMatch(path?: string): Match | undefined {
+export function useMatchContext(): MatchContext {
   const matches = useContext(MatchesContext);
   const matchIndex = useContext(MatchIndexContext);
 
-  if (!path) {
-    return matches[matchIndex];
-  }
+  const match = matches[matchIndex];
+  const firstMatch = matches[0];
+  const nextMatch = matches[matchIndex + 1];
+  const lastMatch = matches.at(-1);
+  const voidMatch = matches.findLast((x) => x.route?.elements._void);
 
-  return matches.find((x) => x.route?.path === path);
+  const isExactMatch = Boolean(lastMatch?.route);
+
+  return {
+    matches,
+    matchIndex,
+    match,
+    firstMatch,
+    nextMatch,
+    lastMatch,
+    voidMatch,
+    isExactMatch,
+  };
+}
+
+export function useMatch(path: string): Match | undefined {
+  return useContext(MatchesContext).find((x) => x.route?.path === path);
 }

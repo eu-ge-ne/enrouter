@@ -16,11 +16,11 @@ export async function matchLocation(location: string): Promise<Match[]> {
   while (routes) {
     const match = matchRoute(routes, location);
 
-    routes = match?.route?.tree;
-
     if (match) {
       matches.push(match);
     }
+
+    routes = match?.route?.tree;
   }
 
   await loadRoutes(matches.map((x) => x.route!));
@@ -47,14 +47,13 @@ function matchRoute(routes: Route[], location: string): Match | undefined {
   }
 
   // TODO: improve
-
   if (matched.length > 1) {
     matched = matched.filter((x) => x.route.test.keys.length === 0);
   }
-
   if (matched.length !== 1) {
-    throw new Error("Found >1 match");
+    throw new Error("matched.length !== 1");
   }
+  // TODO: improve
 
   const { route, execs } = matched[0]!;
 
