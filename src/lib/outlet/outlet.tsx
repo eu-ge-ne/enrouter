@@ -1,7 +1,7 @@
 import type { ReactNode, ReactElement } from "react";
 
 import { MatchIndexProvider } from "#lib/match/context.js";
-import { type Matches, useMatches } from "#lib/match/context.js";
+import { type Matches, useMatches } from "#lib/match/useMatches.js";
 import { useVoid } from "#lib/root/context.js";
 
 export interface OutletProps {

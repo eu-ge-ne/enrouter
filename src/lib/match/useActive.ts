@@ -1,4 +1,5 @@
-import { useMatches, useMatch } from "./context.js";
+import { useMatches } from "./useMatches.js";
+import { useMatch } from "./useMatch.js";
 
 export interface UseActiveParams<T> {
   path: string;

@@ -5,7 +5,7 @@ import * as regexparam from "regexparam";
 
 import type { Match } from "./match.js";
 import { MatchesProvider } from "./context.js";
-import { useActive } from "./active.js";
+import { useActive } from "./useActive.js";
 
 const testId = "test-wrapper";
 
