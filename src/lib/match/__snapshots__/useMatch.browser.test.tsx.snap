@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`match > useMatch > 2 matches 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      Page /abc
+    </div>
+  </div>
+</div>
+`;
