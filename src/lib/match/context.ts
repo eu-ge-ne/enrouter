@@ -17,12 +17,16 @@ export function useMatchIndex(): number {
 }
 
 export function useMatch(path?: string): Match | undefined {
-  const matches = useContext(MatchesContext);
-  const matchIndex = useContext(MatchIndexContext);
+  const matches = useMatches();
+  const matchIndex = useMatchIndex();
 
   if (!path) {
     return matches[matchIndex];
   }
 
   return matches.find((x) => x.route?.path === path);
+}
+
+export function useVoidMatch(): Match | undefined {
+  return useMatches().findLast((x) => x.route?.elements._void);
 }
