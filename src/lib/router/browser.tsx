@@ -56,8 +56,7 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
 
   return (
     <Root
-      root={props.root}
-      void={props.void}
+      params={{ root: props.root, void: props.void }}
       navigate={navigate}
       location={location}
       matches={matches}

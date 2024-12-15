@@ -1,11 +1,14 @@
 import { type ComponentType, createContext, useContext } from "react";
 
-type Void = Record<string, ComponentType> | undefined;
+export interface RootParams {
+  root?: ComponentType;
+  void?: Record<string, ComponentType>;
+}
 
-const VoidContext = createContext<Void>(undefined);
+const RootParamsContext = createContext<RootParams>({});
 
-export const VoidProvider = VoidContext.Provider;
+export const RootParamsProvider = RootParamsContext.Provider;
 
-export function useVoid(): Void {
-  return useContext(VoidContext);
+export function useRootParams(): RootParams {
+  return useContext(RootParamsContext);
 }
