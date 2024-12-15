@@ -16,12 +16,69 @@ exports[`match > matchLocation > 1 match 1`] = `
     "params": {},
     "route": {
       "elements": {},
-      "loaded": false,
+      "loaded": true,
       "modules": [],
       "path": "/",
       "test": {
         "keys": [],
         "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+    },
+  },
+]
+`;
+
+exports[`match > matchLocation > 1 match and 1 match with params 1`] = `
+[
+  {
+    "location": "/",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": true,
+      "modules": [],
+      "path": "/",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+      },
+      "tree": [
+        {
+          "elements": {},
+          "loaded": true,
+          "modules": [],
+          "path": "/abc",
+          "test": {
+            "keys": [],
+            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+        {
+          "elements": {},
+          "loaded": true,
+          "modules": [],
+          "path": "/[:id]",
+          "test": {
+            "keys": [
+              "id",
+            ],
+            "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
+          },
+        },
+      ],
+    },
+  },
+  {
+    "location": "/abc",
+    "params": {},
+    "route": {
+      "elements": {},
+      "loaded": true,
+      "modules": [],
+      "path": "/abc",
+      "test": {
+        "keys": [],
+        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
       },
     },
   },
@@ -37,7 +94,7 @@ exports[`match > matchLocation > 1 match with params 1`] = `
     },
     "route": {
       "elements": {},
-      "loaded": false,
+      "loaded": true,
       "modules": [],
       "path": "/[:id]",
       "test": {
@@ -58,7 +115,7 @@ exports[`match > matchLocation > 2 matches 1`] = `
     "params": {},
     "route": {
       "elements": {},
-      "loaded": false,
+      "loaded": true,
       "modules": [],
       "path": "/",
       "test": {
@@ -68,7 +125,7 @@ exports[`match > matchLocation > 2 matches 1`] = `
       "tree": [
         {
           "elements": {},
-          "loaded": false,
+          "loaded": true,
           "modules": [],
           "path": "/abc",
           "test": {
@@ -84,64 +141,7 @@ exports[`match > matchLocation > 2 matches 1`] = `
     "params": {},
     "route": {
       "elements": {},
-      "loaded": false,
-      "modules": [],
-      "path": "/abc",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-    },
-  },
-]
-`;
-
-exports[`match > matchLocation > 2 matches with params 1`] = `
-[
-  {
-    "location": "/",
-    "params": {},
-    "route": {
-      "elements": {},
-      "loaded": false,
-      "modules": [],
-      "path": "/",
-      "test": {
-        "keys": [],
-        "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-      },
-      "tree": [
-        {
-          "elements": {},
-          "loaded": false,
-          "modules": [],
-          "path": "/abc",
-          "test": {
-            "keys": [],
-            "pattern": /\\^\\\\/abc\\(\\?=\\$\\|\\\\/\\)/i,
-          },
-        },
-        {
-          "elements": {},
-          "loaded": false,
-          "modules": [],
-          "path": "/[:id]",
-          "test": {
-            "keys": [
-              "id",
-            ],
-            "pattern": /\\^\\\\/\\(\\[\\^/\\]\\+\\?\\)\\(\\?=\\$\\|\\\\/\\)/i,
-          },
-        },
-      ],
-    },
-  },
-  {
-    "location": "/abc",
-    "params": {},
-    "route": {
-      "elements": {},
-      "loaded": false,
+      "loaded": true,
       "modules": [],
       "path": "/abc",
       "test": {

@@ -15,7 +15,7 @@ describe("match", () => {
         path: "/abc",
         test: regexparam.parse("/abc", true),
         modules: [],
-        loaded: false,
+        loaded: true,
         elements: {},
       });
 
@@ -27,7 +27,7 @@ describe("match", () => {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
-        loaded: false,
+        loaded: true,
         elements: {},
       });
 
@@ -39,14 +39,14 @@ describe("match", () => {
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
-        loaded: false,
+        loaded: true,
         elements: {},
         tree: [
           {
             path: "/abc",
             test: regexparam.parse("/abc", true),
             modules: [],
-            loaded: false,
+            loaded: true,
             elements: {},
           },
         ],
@@ -60,33 +60,33 @@ describe("match", () => {
         path: "/[:id]",
         test: regexparam.parse("/:id", true),
         modules: [],
-        loaded: false,
+        loaded: true,
         elements: {},
       });
 
       expect(await matchLocation("/100")).toMatchSnapshot();
     });
 
-    test("2 matches with params", async () => {
+    test("1 match and 1 match with params", async () => {
       vi.mocked(getRouteTree).mockReturnValueOnce({
         path: "/",
         test: regexparam.parse("/", true),
         modules: [],
-        loaded: false,
+        loaded: true,
         elements: {},
         tree: [
           {
             path: "/abc",
             test: regexparam.parse("/abc", true),
             modules: [],
-            loaded: false,
+            loaded: true,
             elements: {},
           },
           {
             path: "/[:id]",
             test: regexparam.parse("/:id", true),
             modules: [],
-            loaded: false,
+            loaded: true,
             elements: {},
           },
         ],

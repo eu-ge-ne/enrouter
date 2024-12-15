@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`outlet > named _content element from current match 1`] = `
+exports[`outlet > _content from current match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -12,7 +12,7 @@ exports[`outlet > named _content element from current match 1`] = `
 </div>
 `;
 
-exports[`outlet > named _content element from next match 1`] = `
+exports[`outlet > _content from next match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -24,7 +24,7 @@ exports[`outlet > named _content element from next match 1`] = `
 </div>
 `;
 
-exports[`outlet > named _layout element from next match 1`] = `
+exports[`outlet > _layout from next match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
@@ -36,7 +36,7 @@ exports[`outlet > named _layout element from next match 1`] = `
 </div>
 `;
 
-exports[`outlet > named _void element from current match 1`] = `
+exports[`outlet > _void from current match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"

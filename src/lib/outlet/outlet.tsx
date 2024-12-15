@@ -18,7 +18,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
   );
 }
 
-interface OutletImplProps {
+interface OutletInnerProps {
   matches: Matches;
   name?: string;
 }
@@ -26,7 +26,7 @@ interface OutletImplProps {
 function RootOutlet({
   matches: { firstMatch, voidMatch, isExactMatch },
   name,
-}: OutletImplProps): ReactNode {
+}: OutletInnerProps): ReactNode {
   const voidComponents = useVoid();
 
   if (!isExactMatch && !voidMatch && voidComponents) {
@@ -51,7 +51,7 @@ function RootOutlet({
 function LayoutOutlet({
   matches: { matchIndex, match, nextMatch, lastMatch, voidMatch, isExactMatch },
   name,
-}: OutletImplProps): ReactNode {
+}: OutletInnerProps): ReactNode {
   // void?
   if (!isExactMatch && match === voidMatch) {
     return pick(match?.route?.elements._void, name);

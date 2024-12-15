@@ -27,7 +27,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _layout element from next match", async () => {
+  test("_layout from next match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -71,7 +71,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _content element from next match", async () => {
+  test("_content from next match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -115,7 +115,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _content element from current match", async () => {
+  test("_content from current match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -148,7 +148,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _void element from current match", async () => {
+  test("_void from current match", async () => {
     const matches: Match[] = [
       {
         route: {
