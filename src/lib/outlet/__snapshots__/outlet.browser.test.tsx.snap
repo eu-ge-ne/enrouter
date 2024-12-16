@@ -48,10 +48,34 @@ exports[`outlet > _void from current match 1`] = `
 </div>
 `;
 
+exports[`outlet > named root void 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      void A
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > no match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   />
+</div>
+`;
+
+exports[`outlet > root void 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      void
+    </div>
+  </div>
 </div>
 `;
