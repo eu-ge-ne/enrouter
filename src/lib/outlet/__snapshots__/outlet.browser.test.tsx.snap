@@ -12,6 +12,18 @@ exports[`outlet > _content from current match 1`] = `
 </div>
 `;
 
+exports[`outlet > _content from first match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      content#Main
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > _content from next match 1`] = `
 <div>
   <div
@@ -19,6 +31,18 @@ exports[`outlet > _content from next match 1`] = `
   >
     <div>
       next content#Main
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet > _layout from first match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      layout#Main
     </div>
   </div>
 </div>

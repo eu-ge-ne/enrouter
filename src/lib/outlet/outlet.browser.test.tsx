@@ -186,6 +186,68 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
+  test("_layout from first match", async () => {
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>layout#Main</div>,
+            },
+          },
+        },
+        location: "/",
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <MatchesProvider value={matches}>
+        <Outlet />
+      </MatchesProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("_content from first match", async () => {
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _content: {
+              Main: <div>content#Main</div>,
+            },
+          },
+        },
+        location: "/",
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <MatchesProvider value={matches}>
+        <Outlet />
+      </MatchesProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
   test("root void", async () => {
     const rootParams: RootParams = {
       void: {
