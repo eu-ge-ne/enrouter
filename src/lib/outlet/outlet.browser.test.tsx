@@ -5,6 +5,7 @@ import * as regexparam from "regexparam";
 
 import type { Match } from "#lib/match/match.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
+import { type RootParams, RootParamsProvider } from "#lib/root/context.js";
 import { Outlet } from "./outlet.js";
 
 const testId = "test-wrapper";
@@ -27,7 +28,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _layout element from next match", async () => {
+  test("_layout from next match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -71,7 +72,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _content element from next match", async () => {
+  test("_content from next match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -115,7 +116,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _content element from current match", async () => {
+  test("_content from current match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -148,7 +149,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named _void element from current match", async () => {
+  test("_void from current match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -177,6 +178,146 @@ describe("outlet", () => {
           <Outlet name="Main" />
         </MatchIndexProvider>
       </MatchesProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("_layout from first match", async () => {
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _layout: {
+              Main: <div>layout#Main</div>,
+            },
+          },
+        },
+        location: "/",
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <MatchesProvider value={matches}>
+        <Outlet />
+      </MatchesProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("_content from first match", async () => {
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {
+            _content: {
+              Main: <div>content#Main</div>,
+            },
+          },
+        },
+        location: "/",
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <MatchesProvider value={matches}>
+        <Outlet />
+      </MatchesProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("root void", async () => {
+    const rootParams: RootParams = {
+      void: {
+        X: () => <div>void</div>,
+      },
+    };
+
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {},
+        },
+        location: "/",
+        params: {},
+      },
+      {
+        location: "/x",
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <RootParamsProvider value={rootParams}>
+        <MatchesProvider value={matches}>
+          <Outlet />
+        </MatchesProvider>
+      </RootParamsProvider>,
+      { wrapper },
+    );
+
+    await expect.element(screen.getByTestId(testId)).toBeVisible();
+
+    expect(screen.container).toMatchSnapshot();
+  });
+
+  test("named root void", async () => {
+    const rootParams: RootParams = {
+      void: {
+        A: () => <div>void A</div>,
+      },
+    };
+
+    const matches: Match[] = [
+      {
+        route: {
+          path: "/",
+          test: regexparam.parse("/", true),
+          modules: [],
+          loaded: true,
+          elements: {},
+        },
+        location: "/",
+        params: {},
+      },
+      {
+        location: "/x",
+        params: {},
+      },
+    ];
+
+    const screen = render(
+      <RootParamsProvider value={rootParams}>
+        <MatchesProvider value={matches}>
+          <Outlet name="A" />
+        </MatchesProvider>
+      </RootParamsProvider>,
       { wrapper },
     );
 

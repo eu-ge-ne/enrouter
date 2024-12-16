@@ -11,6 +11,18 @@ export interface StaticRouterProps {
   matches: Match[];
 }
 
-export function StaticRouter(props: StaticRouterProps): ReactNode {
-  return <Root {...props} navigate={noNavigate} />;
+export function StaticRouter({
+  root,
+  void: v,
+  location,
+  matches,
+}: StaticRouterProps): ReactNode {
+  return (
+    <Root
+      params={{ root, void: v }}
+      location={location}
+      matches={matches}
+      navigate={noNavigate}
+    />
+  );
 }

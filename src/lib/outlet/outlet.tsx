@@ -2,7 +2,7 @@ import type { ReactNode, ReactElement } from "react";
 
 import { MatchIndexProvider } from "#lib/match/context.js";
 import { type Matches, useMatches } from "#lib/match/useMatches.js";
-import { useVoid } from "#lib/root/context.js";
+import { useRootParams } from "#lib/root/context.js";
 
 export interface OutletProps {
   name?: string;
@@ -18,7 +18,7 @@ export function Outlet({ name }: OutletProps): ReactNode {
   );
 }
 
-interface OutletImplProps {
+interface OutletInnerProps {
   matches: Matches;
   name?: string;
 }
@@ -26,13 +26,13 @@ interface OutletImplProps {
 function RootOutlet({
   matches: { firstMatch, voidMatch, isExactMatch },
   name,
-}: OutletImplProps): ReactNode {
-  const voidComponents = useVoid();
+}: OutletInnerProps): ReactNode {
+  const rootParams = useRootParams();
 
-  if (!isExactMatch && !voidMatch && voidComponents) {
+  if (!isExactMatch && !voidMatch && rootParams.void) {
     const Void = name
-      ? voidComponents[name]!
-      : Object.values(voidComponents)[0]!;
+      ? rootParams.void[name]!
+      : Object.values(rootParams.void)[0]!;
 
     return <Void />;
   }
@@ -51,7 +51,7 @@ function RootOutlet({
 function LayoutOutlet({
   matches: { matchIndex, match, nextMatch, lastMatch, voidMatch, isExactMatch },
   name,
-}: OutletImplProps): ReactNode {
+}: OutletInnerProps): ReactNode {
   // void?
   if (!isExactMatch && match === voidMatch) {
     return pick(match?.route?.elements._void, name);
