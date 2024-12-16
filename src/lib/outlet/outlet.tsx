@@ -63,12 +63,10 @@ function LayoutOutlet({
     return pick(match?.route?.elements._fallback, name);
   }
 
-  // content?
   if (isExactMatch && match === lastMatch) {
     return pick(match?.route?.elements._content, name);
   }
 
-  // next?
   if (nextMatch?.route) {
     const { _layout, _content } = nextMatch.route.elements;
 
