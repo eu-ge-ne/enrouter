@@ -15,8 +15,8 @@ export const loaders: Record<string, Loader> = {
   "_content.tsx": async ({ elements }, fn) => {
     elements._content = await load(fn);
   },
-  "_void.tsx": async ({ elements }, fn) => {
-    elements._void = await load(fn);
+  "_fallback.tsx": async ({ elements }, fn) => {
+    elements._fallback = await load(fn);
   },
 };
 

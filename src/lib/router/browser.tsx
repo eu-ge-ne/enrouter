@@ -15,7 +15,7 @@ const log = logger("router/browser");
 
 export interface BrowserRouterProps {
   root?: ComponentType;
-  void?: Record<string, ComponentType>;
+  fallback?: Record<string, ComponentType>;
   matches: Match[];
 }
 
@@ -56,7 +56,7 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
 
   return (
     <Root
-      params={{ root: props.root, void: props.void }}
+      params={{ root: props.root, fallback: props.fallback }}
       navigate={navigate}
       location={location}
       matches={matches}

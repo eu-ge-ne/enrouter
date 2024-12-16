@@ -10,7 +10,7 @@ export interface Matches {
   firstMatch: Match | undefined;
   nextMatch: Match | undefined;
   lastMatch: Match | undefined;
-  voidMatch: Match | undefined;
+  fallbackMatch: Match | undefined;
   isExactMatch: boolean;
 }
 
@@ -22,7 +22,7 @@ export function useMatches(): Matches {
   const firstMatch = matches[0];
   const nextMatch = matches[matchIndex + 1];
   const lastMatch = matches.at(-1);
-  const voidMatch = matches.findLast((x) => x.route?.elements._void);
+  const fallbackMatch = matches.findLast((x) => x.route?.elements._fallback);
 
   const isExactMatch = Boolean(lastMatch?.route);
 
@@ -33,7 +33,7 @@ export function useMatches(): Matches {
     firstMatch,
     nextMatch,
     lastMatch,
-    voidMatch,
+    fallbackMatch,
     isExactMatch,
   };
 }

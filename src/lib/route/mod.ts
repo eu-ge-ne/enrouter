@@ -22,7 +22,7 @@ export interface Route {
   elements: {
     _layout?: Record<string, ReactElement>;
     _content?: Record<string, ReactElement>;
-    _void?: Record<string, ReactElement>;
+    _fallback?: Record<string, ReactElement>;
   };
 
   tree?: Route[];

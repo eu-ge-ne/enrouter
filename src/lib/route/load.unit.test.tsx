@@ -103,18 +103,18 @@ describe("route", () => {
       expect(routes).toMatchSnapshot();
     });
 
-    test("1 route with _void.tsx module", async () => {
+    test("1 route with _fallback.tsx module", async () => {
       const routes: Route[] = [
         {
           path: "/",
           test: regexparam.parse("/", true),
           modules: [
             {
-              id: "src/_void.tsx",
-              fileName: "_void.tsx",
+              id: "src/_fallback.tsx",
+              fileName: "_fallback.tsx",
               importFn: async () => ({
                 default: {
-                  Main: () => <div>Void</div>,
+                  Main: () => <div>fallback</div>,
                 },
               }),
             },
