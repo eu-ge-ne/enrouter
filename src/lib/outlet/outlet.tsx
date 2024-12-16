@@ -49,7 +49,14 @@ function RootOutlet({
 }
 
 function LayoutOutlet({
-  matches: { matchIndex, match, nextMatch, lastMatch, fallbackMatch, isExactMatch },
+  matches: {
+    matchIndex,
+    match,
+    nextMatch,
+    lastMatch,
+    fallbackMatch,
+    isExactMatch,
+  },
   name,
 }: OutletInnerProps): ReactNode {
   if (!isExactMatch && match === fallbackMatch) {
