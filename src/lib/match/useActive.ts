@@ -1,5 +1,5 @@
 import { useMatches } from "./useMatches.js";
-import { useMatch } from "./useMatch.js";
+import { useMatchFor } from "./useMatchFor.js";
 
 export interface UseActiveParams<T> {
   path: string;
@@ -12,7 +12,7 @@ export function useActive<T>({
   loose,
   value: [yes, no],
 }: UseActiveParams<T>): T {
-  const match = useMatch(path);
+  const match = useMatchFor(path);
   const { lastMatch } = useMatches();
 
   if (!match?.route) {
