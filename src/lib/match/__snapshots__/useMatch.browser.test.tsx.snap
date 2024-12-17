@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match > useMatches > 1 match 1`] = `
+exports[`match > useMatch > 1 match 1`] = `
 <div>
   <div
     data-testid="test-wrapper"

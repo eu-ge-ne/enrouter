@@ -1,4 +1,4 @@
-import { useMatches } from "./useMatches.js";
+import { useMatch } from "./useMatch.js";
 import { useMatchFor } from "./useMatchFor.js";
 
 export interface UseActiveParams<T> {
@@ -13,7 +13,7 @@ export function useActive<T>({
   value: [yes, no],
 }: UseActiveParams<T>): T {
   const match = useMatchFor(path);
-  const { lastMatch } = useMatches();
+  const { last } = useMatch();
 
   if (!match?.route) {
     return no;
@@ -23,7 +23,7 @@ export function useActive<T>({
     return yes;
   }
 
-  if (match !== lastMatch) {
+  if (match !== last) {
     return no;
   }
 
