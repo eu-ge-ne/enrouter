@@ -5,7 +5,7 @@ import * as regexparam from "regexparam";
 
 import type { Match } from "./match.js";
 import { MatchesProvider, MatchIndexProvider } from "./context.js";
-import { useMatches } from "./useMatches.js";
+import { useMatch } from "./useMatch.js";
 
 const testId = "test-wrapper";
 
@@ -14,7 +14,7 @@ const wrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 describe("match", () => {
-  describe("useMatches", () => {
+  describe("useMatch", () => {
     test("1 match", async () => {
       const matches: Match[] = [
         {
@@ -36,7 +36,7 @@ describe("match", () => {
 
       const Test: FC = () => {
         return (
-          useMatches().match?.route?.elements._layout as Record<
+          useMatch().current?.route?.elements._layout as Record<
             string,
             ReactElement
           >

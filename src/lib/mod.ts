@@ -3,7 +3,7 @@ export { debug } from "./debug.js";
 export type { Route } from "./route/mod.js";
 
 export { type Match, matchLocation } from "./match/match.js";
-export { type Matches, useMatches } from "./match/useMatches.js";
+export { type UseMatchResult, useMatch } from "./match/useMatch.js";
 export { useMatchFor } from "./match/useMatchFor.js";
 export { type UseActiveParams, useActive } from "./match/useActive.js";
 

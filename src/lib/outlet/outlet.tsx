@@ -1,7 +1,7 @@
-import type { ReactNode, ReactElement } from "react";
+import { type ReactNode, type ReactElement, useContext } from "react";
 
-import { MatchIndexProvider } from "#lib/match/context.js";
-import { type Matches, useMatches } from "#lib/match/useMatches.js";
+import { MatchIndexContext, MatchIndexProvider } from "#lib/match/context.js";
+import { useMatch } from "#lib/match/useMatch.js";
 import { useRootParams } from "#lib/root/context.js";
 
 export interface OutletProps {
@@ -9,36 +9,29 @@ export interface OutletProps {
 }
 
 export function Outlet({ name }: OutletProps): ReactNode {
-  const matches = useMatches();
+  const index = useContext(MatchIndexContext);
 
-  return matches.matchIndex < 0 ? (
-    <RootOutlet matches={matches} name={name} />
+  return index < 0 ? (
+    <RootOutlet name={name} />
   ) : (
-    <LayoutOutlet matches={matches} name={name} />
+    <LayoutOutlet name={name} index={index} />
   );
 }
 
-interface OutletInnerProps {
-  matches: Matches;
-  name?: string;
-}
+function RootOutlet({ name }: { name?: string }): ReactNode {
+  const root = useRootParams();
+  const match = useMatch();
 
-function RootOutlet({
-  matches: { firstMatch, fallbackMatch, isExactMatch },
-  name,
-}: OutletInnerProps): ReactNode {
-  const rootParams = useRootParams();
-
-  if (!isExactMatch && !fallbackMatch && rootParams.fallback) {
+  if (!match.isExact && !match.fallback && root.fallback) {
     const Fallback = name
-      ? rootParams.fallback[name]!
-      : Object.values(rootParams.fallback)[0]!;
+      ? root.fallback[name]!
+      : Object.values(root.fallback)[0]!;
 
     return <Fallback />;
   }
 
-  if (firstMatch?.route) {
-    const { _layout, _content } = firstMatch.route.elements;
+  if (match.first?.route) {
+    const { _layout, _content } = match.first.route.elements;
 
     return (
       <MatchIndexProvider value={0}>
@@ -49,29 +42,27 @@ function RootOutlet({
 }
 
 function LayoutOutlet({
-  matches: {
-    matchIndex,
-    match,
-    nextMatch,
-    lastMatch,
-    fallbackMatch,
-    isExactMatch,
-  },
   name,
-}: OutletInnerProps): ReactNode {
-  if (!isExactMatch && match === fallbackMatch) {
-    return pick(match?.route?.elements._fallback, name);
+  index,
+}: {
+  name?: string;
+  index: number;
+}): ReactNode {
+  const { isExact, current, fallback, last, next } = useMatch();
+
+  if (!isExact && current === fallback) {
+    return pick(current?.route?.elements._fallback, name);
   }
 
-  if (isExactMatch && match === lastMatch) {
-    return pick(match?.route?.elements._content, name);
+  if (isExact && current === last) {
+    return pick(current?.route?.elements._content, name);
   }
 
-  if (nextMatch?.route) {
-    const { _layout, _content } = nextMatch.route.elements;
+  if (next?.route) {
+    const { _layout, _content } = next.route.elements;
 
     return (
-      <MatchIndexProvider value={matchIndex + 1}>
+      <MatchIndexProvider value={index + 1}>
         {pick(_layout ?? _content, name)}
       </MatchIndexProvider>
     );
