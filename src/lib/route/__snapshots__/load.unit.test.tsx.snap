@@ -42,6 +42,31 @@ exports[`route > loadRoutes > 1 route with _content.tsx module 1`] = `
 ]
 `;
 
+exports[`route > loadRoutes > 1 route with _fallback.tsx module 1`] = `
+[
+  {
+    "elements": {
+      "_fallback": {
+        "Main": <Main />,
+      },
+    },
+    "loaded": true,
+    "modules": [
+      {
+        "fileName": "_fallback.tsx",
+        "id": "src/_fallback.tsx",
+        "importFn": [Function],
+      },
+    ],
+    "path": "/",
+    "test": {
+      "keys": [],
+      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
+    },
+  },
+]
+`;
+
 exports[`route > loadRoutes > 1 route with _layout.tsx module with multiple components 1`] = `
 [
   {
@@ -56,31 +81,6 @@ exports[`route > loadRoutes > 1 route with _layout.tsx module with multiple comp
       {
         "fileName": "_layout.tsx",
         "id": "src/_layout.tsx",
-        "importFn": [Function],
-      },
-    ],
-    "path": "/",
-    "test": {
-      "keys": [],
-      "pattern": /\\^\\(\\?=\\$\\|\\\\/\\)/i,
-    },
-  },
-]
-`;
-
-exports[`route > loadRoutes > 1 route with _void.tsx module 1`] = `
-[
-  {
-    "elements": {
-      "_void": {
-        "Main": <Main />,
-      },
-    },
-    "loaded": true,
-    "modules": [
-      {
-        "fileName": "_void.tsx",
-        "id": "src/_void.tsx",
         "importFn": [Function],
       },
     ],

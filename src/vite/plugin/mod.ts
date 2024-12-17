@@ -9,7 +9,7 @@ import { compileRouteTree } from "./compile.js";
 
 const moduleId = "virtual:enrouter";
 const resolvedModuleId = "\0" + moduleId;
-const globPattern = "**/{_layout.tsx,_content.tsx,_void.tsx}";
+const globPattern = "**/{_layout.tsx,_content.tsx,_fallback.tsx}";
 
 export interface EnrouterPluginOptions {
   path: string;

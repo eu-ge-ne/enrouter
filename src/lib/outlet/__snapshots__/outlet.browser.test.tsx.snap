@@ -36,6 +36,18 @@ exports[`outlet > _content from next match 1`] = `
 </div>
 `;
 
+exports[`outlet > _fallback from current match 1`] = `
+<div>
+  <div
+    data-testid="test-wrapper"
+  >
+    <div>
+      fallback#Main
+    </div>
+  </div>
+</div>
+`;
+
 exports[`outlet > _layout from first match 1`] = `
 <div>
   <div
@@ -60,25 +72,13 @@ exports[`outlet > _layout from next match 1`] = `
 </div>
 `;
 
-exports[`outlet > _void from current match 1`] = `
+exports[`outlet > named root fallback 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      void#Main
-    </div>
-  </div>
-</div>
-`;
-
-exports[`outlet > named root void 1`] = `
-<div>
-  <div
-    data-testid="test-wrapper"
-  >
-    <div>
-      void A
+      fallback A
     </div>
   </div>
 </div>
@@ -92,13 +92,13 @@ exports[`outlet > no match 1`] = `
 </div>
 `;
 
-exports[`outlet > root void 1`] = `
+exports[`outlet > root fallback 1`] = `
 <div>
   <div
     data-testid="test-wrapper"
   >
     <div>
-      void
+      fallback
     </div>
   </div>
 </div>

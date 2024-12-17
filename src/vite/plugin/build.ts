@@ -2,9 +2,6 @@ import { parseRoutePath } from "./modules.js";
 import type { Route } from "#lib/route/mod.js";
 import type { RouteModules } from "./modules.js";
 
-/**
- * Builds `Route`s from `RouteModules`
- */
 export function buildRouteTree(modules: RouteModules[]): Route {
   const routes = new Map<string, Route>();
 

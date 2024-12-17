@@ -6,20 +6,20 @@ import { Root } from "#lib/root/root.js";
 
 export interface StaticRouterProps {
   root?: ComponentType;
-  void?: Record<string, ComponentType>;
+  fallback?: Record<string, ComponentType>;
   location: string;
   matches: Match[];
 }
 
 export function StaticRouter({
   root,
-  void: v,
+  fallback,
   location,
   matches,
 }: StaticRouterProps): ReactNode {
   return (
     <Root
-      params={{ root, void: v }}
+      params={{ root, fallback }}
       location={location}
       matches={matches}
       navigate={noNavigate}

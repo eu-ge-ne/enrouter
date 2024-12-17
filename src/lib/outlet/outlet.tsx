@@ -24,17 +24,17 @@ interface OutletInnerProps {
 }
 
 function RootOutlet({
-  matches: { firstMatch, voidMatch, isExactMatch },
+  matches: { firstMatch, fallbackMatch, isExactMatch },
   name,
 }: OutletInnerProps): ReactNode {
   const rootParams = useRootParams();
 
-  if (!isExactMatch && !voidMatch && rootParams.void) {
-    const Void = name
-      ? rootParams.void[name]!
-      : Object.values(rootParams.void)[0]!;
+  if (!isExactMatch && !fallbackMatch && rootParams.fallback) {
+    const Fallback = name
+      ? rootParams.fallback[name]!
+      : Object.values(rootParams.fallback)[0]!;
 
-    return <Void />;
+    return <Fallback />;
   }
 
   if (firstMatch?.route) {
@@ -49,20 +49,24 @@ function RootOutlet({
 }
 
 function LayoutOutlet({
-  matches: { matchIndex, match, nextMatch, lastMatch, voidMatch, isExactMatch },
+  matches: {
+    matchIndex,
+    match,
+    nextMatch,
+    lastMatch,
+    fallbackMatch,
+    isExactMatch,
+  },
   name,
 }: OutletInnerProps): ReactNode {
-  // void?
-  if (!isExactMatch && match === voidMatch) {
-    return pick(match?.route?.elements._void, name);
+  if (!isExactMatch && match === fallbackMatch) {
+    return pick(match?.route?.elements._fallback, name);
   }
 
-  // content?
   if (isExactMatch && match === lastMatch) {
     return pick(match?.route?.elements._content, name);
   }
 
-  // next?
   if (nextMatch?.route) {
     const { _layout, _content } = nextMatch.route.elements;
 

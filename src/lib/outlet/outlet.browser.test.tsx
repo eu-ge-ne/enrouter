@@ -149,7 +149,7 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("_void from current match", async () => {
+  test("_fallback from current match", async () => {
     const matches: Match[] = [
       {
         route: {
@@ -158,8 +158,8 @@ describe("outlet", () => {
           modules: [],
           loaded: true,
           elements: {
-            _void: {
-              Main: <div>void#Main</div>,
+            _fallback: {
+              Main: <div>fallback#Main</div>,
             },
           },
         },
@@ -248,10 +248,10 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("root void", async () => {
+  test("root fallback", async () => {
     const rootParams: RootParams = {
-      void: {
-        X: () => <div>void</div>,
+      fallback: {
+        X: () => <div>fallback</div>,
       },
     };
 
@@ -287,10 +287,10 @@ describe("outlet", () => {
     expect(screen.container).toMatchSnapshot();
   });
 
-  test("named root void", async () => {
+  test("named root fallback", async () => {
     const rootParams: RootParams = {
-      void: {
-        A: () => <div>void A</div>,
+      fallback: {
+        A: () => <div>fallback A</div>,
       },
     };
 
