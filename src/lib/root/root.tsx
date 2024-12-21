@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import type { Match } from "#lib/match/match.js";
 import { type Navigate, NavigateProvider } from "#lib/navigate/mod.js";
-import { LocationProvider } from "#lib/location/mod.js";
+import { LocationProvider } from "#lib/location/location.js";
 import { MatchesProvider, MatchIndexProvider } from "#lib/match/context.js";
 import { Outlet } from "#lib/outlet/outlet.js";
 import { type RootParams, RootParamsProvider } from "./context.js";

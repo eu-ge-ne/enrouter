@@ -2,7 +2,7 @@ import type { FC, PropsWithChildren } from "react";
 import { describe, test, expect } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { LocationProvider, useLocation } from "./mod.js";
+import { LocationProvider, useLocation } from "./location.js";
 
 const testId = "test-wrapper";
 
