@@ -10,7 +10,7 @@ import { getRouteTree } from "#lib/route/tree.js";
 import { useLink } from "#lib/link/mod.js";
 import { Outlet } from "#lib/outlet/outlet.js";
 import { BrowserRouter } from "./browser.js";
-import { assignLocation, pushHistory } from "#lib/browser/mod.js";
+import { assignLocation, pushHistory } from "#lib/browser.js";
 
 const testId = "test-wrapper";
 
@@ -22,7 +22,7 @@ vi.mock(import("#lib/route/tree.js"), () => ({
   getRouteTree: vi.fn(),
 }));
 
-vi.mock(import("#lib/browser/mod.js"), () => ({
+vi.mock(import("#lib/browser.js"), () => ({
   pushHistory: vi.fn(),
   assignLocation: vi.fn(),
 }));

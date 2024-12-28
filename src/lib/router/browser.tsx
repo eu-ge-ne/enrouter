@@ -8,7 +8,7 @@ import {
 
 import { logger } from "#lib/debug.js";
 import { type Match, matchLocation } from "#lib/match/match.js";
-import * as browser from "#lib/browser/mod.js";
+import * as browser from "#lib/browser.js";
 import { Root } from "#lib/root/root.js";
 
 const log = logger("router/browser");
@@ -41,9 +41,8 @@ export function BrowserRouter(props: BrowserRouterProps): ReactNode {
   }, []);
 
   const handlePopState = useCallback(async (e: PopStateEvent) => {
-    log("handlePopState %o", e);
-
     const to = window.location.pathname;
+
     setLocation(to);
 
     setMatches(await matchLocation(to));
