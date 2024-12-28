@@ -3,7 +3,7 @@ import { describe, test, expect, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import * as regexparam from "regexparam";
 
-import type { Route } from "#lib/route/mod.js";
+import type { Route } from "#lib/route/route.js";
 import type { Match } from "#lib/match/match.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { BrowserRouter } from "#lib/router/browser.js";

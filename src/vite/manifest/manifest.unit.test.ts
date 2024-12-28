@@ -1,6 +1,6 @@
 import { describe, test, expect } from "vitest";
 
-import { type ViteManifest, getModuleAssets } from "./mod.js";
+import { type ViteManifest, getModuleAssets } from "./manifest.js";
 
 describe("manifest", () => {
   describe("getModuleAssets", () => {

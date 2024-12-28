@@ -1,7 +1,7 @@
 import type { ReactNode, ComponentType } from "react";
 
 import type { Match } from "#lib/match/match.js";
-import { noNavigate } from "#lib/navigate/mod.js";
+import { noNavigate } from "#lib/navigate/navigate.js";
 import { Root } from "#lib/root/root.js";
 
 export interface StaticRouterProps {

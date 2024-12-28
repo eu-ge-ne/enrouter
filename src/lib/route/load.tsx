@@ -1,4 +1,4 @@
-import type { Route } from "./mod.js";
+import type { Route } from "./route.js";
 import { loaders } from "./loaders.js";
 
 export async function loadRoutes(routes: Route[]): Promise<void> {

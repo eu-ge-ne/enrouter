@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-import type { Route } from "./mod.js";
+import type { Route } from "./route.js";
 
 type ImportFn = () => Promise<{
   default: Record<string, ComponentType>;

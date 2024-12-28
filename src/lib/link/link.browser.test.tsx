@@ -3,8 +3,8 @@ import { describe, test, expect, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
 
-import { NavigateProvider, noNavigate } from "#lib/navigate/mod.js";
-import { useLink } from "./mod.js";
+import { NavigateProvider, noNavigate } from "#lib/navigate/navigate.js";
+import { useLink } from "./link.js";
 
 const testId = "test-wrapper";
 

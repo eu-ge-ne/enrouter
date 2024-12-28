@@ -1,5 +1,5 @@
 import { parseRoutePath } from "./modules.js";
-import type { Route } from "#lib/route/mod.js";
+import type { Route } from "#lib/route/route.js";
 import type { RouteModules } from "./modules.js";
 
 export function buildRouteTree(modules: RouteModules[]): Route {
