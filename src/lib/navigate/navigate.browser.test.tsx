@@ -2,7 +2,7 @@ import { type FC, type PropsWithChildren, useEffect } from "react";
 import { describe, test, expect, vi } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { NavigateProvider, noNavigate } from "#lib/navigate/mod.js";
+import { NavigateProvider, noNavigate } from "./navigate.js";
 
 const testId = "test-wrapper";
 

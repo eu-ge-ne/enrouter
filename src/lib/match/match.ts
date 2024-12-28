@@ -1,4 +1,4 @@
-import type { Route } from "#lib/route/mod.js";
+import type { Route } from "#lib/route/route.js";
 import { getRouteTree } from "#lib/route/tree.js";
 import { loadRoutes } from "#lib/route/load.js";
 

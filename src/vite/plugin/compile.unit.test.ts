@@ -3,7 +3,7 @@ import * as vm from "node:vm";
 import { describe, test, expect } from "vitest";
 import * as regexparam from "regexparam";
 
-import type { Route } from "#lib/route/mod.js";
+import type { Route } from "#lib/route/route.js";
 import type { RouteModules } from "./modules.js";
 import { buildRouteTree } from "./build.js";
 import { compileRouteTree } from "./compile.js";

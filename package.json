@@ -21,16 +21,16 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/lib/mod.d.ts",
-      "default": "./dist/lib/mod.js"
+      "types": "./dist/lib/index.d.ts",
+      "default": "./dist/lib/index.js"
     },
     "./vite/plugin": {
-      "types": "./dist/vite/plugin/mod.d.ts",
-      "default": "./dist/vite/plugin/mod.js"
+      "types": "./dist/vite/plugin/plugin.d.ts",
+      "default": "./dist/vite/plugin/plugin.js"
     },
     "./vite/manifest": {
-      "types": "./dist/vite/manifest/mod.d.ts",
-      "default": "./dist/vite/manifest/mod.js"
+      "types": "./dist/vite/manifest/manifest.d.ts",
+      "default": "./dist/vite/manifest/manifest.js"
     }
   },
   "imports": {

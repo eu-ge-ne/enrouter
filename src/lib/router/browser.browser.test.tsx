@@ -4,10 +4,10 @@ import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
 import * as regexparam from "regexparam";
 
-import type { Route } from "#lib/route/mod.js";
+import type { Route } from "#lib/route/route.js";
 import type { Match } from "#lib/match/match.js";
 import { getRouteTree } from "#lib/route/tree.js";
-import { useLink } from "#lib/link/mod.js";
+import { useLink } from "#lib/link/link.js";
 import { Outlet } from "#lib/outlet/outlet.js";
 import { BrowserRouter } from "./browser.js";
 import { assignLocation, pushHistory } from "#lib/browser.js";

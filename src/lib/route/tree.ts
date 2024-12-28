@@ -1,4 +1,4 @@
-import type { Route } from "./mod.js";
+import type { Route } from "./route.js";
 //@ts-ignore
 import routeTree from "virtual:enrouter";
 

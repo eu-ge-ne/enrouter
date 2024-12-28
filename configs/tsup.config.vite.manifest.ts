@@ -1,7 +1,7 @@
 import type { Options } from "tsup";
 
 export default {
-  entry: ["src/vite/manifest/mod.ts"],
+  entry: ["src/vite/manifest/manifest.ts"],
   outDir: "dist/vite/manifest",
   format: "esm",
   target: "es2023",
