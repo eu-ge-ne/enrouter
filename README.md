@@ -30,8 +30,8 @@ pnpm add enrouter
 
 ## Requirements
 
-- Кeact: `>=18`
-- Мite: `^6`
+- React: `>=18`
+- Vite: `^6`
 
 ## Supported Environments
 
